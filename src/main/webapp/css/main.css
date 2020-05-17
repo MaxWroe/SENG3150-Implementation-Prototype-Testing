@@ -1,0 +1,60 @@
+body
+{
+    font-family: Verdana, Geneva, sans-serif;
+    color: #25283d;
+    background-color: #ecf0f1;
+}
+
+.main-content
+{
+    padding: 60px 5% 2em;
+    overflow: hidden;
+}
+
+.navbar
+{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background-color: #fff;
+}
+
+.nav-logo
+{
+    float: left;
+    padding-left: 5%;
+    padding-top: 1em;
+}
+
+.primary-nav
+{
+    float: right;
+    padding-right: 5%;
+}
+
+.primary-nav ul
+{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.primary-nav li
+{
+    display: inline-block;
+    margin-right: 70px;
+    text-align: center;
+    padding: 1em 1em;
+}
+
+.primary-nav a
+{
+    text-decoration: none;
+}
+
+.card-body
+{
+    width: 80%;
+}
