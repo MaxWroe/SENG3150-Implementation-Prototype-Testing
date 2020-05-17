@@ -15,7 +15,7 @@
     <mvc:annotation-driven />
 
     <mvc:view-resolvers>
-        <mvc:jsp prefix="/WEB-INF/jsp"
+        <mvc:jsp prefix="/WEB-INF/jsp/"
                  suffix=".jsp"
                  view-class="org.springframework.web.servlet.view.JstlView" />
     </mvc:view-resolvers>
