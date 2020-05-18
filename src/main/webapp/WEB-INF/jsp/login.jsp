@@ -26,6 +26,9 @@
             <li>
                 <a class ="active" href="/home">Flight Search</a>
             </li>
+            <li>
+                <a href="/register">Register</a>
+            </li>
         </ul>
     </nav>
 </header>
@@ -33,10 +36,11 @@
 <main class="main-content">
     <div class="card-body">
         <h1>Login</h1>
+        <h2>${message}</h2>
         <h4>Enter your credentials</h4>
 
         <!-- login form -->
-        <form id="loginForm" method="post" action="">
+        <form id="loginForm" method="post" action="/login">
 
             <!-- username -->
             <label for="username">Username</label>
