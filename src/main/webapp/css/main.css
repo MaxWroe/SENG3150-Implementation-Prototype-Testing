@@ -9,6 +9,7 @@ body
 {
     padding: 60px 5% 2em;
     overflow: hidden;
+    text-align: center;
 }
 
 .navbar
@@ -57,4 +58,29 @@ body
 .card-body
 {
     width: 80%;
+    margin: 0 auto;
+}
+
+.card-body form
+{
+    border-radius: 25px;
+    background: #8592ad;
+    padding: 20px;
+    text-align: left;
+}
+
+.form-group
+{
+    width: 250px;
+    display: inline;
+}
+
+#form-group-trip
+{
+    display: block;
+}
+
+#form-group-return-date
+{
+    display: none;
 }
