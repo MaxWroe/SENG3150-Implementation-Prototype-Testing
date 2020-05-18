@@ -14,7 +14,7 @@
   <body>
     <h1>Hello World!</h1>
     <h2>Here are the first 10 available flights in the database</h2>
-  <c:forEach begin="0" end="10" items="${requestScope.availabilities}" var="availabilities">
+  <c:forEach begin="0" end="9" items="${requestScope.availabilities}" var="availabilities">
     <jsp:useBean id="availabilities" type="java.lang.Object" />
     <h3>flight: <c:out value = "${availabilities.flightNumber}"/></h3>
     <c:out value = "${availabilities.airlineCode}"/>
