@@ -10,7 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class TestController {
     @GetMapping
     public ModelAndView Index() {
-        ModelAndView view = new ModelAndView("homePage");
+        ModelAndView view = new ModelAndView("home");
         return view;
     }
 }

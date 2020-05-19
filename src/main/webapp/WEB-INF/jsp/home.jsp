@@ -34,17 +34,22 @@
         </ul>
     </nav>
 </header>
+<!-- Page content -->
 <main class="main-content">
     <div class="card-body">
         <h1>Search</h1>
         <h4>Search for Flight</h4>
-        <form method="post" id="" action="">
+        <!-- Flight search fields -->
+        <form method="get" id="searchFlight" action="/search">
+            <!-- Script for displaying return date on return flights -->
             <script>
                 function showDiv(divId, element)
                 {
-                    document.getElementById(divId).style.display = element.value === "return" ? 'inline-flex' : 'none';
+                    document.getElementById(divId).style.display = element.value === "return" ? 'inline' : 'none';
+                    document.getElementById("return").required = element.value === "return";
                 }
             </script>
+
             <!-- Return or one-way trip -->
             <div id="form-group-trip">
                 <label for="type">Trip:</label>
@@ -53,6 +58,16 @@
                     <option value="return">Return</option>
                 </select>
             </div>
+
+            <!-- Adult passengers -->
+            <label for="adults">Adults:</label>
+            <input type="number" id="adults" name="adults" min="1" max="9" value="1" required>
+            <br>
+
+            <!-- Children passengers -->
+            <label for="children">Children:</label>
+            <input type="number" id="children" name="children" min="0" max="9" value="0" required>
+            <br>
 
             <!-- Starting airport -->
             <div class="form-group">
@@ -65,6 +80,7 @@
                 <label for="to">To:</label>
                 <input list="locations" name="to" id="to" required>
             </div>
+            <br>
 
             <!-- Parse all available airport destinations -->
             <datalist id="destinations">
@@ -73,7 +89,7 @@
                 </c:forEach>
             </datalist>
 
-            <!-- temp -->
+            <!-- temp destinations -->
             <datalist id="locations">
                 <option value="SYD">Sydney - SYD</option>
                 <option value="GIG">Rio De Janeiro - GIG</option>
@@ -90,10 +106,11 @@
             <!-- Return date -->
             <div id="form-group-return-date">
                 <label for="return">Return:</label>
-                <input type="date" id="return" name="return" min="<fmt:formatDate pattern="yyyy-MM-dd" value="${now}" />" required>
+                <input type="date" id="return" name="return" min="<fmt:formatDate pattern="yyyy-MM-dd" value="${now}" />">
             </div>
             <br>
-            <!--Search button-->
+
+            <!-- Search button -->
             <button class="btn btn-lg btn-outline-success text-uppercase" type="submit">Search</button>
         </form>
     </div>
