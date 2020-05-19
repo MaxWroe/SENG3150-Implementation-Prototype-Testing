@@ -144,6 +144,12 @@ input:hover
     */
 }
 
+#search-field
+{
+    width: 100%;
+    background: #fff;
+}
+
 .flight-result
 {
     width: 80%;
