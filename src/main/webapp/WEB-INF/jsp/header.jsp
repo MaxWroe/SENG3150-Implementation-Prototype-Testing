@@ -15,7 +15,7 @@
     <nav class="primary-nav">
         <ul>
             <li>
-                <a class ="active" href="/home">Flight Search</a>
+                <a class ="active" href="/search">Flight Search</a>
             </li>
             <li>
                 <a href="/login">Login</a>

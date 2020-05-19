@@ -6,11 +6,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping("/home")
 public class TestController {
-    @GetMapping
+    @GetMapping("/home")
     public ModelAndView Index() {
         ModelAndView view = new ModelAndView("home");
+        return view;
+    }
+
+    @GetMapping("/search")
+    public ModelAndView displaySearch() {
+        ModelAndView view = new ModelAndView("search");
         return view;
     }
 }

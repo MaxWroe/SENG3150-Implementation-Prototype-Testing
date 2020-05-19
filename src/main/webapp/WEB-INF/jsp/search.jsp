@@ -18,7 +18,25 @@
 
 <!-- Page content -->
 <main class="main-content">
-
+    <div class="flight-result">
+        <div class="flight-result-time">
+            <p>Depart time</p>
+            <h4>00:00AM</h4>
+            <p>Arrival time</p>
+            <h4>00:00AM</h4>
+        </div>
+        <div class="flight-result-details">
+            <p>Company</p>
+            <p>Class</p>
+            <p>Flight ID</p>
+        </div>
+        <div class="flight-result-cost">
+            <h3>$000</h3>
+        </div>
+        <div class="flight-result-book">
+            <button type="button">Book</button>
+        </div>
+    </div>
 </main>
 </body>
 </html>

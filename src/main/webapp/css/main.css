@@ -143,3 +143,39 @@ input:hover
     border: 1px solid #aaa;
     */
 }
+
+.flight-result
+{
+    width: 80%;
+    margin: 0 auto;
+    background: #fff;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+}
+
+.flight-result-time
+{
+    grid-column: 1;
+}
+
+.flight-result-details
+{
+    grid-column: 2;
+}
+
+.flight-result-cost
+{
+    grid-column: 3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.flight-result-book
+{
+    grid-column: 4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
