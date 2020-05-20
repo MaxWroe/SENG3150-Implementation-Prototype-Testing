@@ -30,17 +30,27 @@
         <form method="get" id="searchFlight" action="/search">
             <!-- Script for displaying return date on return flights -->
             <script>
-                function showDiv(divId, element)
+                function showDiv(divId, changedId, element)
                 {
                     document.getElementById(divId).style.display = element.value === "return" ? 'inline' : 'none';
-                    document.getElementById("return").required = element.value === "return";
+                    document.getElementById(changedId).required = element.value === "return";
+                }
+
+                // Function to restrict return date to not minimum than depart
+                function restrictDepart()
+                {
+                    document.getElementById("return").min = document.getElementById("depart").value;
+                    // Disable return date until depart is selected
+                    document.getElementById("return").disabled = false;
+                    // Clear depart value
+                    document.getElementById("return").value = "";
                 }
             </script>
 
             <!-- Return or one-way trip -->
-            <div id="form-group-trip">
+            <div id="home-form-group-trip">
                 <label for="type">Trip:</label>
-                <select id="type" name="type" onchange="showDiv('form-group-return-date', this)">
+                <select id="type" name="type" onchange="showDiv('home-form-group-return-date', 'return', this)">
                     <option value="oneway">One-way</option>
                     <option value="return">Return</option>
                 </select>
@@ -57,13 +67,13 @@
             <br>
 
             <!-- Starting airport -->
-            <div class="form-group">
+            <div class="home-form-group">
                 <label for="from">From:</label>
                 <input list="locations" name="from" id="from" required>
             </div>
 
             <!-- Destination airport -->
-            <div class="form-group">
+            <div class="home-form-group">
                 <label for="to">To:</label>
                 <input list="locations" name="to" id="to" required>
             </div>
@@ -84,16 +94,17 @@
             </datalist>
 
             <!-- Depart date -->
-            <div class="form-group">
+            <div class="home-form-group">
                 <label for="depart">Depart:</label>
                 <jsp:useBean id="now" class="java.util.Date"/>
-                <input type="date" id="depart" name="depart" min="<fmt:formatDate pattern="yyyy-MM-dd" value="${now}" />" required>
+                <input type="date" id="depart" name="depart" min="<fmt:formatDate pattern="yyyy-MM-dd" value="${now}" />"
+                       onchange="restrictDepart()" required>
             </div>
 
             <!-- Return date -->
-            <div id="form-group-return-date">
+            <div id="home-form-group-return-date">
                 <label for="return">Return:</label>
-                <input type="date" id="return" name="return" min="<fmt:formatDate pattern="yyyy-MM-dd" value="${now}" />">
+                <input type="date" id="return" name="return" min="<fmt:formatDate pattern="yyyy-MM-dd" value="${now}" />" disabled>
             </div>
             <br>
 

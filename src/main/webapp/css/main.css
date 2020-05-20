@@ -73,18 +73,18 @@ body
     text-align: left;
 }
 
-.form-group
+.home-form-group
 {
     width: 250px;
     display: inline;
 }
 
-#form-group-trip
+#home-form-group-trip
 {
     display: block;
 }
 
-#form-group-return-date
+#home-form-group-return-date
 {
     display: none;
 }
@@ -144,7 +144,7 @@ input:hover
     */
 }
 
-#search-field
+#search-criteria
 {
     width: 100%;
     background: #fff;
@@ -184,4 +184,29 @@ input:hover
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.search-form-group
+{
+    display: inline;
+}
+
+.search-form-group input
+{
+    display: inline;
+}
+
+.search-form-group p
+{
+    display: inline;
+}
+
+#search-form-return-date
+{
+    display: none;
+}
+
+#search-form-return-date input, p
+{
+    display: inline;
 }
