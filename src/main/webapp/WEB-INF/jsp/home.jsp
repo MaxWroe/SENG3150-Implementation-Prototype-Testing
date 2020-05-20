@@ -16,6 +16,8 @@
     <title>Home Page</title>
 
     <link rel="stylesheet" type="text/css" href="/css/main.css">
+
+    <script src="/js/searchDisplay.js"></script>
 </head>
 <body>
 <!-- Site header -->
@@ -28,25 +30,6 @@
         <h4>Search for Flight</h4>
         <!-- Flight search fields -->
         <form method="get" id="searchFlight" action="/search">
-            <!-- Script for displaying return date on return flights -->
-            <script>
-                function showDiv(divId, changedId, element)
-                {
-                    document.getElementById(divId).style.display = element.value === "return" ? 'inline' : 'none';
-                    document.getElementById(changedId).required = element.value === "return";
-                }
-
-                // Function to restrict return date to not minimum than depart
-                function restrictDepart()
-                {
-                    document.getElementById("return").min = document.getElementById("depart").value;
-                    // Disable return date until depart is selected
-                    document.getElementById("return").disabled = false;
-                    // Clear depart value
-                    document.getElementById("return").value = "";
-                }
-            </script>
-
             <!-- Return or one-way trip -->
             <div id="home-form-group-trip">
                 <label for="type">Trip:</label>

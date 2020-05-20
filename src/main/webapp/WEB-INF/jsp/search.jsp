@@ -13,6 +13,8 @@
     <title>Search Page</title>
 
     <link rel="stylesheet" type="text/css" href="/css/main.css">
+
+    <script src="/js/searchDisplay.js"></script>
 </head>
 <body>
 <!-- Site header -->
@@ -25,26 +27,6 @@
         <h4>Search Criteria</h4>
         <!-- Flight search fields -->
         <form method="get" id="searchFlight" action="/search">
-            <!-- Script for displaying return date on return flights -->
-            <script>
-                // Function to display return date input field if return flight
-                function showDiv(divId, changedId, element)
-                {
-                    document.getElementById(divId).style.display = element.value === "return" ? 'inline' : 'none';
-                    document.getElementById(changedId).required = element.value === "return";
-                }
-
-                // Function to restrict return date to not minimum than depart
-                function restrictDepart()
-                {
-                    document.getElementById("return").min = document.getElementById("depart").value;
-                    // Disable return date until depart is selected
-                    document.getElementById("return").disabled = false;
-                    // Clear depart value
-                    document.getElementById("return").value = "";
-                }
-            </script>
-
             <!-- Starting airport -->
             <div class="search-form-group">
                 <input list="locations" name="from" id="from" value="<%=request.getParameter("from")%>" required>
@@ -87,8 +69,34 @@
                 <input type="date" id="return" name="return" min="<fmt:formatDate pattern="yyyy-MM-dd" value="${now}" />"
                        value="<%=request.getParameter("return")%>" disabled>
             </div>
+
+
+            <div id="sort-criteria">
+                <h4>Sort Criteria</h4>
+                <p>Sort by:</p>
+                <select id="sortby" name="sortby">
+                    <option value="price">Price</option>
+                    <option value="time">Time</option>
+                    <option value="class">Seat Class</option>
+                    <option value="capacity">Capacity</option>
+                    <option value="stopovers">Stop Overs</option>
+                </select>
+                <select id="sortMethod" name="sortMethod">
+                    <option value="descending">Descending</option>
+                    <option value="ascending">Ascending</option>
+                </select>
+            </div>
+
+            <button class="btn btn-lg btn-outline-success text-uppercase" type="submit">Go</button>
         </form>
     </div>
+
+    <!-- Sort criteria
+    <div id="sort-criteria">
+        <h4>Sort Criteria</h4>
+        <p>Sort By:</p>
+
+    </div> -->
 
     <!-- Result template -->
     <div class="flight-result">
