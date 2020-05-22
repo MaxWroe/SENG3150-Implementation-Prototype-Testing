@@ -1,0 +1,18 @@
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence persistence_1_0.xsd" version="1.0">
+    <persistence-unit name="group3-app" transaction-type="RESOURCE_LOCAL">
+
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+
+        <non-jta-data-source>java:comp/env/jdbc/DBDataSource</non-jta-data-source>
+
+        <class>group3.seng3150.entities.Country</class>
+        <class>group3.seng3150.entities.Airport</class>
+        <class>group3.seng3150.entities.Flight</class>
+        <class>group3.seng3150.entities.Plane</class>
+        <class>group3.seng3150.entities.UserAccount</class>
+
+
+        <exclude-unlisted-classes>true</exclude-unlisted-classes>
+
+    </persistence-unit>
+</persistence>
