@@ -15,7 +15,10 @@
     <nav class="primary-nav">
         <ul>
             <li>
-                <a class ="active" href="/search">Flight Search</a>
+                <a href="/search">Flight Search</a>
+            </li>
+            <li>
+                <a href="/recommendations">Travel Recommendations</a>
             </li>
             <li>
                 <a href="/login">Login</a>

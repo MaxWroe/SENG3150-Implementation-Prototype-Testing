@@ -13,23 +13,8 @@
     <link rel="stylesheet" type="text/css" href="/css/main.css">
 </head>
 <body>
-
-    <!-- Navigation bar -->
-    <header class="navbar">
-        <div class="nav-logo">
-            <a href="/home">FlightPub</a>
-        </div>
-        <nav class="primary-nav">
-            <ul>
-                <li>
-                    <a class ="active" href="/home">Flight Search</a>
-                </li>
-                <li>
-                    <a href="/login">Login</a>
-                </li>
-            </ul>
-        </nav>
-    </header>
+<!-- Site header -->
+<jsp:include page="header.jsp"/>
 
     <main class="main-content">
         <div class="card-body">

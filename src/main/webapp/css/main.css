@@ -210,3 +210,27 @@ input:hover
 {
     display: inline;
 }
+
+.flight-booking
+{
+    width: 80%;
+    margin: 0 auto;
+    background: #fff;
+    padding: 20px;
+
+    display: grid;
+    grid-template-columns: 100px auto;
+}
+
+#side-bar
+{
+    display: inline;
+    grid-column: 1;
+    text-align: left;
+}
+
+#payment-details
+{
+    display: inline;
+    grid-column: 2;
+}

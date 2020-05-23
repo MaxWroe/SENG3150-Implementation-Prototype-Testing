@@ -18,4 +18,16 @@ public class TestController {
         ModelAndView view = new ModelAndView("search");
         return view;
     }
+
+    @GetMapping("/recommendations")
+    public ModelAndView displayRecomendations() {
+        ModelAndView view = new ModelAndView("travelRecommendations");
+        return view;
+    }
+
+    @GetMapping("/bookingtemp")
+    public ModelAndView displayBooking() {
+        ModelAndView view = new ModelAndView("flightBooking");
+        return view;
+    }
 }

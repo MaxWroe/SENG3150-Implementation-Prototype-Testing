@@ -115,7 +115,9 @@
             <h3>$000</h3>
         </div>
         <div class="flight-result-book">
-            <button type="button">Book</button>
+            <form action="/bookingtemp">
+                <button type="submit">Book</button>
+            </form>
         </div>
     </div>
 
@@ -137,7 +139,9 @@
                 <h3>${flight.cost}</h3>
             </div>
             <div class="flight-result-book">
-                <button type="button">Book</button>
+                <form action="/bookingtemp">
+                    <button type="submit">Book</button>
+                </form>
             </div>
         </div>
     </c:forEach>
