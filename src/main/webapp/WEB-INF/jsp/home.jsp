@@ -29,7 +29,7 @@
         <h1>Search</h1>
         <h4>Search for Flight</h4>
         <!-- Flight search fields -->
-        <form method="get" id="searchFlight" action="/search">
+        <form name="searchFlight" method="get" id="searchFlight" action="/search" onsubmit="return validateForm()">
             <!-- Return or one-way trip -->
             <div id="home-form-group-trip">
                 <label for="type">Trip:</label>

@@ -26,7 +26,7 @@
     <div id="search-criteria">
         <h4>Search Criteria</h4>
         <!-- Flight search fields -->
-        <form method="get" id="searchFlight" action="/search">
+        <form name="searchFlight" method="get" id="searchFlight" action="/search" onsubmit="return validateForm()">
             <!-- Starting airport -->
             <div class="search-form-group">
                 <input list="locations" name="from" id="from" value="<%=request.getParameter("from")%>" required>
@@ -42,7 +42,7 @@
             </datalist>
 
             <div class="search-form-group">
-                <select id="type" name="type" onchange="showDiv('search-form-return-date', 'return', this)" value="<%=request.getParameter("type")%>">
+                <select id="type" name="type" onchange="showDiv('search-form-return-date', 'return', this)">
                     <option value="oneway">One-way</option>
                     <option value="return">Return</option>
                 </select>
@@ -70,7 +70,6 @@
                        value="<%=request.getParameter("return")%>" disabled>
             </div>
 
-
             <div id="sort-criteria">
                 <h4>Sort Criteria</h4>
                 <p>Sort by:</p>
@@ -89,6 +88,22 @@
 
             <button class="btn btn-lg btn-outline-success text-uppercase" type="submit">Go</button>
         </form>
+        <script>
+            // Check if incoming search trip type, set type select field and return date div
+            var trip = "<%=request.getParameter("type")%>";
+
+            if (trip === "oneway")
+            {
+                document.getElementById("type").value = "oneway";
+            }
+            else if (trip === "return")
+            {
+                document.getElementById("type").value = "return";
+                document.getElementById("search-form-return-date").style.display = 'inline';
+                document.getElementById("return").required = true;
+                document.getElementById("return").disabled = false;
+            }
+        </script>
     </div>
 
     <!-- Sort criteria
@@ -107,9 +122,9 @@
             <h4>00:00AM</h4>
         </div>
         <div class="flight-result-details">
-            <p>Company</p>
-            <p>Class Type</p>
-            <p>Flight ID</p>
+            <h4>Company</h4>
+            <h4>Class Type</h4>
+            <h4>Flight ID</h4>
         </div>
         <div class="flight-result-cost">
             <h3>$000</h3>
