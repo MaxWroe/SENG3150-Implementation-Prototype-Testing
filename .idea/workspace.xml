@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2fa4c939-f298-44e8-ba1d-7353dd1d77f5" name="Default Changelist" comment="Added an example of how to insert into db">
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/DBTesting.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/DBTesting.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/entities/UserAccount.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/entities/UserAccount.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/group3/seng3150/DBTesting.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/group3/seng3150/DBTesting.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/group3/seng3150/entities/UserAccount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/group3/seng3150/entities/UserAccount.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/index.jsp" afterDir="false" />
+    <list default="true" id="2fa4c939-f298-44e8-ba1d-7353dd1d77f5" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Databse Q's/FP-Schema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/Databse Q's/FP-Schema.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -269,7 +266,21 @@
       <option name="project" value="LOCAL" />
       <updated>1590125319434</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Added an example of how to insert into db">
+      <created>1590417360460</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1590417360461</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Added an example of how to insert into db">
+      <created>1590417410232</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1590417410232</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -322,11 +333,11 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="270" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1590376258192" />
-    <state x="417" y="114" width="1204" height="811" key="CommitChangelistDialog2" timestamp="1590417388229">
+    <state x="417" y="114" width="1204" height="811" key="CommitChangelistDialog2" timestamp="1590417409554">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="327" y="110" key="CommitChangelistDialog2/0.0.1504.1003@0.0.1504.1003" timestamp="1590397313866" />
-    <state x="417" y="114" width="1204" height="811" key="CommitChangelistDialog2/1920.-77.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1590417388229" />
+    <state x="417" y="114" width="1204" height="811" key="CommitChangelistDialog2/1920.-77.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1590417409554" />
     <state x="92" y="92" width="1736" height="856" key="DiffContextDialog" timestamp="1589715254715">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -433,10 +444,10 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="279" y="145" key="SettingsEditor/0.0.1600.860/-1360.114.1360.728@0.0.1600.860" timestamp="1590126055728" />
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1590125537553">
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1590417416367">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2/1920.-77.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1590125537553" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2/1920.-77.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1590417416367" />
     <state x="455" y="285" key="com.intellij.ide.util.TipDialog" timestamp="1590383920376">
       <screen x="0" y="0" width="1504" height="1003" />
     </state>

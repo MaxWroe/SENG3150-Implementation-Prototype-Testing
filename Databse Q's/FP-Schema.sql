@@ -127,7 +127,7 @@ CREATE TABLE `Flights` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 CREATE TABLE `UserAccount`  (
-  `UserID` varchar(6) NOT NULL,
+  `UserID` int NOT NULL AUTO_INCREMENT,
   `UserName` varchar(20) NOT NULL,
   `email` varchar(60) NOT NULL,
   `phone` int(10),
@@ -135,5 +135,7 @@ CREATE TABLE `UserAccount`  (
   `Password` varchar(14) NOT NULL,
   PRIMARY KEY (`UserID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+ALTER TABLE UserAccount AUTO_INCREMENT=1
 
 
