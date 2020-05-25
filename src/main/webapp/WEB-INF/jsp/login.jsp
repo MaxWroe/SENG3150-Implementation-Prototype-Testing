@@ -12,9 +12,11 @@
     <title>Login</title>
 
     <link rel="stylesheet" type="text/css" href="/css/main.css">
+
+    <script src="/js/dynamicLink.js"></script>
 </head>
 
-<body>
+<body onload=dynamicLink('/register','Register');>
 <!-- Site header -->
 <jsp:include page="header.jsp"/>
 
@@ -23,6 +25,7 @@
         <h1>Login</h1>
         <h2>${message}</h2>
         <h4>Enter your credentials</h4>
+
 
         <!-- login form -->
         <form id="loginForm" method="post" action="/login">

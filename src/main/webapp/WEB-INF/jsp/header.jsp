@@ -21,8 +21,24 @@
                 <a href="/recommendations">Travel Recommendations</a>
             </li>
             <li class="nav-link">
-                <a href="/login">Login</a>
+                <a id="dynamicLink" href="/login" >Login</a>
             </li>
+
+            <li class="nav-link">
+               <div class="dropdown" id="dropdown" style="display: none">
+                   <p id="myAccount">My Account
+                       <i class="fa fa-caret-down"></i>
+                   </p>
+
+                    <div class="dropdown-content">
+                        <a href="/accountDetails">Account Details</a>
+                        <a href="/manageBooking">Manage Booking</a>
+                        <a href="/customerSupport">Customer Support</a>
+                    </div>
+               </div>
+           </li>
+
+
         </ul>
     </nav>
 </header>

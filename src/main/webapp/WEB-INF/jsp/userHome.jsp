@@ -10,9 +10,11 @@
 <head>
     <title>User Home</title>
     <link rel="stylesheet" type="text/css" href="/css/main.css">
+
+    <script src="/js/dynamicLink.js"></script>
 </head>
 
-<body>
+<body onload=userHome('/home','Logout','${username}');>
 <!-- Site header -->
 <jsp:include page="header.jsp"/>
 
