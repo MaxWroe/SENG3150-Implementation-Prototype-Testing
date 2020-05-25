@@ -14,13 +14,13 @@
     </div>
     <nav class="primary-nav">
         <ul>
-            <li>
+            <li class="nav-link">
                 <a href="/search">Flight Search</a>
             </li>
-            <li>
+            <li class="nav-link">
                 <a href="/recommendations">Travel Recommendations</a>
             </li>
-            <li>
+            <li class="nav-link">
                 <a href="/login">Login</a>
             </li>
         </ul>

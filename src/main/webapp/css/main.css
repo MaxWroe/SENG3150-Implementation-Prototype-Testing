@@ -22,7 +22,7 @@ body
     top: 0;
     left: 0;
     width: 100%;
-    height: 60px;
+    height: 50px;
     background-color: #fff;
 }
 
@@ -31,6 +31,19 @@ body
     float: left;
     padding-left: 5%;
     padding-top: 1em;
+    font: italic bold 25px/0px AdihausDIN Cn, Helvetica, Arial, sans-serif;
+}
+
+.nav-logo a
+{
+    text-decoration: none;
+    color: black;
+}
+
+.nav-logo a:visited
+{
+    text-decoration: none;
+    color: black;
 }
 
 .primary-nav
@@ -49,14 +62,49 @@ body
 .primary-nav li
 {
     display: inline-block;
-    margin-right: 70px;
     text-align: center;
     padding: 1em 1em;
 }
 
-.primary-nav a
+.nav-link a
 {
     text-decoration: none;
+    /*display: inline-block;*/
+    padding: 15px 20px;
+    position: relative;
+}
+
+.nav-link a:after {
+    background: none repeat scroll 0 0 transparent;
+    bottom: 0;
+    content: "";
+    display: block;
+    height: 2px;
+    left: 50%;
+    position: absolute;
+    background: #3F51B5;
+    transition: width 0.3s ease 0s, left 0.3s ease 0s;
+    width: 0;
+}
+
+.nav-link a:hover:after {
+    width: 100%;
+    left: 0;
+}
+
+.nav-link a:hover
+{
+    color: #3F51B5;
+}
+
+.nav-link a:hover:after {
+    width: 100%;
+}
+
+.nav-link a:visited
+{
+    text-decoration: none;
+    color: black;
 }
 
 .card-body
