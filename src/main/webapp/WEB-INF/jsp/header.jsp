@@ -20,10 +20,13 @@
             <li class="nav-link">
                 <a href="/recommendations">Travel Recommendations</a>
             </li>
+
+            <!-- changes depending if the user is logged in our not -->
             <li class="nav-link">
                 <a id="dynamicLink" href="/login" >Login</a>
             </li>
 
+            <!-- shown only if user is logged in -->
             <li class="nav-link">
                <div class="dropdown" id="dropdown" style="display: none">
                    <p id="myAccount">My Account
