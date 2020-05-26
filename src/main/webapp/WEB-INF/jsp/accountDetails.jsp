@@ -23,6 +23,34 @@
 <main class="main-content">
     <div class="card-body">
         <h1>Account Details</h1>
+
+        <div class ="account-details">
+            <!-- gets user details -->
+            <p>First Name: ${firstName}</p> <br>
+            <p>Last Name: ${lastName}</p><br>
+            <p>Email: ${email}</p><br>
+            <p>Date of Birth: ${dateOfBirth}</p><br>
+            <p>Sex: ${sex}</p><br>
+            <p>Citizenship: ${citizenship}</p><br>
+            <p>Phone Number: ${phone}</p><br>
+            <p>Family Members: ${familyMembers}</p><br>
+            <p>Emergency Contacts: ${emergencyContact}</p><br>
+            <p>Address: ${firstName}</p><br>
+
+            <button id="editAccount" type="submit" onclick="displayForm('accountForm')"> Edit Account </button>
+        </div>
+
+        <div class = "account-form">
+            <!-- account form-->
+            <form id="accountForm" method="post" action="/accountDetails/edit" onsubmit="return validateRegister()" style="display: none">
+
+                <jsp:include page="form.jsp"/>
+
+                <input type="submit" value="Edit Account"/><input type="reset" value="Reset"/>
+
+            </form>
+        </div>
+
     </div>
 </main>
 

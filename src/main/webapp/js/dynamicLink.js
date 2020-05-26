@@ -23,3 +23,15 @@ function userPage(href, html){
 function displayMenu(){
     document.getElementById("dropdown").style.display="block";
 }
+
+
+//display hidden form
+function displayForm(id){
+    var form = document.getElementById(id);
+
+    if(form.style.display === "none"){
+        form.style.display="block";
+    }else{
+        form.style.display="none";
+    }
+}
