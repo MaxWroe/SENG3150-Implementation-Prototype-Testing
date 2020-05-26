@@ -128,14 +128,37 @@ CREATE TABLE `Flights` (
 
 CREATE TABLE `UserAccount`  (
   `UserID` int NOT NULL AUTO_INCREMENT,
-  `UserName` varchar(20) NOT NULL,
-  `email` varchar(60) NOT NULL,
-  `phone` int(10),
+  `FirstName` varchar(20) NOT NULL,
+  `MiddleNames` varchar(60),
+  `LastName` varchar(20) NOT NULL,
+  `Email` varchar(60) NOT NULL,
+  `Phone` int(10),
   `DateOfBirth` date NOT NULL,
   `Password` varchar(14) NOT NULL,
-  PRIMARY KEY (`UserID`)
+  PRIMARY KEY (`UserID`),
+  UNIQUE(`Email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-ALTER TABLE UserAccount AUTO_INCREMENT=1
+ALTER TABLE UserAccount AUTO_INCREMENT=1;
+
+CREATE TABLE `Booking` (
+	`BookingID` int NOT NULL AUTO_INCREMENT,
+    `Email` varchar(60) NOT NULL,
+    `BookingType` int NOT NULL,
+	`FirstName` varchar(20) NOT NULL,
+    `MiddleNames` varchar(60),
+    `LastName` varchar(20) NOT NULL,
+    `DateOfBirth` date NOT NULL,
+    `BookingDate` date NOT NULL,
+    `GroupSize` int NOT NULL,
+
+    PRIMARY KEY (`BookingID`),
+	CONSTRAINT BookingEmail_FK FOREIGN KEY (`Email`) REFERENCES `UserAccount` (`Email`)
+
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+
+
 
 

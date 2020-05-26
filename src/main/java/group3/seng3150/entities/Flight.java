@@ -19,20 +19,36 @@ public class Flight {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String flightNumber;
 
-    //This field does not exist as information in the database (Status)
-    //private String Status;
-
     @Column(name = "DepartureTime", table = "Availability")
     @Basic(optional = false)
     private Timestamp departureDate;
 
+    @Column(name = "DepartureCode", table = "Flights")
+    @Basic(optional = false)
+    private String departureCode; //airport code for departure
 
-    //this could have issues with stopovers
+
+    //Stopover data can be null
+    @Column(name = "StopOverCode", table = "Flights")
+    @Basic(optional = false)
+    private String stopOverCode; //airport code for stopover
+
+    @Column(name = "ArrivalTimeStopOver", table = "Flights")
+    private Timestamp arrivalStopOverTime;
+
+    @Column(name = "DepartureTimeStopOver", table = "Flights")
+    private Timestamp departureTimeStopOver;
+
+
+
+    @Column(name = "DestinationCode", table = "Flights")
+    @Basic(optional = false)
+    private String destination;
+
     @Column(name = "ArrivalTime", table = "Flights")
     @Basic(optional = false)
     private Timestamp arrivalDate;
 
-    //Fields for stopovers needed
 
     @Column(name = "TicketCode", table = "Availability")
     @Basic(optional = false)
@@ -59,6 +75,47 @@ public class Flight {
     }
 
     //Getters and Setters
+
+    public String getDepartureCode() {
+        return departureCode;
+    }
+
+    public void setDepartureCode(String departureCode) {
+        this.departureCode = departureCode;
+    }
+
+    public String getStopOverCode() {
+        return stopOverCode;
+    }
+
+    public void setStopOverCode(String stopOverCode) {
+        this.stopOverCode = stopOverCode;
+    }
+
+    public Timestamp getArrivalStopOverTime() {
+        return arrivalStopOverTime;
+    }
+
+    public void setArrivalStopOverTime(Timestamp arrivalStopOverTime) {
+        this.arrivalStopOverTime = arrivalStopOverTime;
+    }
+
+    public Timestamp getDepartureTimeStopOver() {
+        return departureTimeStopOver;
+    }
+
+    public void setDepartureTimeStopOver(Timestamp departureTimeStopOver) {
+        this.departureTimeStopOver = departureTimeStopOver;
+    }
+
+    public String getDestination() {
+        return destination;
+    }
+
+    public void setDestination(String destination) {
+        this.destination = destination;
+    }
+
     public String getFlightNumber() {
         return flightNumber;
     }

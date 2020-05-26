@@ -6,21 +6,31 @@ import java.sql.Date;
 @Table(name = "UserAccount")
 public class UserAccount {
 
+    //first and last name
+    //email address to PK
+
     @Id
     @Column(name = "UserID")
     @Basic(optional = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String UserID;
 
-    @Column(name = "UserName")
+    @Column(name = "FirstName")
     @Basic(optional = false)
-    private String userName;
+    private String firstName;
 
-    @Column(name = "email")
+    @Column(name = "MiddleNames")
+    private String middleNames;
+
+    @Column(name = "LastName")
+    @Basic(optional = false)
+    private String lastName;
+
+    @Column(name = "Email")
     @Basic(optional = false)
     private String email;
 
-    @Column(name = "phone")
+    @Column(name = "Phone")
     @Basic(optional = false)
     private int phone;
 
@@ -34,14 +44,6 @@ public class UserAccount {
     private String password;
 
     //Constructors
-    public UserAccount(String userName, String email, int phone, Date dateOfBirth, String password) {
-        this.userName = userName;
-        this.email = email;
-        this.phone = phone;
-        this.dateOfBirth = dateOfBirth;
-        this.password = password;
-    }
-
     public UserAccount() {
     }
 
@@ -55,12 +57,29 @@ public class UserAccount {
 //        UserID = userID;
 //    }
 
-    public String getUserName() {
-        return userName;
+
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getMiddleNames() {
+        return middleNames;
+    }
+
+    public void setMiddleNames(String middleNames) {
+        this.middleNames = middleNames;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getEmail() {
@@ -110,7 +129,9 @@ public class UserAccount {
     public String toString() {
         return "UserAccount{" +
                 "UserID='" + UserID + '\'' +
-                ", userName='" + userName + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", middleNames='" + middleNames + '\'' +
+                ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
                 ", phone=" + phone +
                 ", dateOfBirth=" + dateOfBirth +

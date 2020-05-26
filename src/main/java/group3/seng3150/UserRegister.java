@@ -36,7 +36,16 @@ public class UserRegister {
         List<UserAccount> user = em.createQuery("SELECT u FROM UserAccount u WHERE u.email=" + email).getResultList();
         if(user.isEmpty()){
             em.getTransaction().begin();
-            UserAccount newUser = new UserAccount(userName, email, phone, dateOfBirth, password);
+
+            //Had to change this because the entity is not meant to use a full constructor (beans have empty constructors by convention) my bad lol
+            //UserAccount newUser = new UserAccount(userName, email, phone, dateOfBirth, password);
+            UserAccount newUser = new UserAccount();
+            newUser.setFirstName(userName);
+            newUser.setEmail(email);
+            newUser.setPhone(phone);
+            newUser.setDateOfBirth(dateOfBirth);
+            newUser.setPassword(password);
+
             em.persist(newUser);
             em.getTransaction().commit();
             return view;

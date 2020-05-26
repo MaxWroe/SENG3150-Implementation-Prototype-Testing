@@ -1,6 +1,5 @@
 package group3.seng3150;
 
-
 import group3.seng3150.entities.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,8 +7,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Query;
 import java.util.List;
 import java.sql.Date;
 
@@ -33,26 +30,26 @@ public class DBTesting {
         List<UserAccount> users = em.createQuery("SELECT u FROM UserAccount u", UserAccount.class).getResultList();
         List<Flight> flights = em.createQuery("SELECT f FROM Flight f WHERE f.flightNumber='AF5028' AND f.ticketCode='B' AND " +
                 "f.classCode='BUS' AND f.departureDate<'2015-09-24 09:50:00'", Flight.class).getResultList();
+        List<Booking> bookings = em.createQuery("SELECT b FROM Booking b", Booking.class).getResultList();
 
 
 
 
         //this is an example of how to fill the database
-
         //start a transaction
         em.getTransaction().begin();
 
         //create an entity and fill the data
         UserAccount test = new UserAccount();
-        //test.setUserID("45");
-        test.setUserName("testinsert");
+        test.setFirstName("testinsert");
+        test.setLastName("hopethisworks");
         test.setEmail("testing@test.test");
         test.setPassword("thisisatest");
         Date d = Date.valueOf("2015-09-24");
         test.setDateOfBirth(d);
 
         //merge the entity and commit the transaction
-        em.merge(test);
+        em.persist(test);
         em.getTransaction().commit();
 
 
