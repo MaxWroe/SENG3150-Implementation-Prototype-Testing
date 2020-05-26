@@ -29,6 +29,8 @@ public class FlightController{
             @RequestParam(name="arrivalDate", defaultValue="") String arrivalDate,
             @RequestParam(name="classType", defaultValue="") String classType)
     {
+
+        //dates need to be strictly of '2015-09-24 09:50:00' format
         ModelAndView view = new ModelAndView("search");
         List<Flight> flights = em.createQuery("SELECT f FROM Flight f WHERE f.departureLocation=" + departureLocation +
                         " AND SELECT f FROM Flight f WHERE f.arrivalLocation=" + arrivalLocation +
