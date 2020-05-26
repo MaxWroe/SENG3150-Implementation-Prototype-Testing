@@ -10,13 +10,6 @@ function dynamicLink(href, html){
 
 }
 
-//registered user
-function userHome(href, html, username){
-
-    dynamicLink(href,html);
-    displayMenu();
-    document.getElementById("myAccount").innerHTML=username;
-}
 
 //logged in user
 function userPage(href, html){

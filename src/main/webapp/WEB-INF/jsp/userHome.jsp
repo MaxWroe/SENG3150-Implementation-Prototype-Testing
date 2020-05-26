@@ -14,13 +14,13 @@
     <script src="/js/dynamicLink.js"></script>
 </head>
 
-<body onload=userHome('/home','Logout','${username}');>
+<body onload=userPage('/home','Logout');>
 <!-- Site header -->
 <jsp:include page="header.jsp"/>
 
     <main class="main-content">
         <div class="card-body">
-            <h1>Welcome, ${username} </h1>
+            <h1>Welcome, ${email} </h1>
 
         </div>
     </main>

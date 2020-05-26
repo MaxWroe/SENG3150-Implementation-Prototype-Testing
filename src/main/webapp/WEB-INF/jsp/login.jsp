@@ -30,15 +30,15 @@
         <!-- login form -->
         <form id="loginForm" method="post" action="/login">
 
-            <!-- username -->
-            <label for="username">Username</label>
-            <input id="username" name ="username" required/> <br>
+            <!-- email address -->
+            <label for="email">Email address</label>
+            <input id="email" type="email" name ="email" required/> <br>
 
             <!-- password -->
             <label for="password">Password</label>
             <input type ="password" id="password" name ="password" required/> <br>
 
-            <input type="submit" value="Submit"/>
+            <input type="submit" value="Login"/>
 
         </form>
 

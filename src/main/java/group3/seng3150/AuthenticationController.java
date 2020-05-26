@@ -25,7 +25,7 @@ public class AuthenticationController {
 
     //post method login
    @PostMapping("/login")
-    public ModelAndView executeLogin(@RequestParam("username") String username){
+    public ModelAndView executeLogin(@RequestParam("email") String email){
         ModelAndView view = null; 
 
         try{
@@ -33,7 +33,7 @@ public class AuthenticationController {
 
             //test
             view = new ModelAndView("userHome");
-            view.addObject("username", username);
+            view.addObject("email", email);
 
         }
         catch(Exception e)
@@ -53,7 +53,7 @@ public class AuthenticationController {
 
     //post method register
     @PostMapping("/register")
-    public ModelAndView executeRegister(@RequestParam("username") String username){
+    public ModelAndView executeRegister(@RequestParam("firstName") String firstName){
         ModelAndView view = null;
         String message = "Registration successful! ";
 
@@ -63,7 +63,7 @@ public class AuthenticationController {
             //test
             view = new ModelAndView("login");
 
-            message += username;
+            message += firstName;
             view.addObject("message", message);
 
 

@@ -24,34 +24,49 @@
                 <!-- registration form-->
                 <form id="registerForm" method="post" action="/register">
 
-                    <!-- username -->
-                    <label for="username">Username</label>
-                    <input id="username" name ="username" required/> <br>
+                    <!-- First Name -->
+                    <label for="firstName">First Name: </label>
+                    <input id="firstName" name ="firstName" required/> <br>
+
+                    <!-- Last Name -->
+                    <label for="lastName">Last Name: </label>
+                    <input id="lastName" name ="lastName" required/> <br>
 
                     <!-- password -->
-                    <label for="password">Password</label>
+                    <label for="password">Password: </label>
                     <input type ="password" id="password" name ="password" required/> <br>
 
+                    <!-- confirm password -->
+                    <label for="confirmPassword">Confirm Password: </label>
+                    <input type ="password" id="confirmPassword" name ="confirmPassword" required/> <br>
+
                     <!-- email -->
-                    <label for="email">Email</label>
+                    <label for="email">Email: </label>
                     <input type ="email" id="email" name ="email" required/> <br>
 
+                    <!-- phone no -->
+                    <label for="phoneNo">Phone No:</label>
+                    <input type ="tel" id="phoneNo" name ="phoneNo" required/> <br>
+
                     <!-- date of birth -->
-                    <label for="dob">Date of birth</label>
+                    <label for="dob">Date of birth: </label>
                     <input type="date" id="dob" name ="dob" required/> <br>
 
-                    <!-- user type -->
+                    <!-- user types -->
                     <label>User type: </label>
 
                     <input type="radio" id="personal" name="userType" value="Personal" checked/>
                     <label for="personal">Personal</label>
 
                     <input type="radio" id="business" name="userType" value="Business"/>
-                    <label for="business">Business</label> <br>
+                    <label for="business">Business</label>
+
+                    <input type="radio" id="family" name="userType" value="Family"/>
+                    <label for="family">Family</label> <br>
 
 
 
-                    <input type="submit" value="Submit"/><input type="reset" value="Reset"/>
+                    <input type="submit" value="Register"/><input type="reset" value="Reset"/>
 
                 </form>
         </div>
