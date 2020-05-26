@@ -74,6 +74,12 @@ body
     position: relative;
 }
 
+.nav-link a:visited
+{
+    text-decoration: none;
+    color: black;
+}
+
 .nav-link a:after {
     background: none repeat scroll 0 0 transparent;
     bottom: 0;
@@ -99,12 +105,6 @@ body
 
 .nav-link a:hover:after {
     width: 100%;
-}
-
-.nav-link a:visited
-{
-    text-decoration: none;
-    color: black;
 }
 
 .card-body
