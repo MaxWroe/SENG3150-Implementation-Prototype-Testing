@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>Flight Booking Page</title>
@@ -30,22 +31,34 @@
             <p>Seats Remaining</p>
             <h4>0</h4>
         </div>
-        <div id="payment-details">
-            <p>Payment Details</p>
-            <form method="post">
-                <label for="name">Name:</label>
-                <input type="text" id="name" name="name">
-                <br>
-                <label for="cardno">Card Number:</label>
-                <input type="number" id="cardno" name="cardno">
-                <br>
-                <label for="cardexpiry">Expiry Date:</label>
-                <input type="month" id="cardexpiry" name="cardexpiry">
-                <br>
-                <label for="cardcvc">CVC:</label>
-                <input type="number" id="cardcvc" name="cardcvc">
-            </form>
-        </div>
+
+        <!-- Check if user is logged in -->
+        <c:if test="${not empty loggedInUser}">
+            <p>You're still logged in.</p>
+
+            <div id="payment-details">
+                <p>Payment Details</p>
+                <form method="post">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name">
+                    <br>
+                    <label for="cardno">Card Number:</label>
+                    <input type="number" id="cardno" name="cardno">
+                    <br>
+                    <label for="cardexpiry">Expiry Date:</label>
+                    <input type="month" id="cardexpiry" name="cardexpiry">
+                    <br>
+                    <label for="cardcvc">CVC:</label>
+                    <input type="number" id="cardcvc" name="cardcvc">
+                </form>
+            </div>
+        </c:if>
+
+        <!-- If user is not logged in display log in form -->
+        <c:if test="${empty loggedInUser}">
+            <p>You're not logged in!</p>
+        </c:if>
+
 
         <!-- extra details
         <p>Baggage Details</p>
