@@ -10,11 +10,11 @@ function showDiv(divId, changedId, element)
 // Function to restrict return date to not minimum than depart
 function restrictDepart()
 {
-    document.getElementById("return").min = document.getElementById("depart").value;
+    document.getElementById("returnDate").min = document.getElementById("departureDate").value;
     // Disable return date until depart is selected
-    document.getElementById("return").disabled = false;
+    document.getElementById("returnDate").disabled = false;
     // Clear depart value
-    document.getElementById("return").value = "";
+    document.getElementById("returnDate").value = "";
 }
 
 // Function to validate input from search flight form
@@ -25,33 +25,33 @@ function validateForm()
     var result = false;
 
     for(var i = 0; i < options.length; i++) {
-        if(document.getElementById("from").value === options[i].value) {
+        if(document.getElementById("departureLocation").value === options[i].value) {
             result = true;
         }
     }
     if(!result)
     {
-        document.getElementById("from").value = '';
+        document.getElementById("departureLocation").value = '';
         alert("Please select a valid departure airport from the list");
         return false;
     }
 
     result = false;
     for(var i = 0; i < options.length; i++) {
-        if(document.getElementById("to").value === options[i].value) {
+        if(document.getElementById("arrivalLocation").value === options[i].value) {
             result = true;
         }
     }
     if(!result)
     {
-        document.getElementById("to").value = '';
+        document.getElementById("arrivalLocation").value = '';
         alert("Please select a valid destination airport from the list");
         return false;
     }
 
     // Check if selected airports are not the same
-    var location = document.forms["searchFlight"]["from"].value;
-    var destination = document.forms["searchFlight"]["to"].value;
+    var location = document.forms["searchFlight"]["departureLocation"].value;
+    var destination = document.forms["searchFlight"]["arrivalLocation"].value;
 
     if(location === destination)
     {
@@ -67,12 +67,12 @@ window.onload = function() {
 
 function clearFields()
 {
-    var check = document.getElementById("from").value;
+    var check = document.getElementById("departureLocation").value;
 
     if(check === 'null')
     {
-        document.getElementById("from").value = '';
-        document.getElementById("to").value = '';
+        document.getElementById("departureLocation").value = '';
+        document.getElementById("arrivalLocation").value = '';
         document.getElementById("adults").value = 1;
         document.getElementById("children").value = 0;
     }

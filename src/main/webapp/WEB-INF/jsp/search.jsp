@@ -14,7 +14,7 @@
 
     <link rel="stylesheet" type="text/css" href="/css/main.css">
 
-    <script src="/js/searchDisplay.js"></script>
+    <script src="/js/searchFormAssistor.js"></script>
 </head>
 <body>
 <!-- Site header -->
@@ -29,9 +29,9 @@
         <form name="searchFlight" method="get" id="searchFlight" action="/search" onsubmit="return validateForm()">
             <!-- Starting airport -->
             <div class="search-form-group">
-                <input list="locations" name="from" id="from" value="<%=request.getParameter("from")%>" required>
+                <input list="locations" name="departureLocation" id="departureLocation" value="<%=request.getParameter("departureLocation")%>" required>
                 <p>to</p>
-                <input list="locations" name="to" id="to" value="<%=request.getParameter("to")%>" required>
+                <input list="locations" name="arrivalLocation" id="arrivalLocation" value="<%=request.getParameter("arrivalLocation")%>" required>
             </div>
 
             <!-- temp destinations -->
@@ -42,7 +42,7 @@
             </datalist>
 
             <div class="search-form-group">
-                <select id="type" name="type" onchange="showDiv('search-form-return-date', 'return', this)">
+                <select id="type" name="type" onchange="showDiv('search-form-return-date', 'returnDate', this)">
                     <option value="oneway">One-way</option>
                     <option value="return">Return</option>
                 </select>
@@ -59,15 +59,15 @@
             <div class="search-form-group">
                 <div class="home-form-group">
                     <jsp:useBean id="now" class="java.util.Date"/>
-                    <input type="date" id="depart" name="depart" min="<fmt:formatDate pattern="yyyy-MM-dd" value="${now}" />"
-                           onchange="restrictDepart()" value="<%=request.getParameter("depart")%>" required>
+                    <input type="date" id="departureDate" name="departureDate" min="<fmt:formatDate pattern="yyyy-MM-dd" value="${now}" />"
+                           onchange="restrictDepart()" value="<%=request.getParameter("departureDate")%>" required>
                 </div>
             </div>
 
             <div id="search-form-return-date">
                 <p>to</p>
-                <input type="date" id="return" name="return" min="<fmt:formatDate pattern="yyyy-MM-dd" value="${now}" />"
-                       value="<%=request.getParameter("return")%>" disabled>
+                <input type="date" id="returnDate" name="returnDate" min="<fmt:formatDate pattern="yyyy-MM-dd" value="${now}" />"
+                       value="<%=request.getParameter("returnDate")%>" disabled>
             </div>
 
             <div id="sort-criteria">
@@ -100,8 +100,8 @@
             {
                 document.getElementById("type").value = "return";
                 document.getElementById("search-form-return-date").style.display = 'inline';
-                document.getElementById("return").required = true;
-                document.getElementById("return").disabled = false;
+                document.getElementById("returnDate").required = true;
+                document.getElementById("returnDate").disabled = false;
             }
         </script>
     </div>

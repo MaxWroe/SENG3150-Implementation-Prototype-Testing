@@ -17,7 +17,7 @@
 
     <link rel="stylesheet" type="text/css" href="/css/main.css">
 
-    <script src="/js/searchDisplay.js"></script>
+    <script src="/js/searchFormAssistor.js"></script>
 </head>
 <body>
 <!-- Site header -->
@@ -33,7 +33,7 @@
             <!-- Return or one-way trip -->
             <div id="home-form-group-trip">
                 <label for="type">Trip:</label>
-                <select id="type" name="type" onchange="showDiv('home-form-group-return-date', 'return', this)">
+                <select id="type" name="type" onchange="showDiv('home-form-group-return-date', 'returnDate', this)">
                     <option value="oneway">One-way</option>
                     <option value="return">Return</option>
                 </select>
@@ -51,21 +51,21 @@
 
             <!-- Starting airport -->
             <div class="home-form-group">
-                <label for="from">From:</label>
-                <input list="locations" name="from" id="from" required>
+                <label for="departureLocation">From:</label>
+                <input list="locations" name="departureLocation" id="departureLocation" required>
             </div>
 
             <!-- Destination airport -->
             <div class="home-form-group">
-                <label for="to">To:</label>
-                <input list="locations" name="to" id="to" required>
+                <label for="arrivalLocation">To:</label>
+                <input list="locations" name="arrivalLocation" id="arrivalLocation" required>
             </div>
             <br>
 
             <!-- Parse all available airport destinations -->
             <datalist id="destinations">
                 <c:forEach items="${destinations}" var="airport">
-                    <option value="<c:out value="${airport.code}"/>"><c:out value="${airport.name}"/></option>
+                    <option value="<c:out value="${destination.destinationCode}"/>"><c:out value="${destination.airport}"/></option>
                 </c:forEach>
             </datalist>
 
@@ -78,16 +78,16 @@
 
             <!-- Depart date -->
             <div class="home-form-group">
-                <label for="depart">Depart:</label>
+                <label for="departureDate">Depart:</label>
                 <jsp:useBean id="now" class="java.util.Date"/>
-                <input type="date" id="depart" name="depart" min="<fmt:formatDate pattern="yyyy-MM-dd" value="${now}" />"
+                <input type="date" id="departureDate" name="departureDate" min="<fmt:formatDate pattern="yyyy-MM-dd" value="${now}" />"
                        onchange="restrictDepart()" required>
             </div>
 
             <!-- Return date -->
             <div id="home-form-group-return-date">
-                <label for="return">Return:</label>
-                <input type="date" id="return" name="return" min="<fmt:formatDate pattern="yyyy-MM-dd" value="${now}" />" disabled>
+                <label for="returnDate">Return:</label>
+                <input type="date" id="returnDate" name="returnDate" min="<fmt:formatDate pattern="yyyy-MM-dd" value="${now}" />" disabled>
             </div>
             <br>
 
