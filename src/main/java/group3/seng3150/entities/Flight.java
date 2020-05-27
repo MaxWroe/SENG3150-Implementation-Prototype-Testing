@@ -58,6 +58,14 @@ public class Flight {
     @Basic(optional = false)
     private String classCode;
 
+    @Column(name = "NumberAvailableSeatsLeg1", table = "Availability")
+    @Basic(optional = false)
+    private String numberAvailableSeatsLeg1;
+
+    @Column(name = "NumberAvailableSeatsLeg2", table = "Availability")
+    @Basic(optional = false)
+    private String numberAvailableSeatsLeg2;
+
     @Column(name = "Duration", table = "Flights")
     @Basic(optional = false)
     private int duration;
