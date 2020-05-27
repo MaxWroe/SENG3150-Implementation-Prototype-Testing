@@ -33,7 +33,7 @@ public class FlightsSort {
 
         while (leftIndex<left.size() && rightIndex<right.size()){
             switch (sortMethod) {
-                case "departureTimeAscending":
+                case "timeascending":
                     if (left.get(leftIndex).getDepartureDate().before(right.get(rightIndex).getDepartureDate())) {
                         merged.add(left.get(leftIndex++));
                     } else {
@@ -41,7 +41,7 @@ public class FlightsSort {
                     }
                     break;
 
-                case "departureTimeDescending":
+                case "timedescending":
                     if (left.get(leftIndex).getDepartureDate().after(right.get(rightIndex).getDepartureDate())) {
                         merged.add(left.get(leftIndex++));
                     } else {
@@ -49,7 +49,7 @@ public class FlightsSort {
                     }
                     break;
 
-                case "priceAscending":
+                case "priceascending":
                     if (left.get(leftIndex).getPrice()<(right.get(rightIndex).getPrice())) {
                         merged.add(left.get(leftIndex++));
                     } else {
@@ -57,11 +57,75 @@ public class FlightsSort {
                     }
                     break;
 
-                case "priceDescending":
+                case "pricedescending":
                     if (left.get(leftIndex).getPrice()>(right.get(rightIndex).getPrice())) {
                         merged.add(left.get(leftIndex++));
                     } else {
                         merged.add(right.get(rightIndex++));
+                    }
+                    break;
+
+//                case "capacityascending":
+//                    if (left.get(leftIndex).getNumberAvailableSeatsLeg1()<(right.get(rightIndex).getNumberAvailableSeatsLeg1())) {
+//                        merged.add(left.get(leftIndex++));
+//                    } else {
+//                        merged.add(right.get(rightIndex++));
+//                    }
+//                    break;
+//
+//                case "capacitydescending":
+//                    if (left.get(leftIndex).getNumberAvailableSeatsLeg1()>(right.get(rightIndex).getNumberAvailableSeatsLeg1())) {
+//                        merged.add(left.get(leftIndex++));
+//                    } else {
+//                        merged.add(right.get(rightIndex++));
+//                    }
+//                    break;
+
+                case "stopoversascending":
+                    if (left.get(leftIndex).getDepartureDate().before(right.get(rightIndex).getDepartureDate())) {
+                        if (left.get(leftIndex).getStopOverCode() != "") {
+                            merged.add(left.get(leftIndex++));
+                        } else if (right.get(rightIndex).getStopOverCode() != "") {
+                            merged.add(right.get(rightIndex++));
+
+                        } else {
+                            merged.add(left.get(leftIndex++));
+                        }
+                    }
+                    else {
+                        if(right.get(rightIndex).getStopOverCode() != ""){
+                            merged.add(right.get(rightIndex++));
+                        }
+                        else if(left.get(leftIndex).getStopOverCode() != "") {
+                            merged.add(left.get(leftIndex++));
+                        } else {
+                            merged.add(right.get(rightIndex++));
+                        }
+                    }
+
+                    break;
+
+                case "stopoversdescending":
+                    if (left.get(leftIndex).getDepartureDate().before(right.get(rightIndex).getDepartureDate()))
+                        {
+                            if(right.get(rightIndex).getStopOverCode() != ""){
+                                merged.add(right.get(rightIndex++));
+                            }
+                            else if(left.get(leftIndex).getStopOverCode() != "") {
+                                merged.add(left.get(leftIndex++));
+                            } else {
+                                merged.add(right.get(rightIndex++));
+                            }
+                    }
+                    else {
+                        if (left.get(leftIndex).getStopOverCode() != "") {
+                            merged.add(left.get(leftIndex++));
+                        } else if (right.get(rightIndex).getStopOverCode() != "") {
+                            merged.add(right.get(rightIndex++));
+
+                        } else {
+                            merged.add(left.get(leftIndex++));
+                        }
                     }
                     break;
             }

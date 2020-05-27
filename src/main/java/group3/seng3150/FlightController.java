@@ -15,14 +15,15 @@ import java.util.LinkedList;
 @Controller
 @RequestMapping("search")
 public class FlightController{
-    private FlightHolder flights;
+    private FlightHolder departureFlights;
+    private FlightHolder returnFlights;
     private EntityManager em;
 
     @Autowired
     public FlightController(EntityManager em){this.em =em;}
 
     @GetMapping
-    @RequestMapping("search")
+    @RequestMapping("")
     public ModelAndView search(
             @RequestParam(name="departureLocation", defaultValue="") String departureLocation,
             @RequestParam(name="arrivalLocation", defaultValue="") String arrivalLocation,
@@ -35,28 +36,43 @@ public class FlightController{
 
             String departureTimeStart = departureDate += " 00:00:01";
             String departureTimeEnd = departureDate += " 23:59:59";
-            List<Flight> retrievedDepartureFlights = em.createQuery("SELECT f FROM Flight f WHERE f.departureLocation=" + departureLocation +
+            List<Flight> retrievedFlights = em.createQuery("SELECT f FROM Flight f WHERE f.departureLocation=" + departureLocation +
                     " AND SELECT f FROM Flight f WHERE f.arrivalLocation=" + arrivalLocation +
                     " AND SELECT f FROM Flight f WHERE f.departureTime>=departureTimeStart" +
                     " AND SELECT f FROM Flight f WHERE f.departureTime<=departureTimeEnd" +
                     " AND SELECT f FROM Flight f WHERE f.classCode=" + classType, Flight.class).getResultList();
-            flights.setFlights(retrievedDepartureFlights);
-            flights.sortFlights("departureTimeAscending");
+            departureFlights.setFlights(retrievedFlights);
+            departureFlights.sortFlights("departureTimeAscending");
 
+           if (returnDate!="") {
+            String returnTimeStart = returnDate += " 00:00:01";
+            String returnTimeEnd = returnDate += "23:59:59";
+            retrievedFlights = em.createQuery("SELECT f FROM Flight f WHERE f.departureLocation=" + departureLocation +
+                    " AND SELECT f FROM Flight f WHERE f.arrivalLocation=" + arrivalLocation +
+                    " AND SELECT f FROM Flight f WHERE f.departureTime>=returnTimeStart" +
+                    " AND SELECT f FROM Flight f WHERE f.departureTime<=returnTimeEnd" +
+                    " AND SELECT f FROM Flight f WHERE f.classCode=" + classType, Flight.class).getResultList();
+               returnFlights.setFlights(retrievedFlights);
+               returnFlights.sortFlights("departureTimeAscending");
+            }
 
-        //   if (returnDate!=null) {
-//            String returnTimeStart = returnDate += " 00:00:01";
-//            String returnTimeEnd = returnDate += "23:59:59";
-//            List<Flight> retrievedReturnFlights = em.createQuery("SELECT f FROM Flight f WHERE f.departureLocation=" + departureLocation +
-//                    " AND SELECT f FROM Flight f WHERE f.arrivalLocation=" + arrivalLocation +
-//                    " AND SELECT f FROM Flight f WHERE f.departureTime>=returnTimeStart" +
-//                    " AND SELECT f FROM Flight f WHERE f.departureTime<=returnTimeEnd" +
-//                    " AND SELECT f FROM Flight f WHERE f.classCode=" + classType, Flight.class).getResultList();
-//            flights.setFlights(retrievedReturnFlights);
-        //    }
-
-
-        view.addObject("flights", flights);
+        view.addObject("departureFlights", departureFlights);
+        view.addObject("returnFlights", returnFlights);
         return view;
     }
+
+    @GetMapping
+    @RequestMapping("sort")
+    public ModelAndView search(
+            @RequestParam(name="sortby", defaultValue="") String sortby,
+            @RequestParam(name="sortMethod", defaultValue="") String sortMethod
+    ){
+        ModelAndView view = new ModelAndView("sort");
+        departureFlights.sortFlights(sortby+sortMethod);
+        returnFlights.sortFlights(sortby+sortMethod);
+        view.addObject("departureFlights", departureFlights);
+        view.addObject("returnFlights", returnFlights);
+        return view;
+    }
+
 }
