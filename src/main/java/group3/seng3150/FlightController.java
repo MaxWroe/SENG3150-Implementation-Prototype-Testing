@@ -13,14 +13,18 @@ import java.util.List;
 import java.util.LinkedList;
 
 @Controller
-@RequestMapping("search")
+@RequestMapping("/search")
 public class FlightController{
     private FlightHolder departureFlights;
     private FlightHolder returnFlights;
     private EntityManager em;
 
     @Autowired
-    public FlightController(EntityManager em){this.em =em;}
+    public FlightController(FlightHolder departureFlights, FlightHolder returnFlights, EntityManager em) {
+        this.departureFlights = departureFlights;
+        this.returnFlights = returnFlights;
+        this.em =em;
+    }
 
     @GetMapping
     @RequestMapping("")
@@ -62,7 +66,7 @@ public class FlightController{
     }
 
     @GetMapping
-    @RequestMapping("sort")
+    @RequestMapping("/sort")
     public ModelAndView search(
             @RequestParam(name="sortby", defaultValue="") String sortby,
             @RequestParam(name="sortMethod", defaultValue="") String sortMethod
