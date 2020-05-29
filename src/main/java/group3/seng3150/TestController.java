@@ -38,12 +38,13 @@ public class TestController {
         return view;
     }
 
+    /*
     @GetMapping("/accountDetails")
     public ModelAndView displayAccountDetails() {
         ModelAndView view = new ModelAndView("accountDetails");
         return view;
     }
-
+    */
     @GetMapping("/customerSupport")
     public ModelAndView displayCustomerSupport() {
         ModelAndView view = new ModelAndView("customerSupport");
