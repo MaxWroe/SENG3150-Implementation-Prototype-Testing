@@ -1,3 +1,4 @@
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -18,10 +19,35 @@
     <link rel="stylesheet" type="text/css" href="/css/main.css">
 
     <script src="/js/searchFormAssistor.js"></script>
+    <script src="/js/dynamicLink.js"></script>
 </head>
-<body>
+
+<!-- session checker -->
+<%
+    String userID = (String)session.getAttribute("userId");
+    String email = request.getParameter("email");
+
+    //checks if session is empty and not logged in
+    if(userID == null && email == null){
+        %><body><%
+
+    //checks if logged in
+    }else if(email != null && userID == null){
+
+        session.setAttribute("userId", email);
+        %> <body onload=userPage('/logout','Logout');> <%
+
+    }else{
+
+        %> <body onload=userPage('/logout','Logout');> <%
+
+    }
+
+%>
+
 <!-- Site header -->
 <jsp:include page="header.jsp"/>
+
 
 <!-- Page content -->
 <main class="main-content">
