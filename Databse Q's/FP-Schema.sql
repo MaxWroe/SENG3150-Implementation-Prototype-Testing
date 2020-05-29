@@ -132,8 +132,11 @@ CREATE TABLE `UserAccount`  (
   `MiddleNames` varchar(60),
   `LastName` varchar(20) NOT NULL,
   `Email` varchar(60) NOT NULL,
-  `Phone` int(10),
+  `Phone` int(20),
+  `Gender` int NOT NULL,
+  `Citizenship` varchar(60) NOT NULL,
   `DateOfBirth` date NOT NULL,
+  `UserType` int NOT NULL,
   `Password` varchar(14) NOT NULL,
   PRIMARY KEY (`UserID`),
   UNIQUE(`Email`)
