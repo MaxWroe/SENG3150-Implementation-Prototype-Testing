@@ -1,11 +1,2 @@
 .gradle/
-.idea/
-
-.gradle/5.2.1/executionHistory/executionHistory.bin
-.gradle/5.2.1/executionHistory/executionHistory.lock
-.gradle/5.2.1/fileHashes/fileHashes.bin
-.gradle/5.2.1/fileHashes/fileHashes.lock
-.gradle/buildOutputCleanup/buildOutputCleanup.lock
-.idea/workspace.xml
-build/libs/SENG3150-Implementation-Prototype-1.0-SNAPSHOT.war
-.idea/misc.xml
+build/
