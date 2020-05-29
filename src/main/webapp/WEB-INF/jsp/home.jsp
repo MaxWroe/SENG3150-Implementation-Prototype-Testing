@@ -40,8 +40,8 @@
             </div>
 
             <!-- Ticket class -->
-            <label for="ticketClass">Class:</label>
-            <select id="ticketClass" name="ticketClass">
+            <label for="classCode">Class:</label>
+            <select id="classCode" name="classCode">
                 <option value="ECO">Economy</option>
                 <option value="PME">Premium Economy</option>
                 <option value="BUS">Business Class</option>
