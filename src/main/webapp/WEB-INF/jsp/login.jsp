@@ -21,28 +21,32 @@
 <jsp:include page="header.jsp"/>
 
 <main class="main-content">
-    <div class="card-body">
+   <div class="card-body">
         <h1>Login</h1>
         <h2>${message}</h2>
         <h4>Enter your credentials</h4>
 
 
-        <!-- login form -->
-        <form id="loginForm" method="post" action="/login">
+                 <!-- login form -->
+            <form id="loginForm" method="post" action="/login">
 
-            <!-- email address -->
-            <label for="email">Email address</label>
-            <input id="email" type="email" name ="email" required/> <br>
+                <!-- email address -->
+                <label for="email">Email address</label>
+                <input id="email" type="email" name ="email" required/> <br>
 
-            <!-- password -->
-            <label for="password">Password</label>
-            <input type ="password" id="password" name ="password" required/> <br>
+                <!-- password -->
+                <label for="password">Password</label>
+                <input type ="password" id="password" name ="password" required/> <br>
 
-            <input type="submit" value="Login"/>
 
-        </form>
+                <input type="submit" value="Login"/>
 
-    </div>
+
+            </form>
+
+        </div>
+
+
 </main>
 
 </body>

@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: acero
@@ -22,7 +23,53 @@
 <main class="main-content">
     <div class="card-body">
         <h1>Manage Booking</h1>
+        <h4>Booked flights</h4>
 
+        <!-- user's booking/s-->
+
+        <!-- parse all booked flights -->
+        <div class="my-bookings">
+            <c:forEach items="${something}">
+                <p>Booking number:<c:out value= "${bookingNumber}"></c:out></p> <br>
+                <p>Airline:<c:out value= " ${airline}"></c:out></p> <br>
+                <p>Flight Details:<c:out value= " ${flightDetails}"></c:out></p> <br>
+                <p>Date:<c:out value= " ${date}"></c:out></p> <br>
+                <p>Time:<c:out value= " ${time}"></c:out></p> <br>
+                <p>Location: <c:out value= "${location}"></c:out></p> <br>
+                <p>Reviews:<c:out value= " ${reviews}"></c:out></p> <br>
+            </c:forEach>
+        </div>
+
+        <!-- temp bookings -->
+        <div class ="my-bookings">
+            <p>Booking number: 1</p> <br>
+            <p>Airline: Qantas</p> <br>
+            <p>Flight Details: XGH524</p> <br>
+            <p>Date: 22/5/2020</p> <br>
+            <p>Time: 12:30am</p> <br>
+            <p>Location: SYDNEY</p> <br>
+            <p>Reviews: Nice! </p> <br>
+
+        </div>
+
+        <!-- cancel a booking-->
+        <button id="cancelBooking" type="submit" onclick="displayForm('cancelForm')"> Cancel a booking </button>
+
+        <form id="cancelForm" method="post" action="/manageBooking/cancel" style="display: none">
+
+            <label for="bookingNumber">Booking number you want to cancel </label>
+
+            <!-- temp options-->
+            <select id="bookingNumber" name="bookingNumber">
+                <option value="1"> 1 </option>
+                <option value="2"> 2 </option>
+                <option value="3"> 3 </option>
+
+            </select><br>
+
+            <input type="submit" value="Cancel Booking"/>
+
+        </form>
     </div>
 </main>
 
