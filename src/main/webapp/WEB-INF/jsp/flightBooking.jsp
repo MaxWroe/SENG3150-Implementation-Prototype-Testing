@@ -16,7 +16,7 @@
 </head>
 
 
-<!-- session checker -->
+<!-- session handler -->
 <%
    String userID = (String)session.getAttribute("userId");
 

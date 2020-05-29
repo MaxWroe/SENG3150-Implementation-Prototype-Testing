@@ -16,19 +16,11 @@
 
     <script src="/js/searchFormAssistor.js"></script>
     <script src="/js/flightSelectAssistor.js"></script>
+    <script src="/js/dynamicLink.js"></script>
 </head>
 
-<!-- session checker -->
-<%
-    String userID = (String)session.getAttribute("userId");
-
-    //checks if user is logged in
-    if(userID == null) {
-        %> <body><%
-    }else{
-        %><body onload=userPage('/logout','Logout');> <%
-    }%>
-
+<!-- session handler -->
+<jsp:include page="sessionHandlerGuest.jsp"/>
 
 <!-- Site header -->
 <jsp:include page="header.jsp"/>
