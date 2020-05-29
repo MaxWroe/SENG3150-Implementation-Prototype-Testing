@@ -331,7 +331,7 @@ input:hover
     text-align: left;
 }
 
-#payment-details
+.booking-details
 {
     display: inline;
     grid-column: 2;

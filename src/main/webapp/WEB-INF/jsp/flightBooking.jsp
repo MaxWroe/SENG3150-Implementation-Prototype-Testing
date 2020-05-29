@@ -14,20 +14,9 @@
     <link rel="stylesheet" type="text/css" href="/css/main.css">
     <script src="/js/dynamicLink.js"></script>
 </head>
-
-
+<body>
 <!-- session handler -->
-<%
-   String userID = (String)session.getAttribute("userId");
-
-    //checks if user is logged in
-   if(userID == null) {
-        %><body><%
-   }else{
-        %><body onload=userPage('/logout','Logout');> <%
-   }%>
-
-
+<jsp:include page="sessionHandlerGuest.jsp"/>
 <!-- Site header -->
 <jsp:include page="header.jsp"/>
 
@@ -36,21 +25,35 @@
     <h1>Flight Booking Details</h1>
     <div class="flight-booking">
         <div id="side-bar">
+            <h4>Departure Flight</h4>
             <p>Price</p>
-            <h4>$000</h4>
+            <h4>$${departureFlight.cost}</h4>
             <p>Date/Time</p>
-            <h4>00/00/00 00:00AM</h4>
+            <h4>${departureFlight.date} ${departureFlight.time}</h4>
             <p>Seat Class</p>
-            <h4>Economy</h4>
+            <h4>${departureFlight.classCode}</h4>
             <p>Seats Remaining</p>
-            <h4>0</h4>
+            <h4>${departureFlight.seats}</h4>
+            <c:if test = "${param.pageDirect eq 'return'}">
+            <h4>Return Flight</h4>
+            <p>Price</p>
+            <h4>$${returnFlight.cost}</h4>
+            <p>Date/Time</p>
+            <h4>${returnFlight.date} ${returnFlight.time}</h4>
+            <p>Seat Class</p>
+            <h4>${returnFlight.classCode}</h4>
+            <p>Seats Remaining</p>
+            <h4>${returnFlight.seats}</h4>
+            </c:if>
         </div>
 
         <!-- Check if user is logged in -->
-        <% if(userID != null){%>
+        <%
+        String userID = (String)session.getAttribute("userId");
+        if(userID != null){%>
             <p>You're still logged in.</p>
 
-            <div id="payment-details">
+            <div class="booking-details">
                 <p>Payment Details</p>
                 <form method="post">
                     <label for="name">Name:</label>
@@ -70,7 +73,18 @@
 
         <!-- If user is not logged in display log in form -->
         <%}else{%>
+        <div class="booking-details">
             <p>You're not logged in!</p>
+            <form id="loginForm" method="post" action="">
+                <!-- email address -->
+                <label for="email">Email address</label>
+                <input id="email" type="email" name ="email" required/> <br>
+                <!-- password -->
+                <label for="password">Password</label>
+                <input type ="password" id="password" name ="password" required/> <br>
+                <input type="submit" value="Login"/>
+            </form>
+        </div>
         <%}%>
 
 

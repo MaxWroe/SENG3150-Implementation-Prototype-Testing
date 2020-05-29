@@ -12,7 +12,7 @@ function updateCost(travel, amount)
         returnCost = amount;
     }
 
-    document.getElementById("booking-cost").innerText = "Total cost: " + (Number(departureCost) + Number(returnCost));
+    document.getElementById("booking-cost").innerText = "Total cost: $" + (Number(departureCost) + Number(returnCost));
 }
 
 function validateFlightSelection()

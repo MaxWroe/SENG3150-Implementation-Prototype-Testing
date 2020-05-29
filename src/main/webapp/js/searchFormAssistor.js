@@ -27,7 +27,7 @@ function restrictDepart()
 function validateForm()
 {
     // Check if selected airports valid
-    var options = document.getElementById("locations").options;
+    var options = document.getElementById("destinations").options;
     var result = false;
 
     for(var i = 0; i < options.length; i++) {
@@ -61,6 +61,7 @@ function validateForm()
 
     if(location === destination)
     {
+        document.getElementById("arrivalLocation").value = '';
         alert("Destination airport cannot be the same as departure airport.");
         return false;
     }

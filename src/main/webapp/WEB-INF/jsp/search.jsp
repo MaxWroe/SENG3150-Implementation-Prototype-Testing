@@ -18,7 +18,7 @@
     <script src="/js/flightSelectAssistor.js"></script>
     <script src="/js/dynamicLink.js"></script>
 </head>
-
+<body>
 <!-- session handler -->
 <jsp:include page="sessionHandlerGuest.jsp"/>
 
@@ -85,6 +85,15 @@
                 <select id="type" name="type" onchange="showDiv('search-form-return-date', 'returnDate', this)">
                     <option value="oneway">One-way</option>
                     <option value="return">Return</option>
+                </select>
+            </div>
+
+            <div class="search-form-group">
+                <select id="classCode" name="classCode">
+                    <option value="ECO">Economy</option>
+                    <option value="PME">Premium Economy</option>
+                    <option value="BUS">Business Class</option>
+                    <option value="FIR">First Class</option>
                 </select>
             </div>
 
@@ -156,8 +165,8 @@
     </div>
 
     <form name="bookFlight" method="get" id="bookFlight" action="/bookingtemp" onsubmit="return validateFlightSelection()">
+        <input type="hidden" id="pageDirect" name="pageDirect" value="return">
         <div class="flight-result-return">
-
             <!-- Departure flight -->
             <div id="flight-departure-results">
                 <div class="flight-result-return-departure">
@@ -268,7 +277,7 @@
                 </div>
                 <div class="flight-result-details">
                     <p>${flight.company}</p>
-                    <p>${flight.classType}</p>
+                    <p>${flight.stopoverAmount}</p>
                     <p>${flight.id}</p>
                 </div>
                 <div class="flight-result-cost">
@@ -283,7 +292,78 @@
         </c:forEach>
     </c:if>
     <c:if test = "${param.type eq 'return'}">
-        <p>Return</p>
+        <div class="flight-result-return">
+            <div class="flight-result-return-departure" style="background: none">
+                <h4 style="margin: 0;">Select a departure flight</h4>
+            </div>
+            <div class="flight-result-return-return" style="background: none">
+                <h4 style="margin: 0;">Select a return flight</h4>
+            </div>
+        </div>
+
+        <form name="bookFlight" method="get" id="bookFlight" action="/bookingtemp" onsubmit="return validateFlightSelection()">
+            <!--<input type="hidden" id="pageDirect" name="pageDirect" value="return">-->
+            <div class="flight-result-return">
+                <!-- Parse all returned flights -->
+                <!--<div id="flight-departure-results">-->
+                    <c:forEach items="${departureFlights}" var="flight">
+                        <div class="flight-result-return-departure">
+                            <div class="flight-result-time">
+                                <p>Depart time</p>
+                                <h4>${flight.departTime}</h4>
+                                <p>Arrival time</p>
+                                <h4>${flight.arrivalTime}</h4>
+                            </div>
+                            <div class="flight-result-details">
+                                <h4>${flight.company}</h4>
+                                <h4>${flight.stopoverAmount}</h4>
+                                <h4>${flight.id}</h4>
+                            </div>
+                            <div class="flight-result-cost">
+                                <h3>$${flight.cost}</h3>
+                            </div>
+                            <div class="flight-result-book">
+                                <label for="${flight.id}">Select: </label>
+                                <input type="radio" id="${flight.id}" name="departure" value="${flight.id}" onchange="updateCost('departure', '${flight.cost}')">
+                            </div>
+                        </div>
+                    </c:forEach>
+                <!--</div>-->
+
+                <!-- Return flight -->
+                <!--<div id="flight-return-results">-->
+                    <c:forEach items="${departureFlights}" var="flight">
+                        <div class="flight-result-return-return">
+                            <div class="flight-result-time">
+                                <p>Depart time</p>
+                                <h4>${flight.departTime}</h4>
+                                <p>Arrival time</p>
+                                <h4>${flight.arrivalTime}</h4>
+                            </div>
+                            <div class="flight-result-details">
+                                <h4>${flight.company}</h4>
+                                <h4>${flight.stopoverAmount}</h4>
+                                <h4>${flight.id}</h4>
+                            </div>
+                            <div class="flight-result-cost">
+                                <h3>$${flight.cost}</h3>
+                            </div>
+                            <div class="flight-result-book">
+                                <label for="${flight.id}">Select: </label>
+                                <input type="radio" id="${flight.id}" name="return" value="${flight.id}" onchange="updateCost('return', '${flight.cost}')">
+                            </div>
+                        </div>
+                    </c:forEach>
+                <!--</div>-->
+            </div>
+            <br>
+            <!--
+            <div id="flight-result-return-book">
+                <h4 id="booking-cost">Total cost: </h4>
+                <button type="submit" id="return-flight-book">Book</button>
+            </div>
+            -->
+        </form>
     </c:if>
 </main>
 </body>

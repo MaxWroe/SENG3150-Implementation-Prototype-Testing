@@ -21,7 +21,7 @@
     <script src="/js/searchFormAssistor.js"></script>
     <script src="/js/dynamicLink.js"></script>
 </head>
-
+<body>
 <!-- session handler -->
 <jsp:include page="sessionHandlerMain.jsp"/>
 
