@@ -5,6 +5,12 @@ function showDiv(divId, changedId, element)
 {
     document.getElementById(divId).style.display = element.value === "return" ? 'inline' : 'none';
     document.getElementById(changedId).required = element.value === "return";
+    // Check if date already selected for departure
+    if (document.getElementById("departureDate").value !== "")
+    {
+        document.getElementById("returnDate").min = document.getElementById("departureDate").value;
+        document.getElementById("returnDate").disabled = false;
+    }
 }
 
 // Function to restrict return date to not minimum than depart
