@@ -1,9 +1,7 @@
 package group3.seng3150;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -54,6 +52,23 @@ public class TestController {
     @GetMapping("/manageBooking")
     public ModelAndView displayManageBooking() {
         ModelAndView view = new ModelAndView("manageBooking");
+        return view;
+    }
+
+    /*
+    // testing and dont want to register
+    @PostMapping("/login")
+    public ModelAndView login(@RequestParam(name="email") String email) {
+        ModelAndView view = new ModelAndView("home");
+        view.addObject("email", email);
+        return view;
+    }*/
+
+
+
+    @GetMapping("/logout")
+    public ModelAndView executeLogout() {
+        ModelAndView view = new ModelAndView("logout");
         return view;
     }
 }

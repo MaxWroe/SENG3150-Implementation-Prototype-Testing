@@ -15,7 +15,18 @@
 
     <script src="/js/dynamicLink.js"></script>
 </head>
-<body onload=userPage("/home","Logout");>
+
+<!-- session checker -->
+<%
+    String userID = (String)session.getAttribute("userId");
+
+    //checks if user is logged in
+    if(userID == null) {
+        %> <jsp:forward page="errorPage.jsp"></jsp:forward> <%
+    }else{
+        %><body onload=userPage('/logout','Logout');> <%
+    }%>
+
 
 <!-- Site header -->
 <jsp:include page="header.jsp"/>
@@ -66,6 +77,9 @@
                 <option value="3"> 3 </option>
 
             </select><br>
+
+            <!-- userID -->
+            <input type ="hidden" id="userID" name="userID" value="<%=userID%>"/>
 
             <input type="submit" value="Cancel Booking"/>
 

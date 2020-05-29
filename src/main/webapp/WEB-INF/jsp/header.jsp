@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
+
 <!-- Navigation bar -->
 <header class="navbar">
     <div class="nav-logo">
@@ -34,9 +35,11 @@
                    </p>
 
                     <div class="dropdown-content">
-                        <a href="/accountDetails">Account Details</a>
-                        <a href="/manageBooking">Manage Booking</a>
-                        <a href="/customerSupport">Customer Support</a>
+                        <form id="" method="post">
+                            <a href="/accountDetails?userID=">Account Details</a>
+                            <a href="/manageBooking?userID=">Manage Booking</a>
+                            <a href="/customerSupport?userID=">Customer Support</a>
+                        </form>
                     </div>
                </div>
            </li>

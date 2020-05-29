@@ -13,13 +13,26 @@
     <link rel="stylesheet" type="text/css" href="/css/main.css">
     <script src="/js/formValidations.js"></script>
 </head>
-<body>
+
+<!-- session checker -->
+<%
+    String userID = (String)session.getAttribute("userId");
+
+    //checks if user is logged in
+    if(userID != null) {
+        %> <jsp:forward page="errorPage.jsp"></jsp:forward> <%
+    }else{
+        %><body> <%
+    }%>
+
+
 <!-- Site header -->
 <jsp:include page="header.jsp"/>
 
     <main class="main-content">
         <div class="card-body">
             <h1>Register</h1>
+            <h2>${message}</h2>
             <h4>Fill in your information</h4>
 
                 <!-- registration form-->

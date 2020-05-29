@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: acero
@@ -14,7 +15,27 @@
     <script src="/js/dynamicLink.js"></script>
 </head>
 
-<body onload=userPage('/home','Logout');>
+<%
+  session.setAttribute("userId", (String)request.getAttribute("email"));
+  String userID = (String)session.getAttribute("userId");
+
+  if(userID == null){
+      %><body><%
+
+}else{
+      %><body onload=userPage('/logout','Logout');> <%
+
+} %>
+
+
+
+
+
+
+
+
+
+
 <!-- Site header -->
 <jsp:include page="header.jsp"/>
 

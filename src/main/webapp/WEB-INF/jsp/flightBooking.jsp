@@ -12,8 +12,22 @@
     <title>Flight Booking Page</title>
 
     <link rel="stylesheet" type="text/css" href="/css/main.css">
+    <script src="/js/dynamicLink.js"></script>
 </head>
-<body>
+
+
+<!-- session checker -->
+<%
+   String userID = (String)session.getAttribute("userId");
+
+    //checks if user is logged in
+   if(userID == null) {
+        %><body><%
+   }else{
+        %><body onload=userPage('/logout','Logout');> <%
+   }%>
+
+
 <!-- Site header -->
 <jsp:include page="header.jsp"/>
 
@@ -33,7 +47,7 @@
         </div>
 
         <!-- Check if user is logged in -->
-        <c:if test="${not empty loggedInUser}">
+        <% if(userID != null){%>
             <p>You're still logged in.</p>
 
             <div id="payment-details">
@@ -52,12 +66,12 @@
                     <input type="number" id="cardcvc" name="cardcvc">
                 </form>
             </div>
-        </c:if>
+
 
         <!-- If user is not logged in display log in form -->
-        <c:if test="${empty loggedInUser}">
+        <%}else{%>
             <p>You're not logged in!</p>
-        </c:if>
+        <%}%>
 
 
         <!-- extra details

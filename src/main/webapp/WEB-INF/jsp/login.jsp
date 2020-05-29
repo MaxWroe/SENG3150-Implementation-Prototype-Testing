@@ -16,7 +16,18 @@
     <script src="/js/dynamicLink.js"></script>
 </head>
 
-<body onload=dynamicLink('/register','Register');>
+<!-- session checker -->
+<%
+    String userID = (String)session.getAttribute("userId");
+
+    //checks if user is logged in
+    if(userID != null) {
+        %> <jsp:forward page="errorPage.jsp"></jsp:forward> <%
+    }else{
+        %><body onload=dynamicLink('/register','Register');> <%
+   }%>
+
+
 <!-- Site header -->
 <jsp:include page="header.jsp"/>
 
