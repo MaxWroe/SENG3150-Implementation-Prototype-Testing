@@ -33,7 +33,7 @@ public class FlightController{
             @RequestParam(name="arrivalLocation", defaultValue="") String arrivalLocation,
             @RequestParam(name="departureDate", defaultValue="") String departureDate,
             @RequestParam(name="returnDate", defaultValue="") String returnDate,
-            @RequestParam(name="classType", defaultValue="") String classType,
+            @RequestParam(name="classCode", defaultValue="") String classCode,
             @RequestParam(name="type", defaultValue = "oneway") String type,
             @RequestParam(name="adults", defaultValue = "") int adults,
             @RequestParam(name="children", defaultValue = "") int children)
@@ -51,7 +51,7 @@ public class FlightController{
                     " AND SELECT f FROM Flight f WHERE f.departureTime<=departureTimeEnd" +
                     " AND SELECT f FROM Flight f WHERE f.numberAvailableSeatsLeg1>=" + numberPeople +
                     " AND SELECT f FROM Flight f WHERE f.numberAvailableSeatsLeg2>=" + numberPeople+ " OR f.numberAvailableSeatsLeg2==null" +
-                    " AND SELECT f FROM Flight f WHERE f.classCode=" + classType, Flight.class).getResultList();
+                    " AND SELECT f FROM Flight f WHERE f.classCode=" + classCode, Flight.class).getResultList();
             departureFlights.setFlights(retrievedFlights);
             departureFlights.sortFlights("departureTimeAscending");
 
@@ -64,7 +64,7 @@ public class FlightController{
                     " AND SELECT f FROM Flight f WHERE f.departureTime<=returnTimeEnd" +
                     " AND SELECT f FROM Flight f WHERE f.numberAvailableSeatsLeg1>=numberPeople" +
                     " AND SELECT f FROM Flight f WHERE f.numberAvailableSeatsLeg2>=" + numberPeople+ " OR f.numberAvailableSeatsLeg2==null" +
-                    " AND SELECT f FROM Flight f WHERE f.classCode=" + classType, Flight.class).getResultList();
+                    " AND SELECT f FROM Flight f WHERE f.classCode=" + classCode, Flight.class).getResultList();
                returnFlights.setFlights(retrievedFlights);
                returnFlights.sortFlights("departureTimeAscending");
             }
