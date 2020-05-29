@@ -190,6 +190,8 @@ input:hover
     /* shouldn't shifts elements
     border: 1px solid #aaa;
     */
+
+
 }
 
 #search-criteria
@@ -198,7 +200,7 @@ input:hover
     background: #fff;
 }
 
-.flight-result
+.flight-result-oneway
 {
     width: 80%;
     margin: 0 auto;
@@ -232,6 +234,29 @@ input:hover
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.flight-result-return
+{
+    width: 90%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-column-gap: 15px;
+}
+
+.flight-result-return-departure
+{
+    background: #fff;
+    padding: 20px;
+    display: grid;
+}
+
+.flight-result-return-return
+{
+    background: #fff;
+    padding: 20px;
+    display: grid;
 }
 
 .search-form-group

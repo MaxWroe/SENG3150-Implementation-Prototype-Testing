@@ -8,7 +8,7 @@ public class UserAccount {
 
     //first and last name
     //email address to PK
-
+    //gender, usertype, citizenship to be added
     @Id
     @Column(name = "UserID")
     @Basic(optional = false)
