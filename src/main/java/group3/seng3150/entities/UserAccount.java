@@ -38,6 +38,18 @@ public class UserAccount {
     @Basic(optional = false)
     private Date dateOfBirth;
 
+    @Column(name = "gender")
+    @Basic(optional = false)
+    private String gender;
+
+    @Column(name = "Citizenship")
+    @Basic(optional = false)
+    private String Citizenship;
+
+    @Column(name = "UserType")
+    @Basic(optional = false)
+    private String UserType;
+
     //Security needs to be addressed on this
     @Column(name = "Password")
     @Basic(optional = false)
@@ -96,6 +108,31 @@ public class UserAccount {
 
     public void setPhone(int phone) {
         this.phone = phone;
+    }
+
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getCitizenship() {
+        return Citizenship;
+    }
+
+    public void setCitizenship(String citizenship) {
+        Citizenship = citizenship;
+    }
+
+    public String getUserType() {
+        return UserType;
+    }
+
+    public void setUserType(String userType) {
+        UserType = userType;
     }
 
     public Date getDateOfBirth() {
