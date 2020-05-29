@@ -26,7 +26,7 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2fa4c939-f298-44e8-ba1d-7353dd1d77f5" name="Default Changelist" comment="UserLogin and UserRegister consolidated and working in AuthenticationController">
+    <list default="true" id="2fa4c939-f298-44e8-ba1d-7353dd1d77f5" name="Default Changelist" comment="Added sending the user in the view after login within the AuthenticationController">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/group3/seng3150/AuthenticationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/group3/seng3150/AuthenticationController.java" afterDir="false" />
     </list>
@@ -348,7 +348,14 @@
       <option name="project" value="LOCAL" />
       <updated>1590720113057</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Added sending the user in the view after login within the AuthenticationController">
+      <created>1590722532825</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1590722532825</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -405,7 +412,8 @@
     <MESSAGE value="FInalised Flight Controller" />
     <MESSAGE value="UserLogin and UserRegister" />
     <MESSAGE value="UserLogin and UserRegister consolidated and working in AuthenticationController" />
-    <option name="LAST_COMMIT_MESSAGE" value="UserLogin and UserRegister consolidated and working in AuthenticationController" />
+    <MESSAGE value="Added sending the user in the view after login within the AuthenticationController" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added sending the user in the view after login within the AuthenticationController" />
   </component>
   <component name="WindowStateProjectService">
     <state x="552" y="178" key="#Inspections" timestamp="1589715148476">
@@ -615,11 +623,11 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="279" y="145" key="SettingsEditor/0.0.1600.860/-1360.114.1360.728@0.0.1600.860" timestamp="1590126055728" />
-    <state x="552" y="255" key="Vcs.Push.Dialog.v2" timestamp="1590720204130">
+    <state x="552" y="255" key="Vcs.Push.Dialog.v2" timestamp="1590722550723">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1590710365380" />
-    <state x="552" y="255" key="Vcs.Push.Dialog.v2/0.0.1920.1050/1920.0.1920.1050@0.0.1920.1050" timestamp="1590720204130" />
+    <state x="552" y="255" key="Vcs.Push.Dialog.v2/0.0.1920.1050/1920.0.1920.1050@0.0.1920.1050" timestamp="1590722550723" />
     <state x="552" y="253" key="Vcs.Push.Dialog.v2/1920.-77.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1590417416367" />
     <state x="455" y="285" key="com.intellij.ide.util.TipDialog" timestamp="1590383920376">
       <screen x="0" y="0" width="1504" height="1003" />
