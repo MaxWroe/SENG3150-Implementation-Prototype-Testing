@@ -50,7 +50,8 @@ public class FlightController{
                     " AND SELECT f FROM Flight f WHERE f.departureTime>=departureTimeStart" +
                     " AND SELECT f FROM Flight f WHERE f.departureTime<=departureTimeEnd" +
                     " AND SELECT f FROM Flight f WHERE f.numberAvailableSeatsLeg1>=" + numberPeople +
-                    " AND SELECT f FROM Flight f WHERE f.numberAvailableSeatsLeg2>=" + numberPeople+ " OR f.numberAvailableSeatsLeg2==null" +
+                    " AND SELECT f FROM Flight f WHERE f.numberAvailableSeatsLeg2>=" + numberPeople +
+                    " OR SELECT f FROM Flight f WHERE f.numberAvailableSeatsLeg2==null" +
                     " AND SELECT f FROM Flight f WHERE f.classCode=" + classCode, Flight.class).getResultList();
             departureFlights.setFlights(retrievedFlights);
             departureFlights.sortFlights("departureTimeAscending");
