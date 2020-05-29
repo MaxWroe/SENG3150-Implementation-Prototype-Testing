@@ -1,4 +1,4 @@
-// Manipulate search form fields
+// Manipulate and validate search form fields
 
 // Function to display return date input field if return flight
 function showDiv(divId, changedId, element)

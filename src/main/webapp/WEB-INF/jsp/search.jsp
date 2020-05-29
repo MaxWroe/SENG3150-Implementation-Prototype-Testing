@@ -15,7 +15,7 @@
     <link rel="stylesheet" type="text/css" href="/css/main.css">
 
     <script src="/js/searchFormAssistor.js"></script>
-    <script src="/js/flightSearchAssistor.js"></script>
+    <script src="/js/flightSelectAssistor.js"></script>
 </head>
 <body>
 <!-- Site header -->
@@ -107,7 +107,7 @@
             </div>
 
             <div id="sort-criteria">
-                <h4>Sort Criteria</h4>
+                <h4 style="display: inline;padding-right: 50px;">Sort Criteria</h4>
                 <p>Sort by:</p>
                 <select id="sortby" name="sortby">
                     <option value="price">Price</option>
@@ -143,62 +143,110 @@
 
     <!-- Result template for return trips -->
     <div class="flight-result-return">
-        <div class="flight-result-return-departure">
+        <div class="flight-result-return-departure" style="background: none">
             <h4>Select a departure flight</h4>
         </div>
-        <div class="flight-result-return-return">
+        <div class="flight-result-return-return" style="background: none">
             <h4>Select a return flight</h4>
         </div>
     </div>
-    <form name="bookFlight" method="get" id="bookFlight" action="/bookingtemp" onsubmit="return validateBookingForm()">
+
+    <form name="bookFlight" method="get" id="bookFlight" action="/bookingtemp" onsubmit="return validateFlightSelection()">
         <div class="flight-result-return">
+
             <!-- Departure flight -->
-            <div class="flight-result-return-departure">
-                <div class="flight-result-time">
-                    <p>Depart time</p>
-                    <h4>00:00AM</h4>
-                    <p>Arrival time</p>
-                    <h4>00:00AM</h4>
+            <div id="flight-departure-results">
+                <div class="flight-result-return-departure">
+                    <div class="flight-result-time">
+                        <p>Depart time</p>
+                        <h4>00:00AM</h4>
+                        <p>Arrival time</p>
+                        <h4>00:00AM</h4>
+                    </div>
+                    <div class="flight-result-details">
+                        <h4>Company</h4>
+                        <h4>Stop Overs</h4>
+                        <h4>Flight ID</h4>
+                    </div>
+                    <div class="flight-result-cost">
+                        <h3>$000</h3>
+                    </div>
+                    <div class="flight-result-book">
+                        <label for="flightid1">Select: </label>
+                        <input type="radio" id="flightid1" name="departure" value="flightid1" onchange="checkSelection()">
+                    </div>
                 </div>
-                <div class="flight-result-details">
-                    <h4>Company</h4>
-                    <h4>Stop Overs</h4>
-                    <h4>Flight ID</h4>
+                <!-- Departure flight 2 -->
+                <div class="flight-result-return-departure">
+                    <div class="flight-result-time">
+                        <p>Depart time</p>
+                        <h4>00:00AM</h4>
+                        <p>Arrival time</p>
+                        <h4>00:00AM</h4>
+                    </div>
+                    <div class="flight-result-details">
+                        <h4>Company</h4>
+                        <h4>Stop Overs</h4>
+                        <h4>Flight ID</h4>
+                    </div>
+                    <div class="flight-result-cost">
+                        <h3>$000</h3>
+                    </div>
+                    <div class="flight-result-book">
+                        <label for="flightid3">Select: </label>
+                        <input type="radio" id="flightid3" name="departure" value="flightid3" onchange="checkSelection()">
+                    </div>
                 </div>
-                <div class="flight-result-cost">
-                    <h3>$000</h3>
-                </div>
-                <div class="flight-result-book">
-                    <label for="flightid1">Select: </label>
-                    <input type="radio" id="flightid1" name="departure" value="flightid1">
+                <!-- Departure flight 3 -->
+                <div class="flight-result-return-departure">
+                    <div class="flight-result-time">
+                        <p>Depart time</p>
+                        <h4>00:00AM</h4>
+                        <p>Arrival time</p>
+                        <h4>00:00AM</h4>
+                    </div>
+                    <div class="flight-result-details">
+                        <h4>Company</h4>
+                        <h4>Stop Overs</h4>
+                        <h4>Flight ID</h4>
+                    </div>
+                    <div class="flight-result-cost">
+                        <h3>$000</h3>
+                    </div>
+                    <div class="flight-result-book">
+                        <label for="flightid4">Select: </label>
+                        <input type="radio" id="flightid4" name="departure" value="flightid4" onchange="checkSelection()">
+                    </div>
                 </div>
             </div>
 
             <!-- Return flight -->
-            <div class="flight-result-return-return">
-                <div class="flight-result-time">
-                    <p>Depart time</p>
-                    <h4>00:00AM</h4>
-                    <p>Arrival time</p>
-                    <h4>00:00AM</h4>
-                </div>
-                <div class="flight-result-details">
-                    <h4>Company</h4>
-                    <h4>Stop Overs</h4>
-                    <h4>Flight ID</h4>
-                </div>
-                <div class="flight-result-cost">
-                    <h3>$000</h3>
-                </div>
-                <div class="flight-result-book">
-                    <label for="flightid2">Select: </label>
-                    <input type="radio" id="flightid2" name="return" value="flightid2">
+            <div id="flight-return-results">
+                <div class="flight-result-return-return">
+                    <div class="flight-result-time">
+                        <p>Depart time</p>
+                        <h4>00:00AM</h4>
+                        <p>Arrival time</p>
+                        <h4>00:00AM</h4>
+                    </div>
+                    <div class="flight-result-details">
+                        <h4>Company</h4>
+                        <h4>Stop Overs</h4>
+                        <h4>Flight ID</h4>
+                    </div>
+                    <div class="flight-result-cost">
+                        <h3>$000</h3>
+                    </div>
+                    <div class="flight-result-book">
+                        <label for="flightid2">Select: </label>
+                        <input type="radio" id="flightid2" name="return" value="flightid2" onchange="checkSelection()">
+                    </div>
                 </div>
             </div>
         </div>
 
-        <div id="return-book">
-            <button type="submit">Book</button>
+        <div id="flight-result-return-book">
+            <button type="submit" id="return-flight-book" disabled>Book</button>
         </div>
     </form>
 

@@ -190,8 +190,6 @@ input:hover
     /* shouldn't shifts elements
     border: 1px solid #aaa;
     */
-
-
 }
 
 #search-criteria
@@ -245,11 +243,30 @@ input:hover
     grid-column-gap: 15px;
 }
 
+#flight-departure-results
+{
+    height: 500px;
+    display: grid;
+    grid-row-gap: 15px;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
+#flight-return-results
+{
+    height: 500px;
+    display: grid;
+    grid-row-gap: 15px;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
 .flight-result-return-departure
 {
     background: #fff;
     padding: 20px;
     display: grid;
+    max-height: 200px;
 }
 
 .flight-result-return-return
@@ -257,6 +274,12 @@ input:hover
     background: #fff;
     padding: 20px;
     display: grid;
+    max-height: 200px;
+}
+
+#flight-result-return-book
+{
+    display: inline;
 }
 
 .search-form-group

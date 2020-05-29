@@ -13,12 +13,12 @@ public class TestController {
         ModelAndView view = new ModelAndView("home");
         return view;
     }
-    /*
+
     @GetMapping("/search")
     public ModelAndView displaySearch() {
         ModelAndView view = new ModelAndView("search");
         return view;
-    }*/
+    }
 
     @GetMapping("/recommendations")
     public ModelAndView displayRecomendations() {
@@ -43,8 +43,8 @@ public class TestController {
     public ModelAndView displayAccountDetails() {
         ModelAndView view = new ModelAndView("accountDetails");
         return view;
-    }
-    */
+    }*/
+
     @GetMapping("/customerSupport")
     public ModelAndView displayCustomerSupport() {
         ModelAndView view = new ModelAndView("customerSupport");
