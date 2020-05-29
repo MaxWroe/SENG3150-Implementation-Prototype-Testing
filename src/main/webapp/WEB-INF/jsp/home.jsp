@@ -22,28 +22,8 @@
     <script src="/js/dynamicLink.js"></script>
 </head>
 
-<!-- session checker -->
-<%
-    String userID = (String)session.getAttribute("userId");
-    String email = request.getParameter("email");
-
-    //checks if session is empty and not logged in
-    if(userID == null && email == null){
-        %><body><%
-
-    //checks if logged in
-    }else if(email != null && userID == null){
-
-        session.setAttribute("userId", email);
-        %> <body onload=userPage('/logout','Logout');> <%
-
-    }else{
-
-        %> <body onload=userPage('/logout','Logout');> <%
-
-    }
-
-%>
+<!-- session handler -->
+<jsp:include page="sessionHandlerMain.jsp"/>
 
 <!-- Site header -->
 <jsp:include page="header.jsp"/>

@@ -14,17 +14,8 @@
     <script src="/js/formValidations.js"></script>
 </head>
 
-<!-- session checker -->
-<%
-    String userID = (String)session.getAttribute("userId");
-
-    //checks if user is logged in
-    if(userID != null) {
-        %> <jsp:forward page="errorPage.jsp"></jsp:forward> <%
-    }else{
-        %><body> <%
-    }%>
-
+<!-- session handler -->
+<jsp:include page="sessionHandlerRegister.jsp"/>
 
 <!-- Site header -->
 <jsp:include page="header.jsp"/>

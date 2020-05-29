@@ -17,16 +17,7 @@
 </head>
 
 <!-- session checker -->
-<%
-    String userID = (String)session.getAttribute("userId");
-
-    //checks if user is logged in
-    if(userID == null) {
-        %> <jsp:forward page="errorPage.jsp"></jsp:forward> <%
-    }else{
-        %><body onload=userPage('/logout','Logout');> <%
-    }%>
-
+<jsp:include page="sessionHandlerUser.jsp"/>
 
 <!-- Site header -->
 <jsp:include page="header.jsp"/>
@@ -79,7 +70,7 @@
             </select><br>
 
             <!-- userID -->
-            <input type ="hidden" id="userID" name="userID" value="<%=userID%>"/>
+            <input type ="hidden" id="userID" name="userID" value="<%=session.getAttribute("userId")%>"/>
 
             <input type="submit" value="Cancel Booking"/>
 
