@@ -42,7 +42,9 @@ public class AuthenticationController {
             String newEmail = "'" + email + "'";
             String newPassword = "'" + password + "'";
             UserAccount user = (UserAccount) em.createQuery("SELECT u FROM UserAccount u WHERE u.email=" + newEmail + " AND u.password=" + newPassword).getSingleResult();
+
             ModelAndView view = new ModelAndView("userHome");
+            view.addObject("user", user);
             view.addObject("email", user.getFirstName());
             return view;
         }
