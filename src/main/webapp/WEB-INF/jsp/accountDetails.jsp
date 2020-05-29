@@ -76,7 +76,7 @@
                 <input id="address" name ="address" required/> <br>
 
                 <!-- userID -->
-                <input type ="hidden" id="userID" name="userID" value=""/>
+                <input type ="hidden" id="userID" name="userID" value="<%= userID%>"/>
                 <input type="submit" value="Edit Account"/><input type="reset" value="Reset"/>
 
             </form>
