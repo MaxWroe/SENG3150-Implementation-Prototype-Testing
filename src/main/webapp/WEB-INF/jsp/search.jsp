@@ -37,7 +37,7 @@
 <main class="main-content">
     <!-- The current search criteria -->
     <div id="search-criteria">
-        <h4>Search Criteria</h4>
+        <h4 style="margin: auto;">Search Criteria</h4>
         <!-- Flight search fields -->
         <form name="searchFlight" method="get" id="searchFlight" action="/search" onsubmit="return validateForm()">
             <!-- Starting airport -->
@@ -156,10 +156,10 @@
     <!-- Result template for return trips -->
     <div class="flight-result-return">
         <div class="flight-result-return-departure" style="background: none">
-            <h4>Select a departure flight</h4>
+            <h4 style="margin: 0;">Select a departure flight</h4>
         </div>
         <div class="flight-result-return-return" style="background: none">
-            <h4>Select a return flight</h4>
+            <h4 style="margin: 0;">Select a return flight</h4>
         </div>
     </div>
 
@@ -181,11 +181,11 @@
                         <h4>Flight ID</h4>
                     </div>
                     <div class="flight-result-cost">
-                        <h3>$000</h3>
+                        <h3>$120</h3>
                     </div>
                     <div class="flight-result-book">
                         <label for="flightid1">Select: </label>
-                        <input type="radio" id="flightid1" name="departure" value="flightid1" onchange="checkSelection()">
+                        <input type="radio" id="flightid1" name="departure" value="flightid1" onchange="updateCost('departure', '120')">
                     </div>
                 </div>
                 <!-- Departure flight 2 -->
@@ -202,11 +202,11 @@
                         <h4>Flight ID</h4>
                     </div>
                     <div class="flight-result-cost">
-                        <h3>$000</h3>
+                        <h3>$410</h3>
                     </div>
                     <div class="flight-result-book">
                         <label for="flightid3">Select: </label>
-                        <input type="radio" id="flightid3" name="departure" value="flightid3" onchange="checkSelection()">
+                        <input type="radio" id="flightid3" name="departure" value="flightid3" onchange="updateCost('departure', '410')">
                     </div>
                 </div>
                 <!-- Departure flight 3 -->
@@ -223,11 +223,11 @@
                         <h4>Flight ID</h4>
                     </div>
                     <div class="flight-result-cost">
-                        <h3>$000</h3>
+                        <h3>$111</h3>
                     </div>
                     <div class="flight-result-book">
                         <label for="flightid4">Select: </label>
-                        <input type="radio" id="flightid4" name="departure" value="flightid4" onchange="checkSelection()">
+                        <input type="radio" id="flightid4" name="departure" value="flightid4" onchange="updateCost('departure', '111')">
                     </div>
                 </div>
             </div>
@@ -247,18 +247,19 @@
                         <h4>Flight ID</h4>
                     </div>
                     <div class="flight-result-cost">
-                        <h3>$000</h3>
+                        <h3>$20</h3>
                     </div>
                     <div class="flight-result-book">
                         <label for="flightid2">Select: </label>
-                        <input type="radio" id="flightid2" name="return" value="flightid2" onchange="checkSelection()">
+                        <input type="radio" id="flightid2" name="return" value="flightid2" onchange="updateCost('return', '20')">
                     </div>
                 </div>
             </div>
         </div>
-
+        <br>
         <div id="flight-result-return-book">
-            <button type="submit" id="return-flight-book" disabled>Book</button>
+            <h4 id="booking-cost">Total cost: </h4>
+            <button type="submit" id="return-flight-book">Book</button>
         </div>
     </form>
 

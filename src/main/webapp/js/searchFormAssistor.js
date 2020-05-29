@@ -38,7 +38,7 @@ function validateForm()
     if(!result)
     {
         document.getElementById("departureLocation").value = '';
-        alert("Please select a valid departure airport from the list");
+        alert("Please select a valid departure airport from the list.");
         return false;
     }
 
@@ -51,7 +51,7 @@ function validateForm()
     if(!result)
     {
         document.getElementById("arrivalLocation").value = '';
-        alert("Please select a valid destination airport from the list");
+        alert("Please select a valid destination airport from the list.");
         return false;
     }
 

@@ -21,7 +21,6 @@
     <script src="/js/searchFormAssistor.js"></script>
     <script src="/js/dynamicLink.js"></script>
 </head>
-
 <!-- session checker -->
 <%
     String userID = (String)session.getAttribute("userId");
