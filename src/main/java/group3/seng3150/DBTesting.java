@@ -47,6 +47,9 @@ public class DBTesting {
         test.setPassword("thisisatest");
         Date d = Date.valueOf("2015-09-24");
         test.setDateOfBirth(d);
+        test.setCitizenship("Australian");
+        test.setGender("0");
+        test.setUserType("2");
 
         //merge the entity and commit the transaction
         em.persist(test);

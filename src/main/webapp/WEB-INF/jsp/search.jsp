@@ -15,6 +15,7 @@
     <link rel="stylesheet" type="text/css" href="/css/main.css">
 
     <script src="/js/searchFormAssistor.js"></script>
+    <script src="/js/flightSearchAssistor.js"></script>
 </head>
 <body>
 <!-- Site header -->
@@ -149,7 +150,7 @@
             <h4>Select a return flight</h4>
         </div>
     </div>
-    <form action="/bookingtemp">
+    <form name="bookFlight" method="get" id="bookFlight" action="/bookingtemp" onsubmit="return validateBookingForm()">
         <div class="flight-result-return">
             <!-- Departure flight -->
             <div class="flight-result-return-departure">
@@ -161,7 +162,7 @@
                 </div>
                 <div class="flight-result-details">
                     <h4>Company</h4>
-                    <h4>Class Type</h4>
+                    <h4>Stop Overs</h4>
                     <h4>Flight ID</h4>
                 </div>
                 <div class="flight-result-cost">
@@ -183,7 +184,7 @@
                 </div>
                 <div class="flight-result-details">
                     <h4>Company</h4>
-                    <h4>Class Type</h4>
+                    <h4>Stop Overs</h4>
                     <h4>Flight ID</h4>
                 </div>
                 <div class="flight-result-cost">
