@@ -79,7 +79,7 @@
             </select><br>
 
             <!-- userID -->
-            <input type ="hidden" id="userID" name="userID" value="<%userID%>"/>
+            <input type ="hidden" id="userID" name="userID" value=""/>
 
             <input type="submit" value="Cancel Booking"/>
 
