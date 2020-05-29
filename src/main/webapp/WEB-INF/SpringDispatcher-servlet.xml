@@ -33,4 +33,6 @@
         <aop:scoped-proxy />
     </bean>
 
+    <bean class="group3.seng3150.FlightHolder" scope="singleton"/>
+
 </beans>

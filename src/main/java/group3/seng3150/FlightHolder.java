@@ -6,10 +6,11 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class FlightHolder {
-    private  List<Flight> flights = new LinkedList<>();
+    private  List<Flight> flights;
     private FlightsSort sorter;
 
     public FlightHolder(){
+        flights = new LinkedList<>();
         sorter = new FlightsSort();
     }
 
