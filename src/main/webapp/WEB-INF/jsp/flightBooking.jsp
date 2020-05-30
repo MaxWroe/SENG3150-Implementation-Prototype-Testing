@@ -49,27 +49,48 @@
 
         <!-- Check if user is logged in -->
         <%
-        String userID = (String)session.getAttribute("userId");
+        String userID = "work";//(String)session.getAttribute("userId");
         if(userID != null){%>
-            <p>You're still logged in.</p>
+        <div class="booking-details">
+            <form method="post" action="/manageBooking">
+                <h4>Name of Adults</h4>
+                <br>
+                <c:forEach var = "i" begin = "1" end = "${param.adultsBooked}">
+                    <label for="adultName<c:out value = "${i}"/>">Adult <c:out value = "${i}"/> Name:</label>
+                    <input type="text" id="adultName<c:out value = "${i}"/>" name="adultName<c:out value = "${i}"/>" required>
+                    <label for="adultAge<c:out value = "${i}"/>">Age:</label>
+                    <input type="number" id="adultAge<c:out value = "${i}"/>" name="adultAge<c:out value = "${i}"/>" min="18" max="150" required>
+                    <br>
+                </c:forEach>
+                <c:if test="${param.childrenBooked > 0}">
+                    <h4>Name of Children</h4>
+                    <br>
+                </c:if>
+                <c:forEach var = "i" begin = "1" end = "${param.childrenBooked}">
+                    <label for="childName<c:out value = "${i}"/>">Child <c:out value = "${i}"/> Name:</label>
+                    <input type="text" id="childName<c:out value = "${i}"/>" name="childName<c:out value = "${i}"/>" required>
+                    <label for="childAge<c:out value = "${i}"/>">Age:</label>
+                    <input type="number" id="childAge<c:out value = "${i}"/>" name="childAge<c:out value = "${i}"/>" min="1" max="17" required>
+                    <br>
+                </c:forEach>
 
-            <div class="booking-details">
-                <p>Payment Details</p>
-                <form method="post">
-                    <label for="name">Name:</label>
-                    <input type="text" id="name" name="name">
-                    <br>
-                    <label for="cardno">Card Number:</label>
-                    <input type="number" id="cardno" name="cardno">
-                    <br>
-                    <label for="cardexpiry">Expiry Date:</label>
-                    <input type="month" id="cardexpiry" name="cardexpiry">
-                    <br>
-                    <label for="cardcvc">CVC:</label>
-                    <input type="number" id="cardcvc" name="cardcvc">
-                </form>
-            </div>
+                <h4>Payment Details</h4>
+                <br>
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name">
+                <br>
+                <label for="cardno">Card Number:</label>
+                <input type="number" id="cardno" name="cardno">
+                <br>
+                <label for="cardexpiry">Expiry Date:</label>
+                <input type="month" id="cardexpiry" name="cardexpiry">
+                <br>
+                <label for="cardcvc">CVC:</label>
+                <input type="number" id="cardcvc" name="cardcvc">
 
+                <button type="submit">Book</button>
+            </form>
+        </div>
 
         <!-- If user is not logged in display log in form -->
         <%}else{%>

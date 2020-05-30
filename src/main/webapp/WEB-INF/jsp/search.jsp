@@ -34,9 +34,9 @@
         <form name="searchFlight" method="get" id="searchFlight" action="/search" onsubmit="return validateForm()">
             <!-- Starting airport -->
             <div class="search-form-group">
-                <input list="destinations" name="departureLocation" id="departureLocation" value="<%=request.getParameter("departureLocation")%>" required>
+                <input list="destinations" name="departureLocation" id="departureLocation" value="${param.departureLocation}" required>
                 <p>to</p>
-                <input list="destinations" name="arrivalLocation" id="arrivalLocation" value="<%=request.getParameter("arrivalLocation")%>" required>
+                <input list="destinations" name="arrivalLocation" id="arrivalLocation" value="${param.arrivalLocation}" required>
             </div>
 
             <!-- Airport destinations -->
@@ -98,9 +98,9 @@
             </div>
 
             <div class="search-form-group">
-                <input type="number" id="adults" name="adults" min="1" max="9" value="<%=request.getParameter("adults")%>" required>
+                <input type="number" id="adults" name="adults" min="1" max="9" value="${param.adults}" required>
                 <p>Adult/s</p>
-                <input type="number" id="children" name="children" min="0" max="9" value="<%=request.getParameter("children")%>" required>
+                <input type="number" id="children" name="children" min="0" max="9" value="${param.children}" required>
                 <p>Children</p>
             </div>
             <br>
@@ -109,14 +109,14 @@
                 <div class="home-form-group">
                     <jsp:useBean id="now" class="java.util.Date"/>
                     <input type="date" id="departureDate" name="departureDate" min="<fmt:formatDate pattern="yyyy-MM-dd" value="${now}" />"
-                           onchange="restrictDepart()" value="<%=request.getParameter("departureDate")%>" required>
+                           onchange="restrictDepart()" value="${param.departureDate}" required>
                 </div>
             </div>
 
             <div id="search-form-return-date">
                 <p>to</p>
                 <input type="date" id="returnDate" name="returnDate" min="<fmt:formatDate pattern="yyyy-MM-dd" value="${now}" />"
-                       value="<%=request.getParameter("returnDate")%>" disabled>
+                       value="${param.returnDate}" disabled>
             </div>
 
             <div id="sort-criteria">
@@ -138,7 +138,7 @@
         </form>
         <script>
             // Check if incoming search trip type, set type select field and return date div
-            var trip = "<%=request.getParameter("type")%>";
+            var trip = "${param.type}";
 
             if (trip === "oneway")
             {
@@ -151,6 +151,9 @@
                 document.getElementById("returnDate").required = true;
                 document.getElementById("returnDate").disabled = false;
             }
+
+            // Set class type to incoming type
+            document.getElementById("classCode").value = "${param.classCode}";
         </script>
     </div>
 
@@ -166,6 +169,8 @@
 
     <form name="bookFlight" method="get" id="bookFlight" action="/bookingtemp" onsubmit="return validateFlightSelection()">
         <input type="hidden" id="pageDirect" name="pageDirect" value="return">
+        <input type="hidden" id="adultsBooked" name="adultsBooked" value="${param.adults}">
+        <input type="hidden" id="childrenBooked" name="childrenBooked" value="${param.children}">
         <div class="flight-result-return">
             <!-- Departure flight -->
             <div id="flight-departure-results">
@@ -302,7 +307,9 @@
         </div>
 
         <form name="bookFlight" method="get" id="bookFlight" action="/bookingtemp" onsubmit="return validateFlightSelection()">
-            <!--<input type="hidden" id="pageDirect" name="pageDirect" value="return">-->
+            <!--<input type="hidden" id="pageDirect" name="pageDirect" value="return">
+            <input type="hidden" id="adultsBooked" name="adultsBooked" value="${param.adults}">
+            <input type="hidden" id="childrenBooked" name="childrenBooked" value="${param.children}">-->
             <div class="flight-result-return">
                 <!-- Parse all returned flights -->
                 <!--<div id="flight-departure-results">-->
