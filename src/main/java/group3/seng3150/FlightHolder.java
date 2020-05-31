@@ -8,19 +8,17 @@ import java.util.List;
 public class FlightHolder {
     private  List<Flight> flights;
     private FlightsSort sorter;
+    private List<FlightPlan> flightPlans;
+    private FlightPlanSearch searcher;
 
     public FlightHolder(){
         flights = new LinkedList<>();
         sorter = new FlightsSort();
+        flightPlans = new LinkedList<>();
+        searcher = new FlightPlanSearch();
     }
 
-    public List<Flight> getFlights() {
-        return flights;
-    }
 
-    public void setFlights(List<Flight> flights) {
-        this.flights = flights;
-    }
 
     public void addFlight(Flight flight){
         flights.add(flight);
@@ -33,5 +31,26 @@ public class FlightHolder {
 
     public int getSize(){
         return flights.size();
+    }
+
+    public List<FlightPlan> getFlightPlanOptions(List<Flight> rawFlights){
+        flightPlans = searcher.createFlightPlans(rawFlights);
+        return flightPlans;
+    }
+
+    public List<Flight> getFlights() {
+        return flights;
+    }
+
+    public void setFlights(List<Flight> flights) {
+        this.flights = flights;
+    }
+
+    public List<FlightPlan> getFlightPlans() {
+        return flightPlans;
+    }
+
+    public void setFlightPlans(List<FlightPlan> flightPlans) {
+        this.flightPlans = flightPlans;
     }
 }
