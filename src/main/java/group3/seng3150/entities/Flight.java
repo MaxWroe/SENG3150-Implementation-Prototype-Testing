@@ -84,6 +84,22 @@ public class Flight {
 
     //Getters and Setters
 
+    public String getNumberAvailableSeatsLeg1() {
+        return numberAvailableSeatsLeg1;
+    }
+
+    public void setNumberAvailableSeatsLeg1(String numberAvailableSeatsLeg1) {
+        this.numberAvailableSeatsLeg1 = numberAvailableSeatsLeg1;
+    }
+
+    public String getNumberAvailableSeatsLeg2() {
+        return numberAvailableSeatsLeg2;
+    }
+
+    public void setNumberAvailableSeatsLeg2(String numberAvailableSeatsLeg2) {
+        this.numberAvailableSeatsLeg2 = numberAvailableSeatsLeg2;
+    }
+
     public String getDepartureCode() {
         return departureCode;
     }
