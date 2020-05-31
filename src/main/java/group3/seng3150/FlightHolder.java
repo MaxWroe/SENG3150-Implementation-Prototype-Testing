@@ -2,6 +2,7 @@ package group3.seng3150;
 
 import group3.seng3150.entities.Flight;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -12,9 +13,9 @@ public class FlightHolder {
     private FlightPlanSearch searcher;
 
     public FlightHolder(){
-        flights = new LinkedList<>();
+        flights = new ArrayList<>();
         sorter = new FlightsSort();
-        flightPlans = new LinkedList<>();
+        flightPlans = new ArrayList<>();
         searcher = new FlightPlanSearch();
     }
 

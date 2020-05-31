@@ -58,6 +58,8 @@ public class DBTesting {
         //used as a stop point in debugger
         System.out.print("stop");
         return new ModelAndView("index");
+
+
     }
 
 }

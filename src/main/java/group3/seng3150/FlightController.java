@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.persistence.EntityManager;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.LinkedList;
 
@@ -42,6 +43,7 @@ public class FlightController{
         //dates need to be strictly of '2015-09-24 09:50:00' format
         ModelAndView view = new ModelAndView("search");
 
+
         int numberPeople = adults + children;
         String departureTimeStart = departureDate + " 00:00:01";
         String departureTimeEnd = departureDate + " 23:59:59";
@@ -55,6 +57,9 @@ public class FlightController{
                 , Flight.class).getResultList();
         departureFlights.setFlights(retrievedFlights);
         departureFlights.sortFlights("departureTimeAscending");
+
+        FlightPlanSearch searcher = new FlightPlanSearch();
+        FlightPlan testFlight = searcher.getShortestPathDuration(departureFlights.getFlights(), departureLocation);
 
            if (type.equals("return")) {
             String returnTimeStart = returnDate + " 00:00:01";
