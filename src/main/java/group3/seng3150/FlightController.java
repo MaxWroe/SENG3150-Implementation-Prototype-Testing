@@ -42,30 +42,31 @@ public class FlightController{
         //dates need to be strictly of '2015-09-24 09:50:00' format
         ModelAndView view = new ModelAndView("search");
 
-            int numberPeople = adults + children;
-            String departureTimeStart = departureDate += " 00:00:01";
-            String departureTimeEnd = departureDate += " 23:59:59";
-            List<Flight> retrievedFlights = em.createQuery("SELECT f FROM Flight f WHERE f.departureLocation=" + departureLocation +
-                    " AND SELECT f FROM Flight f WHERE f.arrivalLocation=" + arrivalLocation +
-                    " AND SELECT f FROM Flight f WHERE f.departureTime>=departureTimeStart" +
-                    " AND SELECT f FROM Flight f WHERE f.departureTime<=departureTimeEnd" +
-                    " AND SELECT f FROM Flight f WHERE f.numberAvailableSeatsLeg1>=" + numberPeople +
-                    " AND SELECT f FROM Flight f WHERE f.numberAvailableSeatsLeg2>=" + numberPeople +
-                    " OR SELECT f FROM Flight f WHERE f.numberAvailableSeatsLeg2==null" +
-                    " AND SELECT f FROM Flight f WHERE f.classCode=" + classCode, Flight.class).getResultList();
-            departureFlights.setFlights(retrievedFlights);
-            departureFlights.sortFlights("departureTimeAscending");
+        int numberPeople = adults + children;
+        String departureTimeStart = departureDate + " 00:00:01";
+        String departureTimeEnd = departureDate + " 23:59:59";
+        List<Flight> retrievedFlights = em.createQuery( "SELECT f From Flight f WHERE f.departureCode='" + departureLocation + "'" +
+                " AND f.destination='" + arrivalLocation + "'" +
+                " AND f.departureDate>='" + departureTimeStart + "'" +
+                " AND f.departureDate<='" + departureTimeEnd + "'" +
+                " AND f.numberAvailableSeatsLeg1>=" + numberPeople +
+                " AND (f.numberAvailableSeatsLeg2>=" + numberPeople + " OR f.numberAvailableSeatsLeg2='null')" +
+                " AND f.classCode='" + classCode + "'"
+                , Flight.class).getResultList();
+        departureFlights.setFlights(retrievedFlights);
+        departureFlights.sortFlights("departureTimeAscending");
 
            if (type.equals("return")) {
-            String returnTimeStart = returnDate += " 00:00:01";
-            String returnTimeEnd = returnDate += "23:59:59";
-            retrievedFlights = em.createQuery("SELECT f FROM Flight f WHERE f.departureLocation=" + departureLocation +
-                    " AND SELECT f FROM Flight f WHERE f.arrivalLocation=" + arrivalLocation +
-                    " AND SELECT f FROM Flight f WHERE f.departureTime>=returnTimeStart" +
-                    " AND SELECT f FROM Flight f WHERE f.departureTime<=returnTimeEnd" +
-                    " AND SELECT f FROM Flight f WHERE f.numberAvailableSeatsLeg1>=numberPeople" +
-                    " AND SELECT f FROM Flight f WHERE f.numberAvailableSeatsLeg2>=" + numberPeople+ " OR f.numberAvailableSeatsLeg2==null" +
-                    " AND SELECT f FROM Flight f WHERE f.classCode=" + classCode, Flight.class).getResultList();
+            String returnTimeStart = returnDate + " 00:00:01";
+            String returnTimeEnd = returnDate + "23:59:59";
+               retrievedFlights = em.createQuery( "SELECT f From Flight f WHERE f.departureCode='" + departureLocation + "'" +
+                       " AND f.destination='" + arrivalLocation + "'" +
+                       " AND f.arrivalDate>='" + returnTimeStart + "'" +
+                       " AND f.arrivalDate<='" + returnTimeEnd + "'" +
+                       " AND f.numberAvailableSeatsLeg1>=" + numberPeople +
+                       " AND (f.numberAvailableSeatsLeg2>=" + numberPeople + " OR f.numberAvailableSeatsLeg2=null)" +
+                       " AND f.classCode='" + classCode + "'"
+                       , Flight.class).getResultList();
                returnFlights.setFlights(retrievedFlights);
                returnFlights.sortFlights("departureTimeAscending");
             }

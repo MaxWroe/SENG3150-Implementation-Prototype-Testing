@@ -32,9 +32,6 @@ public class DBTesting {
                 "f.classCode='BUS' AND f.departureDate<'2015-09-24 09:50:00'", Flight.class).getResultList();
         List<Booking> bookings = em.createQuery("SELECT b FROM Booking b", Booking.class).getResultList();
 
-
-
-
         //this is an example of how to fill the database
         //start a transaction
         em.getTransaction().begin();
