@@ -55,11 +55,13 @@ public class FlightController{
                 " AND (f.numberAvailableSeatsLeg2>=" + numberPeople + " OR f.numberAvailableSeatsLeg2='null')" +
                 " AND f.classCode='" + classCode + "'"
                 , Flight.class).getResultList();
-        departureFlights.setFlights(retrievedFlights);
-        departureFlights.sortFlights("departureTimeAscending");
+//        departureFlights.setFlights(retrievedFlights);
+//        departureFlights.sortFlights("departureTimeAscending");
 
         FlightPlanSearch searcher = new FlightPlanSearch();
-        FlightPlan testFlight = searcher.getShortestPathDuration(departureFlights.getFlights(), departureLocation);
+        List<FlightPlan> departureFlightPlans = searcher.createFlightPlans(retrievedFlights, departureLocation, arrivalLocation, false) ;
+        departureFlights.setFlightPlans(departureFlightPlans);
+        departureFlights.sortFlightPlans("departureTimeAscending");
 
            if (type.equals("return")) {
             String returnTimeStart = returnDate + " 00:00:01";
@@ -72,9 +74,14 @@ public class FlightController{
                        " AND (f.numberAvailableSeatsLeg2>=" + numberPeople + " OR f.numberAvailableSeatsLeg2=null)" +
                        " AND f.classCode='" + classCode + "'"
                        , Flight.class).getResultList();
-               returnFlights.setFlights(retrievedFlights);
-               returnFlights.sortFlights("departureTimeAscending");
+//               returnFlights.setFlights(retrievedFlights);
+//               returnFlights.sortFlights("departureTimeAscending");
+               List<FlightPlan> returnFlightPlans = searcher.createFlightPlans(retrievedFlights, departureLocation, arrivalLocation, false) ;
+               returnFlights.setFlightPlans(returnFlightPlans);
+               returnFlights.sortFlightPlans("departureTimeAscending");
             }
+
+
 
         view.addObject("departureFlights", departureFlights);
         view.addObject("returnFlights", returnFlights);
@@ -88,10 +95,10 @@ public class FlightController{
             @RequestParam(name="sortMethod", defaultValue="") String sortMethod
     ){
         ModelAndView view = new ModelAndView("sort");
-        departureFlights.sortFlights(sortby+sortMethod);
+        departureFlights.sortFlightPlans(sortby+sortMethod);
         view.addObject("departureFlights", departureFlights);
         if(returnFlights.getSize()>0) {
-            returnFlights.sortFlights(sortby + sortMethod);
+            returnFlights.sortFlightPlans(sortby + sortMethod);
             view.addObject("returnFlights", returnFlights);
         }
         return view;

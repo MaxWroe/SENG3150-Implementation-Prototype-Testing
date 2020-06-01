@@ -14,29 +14,49 @@ public class FlightPlanSearch {
         setAirports();
     }
 
-    public List<FlightPlan> createFlightPlans(List<Flight> flights){
+    public List<FlightPlan> createFlightPlans(List<Flight> flights, String departureLocation, String destination, boolean stopOverNeeded){
         List<FlightPlan> flightPlans = new LinkedList<>();
-
+        if(stopOverNeeded){
+            flightPlans.add(getShortestPathDuration(flights, departureLocation, destination));
+        }
+        else{
+            for(int i=0; i<flights.size(); i++){
+                flightPlans.add(new FlightPlan());
+                flightPlans.get(i).addToStart(flights.get(i));
+            }
+        }
         return flightPlans;
     }
-    public FlightPlan getShortestPathDuration(List<Flight> flights, String departureLocation){
+    public FlightPlan getShortestPathDuration(List<Flight> flights, String departureLocation, String arrivalLocation){
         FlightPlan flightPlan = new FlightPlan();
         ArrayList<DijkstraNode> airportFlightNodes = new ArrayList<>();
         for(int i=0; i<airports.size(); i++){
             airportFlightNodes.add(new DijkstraNode(airports.get(i)));
         }
         for(int i=0; i<flights.size(); i++){
-            airportFlightNodes.get(airports.indexOf(flights.get(i).getDepartureCode())) .addDestination(airportFlightNodes.get(airports.indexOf(flights.get(i).getDestination())) ,flights.get(i).getDuration());
+            airportFlightNodes.get(airports.indexOf(flights.get(i).getDepartureCode())).addDestination(airportFlightNodes.get(airports.indexOf(flights.get(i).getDestination())), flights.get(i));
         }
 
         DijkstraGraph flightsGraph = new DijkstraGraph();
-        for(int i=0; i<airports.size(); i++){
+        for(int i=0; i<airportFlightNodes.size(); i++){
            flightsGraph.addNode(airportFlightNodes.get(i));
         }
 
         flightsGraph = calculateShortestPathFromSource(flightsGraph, airportFlightNodes.get(airports.indexOf(departureLocation)));
 
+        DijkstraNode destinationNode = airportFlightNodes.get(airports.indexOf(arrivalLocation));
+        DijkstraNode currentNode;
+        Set<DijkstraNode> processedNodes = flightsGraph.getNodes();
+        Iterator<DijkstraNode> iterator = processedNodes.iterator();
+        List<Flight> shortestPath = new LinkedList<>();
+        for(int i=0; i<processedNodes.size(); i++){
+            currentNode = iterator.next();
+            if(currentNode.getName().equals(destinationNode.getName()));{
+                shortestPath = currentNode.getShortestPathFlights();
+            }
+        }
 
+        flightPlan.setFlights(shortestPath);
         return flightPlan;
     }
 
@@ -51,10 +71,11 @@ public class FlightPlanSearch {
         while (unsettledNodes.size() != 0) {
             DijkstraNode currentNode = getLowestDistanceNode(unsettledNodes);
             unsettledNodes.remove(currentNode);
-            for (Map.Entry< DijkstraNode, Integer> adjacencyPair: currentNode.getAdjacentNodes().entrySet())
+            for (Map.Entry< DijkstraNode, List<Flight>> adjacencyPair: currentNode.getAdjacentNodesFlights().entrySet())
+
             {
                 DijkstraNode adjacentNode = adjacencyPair.getKey();
-                Integer edgeWeight = adjacencyPair.getValue();
+                long edgeWeight = currentNode.getShortestDurationToNode(adjacentNode);
                 if (!settledNodes.contains(adjacentNode)) {
                     calculateMinimumDistance(adjacentNode, edgeWeight, currentNode);
                     unsettledNodes.add(adjacentNode);
@@ -67,9 +88,10 @@ public class FlightPlanSearch {
 
     private static DijkstraNode getLowestDistanceNode(Set < DijkstraNode > unsettledNodes) {
         DijkstraNode lowestDistanceNode = null;
-        int lowestDistance = Integer.MAX_VALUE;
+        long lowestDistance = Long.MAX_VALUE;
         for (DijkstraNode node: unsettledNodes) {
-            int nodeDistance = node.getDistance();
+            node.setShortestDurations();
+            long nodeDistance = node.getDistance();
             if (nodeDistance < lowestDistance) {
                 lowestDistance = nodeDistance;
                 lowestDistanceNode = node;
@@ -78,14 +100,16 @@ public class FlightPlanSearch {
         return lowestDistanceNode;
     }
 
-    private static void calculateMinimumDistance(DijkstraNode evaluationNode,
-                                                 Integer edgeWeigh, DijkstraNode sourceNode) {
-        Integer sourceDistance = sourceNode.getDistance();
-        if (sourceDistance + edgeWeigh < evaluationNode.getDistance()) {
-            evaluationNode.setDistance(sourceDistance + edgeWeigh);
+    private static void calculateMinimumDistance(DijkstraNode evaluationNode, long edgeWeight, DijkstraNode sourceNode) {
+        long sourceDistance = sourceNode.getDistance();
+        if (sourceDistance + edgeWeight < evaluationNode.getDistance()) {
+            evaluationNode.setDistance(sourceDistance + edgeWeight);
             LinkedList<DijkstraNode> shortestPath = new LinkedList<>(sourceNode.getShortestPath());
+            LinkedList<Flight> shortestPathFlights = new LinkedList<>(sourceNode.getShortestPathFlights());
             shortestPath.add(sourceNode);
+            shortestPathFlights.add(sourceNode.getAdjacentNodesFlightShortest().get(evaluationNode));
             evaluationNode.setShortestPath(shortestPath);
+            evaluationNode.setShortestPathFlights(shortestPathFlights);
         }
     }
 

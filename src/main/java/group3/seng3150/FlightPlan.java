@@ -50,4 +50,16 @@ public class FlightPlan {
         }
         return  out;
     }
+
+    public void addToStart(Flight newFlight){
+        flights.add(0,newFlight);
+    }
+
+    public List<Flight> getFlights() {
+        return flights;
+    }
+
+    public void setFlights(List<Flight> flights) {
+        this.flights = flights;
+    }
 }
