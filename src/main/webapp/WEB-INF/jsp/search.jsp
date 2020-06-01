@@ -339,7 +339,7 @@
 
                 <!-- Return flight -->
                 <!--<div id="flight-return-results">-->
-                    <c:forEach items="${departureFlights}" var="flight">
+                    <c:forEach items="${returnFlights}" var="flight">
                         <div class="flight-result-return-return">
                             <div class="flight-result-time">
                                 <p>Depart time</p>

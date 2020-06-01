@@ -52,10 +52,17 @@
         String userID = "work";//(String)session.getAttribute("userId");
         if(userID != null){%>
         <div class="booking-details">
-            <form method="post" action="/manageBooking">
-                <h4>Name of Adults</h4>
+            <form method="post" action="">
+                <h4>Passenger Details</h4>
                 <br>
-                <c:forEach var = "i" begin = "1" end = "${param.adultsBooked}">
+                <!-- Autofill first adult from logged in account -->
+                <label for="adultName1">Booking Adult Name:</label>
+                <input type="text" id="adultName1" name="adultName1" value="${sessionScope.userName}" readonly required>
+                <label for="adultAge1">Age:</label>
+                <input type="number" id="adultAge1" name="adultAge1" min="18" max="150" value="${sessionScope.userAge}" readonly required>
+                <br>
+                <!-- Get details of all booking passengers -->
+                <c:forEach var = "i" begin = "2" end = "${param.adultsBooked}">
                     <label for="adultName<c:out value = "${i}"/>">Adult <c:out value = "${i}"/> Name:</label>
                     <input type="text" id="adultName<c:out value = "${i}"/>" name="adultName<c:out value = "${i}"/>" required>
                     <label for="adultAge<c:out value = "${i}"/>">Age:</label>
@@ -77,18 +84,18 @@
                 <h4>Payment Details</h4>
                 <br>
                 <label for="name">Name:</label>
-                <input type="text" id="name" name="name">
+                <input type="text" id="name" name="name" required>
                 <br>
                 <label for="cardno">Card Number:</label>
-                <input type="number" id="cardno" name="cardno">
+                <input type="number" id="cardno" name="cardno" required>
                 <br>
                 <label for="cardexpiry">Expiry Date:</label>
-                <input type="month" id="cardexpiry" name="cardexpiry">
+                <input type="month" id="cardexpiry" name="cardexpiry" required>
                 <br>
                 <label for="cardcvc">CVC:</label>
-                <input type="number" id="cardcvc" name="cardcvc">
-
-                <button type="submit">Book</button>
+                <input type="number" id="cardcvc" name="cardcvc" required>
+                <br>
+                <button type="submit" style="width: 50%;">Book</button>
             </form>
         </div>
 
@@ -108,17 +115,29 @@
         </div>
         <%}%>
 
-
-        <!-- extra details
-        <p>Baggage Details</p>
-        <p>Duration</p>
-
-        <p>Cancellation Policy</p>
-        <p>Travel Insurance</p>
-        <p>Disability Support</p>
-        <p>Amenities</p>
-        <p>Food Services</p>
-        -->
+        <div class="booking-details">
+            <h4>Extra details</h4>
+            <h4>Departure Flight</h4>
+            <p>Ticket Transferrable: ${departureFlight.transferrable}</p>
+            <br>
+            <p>Ticket Refundable: ${departureFlight.refundable}</p>
+            <br>
+            <p>Ticket Exchangeable: ${departureFlight.exchangeable}</p>
+            <br>
+            <p>Earned Frequent Flyer Points: ${departureFlight.frequentFlyerPoints}</p>
+            <br>
+            <c:if test = "${param.pageDirect eq 'return'}">
+            <h4>Return Flight</h4>
+            <p>Ticket Transferrable: ${returnFlight.transferrable}</p>
+            <br>
+            <p>Ticket Refundable: ${returnFlight.refundable}</p>
+            <br>
+            <p>Ticket Exchangeable: ${returnFlight.exchangeable}</p>
+            <br>
+            <p>Earned Frequent Flyer Points: ${returnFlight.frequentFlyerPoints}</p>
+            <br>
+            </c:if>
+        </div>
     </div>
 </main>
 </body>
