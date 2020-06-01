@@ -25,20 +25,20 @@ public class FlightPlan {
         return  out;
     }
 
-//    public int getNumberAvailableSeats(){
-//        int out = flights.get(0).getNumberAvailableSeatsLeg1();
-//        for(int i=0; i<flights.size();i++){
-//            if(flights.get(i).getNumberAvailableSeatsLeg1()<out){
-//                out = flights.get(i).getNumberAvailableSeatsLeg1();
-//            }
-//            if(flights.get(i).getStopOverCode()!=null){
-//                if(flights.get(i).getNumberAvailableSeatsLeg2()<out){
-//                    out = flights.get(i).getNumberAvailableSeatsLeg2();
-//                }
-//            }
-//        }
-//        return  out;
-//    }
+    public int getNumberAvailableSeats(){
+        int out = Integer.parseInt(flights.get(0).getNumberAvailableSeatsLeg1());
+        for(int i=0; i<flights.size();i++){
+            if(Integer.parseInt(flights.get(i).getNumberAvailableSeatsLeg1())<out){
+                out = Integer.parseInt(flights.get(i).getNumberAvailableSeatsLeg1());
+            }
+            if(flights.get(i).getStopOverCode()!=null){
+                if(Integer.parseInt(flights.get(i).getNumberAvailableSeatsLeg2())<out){
+                    out = Integer.parseInt(flights.get(i).getNumberAvailableSeatsLeg2());
+                }
+            }
+        }
+        return  out;
+    }
 
     public int getNumberStopOvers(){
         int out = -1;
@@ -62,4 +62,7 @@ public class FlightPlan {
     public void setFlights(List<Flight> flights) {
         this.flights = flights;
     }
+
+
+
 }
