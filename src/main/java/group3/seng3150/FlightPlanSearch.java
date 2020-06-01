@@ -27,6 +27,7 @@ public class FlightPlanSearch {
         }
         return flightPlans;
     }
+
     public FlightPlan getShortestPathDuration(List<Flight> flights, String departureLocation, String arrivalLocation){
         FlightPlan flightPlan = new FlightPlan();
         ArrayList<DijkstraNode> airportFlightNodes = new ArrayList<>();

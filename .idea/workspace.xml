@@ -26,22 +26,10 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2fa4c939-f298-44e8-ba1d-7353dd1d77f5" name="Default Changelist" comment="Fixed up Register and Login, added preliminary bookings controller, added and made functioning AccountController">
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/SENG3150-Implementation-Prototype.test.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/group3/seng3150/BookingsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/SENG3150-Implementation-Prototype.main.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/SENG3150-Implementation-Prototype.main.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/group3/seng3150/AccountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/group3/seng3150/AccountController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/group3/seng3150/AuthenticationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/group3/seng3150/AuthenticationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/group3/seng3150/TestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/group3/seng3150/TestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/accountDetails.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/accountDetails.jsp" afterDir="false" />
+    <list default="true" id="2fa4c939-f298-44e8-ba1d-7353dd1d77f5" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/src/main/java/group3/seng3150/FlightController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/group3/seng3150/FlightController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/group3/seng3150/FlightPlanSearch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/group3/seng3150/FlightPlanSearch.java" afterDir="false" />
     </list>
-    <list id="b5bfceb6-eb52-4233-a9f0-81285a986ffb" name="Apply: " comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -230,6 +218,18 @@
       </list>
     </recent_temporary>
   </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -396,6 +396,7 @@
                   </entry>
                 </map>
               </option>
+              <option name="COLUMN_ORDER" />
             </State>
           </value>
         </entry>
@@ -416,7 +417,6 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initial database setup" />
@@ -644,10 +644,10 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="279" y="145" key="SettingsEditor/0.0.1600.860/-1360.114.1360.728@0.0.1600.860" timestamp="1590126055728" />
-    <state x="2362" y="125" key="Vcs.Push.Dialog.v2" timestamp="1590922098399">
-      <screen x="1920" y="-77" width="1536" height="832" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1591053811942">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1590728656283" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1591053811942" />
     <state x="552" y="253" key="Vcs.Push.Dialog.v2/1920.-77.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1590727761699" />
     <state x="2362" y="125" key="Vcs.Push.Dialog.v2/1920.-77.1536.832/0.0.1920.1040@1920.-77.1536.832" timestamp="1590922098399" />
     <state x="484" y="244" key="com.intellij.ide.util.TipDialog" timestamp="1590977562794">
@@ -686,16 +686,5 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="291" y="113" key="spring file set editor/0.0.1600.860/-1360.114.1360.728@0.0.1600.860" timestamp="1589688764859" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/group3/seng3150/FlightController.java</url>
-          <line>56</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
