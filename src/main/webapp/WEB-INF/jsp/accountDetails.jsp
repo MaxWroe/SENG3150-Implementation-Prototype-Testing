@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: acero
@@ -15,7 +16,9 @@
 
     <script src="/js/dynamicLink.js"></script>
 </head>
-<body onload=userPage("/home","Logout");>
+
+<!-- session handler -->
+<jsp:include page="sessionHandlerUser.jsp"/>
 
 <!-- Site header -->
 <jsp:include page="header.jsp"/>
@@ -24,14 +27,14 @@
     <div class="card-body">
         <h1>Account Details</h1>
 
-
         <!-- user's details -->
         <div class ="my-account">
             <p>First Name: ${firstName}</p> <br>
             <p>Last Name: ${lastName}</p><br>
             <p>Email: ${email}</p><br>
+            <p>User type: ${userType}</p> <br>
             <p>Date of Birth: ${dateOfBirth}</p><br>
-            <p>Sex: ${sex}</p><br>
+            <p>Gender: ${gender}</p><br>
             <p>Citizenship: ${citizenship}</p><br>
             <p>Phone Number: ${phone}</p><br>
             <p>Family Members: ${familyMembers}</p><br>
@@ -48,6 +51,24 @@
 
                 <jsp:include page="form.jsp"/>
 
+                <!-- citizenship -->
+                <label for="citizenship">Citizenship: </label>
+                <input id="citizenship" name ="citizenship" required/> <br>
+
+                <!-- family members -->
+                <label for="familyMembers">Family Members: </label>
+                <input id="familyMembers" name ="familyMembers" required/> <br>
+
+                <!-- emergency contacts -->
+                <label for="emergencyContacts">Emergency Contacts: </label>
+                <input type="number" id="emergencyContacts" name ="emergencyContacts" required/> <br>
+
+                <!-- address -->
+                <label for="address">Address: </label>
+                <input id="address" name ="address" required/> <br>
+
+                <!-- userID -->
+                <input type ="hidden" id="userID" name="userID" value="<%= session.getAttribute("userId")%>"/>
                 <input type="submit" value="Edit Account"/><input type="reset" value="Reset"/>
 
             </form>

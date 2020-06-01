@@ -13,13 +13,17 @@
     <link rel="stylesheet" type="text/css" href="/css/main.css">
     <script src="/js/formValidations.js"></script>
 </head>
-<body>
+
+<!-- session handler -->
+<jsp:include page="sessionHandlerRegister.jsp"/>
+
 <!-- Site header -->
 <jsp:include page="header.jsp"/>
 
     <main class="main-content">
         <div class="card-body">
             <h1>Register</h1>
+            <h2>${message}</h2>
             <h4>Fill in your information</h4>
 
                 <!-- registration form-->

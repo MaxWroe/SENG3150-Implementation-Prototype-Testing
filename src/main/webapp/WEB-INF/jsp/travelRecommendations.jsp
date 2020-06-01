@@ -11,8 +11,12 @@
     <title>Travel Recommendations</title>
 
     <link rel="stylesheet" type="text/css" href="/css/main.css">
+    <script src="/js/dynamicLink.js"></script>
 </head>
-<body>
+
+<!-- session checker -->
+<jsp:include page="sessionHandlerGuest.jsp"/>
+
 <!-- Site header -->
 <jsp:include page="header.jsp"/>
 

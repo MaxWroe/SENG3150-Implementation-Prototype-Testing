@@ -16,7 +16,9 @@
     <script src="/js/dynamicLink.js"></script>
 </head>
 
-<body onload=dynamicLink('/register','Register');>
+<!-- session handler -->
+<jsp:include page="sessionHandlerLogin.jsp"/>
+
 <!-- Site header -->
 <jsp:include page="header.jsp"/>
 

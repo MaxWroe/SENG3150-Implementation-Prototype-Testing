@@ -15,7 +15,10 @@
 
     <script src="/js/dynamicLink.js"></script>
 </head>
-<body onload=userPage("/home","Logout");>
+
+<!-- session handler -->
+<jsp:include page="sessionHandlerUser.jsp"/>
+
 <!-- Site header -->
 <jsp:include page="header.jsp"/>
 
@@ -68,6 +71,8 @@
             <label for="bookingNumber">Booking Number: </label>
             <input type="number" id="bookingNumber" name="bookingNumber" required /> <br>
 
+            <!-- userID -->
+            <input type ="hidden" id="userID" name="userID" value="<%=session.getAttribute("userId")%>"/>
             <input type="submit" value="Submit Enquiry"/>
 
         </form>

@@ -15,7 +15,9 @@
 
     <script src="/js/dynamicLink.js"></script>
 </head>
-<body onload=userPage("/home","Logout");>
+
+<!-- session checker -->
+<jsp:include page="sessionHandlerUser.jsp"/>
 
 <!-- Site header -->
 <jsp:include page="header.jsp"/>
@@ -66,6 +68,9 @@
                 <option value="3"> 3 </option>
 
             </select><br>
+
+            <!-- userID -->
+            <input type ="hidden" id="userID" name="userID" value="<%=session.getAttribute("userId")%>"/>
 
             <input type="submit" value="Cancel Booking"/>
 

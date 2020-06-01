@@ -3,10 +3,8 @@
 
 //guest
 function dynamicLink(href, html){
-
     document.getElementById("dynamicLink").href=href;
     document.getElementById("dynamicLink").innerHTML=html;
-
 
 }
 

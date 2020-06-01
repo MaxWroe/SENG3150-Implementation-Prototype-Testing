@@ -1,3 +1,4 @@
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -18,10 +19,15 @@
     <link rel="stylesheet" type="text/css" href="/css/main.css">
 
     <script src="/js/searchFormAssistor.js"></script>
+    <script src="/js/dynamicLink.js"></script>
 </head>
 <body>
+<!-- session handler -->
+<jsp:include page="sessionHandlerMain.jsp"/>
+
 <!-- Site header -->
 <jsp:include page="header.jsp"/>
+
 
 <!-- Page content -->
 <main class="main-content">

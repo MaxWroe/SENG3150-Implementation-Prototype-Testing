@@ -1,4 +1,4 @@
-// Manipulate search form fields
+// Manipulate and validate search form fields
 
 // Function to display return date input field if return flight
 function showDiv(divId, changedId, element)
@@ -27,7 +27,7 @@ function restrictDepart()
 function validateForm()
 {
     // Check if selected airports valid
-    var options = document.getElementById("locations").options;
+    var options = document.getElementById("destinations").options;
     var result = false;
 
     for(var i = 0; i < options.length; i++) {
@@ -38,7 +38,7 @@ function validateForm()
     if(!result)
     {
         document.getElementById("departureLocation").value = '';
-        alert("Please select a valid departure airport from the list");
+        alert("Please select a valid departure airport from the list.");
         return false;
     }
 
@@ -51,7 +51,7 @@ function validateForm()
     if(!result)
     {
         document.getElementById("arrivalLocation").value = '';
-        alert("Please select a valid destination airport from the list");
+        alert("Please select a valid destination airport from the list.");
         return false;
     }
 
@@ -61,6 +61,7 @@ function validateForm()
 
     if(location === destination)
     {
+        document.getElementById("arrivalLocation").value = '';
         alert("Destination airport cannot be the same as departure airport.");
         return false;
     }
