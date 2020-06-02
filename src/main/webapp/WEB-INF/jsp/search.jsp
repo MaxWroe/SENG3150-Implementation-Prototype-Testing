@@ -269,10 +269,17 @@
         </div>
     </form>
 
+    <!-- If searched trip is one-way -->
     <c:if test = "${param.type eq 'oneway'}">
-        <p>One way</p>
         <!-- Parse all returned flights -->
-        <c:forEach items="${departureFlights}" var="flight">
+
+        <!-- Check if any flights returned -->
+        <c:if test="${empty departureFlights.flights}">
+            <h4>No flights can be found that match the criteria!</h4>
+        </c:if>
+
+        <!-- For each flight returned display -->
+        <c:forEach items="${departureFlights.flights}" var="flight">
             <div class="flight-result-oneway">
                 <div class="flight-result-time">
                     <p>Depart time</p>
@@ -296,6 +303,7 @@
             </div>
         </c:forEach>
     </c:if>
+    <!-- If searched trip is return -->
     <c:if test = "${param.type eq 'return'}">
         <div class="flight-result-return">
             <div class="flight-result-return-departure" style="background: none">
@@ -312,8 +320,17 @@
             <input type="hidden" id="childrenBooked" name="childrenBooked" value="${param.children}">-->
             <div class="flight-result-return">
                 <!-- Parse all returned flights -->
+
+                <!-- Check if any departure flights returned -->
+                <c:if test="${empty departureFlights.flights}">
+                    <div class="flight-result-return-departure">
+                        <h4>No depature flights can be found that match the criteria!</h4>
+                    </div>
+                </c:if>
+
+                <!-- For each depature flight returned display -->
                 <!--<div id="flight-departure-results">-->
-                    <c:forEach items="${departureFlights}" var="flight">
+                    <c:forEach items="${departureFlights.flights}" var="flight">
                         <div class="flight-result-return-departure">
                             <div class="flight-result-time">
                                 <p>Depart time</p>
@@ -337,9 +354,16 @@
                     </c:forEach>
                 <!--</div>-->
 
-                <!-- Return flight -->
+                <!-- Check if any return flights returned -->
+                <c:if test="${empty returnFlights.flights}">
+                    <div class="flight-result-return-return">
+                        <h4>No return flights can be found that match the criteria!</h4>
+                    </div>
+                </c:if>
+
+                <!-- For each return flight returned display -->
                 <!--<div id="flight-return-results">-->
-                    <c:forEach items="${returnFlights}" var="flight">
+                    <c:forEach items="${returnFlights.flights}" var="flight">
                         <div class="flight-result-return-return">
                             <div class="flight-result-time">
                                 <p>Depart time</p>

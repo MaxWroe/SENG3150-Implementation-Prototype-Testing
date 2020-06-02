@@ -28,7 +28,6 @@
 <!-- Site header -->
 <jsp:include page="header.jsp"/>
 
-
 <!-- Page content -->
 <main class="main-content">
     <div class="card-body">

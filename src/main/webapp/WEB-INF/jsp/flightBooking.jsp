@@ -116,7 +116,7 @@
         <%}%>
 
         <div class="booking-details">
-            <h4>Extra details</h4>
+            <h4>Extra Details</h4>
             <h4>Departure Flight</h4>
             <p>Ticket Transferrable: ${departureFlight.transferrable}</p>
             <br>

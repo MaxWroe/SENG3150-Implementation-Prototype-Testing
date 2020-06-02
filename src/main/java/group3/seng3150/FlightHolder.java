@@ -16,7 +16,6 @@ public class FlightHolder {
         flights = new ArrayList<>();
         sorter = new FlightsSort();
         flightPlans = new ArrayList<>();
-        searcher = new FlightPlanSearch();
     }
 
 
@@ -26,17 +25,17 @@ public class FlightHolder {
     }
 
     public List<Flight> sortFlights(String sortMethod){
-        flights = sorter.sort(flights, sortMethod);
+        flights = sorter.sortFlight(flights, sortMethod);
         return flights;
+    }
+
+    public List<FlightPlan> sortFlightPlans(String sortMethod){
+        flightPlans = sorter.sortFlightPlan(flightPlans, sortMethod);
+        return flightPlans;
     }
 
     public int getSize(){
         return flights.size();
-    }
-
-    public List<FlightPlan> getFlightPlanOptions(List<Flight> rawFlights){
-        flightPlans = searcher.createFlightPlans(rawFlights);
-        return flightPlans;
     }
 
     public List<Flight> getFlights() {
@@ -54,4 +53,14 @@ public class FlightHolder {
     public void setFlightPlans(List<FlightPlan> flightPlans) {
         this.flightPlans = flightPlans;
     }
+
+    public FlightsSort getSorter() {
+        return sorter;
+    }
+
+    public void setSorter(FlightsSort sorter) {
+        this.sorter = sorter;
+    }
+
+
 }
