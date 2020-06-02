@@ -1,4 +1,4 @@
-<%--
+<%@ page import="java.util.Date" %><%--
   Created by IntelliJ IDEA.
   User: acero
   Date: 29/05/2020
@@ -13,18 +13,23 @@
     String userID = (String)session.getAttribute("userId");
 
     //user details
-    String userId = request.getParameter("userID");
-    String email = request.getParameter("email");
-    String firstName = request.getParameter("firstName");
-    String lastName = request.getParameter("lastName");
-    String userType = request.getParameter("userType");
-    String dateOfBirth = request.getParameter("dateOfBirth");
-    String gender = request.getParameter("gender");
-    String citizenship = request.getParameter("citizenship");
-    String phone = request.getParameter("phone");
-    String familyMembers = request.getParameter("FamilyMember");
-    String emergencyContacts = request.getParameter("emergencyContacts");
-    String address = request.getParameter("address");
+
+    String userID1 = (String)request.getAttribute("userID");
+    String email = (String)request.getAttribute("email");
+
+
+    String firstName = (String)request.getAttribute("firstName");
+    String lastName = (String)request.getAttribute("lastName");
+    String userType = (String)request.getAttribute("userType");
+    Date dateOfBirth = (Date)request.getAttribute("dateOfBirth");
+    String gender = (String)request.getAttribute("gender");
+    String citizenship = (String)request.getAttribute("citizenship");
+    String phone = (String)request.getAttribute("phone");
+    String familyMembers = (String)request.getAttribute("FamilyMember");
+    String emergencyContacts = (String)request.getAttribute("emergencyContacts");
+    String address = (String)request.getAttribute("address");
+
+
 
     //checks if session is empty and not logged in
     if(userID == null && email == null){
@@ -33,7 +38,9 @@
     //checks if logged in
     }else if(email != null && userID == null){
 
-        session.setAttribute("userId", userId);
+        //sets user session
+        session.setAttribute("userId", userID1);
+        session.setAttribute("email", email);
 
         session.setAttribute("firstName", firstName);
         session.setAttribute("lastName", lastName);

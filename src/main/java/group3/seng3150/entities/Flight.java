@@ -19,6 +19,10 @@ public class Flight {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String flightNumber;
 
+    @Column(name = "AirlineCode", table = "Availability")
+    @Basic(optional = false)
+    private String airlineCode;
+
     @Column(name = "DepartureTime", table = "Availability")
     @Basic(optional = false)
     private Timestamp departureDate;
@@ -80,6 +84,14 @@ public class Flight {
 
     //Getters and Setters
 
+
+    public String getAirlineCode() {
+        return airlineCode;
+    }
+
+    public void setAirlineCode(String airlineCode) {
+        this.airlineCode = airlineCode;
+    }
 
     public String getNumberAvailableSeatsLeg1() {
         return numberAvailableSeatsLeg1;

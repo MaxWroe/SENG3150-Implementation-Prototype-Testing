@@ -18,6 +18,7 @@ public class AccountController {
     @Autowired
     public AccountController(EntityManager em){this.em =em;}
 
+
     //get method AccountDetails
     @GetMapping("/accountDetails") //Ask about the jsp this comes from and why it is a POST form that maps to the Get mapping
     public ModelAndView displayAccountDetails(@RequestParam("userID") String userEmail) {
