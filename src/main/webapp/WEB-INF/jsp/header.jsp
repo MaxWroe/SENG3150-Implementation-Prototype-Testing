@@ -30,9 +30,7 @@
             <!-- shown only if user is logged in -->
             <li class="nav-link">
                <div class="dropdown" id="dropdown" style="display: none">
-                   <p id="myAccount">My Account
-
-                   </p>
+                   <p id="myAccount">My Account</p>
 
                     <div class="dropdown-content">
                             <a href="/accountDetails">Account Details</a>

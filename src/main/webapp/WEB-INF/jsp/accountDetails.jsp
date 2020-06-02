@@ -61,7 +61,7 @@
 
                 <!-- emergency contacts,  -->
                 <label for="emergencyContacts">Emergency Contacts: </label>
-                <input type="number" id="emergencyContacts" name ="emergencyContacts" required/> <br>
+                <input id="emergencyContacts" name ="emergencyContacts" required/> <br>
 
                 <!-- address -->
                 <label for="address">Address: </label>
