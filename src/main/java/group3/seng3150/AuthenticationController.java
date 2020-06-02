@@ -45,12 +45,28 @@ public class AuthenticationController {
             String newEmail = "'" + email + "'";
             String newPassword = "'" + password + "'";
             UserAccount user = (UserAccount) em.createQuery("SELECT u FROM UserAccount u WHERE u.email=" + newEmail + " AND u.password=" + newPassword).getSingleResult();
-
+            String standard = "default";
+            String userTypeWords = "Personal";
+            if(user.getUserType().equals("2")) {
+                userTypeWords = "Family";
+            } else if(user.getUserType().equals("1")){
+                userTypeWords = "Business";
+            }
             ModelAndView view = new ModelAndView("home");
 
 
             view.addObject("user", user);
-            view.addObject("email", user.getFirstName());
+            view.addObject("userID", user.getUserID());
+            view.addObject("firstName", user.getFirstName());
+            view.addObject("lastName", user.getLastName());
+            view.addObject("email", user.getEmail());
+            view.addObject("userType", userTypeWords);
+            view.addObject("dateOfBirth", user.getDateOfBirth());
+            view.addObject("citizenship", user.getCitizenship());
+            view.addObject("gender", user.getGender());
+            view.addObject("address", standard);
+            view.addObject("emergencyContact", standard);
+            view.addObject("familyMembers", standard);
             return view;
         }
         catch(Exception e)
