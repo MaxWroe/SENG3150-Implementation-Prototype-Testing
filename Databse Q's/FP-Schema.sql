@@ -14,7 +14,7 @@ CREATE TABLE `Country` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 CREATE TABLE `Airlines` (
-  `AirlineCode` char(2) NOT NULL,
+  `AirlineCode` char(2) NOT NULL,a
   `AirlineName` varchar(30) NOT NULL,
   `CountryCode3` char(3) NOT NULL,
   PRIMARY KEY (`AirlineCode`),

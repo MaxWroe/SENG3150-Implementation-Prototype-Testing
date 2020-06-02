@@ -9,9 +9,22 @@
 
 <!-- session handler -->
 <%
+    //gets session
     String userID = (String)session.getAttribute("userId");
+
+    //user details
+    String userId = request.getParameter("userID");
     String email = request.getParameter("email");
-    //String user = request.getParameter("user");
+    String firstName = request.getParameter("firstName");
+    String lastName = request.getParameter("lastName");
+    String userType = request.getParameter("userType");
+    String dateOfBirth = request.getParameter("dateOfBirth");
+    String gender = request.getParameter("gender");
+    String citizenship = request.getParameter("citizenship");
+    String phone = request.getParameter("phone");
+    String familyMembers = request.getParameter("FamilyMember");
+    String emergencyContacts = request.getParameter("emergencyContacts");
+    String address = request.getParameter("address");
 
     //checks if session is empty and not logged in
     if(userID == null && email == null){
@@ -20,8 +33,18 @@
     //checks if logged in
     }else if(email != null && userID == null){
 
-        session.setAttribute("userId", email);
-        //session.setAttribute("user", user);
+        session.setAttribute("userId", userId);
+        session.setAttribute("firstName", firstName);
+        session.setAttribute("lastName", lastName);
+        session.setAttribute("userType", userType);
+        session.setAttribute("dateOfBirth", dateOfBirth);
+        session.setAttribute("gender", gender);
+        session.setAttribute("citizenship", citizenship);
+        session.setAttribute("phone", phone);
+        session.setAttribute("familyMembers", familyMembers);
+        session.setAttribute("emergencyContacts", emergencyContacts);
+        session.setAttribute("address", address);
+
         %> <body onload=userPage('/logout','Logout');> <%
 
     }else{

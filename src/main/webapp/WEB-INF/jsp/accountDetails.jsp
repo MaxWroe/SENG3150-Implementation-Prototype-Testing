@@ -39,7 +39,7 @@
             <p>Phone Number: ${phone}</p><br>
             <p>Family Members: ${familyMembers}</p><br>
             <p>Emergency Contacts: ${emergencyContact}</p><br>
-            <p>Address: ${firstName}</p><br>
+            <p>Address: ${address}</p><br>
 
           <button id="editAccount" type="submit" onclick="displayForm('accountForm')"> Edit Account </button>
 
@@ -59,7 +59,7 @@
                 <label for="familyMembers">Family Members: </label>
                 <input id="familyMembers" name ="familyMembers" required/> <br>
 
-                <!-- emergency contacts -->
+                <!-- emergency contacts,  -->
                 <label for="emergencyContacts">Emergency Contacts: </label>
                 <input type="number" id="emergencyContacts" name ="emergencyContacts" required/> <br>
 
