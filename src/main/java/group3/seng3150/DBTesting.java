@@ -28,7 +28,7 @@ public class DBTesting {
         List<Airport> airports = em.createQuery("SELECT d FROM Airport d", Airport.class).getResultList();
         List<Plane> planes = em.createQuery("SELECT p FROM Plane p", Plane.class).getResultList();
         List<UserAccount> users = em.createQuery("SELECT u FROM UserAccount u", UserAccount.class).getResultList();
-        List<Flight> flights = em.createQuery("SELECT f FROM Flight f WHERE f.departureDate='2019-09-01 09:40:00'", Flight.class).getResultList();
+        List<Flight> flights = em.createQuery("SELECT f FROM Flight f WHERE f.departureDate='2020-11-16 21:00:00'", Flight.class).getResultList();
         List<Booking> bookings = em.createQuery("SELECT b FROM Booking b", Booking.class).getResultList();
 
         //this is an example of how to fill the database
