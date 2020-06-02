@@ -44,13 +44,13 @@
 
         <!-- temp bookings -->
         <div class ="my-bookings">
-            <p>Booking number: 1</p> <br>
-            <p>Airline: Qantas</p> <br>
-            <p>Flight Details: XGH524</p> <br>
-            <p>Date: 22/5/2020</p> <br>
-            <p>Time: 12:30am</p> <br>
-            <p>Location: SYDNEY</p> <br>
-            <p>Reviews: Nice! </p> <br>
+            <h4>Booking number: </h4> <p>1</p>  <br>
+            <h4>Airline: </h4> <p>Qantas </p> <br>
+            <h4>Flight Details: </h4> <p>XGH524</p>  <br>
+            <h4>Date: </h4> <p>22/5/2020</p><br>
+            <h4>Time: </h4>  <p>12:30am</p> <br>
+            <h4>Location: </h4> <p>SYDNEY</p><br>
+            <h4>Reviews: </h4> <p>Nice!</p> <br>
 
         </div>
 
