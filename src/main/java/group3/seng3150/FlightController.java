@@ -124,7 +124,7 @@ public class FlightController{
         ModelAndView view = new ModelAndView("sort");
         departureFlights.sortFlightPlans(sortby+sortMethod);
         view.addObject("departureFlights", departureFlights);
-        if(returnFlights.getSize()>0) {
+        if(returnFlights.getFlightPlans().size()>0) {
             returnFlights.sortFlightPlans(sortby + sortMethod);
             view.addObject("returnFlights", returnFlights);
         }
