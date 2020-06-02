@@ -79,8 +79,8 @@ public class FlightController{
         if (type.equals("return")) {
             String returnTimeStart = returnDate + " 00:00:01";
             String returnTimeEnd = returnDate + "23:59:59";
-               retrievedFlights = em.createQuery( "SELECT f From Flight f WHERE f.departureCode='" + departureLocation + "'" +
-                       " AND f.destination='" + arrivalLocation + "'" +
+               retrievedFlights = em.createQuery( "SELECT f From Flight f WHERE f.departureCode='" + arrivalLocation + "'" +
+                       " AND f.destination='" + departureLocation + "'" +
                        " AND f.arrivalDate>='" + returnTimeStart + "'" +
                        " AND f.arrivalDate<='" + returnTimeEnd + "'" +
                        " AND f.numberAvailableSeatsLeg1>=" + numberPeople +
