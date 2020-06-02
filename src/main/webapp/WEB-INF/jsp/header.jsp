@@ -31,7 +31,7 @@
             <li class="nav-link">
                <div class="dropdown" id="dropdown" style="display: none">
                    <p id="myAccount">My Account
-                       <i class="fa fa-caret-down"></i>
+
                    </p>
 
                     <div class="dropdown-content">
