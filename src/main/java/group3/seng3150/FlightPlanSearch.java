@@ -16,7 +16,7 @@ public class FlightPlanSearch {
 
     public List<FlightPlan> createFlightPlans(List<Flight> flights, String departureLocation, String destination, boolean stopOverNeeded){
         List<FlightPlan> flightPlans = new LinkedList<>();
-        if(stopOverNeeded){
+        if(stopOverNeeded && flights.size()>0){
             flightPlans.add(getShortestPathDuration(flights, departureLocation, destination));
         }
         else{
