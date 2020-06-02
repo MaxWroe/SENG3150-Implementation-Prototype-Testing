@@ -38,17 +38,19 @@ public class UserAccount {
     @Basic(optional = false)
     private Date dateOfBirth;
 
+    //0 for male, 1 for female
     @Column(name = "gender")
     @Basic(optional = false)
-    private String gender;
+    private int gender;
 
     @Column(name = "Citizenship")
     @Basic(optional = false)
     private String Citizenship;
 
+    //0 for personal, 1 for family, 2 for business
     @Column(name = "UserType")
     @Basic(optional = false)
-    private String UserType;
+    private int UserType;
 
     //Security needs to be addressed on this
     @Column(name = "Password")
@@ -64,11 +66,6 @@ public class UserAccount {
     public String getUserID() {
         return UserID;
     }
-
-//    public void setUserID(String userID) {
-//        UserID = userID;
-//    }
-
 
     public String getFirstName() {
         return firstName;
@@ -110,12 +107,11 @@ public class UserAccount {
         this.phone = phone;
     }
 
-
-    public String getGender() {
+    public int getGender() {
         return gender;
     }
 
-    public void setGender(String gender) {
+    public void setGender(int gender) {
         this.gender = gender;
     }
 
@@ -127,11 +123,11 @@ public class UserAccount {
         Citizenship = citizenship;
     }
 
-    public String getUserType() {
+    public int getUserType() {
         return UserType;
     }
 
-    public void setUserType(String userType) {
+    public void setUserType(int userType) {
         UserType = userType;
     }
 

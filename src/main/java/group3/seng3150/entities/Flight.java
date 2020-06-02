@@ -39,8 +39,6 @@ public class Flight {
     @Column(name = "DepartureTimeStopOver", table = "Flights")
     private Timestamp departureTimeStopOver;
 
-
-
     @Column(name = "DestinationCode", table = "Flights")
     @Basic(optional = false)
     private String destination;
@@ -48,7 +46,6 @@ public class Flight {
     @Column(name = "ArrivalTime", table = "Flights")
     @Basic(optional = false)
     private Timestamp arrivalDate;
-
 
     @Column(name = "TicketCode", table = "Availability")
     @Basic(optional = false)
@@ -63,7 +60,6 @@ public class Flight {
     private String numberAvailableSeatsLeg1;
 
     @Column(name = "NumberAvailableSeatsLeg2", table = "Availability")
-    @Basic(optional = false)
     private String numberAvailableSeatsLeg2;
 
     @Column(name = "Duration", table = "Flights")
@@ -83,6 +79,7 @@ public class Flight {
     }
 
     //Getters and Setters
+
 
     public String getNumberAvailableSeatsLeg1() {
         return numberAvailableSeatsLeg1;

@@ -15,9 +15,9 @@ public class Booking {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String bookingID;
 
-    @Column(name = "Email")
+    @Column(name = "UserID")
     @Basic(optional = false)
-    private String email;
+    private String userID;
 
     @Column(name = "BookingType")
     @Basic(optional = false)
@@ -47,6 +47,9 @@ public class Booking {
     @Basic(optional = false)
     private int groupSize;
 
+
+
+
     public Booking() {
     }
 
@@ -58,13 +61,10 @@ public class Booking {
         this.bookingID = bookingID;
     }
 
-    public String getEmail() {
-        return email;
+    public String getUserID() {
+        return userID;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
 
     public int getBookingType() {
         return bookingType;
@@ -136,7 +136,7 @@ public class Booking {
     public String toString() {
         return "Booking{" +
                 "bookingID='" + bookingID + '\'' +
-                ", email='" + email + '\'' +
+                ", userID='" + userID + '\'' +
                 ", bookingType=" + bookingType +
                 ", firstName='" + firstName + '\'' +
                 ", middleNames='" + middleNames + '\'' +

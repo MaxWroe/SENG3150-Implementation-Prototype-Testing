@@ -25,9 +25,9 @@ public class AccountController {
         String standard = "default";
         String userTypeWords = "Personal";
         UserAccount user = (UserAccount) em.createQuery("SELECT u FROM UserAccount u WHERE u.email=" + emailSearch).getSingleResult();
-        if(user.getUserType().equals("2")) {
+        if(user.getUserType()==2) {
             userTypeWords = "Family";
-        } else if(user.getUserType().equals("1")){
+        } else if(user.getUserType()==1){
             userTypeWords = "Business";
         }
         ModelAndView view = new ModelAndView("accountDetails");

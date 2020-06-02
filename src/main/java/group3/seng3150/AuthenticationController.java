@@ -47,9 +47,9 @@ public class AuthenticationController {
             UserAccount user = (UserAccount) em.createQuery("SELECT u FROM UserAccount u WHERE u.email=" + newEmail + " AND u.password=" + newPassword).getSingleResult();
             String standard = "default";
             String userTypeWords = "Personal";
-            if(user.getUserType().equals("2")) {
+            if(user.getUserType()==2) {
                 userTypeWords = "Family";
-            } else if(user.getUserType().equals("1")){
+            } else if(user.getUserType()==1){
                 userTypeWords = "Business";
             }
             ModelAndView view = new ModelAndView("home");
@@ -126,8 +126,10 @@ public class AuthenticationController {
                 newUser.setDateOfBirth(dateOfBirth);
                 newUser.setPassword(password);
                 newUser.setCitizenship(citizenship);
-                newUser.setUserType(userType);
-                //newUser.setUserType(userNum); //This is for if when it is fixed it has an int value input
+
+                //ANGUS CHANGED STUFF
+                //newUser.setUserType(0);
+                newUser.setUserType(userNum); //This is for if when it is fixed it has an int value input
                 em.merge(newUser);
                 em.getTransaction().commit();
                 view = new ModelAndView("login");
