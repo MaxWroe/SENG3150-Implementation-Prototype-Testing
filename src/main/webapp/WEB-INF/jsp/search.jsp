@@ -274,29 +274,32 @@
         <!-- Parse all returned flights -->
 
         <!-- Check if any flights returned -->
-        <c:if test="${empty departureFlights.flights}">
+        <c:if test="${empty departureFlights}">
             <h4>No flights can be found that match the criteria!</h4>
         </c:if>
 
         <!-- For each flight returned display -->
-        <c:forEach items="${departureFlights.flights}" var="flight">
+        <c:forEach items="${departureFlights}" var="flightPlan">
             <div class="flight-result-oneway">
                 <div class="flight-result-time">
                     <p>Depart time</p>
-                    <h4>${flight.departTime}</h4>
+                    <h4>${flightPlan.departureDate}</h4>
                     <p>Arrival time</p>
-                    <h4>${flight.arrivalTime}</h4>
+                    <h4>${flightPlan.arrivalDate}</h4>
                 </div>
                 <div class="flight-result-details">
-                    <p>${flight.company}</p>
-                    <p>${flight.stopoverAmount}</p>
-                    <p>${flight.id}</p>
+                    <p>${flightPlan.airlines}</p>
+                    <p>Stop overs: ${flightPlan.numberStopOvers}</p>
+                    <p>Available seats: ${flightPlan.numberAvailableSeats}</p>
                 </div>
                 <div class="flight-result-cost">
-                    <h3>${flight.cost}</h3>
+                    <h3>$${flightPlan.price}</h3>
                 </div>
                 <div class="flight-result-book">
-                    <form action="/bookingtemp">
+                    <form action="/bookingtemp" method="post">
+                        <c:forEach items="${flightPlan.flights}" var="flight">
+                            <input type="hidden" id="${flight.flightNumber}" name="departure" value="${flight.flightNumber}">
+                        </c:forEach>
                         <button type="submit">Book</button>
                     </form>
                 </div>
@@ -314,7 +317,7 @@
             </div>
         </div>
 
-        <form name="bookFlight" method="get" id="bookFlight" action="/bookingtemp" onsubmit="return validateFlightSelection()">
+        <form name="bookFlight" method="post" id="bookFlight" action="/bookingtemp" onsubmit="return validateFlightSelection()">
             <!--<input type="hidden" id="pageDirect" name="pageDirect" value="return">
             <input type="hidden" id="adultsBooked" name="adultsBooked" value="${param.adults}">
             <input type="hidden" id="childrenBooked" name="childrenBooked" value="${param.children}">-->
@@ -322,7 +325,7 @@
                 <!-- Parse all returned flights -->
 
                 <!-- Check if any departure flights returned -->
-                <c:if test="${empty departureFlights.flights}">
+                <c:if test="${empty departureFlights}">
                     <div class="flight-result-return-departure">
                         <h4>No depature flights can be found that match the criteria!</h4>
                     </div>
@@ -330,25 +333,28 @@
 
                 <!-- For each depature flight returned display -->
                 <!--<div id="flight-departure-results">-->
-                    <c:forEach items="${departureFlights.flights}" var="flight">
-                        <div class="flight-result-return-departure">
+                    <c:forEach items="${departureFlights}" var="flightPlan">
+                        <div class="flight-result-return-windows">
                             <div class="flight-result-time">
                                 <p>Depart time</p>
-                                <h4>${flight.departTime}</h4>
+                                <h4>${flightPlan.departureDate}</h4>
                                 <p>Arrival time</p>
-                                <h4>${flight.arrivalTime}</h4>
+                                <h4>${flightPlan.arrivalDate}</h4>
                             </div>
                             <div class="flight-result-details">
-                                <h4>${flight.company}</h4>
-                                <h4>${flight.stopoverAmount}</h4>
-                                <h4>${flight.id}</h4>
+                                <p>${flightPlan.airlines}</p>
+                                <p>Stop overs: ${flightPlan.numberStopOvers}</p>
+                                <p>Available seats: ${flightPlan.numberAvailableSeats}</p>
                             </div>
                             <div class="flight-result-cost">
-                                <h3>$${flight.cost}</h3>
+                                <h3>$${flightPlan.price}</h3>
                             </div>
                             <div class="flight-result-book">
-                                <label for="${flight.id}">Select: </label>
-                                <input type="radio" id="${flight.id}" name="departure" value="${flight.id}" onchange="updateCost('departure', '${flight.cost}')">
+                                <c:forEach items="${flightPlan.flights}" var="flight">
+                                    <input type="hidden" id="${flight.flightNumber}" name="departure${flightPlan}" value="${flight.flightNumber}">
+                                </c:forEach>
+                                <label for="${flightPlan}">Select: </label>
+                                <input type="radio" id="${flightPlan}" name="departure" value="${flightPlan}" onchange="updateCost('departure', '${flightPlan.price}')">
                             </div>
                         </div>
                     </c:forEach>
@@ -363,26 +369,28 @@
 
                 <!-- For each return flight returned display -->
                 <!--<div id="flight-return-results">-->
-                    <c:forEach items="${returnFlights.flights}" var="flight">
-                        <div class="flight-result-return-return">
+                    <c:forEach items="${returnFlights}" var="flightPlan">
+                        <div class="flight-result-return-windows">
                             <div class="flight-result-time">
                                 <p>Depart time</p>
-                                <h4>${flight.departTime}</h4>
+                                <h4>${flightPlan.departureDate}</h4>
                                 <p>Arrival time</p>
-                                <h4>${flight.arrivalTime}</h4>
+                                <h4>${flightPlan.arrivalDate}</h4>
                             </div>
                             <div class="flight-result-details">
-                                <h4>${flight.company}</h4>
-                                <h4>${flight.stopoverAmount}</h4>
-                                <h4>${flight.id}</h4>
+                                <p>${flightPlan.airlines}</p>
+                                <p>Stop overs: ${flightPlan.numberStopOvers}</p>
+                                <p>Available seats: ${flightPlan.numberAvailableSeats}</p>
                             </div>
                             <div class="flight-result-cost">
-                                <h3>$${flight.cost}</h3>
+                                <h3>$${flightPlan.price}</h3>
                             </div>
                             <div class="flight-result-book">
-                                <label for="${flight.id}">Select: </label>
-                                <input type="radio" id="${flight.id}" name="return" value="${flight.id}" onchange="updateCost('return', '${flight.cost}')">
-                            </div>
+                                <c:forEach items="${flightPlan.flights}" var="flight">
+                                    <input type="hidden" id="${flight.flightNumber}" name="return${flightPlan}" value="${flight.flightNumber}">
+                                </c:forEach>
+                                <label for="${flightPlan}">Select: </label>
+                                <input type="radio" id="${flightPlan}" name="return" value="${flightPlan}" onchange="updateCost('return', '${flightPlan.price}')"></div>
                         </div>
                     </c:forEach>
                 <!--</div>-->

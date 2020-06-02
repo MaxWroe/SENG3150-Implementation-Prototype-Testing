@@ -17,6 +17,18 @@ public class FlightPlan {
         return flights.get(0).getDepartureDate();
     }
 
+    public Timestamp getArrivalDate(){
+        return flights.get(flights.size()).getArrivalDate();
+    }
+
+    public String getAirlines(){
+        String airlines = "";
+        /*for (Flight flight : flights) {
+            airlines += flight.getAirline();
+        }*/
+        return airlines;
+    }
+
     public int getPrice(){
         int out = 0;
         for(int i=0; i<flights.size();i++){
@@ -62,7 +74,4 @@ public class FlightPlan {
     public void setFlights(List<Flight> flights) {
         this.flights = flights;
     }
-
-
-
 }

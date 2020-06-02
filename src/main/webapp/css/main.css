@@ -264,20 +264,13 @@ input:hover
     overflow-x: hidden;
 }
 
-.flight-result-return-departure
+.flight-result-return-windows
 {
     background: #fff;
     padding: 20px;
     display: grid;
     max-height: 200px;
-}
-
-.flight-result-return-return
-{
-    background: #fff;
-    padding: 20px;
-    display: grid;
-    max-height: 200px;
+    min-width: 400px;
 }
 
 #flight-result-return-book
@@ -394,4 +387,21 @@ input:hover
     position: relative;
     left: -35px;
     content: "✖";
+}
+
+#deals
+{
+    background: #fff;
+    padding: 20px;
+    border-radius: 25px;
+}
+
+#deals-display-window
+{
+    display: grid;
+    grid-template-rows: 250px;
+    grid-template-columns: auto auto auto auto;
+    overflow: scroll;
+    overflow-y: hidden;
+    grid-column-gap: 25px;
 }

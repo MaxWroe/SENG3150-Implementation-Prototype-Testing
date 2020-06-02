@@ -49,7 +49,7 @@
 
         <!-- Check if user is logged in -->
         <%
-        String userID = "work";//(String)session.getAttribute("userId");
+        String userID = (String)session.getAttribute("userId");
         if(userID != null){%>
         <div class="booking-details">
             <form method="post" action="">
@@ -103,7 +103,7 @@
         <%}else{%>
         <div class="booking-details">
             <p>You're not logged in!</p>
-            <form id="loginForm" method="post" action="">
+            <form id="loginForm" method="post" action="/login">
                 <!-- email address -->
                 <label for="email">Email address</label>
                 <input id="email" type="email" name ="email" required/> <br>
