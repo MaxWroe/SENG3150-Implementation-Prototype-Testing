@@ -7,10 +7,9 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class FlightHolder {
-    private  List<Flight> flights;
+    private List<Flight> flights;
     private FlightsSort sorter;
     private List<FlightPlan> flightPlans;
-    private FlightPlanSearch searcher;
 
     public FlightHolder(){
         flights = new ArrayList<>();
