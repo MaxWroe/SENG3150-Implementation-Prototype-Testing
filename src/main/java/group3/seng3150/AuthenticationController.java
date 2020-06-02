@@ -52,18 +52,39 @@ public class AuthenticationController {
             } else if(user.getUserType()==1){
                 userTypeWords = "Business";
             }
+
+            //************************This is to test the get values************************************
+
+            String userID = user.getUserID();
+            String firstName = user.getFirstName();
+            String lastName = user.getLastName();
+            String email2 = user.getEmail();
+            Date dateOfBirth = user.getDateOfBirth();
+            String citizenship = user.getCitizenship();
+            String gender = "";
+            if(user.getGender()==0) {
+                gender = "Male";
+            } else if(user.getGender()==1){
+                gender = "Female";
+            }
+            //For after the model includes these three
+            //String address = user.getAddress();
+            //String emergencyContact = user.getEmergencyContact();
+            //String familyMembers = user.getFamilyMembers();
+
+
+            //******************************************************************************************
             ModelAndView view = new ModelAndView("home");
 
-
             view.addObject("user", user);
-            view.addObject("userID", user.getUserID());
-            view.addObject("firstName", user.getFirstName());
-            view.addObject("lastName", user.getLastName());
-            view.addObject("email", user.getEmail());
+            view.addObject("userID", userID);
+            view.addObject("firstName", firstName);
+            view.addObject("lastName", lastName);
+            view.addObject("email", email2);
             view.addObject("userType", userTypeWords);
-            view.addObject("dateOfBirth", user.getDateOfBirth());
-            view.addObject("citizenship", user.getCitizenship());
-            view.addObject("gender", user.getGender());
+            view.addObject("dateOfBirth", dateOfBirth);
+            view.addObject("citizenship", citizenship);
+            view.addObject("gender", gender);
             view.addObject("address", standard);
             view.addObject("emergencyContact", standard);
             view.addObject("familyMembers", standard);
