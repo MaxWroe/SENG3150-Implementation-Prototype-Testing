@@ -29,17 +29,17 @@
 
         <!-- user's details -->
         <div class ="my-account">
-            <p>First Name: ${firstName}</p> <br>
-            <p>Last Name: ${lastName}</p><br>
-            <p>Email: ${email}</p><br>
-            <p>User type: ${userType}</p> <br>
-            <p>Date of Birth: ${dateOfBirth}</p><br>
-            <p>Gender: ${gender}</p><br>
-            <p>Citizenship: ${citizenship}</p><br>
-            <p>Phone Number: ${phone}</p><br>
-            <p>Family Members: ${familyMembers}</p><br>
-            <p>Emergency Contacts: ${emergencyContact}</p><br>
-            <p>Address: ${address}</p><br>
+            <p>First Name: <%= session.getAttribute("firstName")%></p> <br>
+            <p>Last Name: <%= session.getAttribute("lastName")%></p><br>
+            <p>Email: <%= session.getAttribute("email")%></p><br>
+            <p>User type: <%= session.getAttribute("userType")%></p> <br>
+            <p>Date of Birth: <%= session.getAttribute("dateOfBirth")%></p><br>
+            <p>Gender: <%= session.getAttribute("gender")%></p><br>
+            <p>Citizenship: <%= session.getAttribute("citizenship")%></p><br>
+            <p>Phone Number: <%= session.getAttribute("phone")%></p><br>
+            <p>Family Members: <%= session.getAttribute("familyMembers")%></p><br>
+            <p>Emergency Contacts: <%= session.getAttribute("emergencyContacts")%></p><br>
+            <p>Address: <%= session.getAttribute("address")%></p><br>
 
           <button id="editAccount" type="submit" onclick="displayForm('accountForm')"> Edit Account </button>
 

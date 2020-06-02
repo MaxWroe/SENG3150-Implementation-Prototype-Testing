@@ -56,12 +56,14 @@ public class TestController {
         return view;
     }
  */
+
     /*
     // testing and dont want to register
     @PostMapping("/login")
     public ModelAndView login(@RequestParam(name="email") String email) {
         ModelAndView view = new ModelAndView("home");
         view.addObject("email", email);
+        view.addObject("userID", email);
         return view;
     }*/
 

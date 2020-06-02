@@ -34,6 +34,7 @@
     }else if(email != null && userID == null){
 
         session.setAttribute("userId", userId);
+
         session.setAttribute("firstName", firstName);
         session.setAttribute("lastName", lastName);
         session.setAttribute("userType", userType);
@@ -45,11 +46,11 @@
         session.setAttribute("emergencyContacts", emergencyContacts);
         session.setAttribute("address", address);
 
-        %> <body onload=userPage('/logout','Logout');> <%
+        %> <body onload=userPage('/logout','Logout');><%
 
     }else{
 
-        %> <body onload=userPage('/logout','Logout');> <%
+        %> <body onload=userPage('/logout','Logout');><%
 
     }
 %>
