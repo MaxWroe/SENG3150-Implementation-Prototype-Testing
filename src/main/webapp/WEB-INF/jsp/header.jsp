@@ -35,11 +35,9 @@
                    </p>
 
                     <div class="dropdown-content">
-                        <form id="" method="post">
-                            <a href="/accountDetails?userID=">Account Details</a>
-                            <a href="/manageBooking?userID=">Manage Booking</a>
-                            <a href="/customerSupport?userID=">Customer Support</a>
-                        </form>
+                            <a href="/accountDetails">Account Details</a>
+                            <a href="/manageBooking">Manage Booking</a>
+                            <a href="/customerSupport">Customer Support</a>
                     </div>
                </div>
            </li>

@@ -11,6 +11,7 @@
 <%
     String userID = (String)session.getAttribute("userId");
     String email = request.getParameter("email");
+    //String user = request.getParameter("user");
 
     //checks if session is empty and not logged in
     if(userID == null && email == null){
@@ -20,6 +21,7 @@
     }else if(email != null && userID == null){
 
         session.setAttribute("userId", email);
+        //session.setAttribute("user", user);
         %> <body onload=userPage('/logout','Logout');> <%
 
     }else{
