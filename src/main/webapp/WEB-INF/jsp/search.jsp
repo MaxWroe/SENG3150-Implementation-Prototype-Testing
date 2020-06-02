@@ -274,12 +274,12 @@
         <!-- Parse all returned flights -->
 
         <!-- Check if any flights returned -->
-        <c:if test="${empty departureFlights}">
+        <c:if test="${empty departureFlights.flights}">
             <h4>No flights can be found that match the criteria!</h4>
         </c:if>
 
         <!-- For each flight returned display -->
-        <c:forEach items="${departureFlights}" var="flight">
+        <c:forEach items="${departureFlights.flights}" var="flight">
             <div class="flight-result-oneway">
                 <div class="flight-result-time">
                     <p>Depart time</p>
@@ -322,7 +322,7 @@
                 <!-- Parse all returned flights -->
 
                 <!-- Check if any departure flights returned -->
-                <c:if test="${empty departureFlights}">
+                <c:if test="${empty departureFlights.flights}">
                     <div class="flight-result-return-departure">
                         <h4>No depature flights can be found that match the criteria!</h4>
                     </div>
@@ -330,7 +330,7 @@
 
                 <!-- For each depature flight returned display -->
                 <!--<div id="flight-departure-results">-->
-                    <c:forEach items="${departureFlights}" var="flight">
+                    <c:forEach items="${departureFlights.flights}" var="flight">
                         <div class="flight-result-return-departure">
                             <div class="flight-result-time">
                                 <p>Depart time</p>
@@ -355,7 +355,7 @@
                 <!--</div>-->
 
                 <!-- Check if any return flights returned -->
-                <c:if test="${empty returnFlights}">
+                <c:if test="${empty returnFlights.flights}">
                     <div class="flight-result-return-return">
                         <h4>No return flights can be found that match the criteria!</h4>
                     </div>
@@ -363,7 +363,7 @@
 
                 <!-- For each return flight returned display -->
                 <!--<div id="flight-return-results">-->
-                    <c:forEach items="${returnFlights}" var="flight">
+                    <c:forEach items="${returnFlights.flights}" var="flight">
                         <div class="flight-result-return-return">
                             <div class="flight-result-time">
                                 <p>Depart time</p>
