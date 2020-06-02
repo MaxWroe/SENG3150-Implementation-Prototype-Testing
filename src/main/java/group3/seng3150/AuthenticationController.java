@@ -82,11 +82,22 @@ public class AuthenticationController {
                                         @RequestParam(name="phone", defaultValue="") int phone,
                                         @RequestParam(name="dateOfBirth") Date dateOfBirth,
                                         @RequestParam(name="userType") String userType
-    ){
-        ModelAndView view = new ModelAndView("register");
-        String message = "Registration successful! ";
 
+    ){
+    ModelAndView view = new ModelAndView("register");
+    String message = "Registration successful! ";
+    String citizenship = "'Default'";
     String tempEmail = "'" + email + "'";
+        //currently the usertype is throwing an error, stored in SQL as int, in model as String, need to change one or the other
+        //This if statement is for if it is changed to an int.
+    int userNum = 0;
+    if(userType.equals("Personal")){
+        userNum = 0;
+    }else if(userType.equals("Business")){
+        userNum = 1;
+    }else{
+        userNum = 2;
+    }
         try{
             List<UserAccount> user = em.createQuery("SELECT u FROM UserAccount u WHERE u.email=" + tempEmail).getResultList();
             if(user.isEmpty()){
@@ -98,15 +109,18 @@ public class AuthenticationController {
                 newUser.setPhone(phone);
                 newUser.setDateOfBirth(dateOfBirth);
                 newUser.setPassword(password);
+                newUser.setCitizenship(citizenship);
+                newUser.setUserType(userType);
+                //newUser.setUserType(userNum); //This is for if when it is fixed it has an int value input
                 em.merge(newUser);
                 em.getTransaction().commit();
                 view = new ModelAndView("login");
                 message += firstName;
-                view.addObject("message", message);
+
             } else {
                 message = "Registration unsuccessful. An Account using " + email + " already exists, please use a unique email address or login to the existing account.";
                 view = new ModelAndView("register");
-                view.addObject("message", message);
+
             }
         }
         catch(Exception e)
@@ -114,7 +128,7 @@ public class AuthenticationController {
             message = "Registration unsuccessful. Error Thrown";
             e.printStackTrace();
         }
-
+        view.addObject("message", message);
         return view;
     }
 

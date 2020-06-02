@@ -24,12 +24,13 @@ public class TestController {
         return view;
     }
 
+    /*
     @GetMapping("/bookingtemp")
     public ModelAndView displayBooking() {
         ModelAndView view = new ModelAndView("flightBooking");
         return view;
     }
-
+    */
     @GetMapping("/userHome")
     public ModelAndView displayUserHome() {
         ModelAndView view = new ModelAndView("userHome");
@@ -48,13 +49,13 @@ public class TestController {
         ModelAndView view = new ModelAndView("customerSupport");
         return view;
     }
-
+    /*
     @GetMapping("/manageBooking")
     public ModelAndView displayManageBooking() {
         ModelAndView view = new ModelAndView("manageBooking");
         return view;
     }
-
+ */
     /*
     // testing and dont want to register
     @PostMapping("/login")
