@@ -47,6 +47,68 @@ public class Booking {
     @Basic(optional = false)
     private int groupSize;
 
+    @Column(name = "FamilyMembers")
+    private String familyMembers;
+
+    @Column(name = "EmergencyContact")
+    private String emergencyContact;
+
+    @Column(name = "Address")
+    private String address;
+
+    //flight 1 - data is all foreign keys
+    @Column(name = "AirlineCode")
+    @Basic(optional = false)
+    private String airlineCode;
+    @Column(name = "FlightNumber")
+    @Basic(optional = false)
+    private String flightNumber;
+    @Column(name = "DepartureTime")
+    @Basic(optional = false)
+    private Date departureTime;
+    @Column(name = "ClassCode")
+    @Basic(optional = false)
+    private String classCode;
+    @Column(name = "TicketCode")
+    @Basic(optional = false)
+    private String ticketCode;
+
+    //flight 2
+    @Column(name = "AirlineCode2")
+    private String airlineCode2;
+    @Column(name = "FlightNumber2")
+    private String flightNumber2;
+    @Column(name = "DepartureTime2")
+    private Date departureTime2;
+    @Column(name = "ClassCode2")
+    private String classCode2;
+    @Column(name = "TicketCode2")
+    private String ticketCode2;
+
+    //flight 3
+    @Column(name = "AirlineCode3")
+    private String airlineCode3;
+    @Column(name = "FlightNumber3")
+    private String flightNumber3;
+    @Column(name = "DepartureTime3")
+    private Date departureTime3;
+    @Column(name = "ClassCode3")
+    private String classCode3;
+    @Column(name = "TicketCode3")
+    private String ticketCode3;
+
+    //flight 4
+    @Column(name = "AirlineCode4")
+    private String airlineCode4;
+    @Column(name = "FlightNumber4")
+    private String flightNumber4;
+    @Column(name = "DepartureTime4")
+    private Date departureTime4;
+    @Column(name = "ClassCode4")
+    private String classCode4;
+    @Column(name = "TicketCode4")
+    private String ticketCode4;
+
 
 
 
@@ -64,7 +126,6 @@ public class Booking {
     public String getUserID() {
         return userID;
     }
-
 
     public int getBookingType() {
         return bookingType;
@@ -122,6 +183,194 @@ public class Booking {
         this.groupSize = groupSize;
     }
 
+    public void setUserID(String userID) {
+        this.userID = userID;
+    }
+
+    public String getFamilyMembers() {
+        return familyMembers;
+    }
+
+    public void setFamilyMembers(String familyMembers) {
+        this.familyMembers = familyMembers;
+    }
+
+    public String getEmergencyContact() {
+        return emergencyContact;
+    }
+
+    public void setEmergencyContact(String emergencyContact) {
+        this.emergencyContact = emergencyContact;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getAirlineCode() {
+        return airlineCode;
+    }
+
+    public void setAirlineCode(String airlineCode) {
+        this.airlineCode = airlineCode;
+    }
+
+    public String getFlightNumber() {
+        return flightNumber;
+    }
+
+    public void setFlightNumber(String flightNumber) {
+        this.flightNumber = flightNumber;
+    }
+
+    public Date getDepartureTime() {
+        return departureTime;
+    }
+
+    public void setDepartureTime(Date departureTime) {
+        this.departureTime = departureTime;
+    }
+
+    public String getClassCode() {
+        return classCode;
+    }
+
+    public void setClassCode(String classCode) {
+        this.classCode = classCode;
+    }
+
+    public String getTicketCode() {
+        return ticketCode;
+    }
+
+    public void setTicketCode(String ticketCode) {
+        this.ticketCode = ticketCode;
+    }
+
+    public String getAirlineCode2() {
+        return airlineCode2;
+    }
+
+    public void setAirlineCode2(String airlineCode2) {
+        this.airlineCode2 = airlineCode2;
+    }
+
+    public String getFlightNumber2() {
+        return flightNumber2;
+    }
+
+    public void setFlightNumber2(String flightNumber2) {
+        this.flightNumber2 = flightNumber2;
+    }
+
+    public Date getDepartureTime2() {
+        return departureTime2;
+    }
+
+    public void setDepartureTime2(Date departureTime2) {
+        this.departureTime2 = departureTime2;
+    }
+
+    public String getClassCode2() {
+        return classCode2;
+    }
+
+    public void setClassCode2(String classCode2) {
+        this.classCode2 = classCode2;
+    }
+
+    public String getTicketCode2() {
+        return ticketCode2;
+    }
+
+    public void setTicketCode2(String ticketCode2) {
+        this.ticketCode2 = ticketCode2;
+    }
+
+    public String getAirlineCode3() {
+        return airlineCode3;
+    }
+
+    public void setAirlineCode3(String airlineCode3) {
+        this.airlineCode3 = airlineCode3;
+    }
+
+    public String getFlightNumber3() {
+        return flightNumber3;
+    }
+
+    public void setFlightNumber3(String flightNumber3) {
+        this.flightNumber3 = flightNumber3;
+    }
+
+    public Date getDepartureTime3() {
+        return departureTime3;
+    }
+
+    public void setDepartureTime3(Date departureTime3) {
+        this.departureTime3 = departureTime3;
+    }
+
+    public String getClassCode3() {
+        return classCode3;
+    }
+
+    public void setClassCode3(String classCode3) {
+        this.classCode3 = classCode3;
+    }
+
+    public String getTicketCode3() {
+        return ticketCode3;
+    }
+
+    public void setTicketCode3(String ticketCode3) {
+        this.ticketCode3 = ticketCode3;
+    }
+
+    public String getAirlineCode4() {
+        return airlineCode4;
+    }
+
+    public void setAirlineCode4(String airlineCode4) {
+        this.airlineCode4 = airlineCode4;
+    }
+
+    public String getFlightNumber4() {
+        return flightNumber4;
+    }
+
+    public void setFlightNumber4(String flightNumber4) {
+        this.flightNumber4 = flightNumber4;
+    }
+
+    public Date getDepartureTime4() {
+        return departureTime4;
+    }
+
+    public void setDepartureTime4(Date departureTime4) {
+        this.departureTime4 = departureTime4;
+    }
+
+    public String getClassCode4() {
+        return classCode4;
+    }
+
+    public void setClassCode4(String classCode4) {
+        this.classCode4 = classCode4;
+    }
+
+    public String getTicketCode4() {
+        return ticketCode4;
+    }
+
+    public void setTicketCode4(String ticketCode4) {
+        this.ticketCode4 = ticketCode4;
+    }
+
     @Override
     public int hashCode() {
         return super.hashCode();
@@ -144,6 +393,29 @@ public class Booking {
                 ", dateOfBirth=" + dateOfBirth +
                 ", bookingDate=" + bookingDate +
                 ", groupSize=" + groupSize +
+                ", familyMembers='" + familyMembers + '\'' +
+                ", emergencyContact='" + emergencyContact + '\'' +
+                ", address='" + address + '\'' +
+                ", airlineCode='" + airlineCode + '\'' +
+                ", flightNumber='" + flightNumber + '\'' +
+                ", departureTime=" + departureTime +
+                ", classCode='" + classCode + '\'' +
+                ", ticketCode='" + ticketCode + '\'' +
+                ", airlineCode2='" + airlineCode2 + '\'' +
+                ", flightNumber2='" + flightNumber2 + '\'' +
+                ", departureTime2=" + departureTime2 +
+                ", classCode2='" + classCode2 + '\'' +
+                ", ticketCode2='" + ticketCode2 + '\'' +
+                ", airlineCode3='" + airlineCode3 + '\'' +
+                ", flightNumber3='" + flightNumber3 + '\'' +
+                ", departureTime3=" + departureTime3 +
+                ", classCode3='" + classCode3 + '\'' +
+                ", ticketCode3='" + ticketCode3 + '\'' +
+                ", airlineCode4='" + airlineCode4 + '\'' +
+                ", flightNumber4='" + flightNumber4 + '\'' +
+                ", departureTime4=" + departureTime4 +
+                ", classCode4='" + classCode4 + '\'' +
+                ", ticketCode4='" + ticketCode4 + '\'' +
                 '}';
     }
 }
