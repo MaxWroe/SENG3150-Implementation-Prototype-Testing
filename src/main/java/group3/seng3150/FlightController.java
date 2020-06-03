@@ -66,8 +66,7 @@ public class FlightController{
             departureFlights.sortFlightPlans("departureTimeAscending");
         }
         else{
-            retrievedFlights = em.createQuery( "SELECT f From Flight f WHERE f.departureCode='" + departureLocation + "'" +
-                " AND f.departureDate>='" + departureTimeStart + "'" +
+            retrievedFlights = em.createQuery( "SELECT f From Flight f WHERE f.departureDate>='" + departureTimeStart + "'" +
                 " AND f.departureDate<='" + departureTimeEnd + "'", Flight.class).getResultList();
             if(retrievedFlights.size()>0) {
                 flightNumberString = "('" + retrievedFlights.get(0).getFlightNumber() + "'"; }
@@ -107,8 +106,7 @@ public class FlightController{
                 returnFlights.sortFlightPlans("departureTimeAscending");
             }
             else{
-                retrievedFlights = em.createQuery( "SELECT f From Flight f WHERE f.destination='" + arrivalLocation + "'" +
-                    " AND f.arrivalDate>='" + returnTimeStart + "'" +
+                retrievedFlights = em.createQuery( "SELECT f From Flight f WHERE f.arrivalDate>='" + returnTimeStart + "'" +
                     " AND f.arrivalDate<='" + returnTimeEnd + "'", Flight.class).getResultList();
                 if(retrievedFlights.size()>0) {
                     flightNumberString = "('" + retrievedFlights.get(0).getFlightNumber() + "'"; }
