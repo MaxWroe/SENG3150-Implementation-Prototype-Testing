@@ -50,7 +50,7 @@ public class FlightPlanSearch {
                 i--;
             }
         }
-        return filteredFlights;
+        return flights;
     }
 
     private FlightPlan getShortestPathDuration(List<Flight> flights, String departureLocation, String arrivalLocation, Timestamp startingTime, EntityManager em){
