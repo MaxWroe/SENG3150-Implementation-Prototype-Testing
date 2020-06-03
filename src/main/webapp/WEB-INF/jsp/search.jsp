@@ -157,118 +157,6 @@
         </script>
     </div>
 
-    <!-- Result template for return trips -->
-    <div class="flight-result-return">
-        <div class="flight-result-return-departure" style="background: none">
-            <h4 style="margin: 0;">Select a departure flight</h4>
-        </div>
-        <div class="flight-result-return-return" style="background: none">
-            <h4 style="margin: 0;">Select a return flight</h4>
-        </div>
-    </div>
-
-    <form name="bookFlight" method="get" id="bookFlight" action="/bookingtemp" onsubmit="return validateFlightSelection()">
-        <input type="hidden" id="pageDirect" name="pageDirect" value="return">
-        <input type="hidden" id="adultsBooked" name="adultsBooked" value="${param.adults}">
-        <input type="hidden" id="childrenBooked" name="childrenBooked" value="${param.children}">
-        <div class="flight-result-return">
-            <!-- Departure flight -->
-            <div id="flight-departure-results">
-                <div class="flight-result-return-departure">
-                    <div class="flight-result-time">
-                        <p>Depart time</p>
-                        <h4>00:00AM</h4>
-                        <p>Arrival time</p>
-                        <h4>00:00AM</h4>
-                    </div>
-                    <div class="flight-result-details">
-                        <h4>Company</h4>
-                        <h4>Stop Overs</h4>
-                        <h4>Flight ID</h4>
-                    </div>
-                    <div class="flight-result-cost">
-                        <h3>$120</h3>
-                    </div>
-                    <div class="flight-result-book">
-                        <label for="flightid1">Select: </label>
-                        <input type="radio" id="flightid1" name="departure" value="flightid1" onchange="updateCost('departure', '120')">
-                    </div>
-                </div>
-                <!-- Departure flight 2 -->
-                <div class="flight-result-return-departure">
-                    <div class="flight-result-time">
-                        <p>Depart time</p>
-                        <h4>00:00AM</h4>
-                        <p>Arrival time</p>
-                        <h4>00:00AM</h4>
-                    </div>
-                    <div class="flight-result-details">
-                        <h4>Company</h4>
-                        <h4>Stop Overs</h4>
-                        <h4>Flight ID</h4>
-                    </div>
-                    <div class="flight-result-cost">
-                        <h3>$410</h3>
-                    </div>
-                    <div class="flight-result-book">
-                        <label for="flightid3">Select: </label>
-                        <input type="radio" id="flightid3" name="departure" value="flightid3" onchange="updateCost('departure', '410')">
-                    </div>
-                </div>
-                <!-- Departure flight 3 -->
-                <div class="flight-result-return-departure">
-                    <div class="flight-result-time">
-                        <p>Depart time</p>
-                        <h4>00:00AM</h4>
-                        <p>Arrival time</p>
-                        <h4>00:00AM</h4>
-                    </div>
-                    <div class="flight-result-details">
-                        <h4>Company</h4>
-                        <h4>Stop Overs</h4>
-                        <h4>Flight ID</h4>
-                    </div>
-                    <div class="flight-result-cost">
-                        <h3>$111</h3>
-                    </div>
-                    <div class="flight-result-book">
-                        <label for="flightid4">Select: </label>
-                        <input type="radio" id="flightid4" name="departure" value="flightid4" onchange="updateCost('departure', '111')">
-                    </div>
-                </div>
-            </div>
-
-            <!-- Return flight -->
-            <div id="flight-return-results">
-                <div class="flight-result-return-return">
-                    <div class="flight-result-time">
-                        <p>Depart time</p>
-                        <h4>00:00AM</h4>
-                        <p>Arrival time</p>
-                        <h4>00:00AM</h4>
-                    </div>
-                    <div class="flight-result-details">
-                        <h4>Company</h4>
-                        <h4>Stop Overs</h4>
-                        <h4>Flight ID</h4>
-                    </div>
-                    <div class="flight-result-cost">
-                        <h3>$20</h3>
-                    </div>
-                    <div class="flight-result-book">
-                        <label for="flightid2">Select: </label>
-                        <input type="radio" id="flightid2" name="return" value="flightid2" onchange="updateCost('return', '20')">
-                    </div>
-                </div>
-            </div>
-        </div>
-        <br>
-        <div id="flight-result-return-book">
-            <h4 id="booking-cost">Total cost: </h4>
-            <button type="submit" id="return-flight-book">Book</button>
-        </div>
-    </form>
-
     <!-- If searched trip is one-way -->
     <c:if test = "${param.type eq 'oneway'}">
         <!-- Parse all returned flights -->
@@ -299,7 +187,7 @@
                 </div>
                 <div class="flight-result-book">
                     <form action="/bookingtemp" method="post">
-                        <input type="hidden" id="${flight.position}" name="departure" value="${flight.position}">
+                        <input type="hidden" id="${flightPlan.position}" name="departure" value="${flightPlan.position}">
                         <button type="submit">Book</button>
                     </form>
                 </div>
@@ -317,10 +205,13 @@
             </div>
         </div>
 
+        <c:set var = "departureFlights" scope = "session" value = "${departureFlights}"/>
+        <c:set var = "returnFlights" scope = "session" value = "${returnFlights}"/>
+
         <form name="bookFlight" method="post" id="bookFlight" action="/bookingtemp" onsubmit="return validateFlightSelection()">
-            <!--<input type="hidden" id="pageDirect" name="pageDirect" value="return">
+            <input type="hidden" id="pageDirect" name="pageDirect" value="return">
             <input type="hidden" id="adultsBooked" name="adultsBooked" value="${param.adults}">
-            <input type="hidden" id="childrenBooked" name="childrenBooked" value="${param.children}">-->
+            <input type="hidden" id="childrenBooked" name="childrenBooked" value="${param.children}">
             <div class="flight-result-return">
                 <!-- Parse all returned flights -->
 
@@ -332,7 +223,7 @@
                 </c:if>
 
                 <!-- For each depature flight returned display -->
-                <!--<div id="flight-departure-results">-->
+                <div id="flight-departure-results">
                     <c:forEach items="${departureFlights}" var="flightPlan">
                         <div class="flight-result-return-windows">
                             <div class="flight-result-time">
@@ -350,15 +241,12 @@
                                 <h3>$${flightPlan.price}</h3>
                             </div>
                             <div class="flight-result-book">
-                                <c:forEach items="${flightPlan.flights}" var="flight">
-                                    <input type="hidden" id="${flight.flightNumber}" name="departure${flightPlan}" value="${flight.flightNumber}">
-                                </c:forEach>
-                                <label for="${flightPlan}">Select: </label>
-                                <input type="radio" id="${flightPlan}" name="departure" value="${flightPlan}" onchange="updateCost('departure', '${flightPlan.price}')">
+                                <label for="${flightPlan.position}">Select: </label>
+                                <input type="radio" id="${flightPlan.position}" name="departure" value="${flightPlan.position}" onchange="updateCost('departure', '${flightPlan.price}')">
                             </div>
                         </div>
                     </c:forEach>
-                <!--</div>-->
+                </div>
 
                 <!-- Check if any return flights returned -->
                 <c:if test="${empty returnFlights.flights}">
@@ -368,7 +256,7 @@
                 </c:if>
 
                 <!-- For each return flight returned display -->
-                <!--<div id="flight-return-results">-->
+                <div id="flight-return-results">
                     <c:forEach items="${returnFlights}" var="flightPlan">
                         <div class="flight-result-return-windows">
                             <div class="flight-result-time">
@@ -386,22 +274,17 @@
                                 <h3>$${flightPlan.price}</h3>
                             </div>
                             <div class="flight-result-book">
-                                <c:forEach items="${flightPlan.flights}" var="flight">
-                                    <input type="hidden" id="${flight.flightNumber}" name="return${flightPlan}" value="${flight.flightNumber}">
-                                </c:forEach>
-                                <label for="${flightPlan}">Select: </label>
-                                <input type="radio" id="${flightPlan}" name="return" value="${flightPlan}" onchange="updateCost('return', '${flightPlan.price}')"></div>
+                                <label for="${flightPlan.position}">Select: </label>
+                                <input type="radio" id="${flightPlan.position}" name="return" value="${flightPlan.position}" onchange="updateCost('return', '${flightPlan.price}')"></div>
                         </div>
                     </c:forEach>
-                <!--</div>-->
+                </div>
             </div>
             <br>
-            <!--
             <div id="flight-result-return-book">
                 <h4 id="booking-cost">Total cost: </h4>
                 <button type="submit" id="return-flight-book">Book</button>
             </div>
-            -->
         </form>
     </c:if>
 </main>
