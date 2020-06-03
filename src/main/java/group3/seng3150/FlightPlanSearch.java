@@ -2,6 +2,7 @@ package group3.seng3150;
 
 import group3.seng3150.entities.Flight;
 
+import java.sql.Timestamp;
 import java.util.*;
 //search options duration, price
 
@@ -14,21 +15,23 @@ public class FlightPlanSearch {
         setAirports();
     }
 
-    public List<FlightPlan> createFlightPlans(List<Flight> flights, String departureLocation, String destination, boolean stopOverNeeded){
+    public List<FlightPlan> createFlightPlans(List<Flight> flights, String departureLocation, String destination, boolean stopOverNeeded, String startingTimeString){
+        Timestamp startingTime = Timestamp.valueOf(startingTimeString);
         List<FlightPlan> flightPlans = new LinkedList<>();
+        System.out.println("parsed in flights: " + flights.size() + " stop over needed: " + stopOverNeeded);
         if(stopOverNeeded && flights.size()>0){
-            flightPlans.add(getShortestPathDuration(flights, departureLocation, destination));
+            flightPlans.add(getShortestPathDuration(flights, departureLocation, destination, startingTime));
         }
         else{
             for(int i=0; i<flights.size(); i++){
                 flightPlans.add(new FlightPlan());
-                flightPlans.get(i).addToStart(flights.get(i));
+                flightPlans.get(i).add(flights.get(i));
             }
         }
         return flightPlans;
     }
 
-    public FlightPlan getShortestPathDuration(List<Flight> flights, String departureLocation, String arrivalLocation){
+    public FlightPlan getShortestPathDuration(List<Flight> flights, String departureLocation, String arrivalLocation, Timestamp startingTime){
         FlightPlan flightPlan = new FlightPlan();
         ArrayList<DijkstraNode> airportFlightNodes = new ArrayList<>();
         for(int i=0; i<airports.size(); i++){
@@ -43,16 +46,16 @@ public class FlightPlanSearch {
            flightsGraph.addNode(airportFlightNodes.get(i));
         }
 
-        flightsGraph = calculateShortestPathFromSource(flightsGraph, airportFlightNodes.get(airports.indexOf(departureLocation)));
+        flightsGraph = calculateShortestPathFromSource(flightsGraph, airportFlightNodes.get(airports.indexOf(departureLocation)), startingTime);
 
         DijkstraNode destinationNode = airportFlightNodes.get(airports.indexOf(arrivalLocation));
         DijkstraNode currentNode;
         Set<DijkstraNode> processedNodes = flightsGraph.getNodes();
         Iterator<DijkstraNode> iterator = processedNodes.iterator();
         List<Flight> shortestPath = new LinkedList<>();
-        for(int i=0; i<processedNodes.size(); i++){
+        while(iterator.hasNext()){
             currentNode = iterator.next();
-            if(currentNode.getName().equals(destinationNode.getName()));{
+            if(currentNode.getName().equals(destinationNode.getName())){
                 shortestPath = currentNode.getShortestPathFlights();
             }
         }
@@ -61,7 +64,7 @@ public class FlightPlanSearch {
         return flightPlan;
     }
 
-    public static DijkstraGraph calculateShortestPathFromSource(DijkstraGraph graph, DijkstraNode source) {
+    public static DijkstraGraph calculateShortestPathFromSource(DijkstraGraph graph, DijkstraNode source, Timestamp startingTime) {
         source.setDistance(0);
 
         Set<DijkstraNode> settledNodes = new HashSet<>();
@@ -76,7 +79,7 @@ public class FlightPlanSearch {
 
             {
                 DijkstraNode adjacentNode = adjacencyPair.getKey();
-                long edgeWeight = currentNode.getShortestDurationToNode(adjacentNode);
+                long edgeWeight = currentNode.getShortestDurationToNode(adjacentNode, startingTime);
                 if (!settledNodes.contains(adjacentNode)) {
                     calculateMinimumDistance(adjacentNode, edgeWeight, currentNode);
                     unsettledNodes.add(adjacentNode);

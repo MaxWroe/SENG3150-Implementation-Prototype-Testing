@@ -74,4 +74,8 @@ public class FlightPlan {
     public void setFlights(List<Flight> flights) {
         this.flights = flights;
     }
+
+    public void add(Flight newFlight){
+        flights.add(newFlight);
+    }
 }

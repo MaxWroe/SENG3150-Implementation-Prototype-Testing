@@ -59,7 +59,7 @@ public class FlightController{
 //        departureFlights.sortFlights("departureTimeAscending");
 
         if(retrievedFlights.size()>0) {
-            List<FlightPlan> departureFlightPlans = searcher.createFlightPlans(retrievedFlights, departureLocation, arrivalLocation, false);
+            List<FlightPlan> departureFlightPlans = searcher.createFlightPlans(retrievedFlights, departureLocation, arrivalLocation, false, departureTimeStart);
             departureFlights.setFlightPlans(departureFlightPlans);
             departureFlights.sortFlightPlans("departureTimeAscending");
         }
@@ -71,7 +71,7 @@ public class FlightController{
                             " AND (f.numberAvailableSeatsLeg2>=" + numberPeople + " OR f.numberAvailableSeatsLeg2='null')" +
                             " AND f.classCode='" + classCode + "'"
                     , Flight.class).getResultList();
-            List<FlightPlan> departureFlightPlans = searcher.createFlightPlans(retrievedFlights, departureLocation, arrivalLocation, true);
+            List<FlightPlan> departureFlightPlans = searcher.createFlightPlans(retrievedFlights, departureLocation, arrivalLocation, true, departureTimeStart);
             departureFlights.setFlightPlans(departureFlightPlans);
             departureFlights.sortFlightPlans("departureTimeAscending");
         }
@@ -90,7 +90,7 @@ public class FlightController{
 //               returnFlights.setFlights(retrievedFlights);
 //               returnFlights.sortFlights("departureTimeAscending");
             if(retrievedFlights.size()>0) {
-                List<FlightPlan> returnFlightPlans = searcher.createFlightPlans(retrievedFlights, departureLocation, arrivalLocation, false);
+                List<FlightPlan> returnFlightPlans = searcher.createFlightPlans(retrievedFlights, departureLocation, arrivalLocation, false, returnTimeStart);
                 returnFlights.setFlightPlans(returnFlightPlans);
                 returnFlights.sortFlightPlans("departureTimeAscending");
             }
@@ -102,14 +102,14 @@ public class FlightController{
                                 " AND (f.numberAvailableSeatsLeg2>=" + numberPeople + " OR f.numberAvailableSeatsLeg2=null)" +
                                 " AND f.classCode='" + classCode + "'"
                         , Flight.class).getResultList();
-                List<FlightPlan> returnFlightPlans = searcher.createFlightPlans(retrievedFlights, departureLocation, arrivalLocation, true);
+                List<FlightPlan> returnFlightPlans = searcher.createFlightPlans(retrievedFlights, departureLocation, arrivalLocation, true, returnTimeStart);
                 returnFlights.setFlightPlans(returnFlightPlans);
                 returnFlights.sortFlightPlans("departureTimeAscending");
             }
         }
 
 
-
+        System.out.println(departureFlights.getFlightPlans().size());
         view.addObject("departureFlights", departureFlights);
         view.addObject("returnFlights", returnFlights);
         return view;
