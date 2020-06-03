@@ -71,7 +71,7 @@ public class FlightPlanSearch {
         flightsGraph = calculateShortestPathFromSource(flightsGraph, airportFlightNodes.get(airports.indexOf(departureLocation)), startingTime);
 
         DijkstraNode destinationNode = airportFlightNodes.get(airports.indexOf(arrivalLocation));
-        DijkstraNode currentNode;
+        DijkstraNode currentNode = new DijkstraNode("blank");
         Set<DijkstraNode> processedNodes = flightsGraph.getNodes();
         Iterator<DijkstraNode> iterator = processedNodes.iterator();
         List<Flight> shortestPath = new LinkedList<>();
@@ -83,7 +83,12 @@ public class FlightPlanSearch {
         }
 
         flightPlan.setFlights(shortestPath);
-        return flightPlan;
+        if(flightPlan.getFlights().size()==0){
+            return null;
+        }
+        else {
+            return flightPlan;
+        }
     }
 
     private static DijkstraGraph calculateShortestPathFromSource(DijkstraGraph graph, DijkstraNode source, Timestamp startingTime) {
@@ -95,7 +100,7 @@ public class FlightPlanSearch {
         unsettledNodes.add(source);
 
         while (unsettledNodes.size() != 0) {
-            DijkstraNode currentNode = getLowestDistanceNode(unsettledNodes);
+            DijkstraNode currentNode = getLowestDistanceNode(unsettledNodes, startingTime);
             unsettledNodes.remove(currentNode);
             for (Map.Entry< DijkstraNode, List<Flight>> adjacencyPair: currentNode.getAdjacentNodesFlights().entrySet())
 
@@ -112,11 +117,11 @@ public class FlightPlanSearch {
         return graph;
     }
 
-    private static DijkstraNode getLowestDistanceNode(Set < DijkstraNode > unsettledNodes) {
+    private static DijkstraNode getLowestDistanceNode(Set < DijkstraNode > unsettledNodes, Timestamp startingTime) {
         DijkstraNode lowestDistanceNode = null;
         long lowestDistance = Long.MAX_VALUE;
         for (DijkstraNode node: unsettledNodes) {
-            node.setShortestDurations();
+            node.setShortestDurations(startingTime);
             long nodeDistance = node.getDistance();
             if (nodeDistance < lowestDistance) {
                 lowestDistance = nodeDistance;

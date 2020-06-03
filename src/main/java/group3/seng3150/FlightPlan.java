@@ -12,8 +12,6 @@ import java.util.List;
 public class FlightPlan {
     private List<Flight> flights;
     private List<Availability> availabilities;
-    private EntityManager em;
-    private PriceFinder priceFinder;
     private int position;
     private List<Price> prices;
 

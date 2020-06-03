@@ -64,9 +64,9 @@ public class Availability {
 //    @Basic(optional = false)
 //    private int duration;
 //
-    @Column(name = "Price", table = "Price")
-    @Basic(optional = false)
-    private double price;
+//    @Column(name = "Price", table = "Price")
+//    @Basic(optional = false)
+//    private double price;
 
     //Still to consider
     //disability, amentities, seating map, languages, foodselection
