@@ -26,9 +26,9 @@
     <!-- stuff like deals, popular destinations, quiet (high seat capacity) flights? -->
     <h1>Travel Recommendations</h1>
     <h4>Deals</h4>
-    <div id="deals">
+    <div class="recommendation">
         <p>Here are some hand selected flights.</p>
-        <div id="deals-display-window">
+        <div class="recommendation-display-window">
             <div class="flight-result-return-windows">
                 <div class="flight-result-time">
                     <p>Depart time</p>
@@ -115,6 +115,27 @@
                         <button type="submit">View</button>
                     </form>
                 </div>
+            </div>
+        </div>
+    </div>
+    <h4>Common Searches</h4>
+    <div class="recommendation">
+        <p>Here are some common searches.</p>
+        <div class="recommendation-display-window">
+            <div class="filled-search">
+                <h4>Winter School Holiday (NSW)</h4>
+                <p>Monday 6 July to Friday 17 July</p>
+                <button onclick="window.location.href='/search?type=return&departureDate=2020-07-06&returnDate=2020-07-13';">Search</button>
+            </div>
+            <div class="filled-search">
+                <h4>Newcastle University Mid-Semester 2 Break</h4>
+                <p>Monday 28 September to Friday 9 October</p>
+                <button onclick="window.location.href='/search?type=return&departureDate=2020-09-28&returnDate=2020-10-09';">Search</button>
+            </div>
+            <div class="filled-search">
+                <h4>Australia Long Weekend (Queen's Birthday)</h4>
+                <p>Saturday 6 June to Monday 8 June</p>
+                <button onclick="window.location.href='/search?type=return&departureDate=2020-09-28&returnDate=2020-10-09';">Search</button>
             </div>
         </div>
     </div>

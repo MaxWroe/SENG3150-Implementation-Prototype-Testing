@@ -42,7 +42,7 @@ public class FlightController{
 
         //dates need to be strictly of '2015-09-24 09:50:00' format
         ModelAndView view = new ModelAndView("search");
-
+        String flightNumberString = "";
         FlightPlanSearch searcher = new FlightPlanSearch();
         int numberPeople = adults + children;
         String departureTimeStart = departureDate + " 00:00:01";
@@ -50,66 +50,83 @@ public class FlightController{
         List<Flight> retrievedFlights = em.createQuery( "SELECT f From Flight f WHERE f.departureCode='" + departureLocation + "'" +
                 " AND f.destination='" + arrivalLocation + "'" +
                 " AND f.departureDate>='" + departureTimeStart + "'" +
-                " AND f.departureDate<='" + departureTimeEnd + "'" +
-                " AND f.numberAvailableSeatsLeg1>=" + numberPeople +
-                " AND (f.numberAvailableSeatsLeg2>=" + numberPeople + " OR f.numberAvailableSeatsLeg2='null')" +
-                " AND f.classCode='" + classCode + "'"
-                , Flight.class).getResultList();
-//        departureFlights.setFlights(retrievedFlights);
-//        departureFlights.sortFlights("departureTimeAscending");
+                " AND f.departureDate<='" + departureTimeEnd + "'", Flight.class).getResultList();
 
-        if(retrievedFlights.size()>0) {
-            List<FlightPlan> departureFlightPlans = searcher.createFlightPlans(retrievedFlights, departureLocation, arrivalLocation, false);
+        if(retrievedFlights.size()>1) {
+            flightNumberString = "('" + retrievedFlights.get(0).getFlightNumber() + "'";
+            for(int i=1; i<retrievedFlights.size(); i++){
+                flightNumberString += ", '" + retrievedFlights.get(i).getFlightNumber() + "'"; }
+            flightNumberString += ")";
+            List<Availability> retrievedAvailabilities = em.createQuery("SELECT a from Availability a WHERE a.flightNumber IN " + flightNumberString +
+                    " AND a.numberAvailableSeatsLeg1>=" + numberPeople +
+                    " AND (a.numberAvailableSeatsLeg2>=" + numberPeople + " OR a.numberAvailableSeatsLeg2='null')" +
+                    " AND a.classCode='" + classCode + "'", Availability.class).getResultList();
+            List<FlightPlan> departureFlightPlans = searcher.createFlightPlans(retrievedFlights, departureLocation, arrivalLocation, false, departureTimeStart, retrievedAvailabilities);
             departureFlights.setFlightPlans(departureFlightPlans);
             departureFlights.sortFlightPlans("departureTimeAscending");
         }
         else{
             retrievedFlights = em.createQuery( "SELECT f From Flight f WHERE f.departureCode='" + departureLocation + "'" +
-                            " AND f.departureDate>='" + departureTimeStart + "'" +
-                            " AND f.departureDate<='" + departureTimeEnd + "'" +
-                            " AND f.numberAvailableSeatsLeg1>=" + numberPeople +
-                            " AND (f.numberAvailableSeatsLeg2>=" + numberPeople + " OR f.numberAvailableSeatsLeg2='null')" +
-                            " AND f.classCode='" + classCode + "'"
-                    , Flight.class).getResultList();
-            List<FlightPlan> departureFlightPlans = searcher.createFlightPlans(retrievedFlights, departureLocation, arrivalLocation, true);
+                " AND f.departureDate>='" + departureTimeStart + "'" +
+                " AND f.departureDate<='" + departureTimeEnd + "'", Flight.class).getResultList();
+            if(retrievedFlights.size()>0) {
+                flightNumberString = "('" + retrievedFlights.get(0).getFlightNumber() + "'"; }
+            for(int i=1; i<retrievedFlights.size(); i++){
+                flightNumberString += ", '" + retrievedFlights.get(i).getFlightNumber() + "'"; }
+            flightNumberString += ")";
+            List<Availability> retrievedAvailabilities = em.createQuery("SELECT a from Availability a WHERE a.flightNumber IN " + flightNumberString +
+                " AND a.numberAvailableSeatsLeg1>=" + numberPeople +
+                " AND (a.numberAvailableSeatsLeg2>=" + numberPeople + " OR a.numberAvailableSeatsLeg2='null')" +
+                " AND a.classCode='" + classCode + "'", Availability.class).getResultList();
+            List<FlightPlan> departureFlightPlans = searcher.createFlightPlans(retrievedFlights, departureLocation, arrivalLocation, true, departureTimeStart, retrievedAvailabilities);
             departureFlights.setFlightPlans(departureFlightPlans);
             departureFlights.sortFlightPlans("departureTimeAscending");
         }
 
+
+
         if (type.equals("return")) {
             String returnTimeStart = returnDate + " 00:00:01";
             String returnTimeEnd = returnDate + "23:59:59";
-               retrievedFlights = em.createQuery( "SELECT f From Flight f WHERE f.departureCode='" + arrivalLocation + "'" +
-                       " AND f.destination='" + departureLocation + "'" +
-                       " AND f.arrivalDate>='" + returnTimeStart + "'" +
-                       " AND f.arrivalDate<='" + returnTimeEnd + "'" +
-                       " AND f.numberAvailableSeatsLeg1>=" + numberPeople +
-                       " AND (f.numberAvailableSeatsLeg2>=" + numberPeople + " OR f.numberAvailableSeatsLeg2=null)" +
-                       " AND f.classCode='" + classCode + "'"
-                       , Flight.class).getResultList();
-//               returnFlights.setFlights(retrievedFlights);
-//               returnFlights.sortFlights("departureTimeAscending");
-            if(retrievedFlights.size()>0) {
-                List<FlightPlan> returnFlightPlans = searcher.createFlightPlans(retrievedFlights, departureLocation, arrivalLocation, false);
+            retrievedFlights = em.createQuery( "SELECT f From Flight f WHERE f.departureCode='" + arrivalLocation + "'" +
+                " AND f.destination='" + departureLocation + "'" +
+                " AND f.arrivalDate>='" + returnTimeStart + "'" +
+                " AND f.arrivalDate<='" + returnTimeEnd + "'", Flight.class).getResultList();
+
+            if(retrievedFlights.size()>1) {
+                flightNumberString = "('" + retrievedFlights.get(0).getFlightNumber() + "'";
+                for(int i=1; i<retrievedFlights.size(); i++){
+                    flightNumberString += ", '" + retrievedFlights.get(i).getFlightNumber() + "'"; }
+                flightNumberString += ")";
+                List<Availability> retrievedAvailabilities = em.createQuery("SELECT a from Availability a WHERE a.flightNumber IN " + flightNumberString +
+                        " AND a.numberAvailableSeatsLeg1>=" + numberPeople +
+                        " AND (a.numberAvailableSeatsLeg2>=" + numberPeople + " OR a.numberAvailableSeatsLeg2='null')" +
+                        " AND a.classCode='" + classCode + "'", Availability.class).getResultList();
+                List<FlightPlan> returnFlightPlans = searcher.createFlightPlans(retrievedFlights, departureLocation, arrivalLocation, false, returnTimeStart, retrievedAvailabilities);
                 returnFlights.setFlightPlans(returnFlightPlans);
                 returnFlights.sortFlightPlans("departureTimeAscending");
             }
             else{
                 retrievedFlights = em.createQuery( "SELECT f From Flight f WHERE f.destination='" + arrivalLocation + "'" +
-                                " AND f.arrivalDate>='" + returnTimeStart + "'" +
-                                " AND f.arrivalDate<='" + returnTimeEnd + "'" +
-                                " AND f.numberAvailableSeatsLeg1>=" + numberPeople +
-                                " AND (f.numberAvailableSeatsLeg2>=" + numberPeople + " OR f.numberAvailableSeatsLeg2=null)" +
-                                " AND f.classCode='" + classCode + "'"
-                        , Flight.class).getResultList();
-                List<FlightPlan> returnFlightPlans = searcher.createFlightPlans(retrievedFlights, departureLocation, arrivalLocation, true);
+                    " AND f.arrivalDate>='" + returnTimeStart + "'" +
+                    " AND f.arrivalDate<='" + returnTimeEnd + "'", Flight.class).getResultList();
+                if(retrievedFlights.size()>0) {
+                    flightNumberString = "('" + retrievedFlights.get(0).getFlightNumber() + "'"; }
+                for (int i = 1; i < retrievedFlights.size(); i++) {
+                    flightNumberString += ", '" + retrievedFlights.get(i).getFlightNumber() + "'"; }
+                flightNumberString += ")";
+                List<Availability> retrievedAvailabilities = em.createQuery("SELECT a from Availability a WHERE a.flightNumber IN " + flightNumberString +
+                    " AND a.numberAvailableSeatsLeg1>=" + numberPeople +
+                    " AND (a.numberAvailableSeatsLeg2>=" + numberPeople + " OR a.numberAvailableSeatsLeg2='null')" +
+                    " AND a.classCode='" + classCode + "'", Availability.class).getResultList();
+                List<FlightPlan> returnFlightPlans = searcher.createFlightPlans(retrievedFlights, departureLocation, arrivalLocation, true, returnTimeStart, retrievedAvailabilities);
                 returnFlights.setFlightPlans(returnFlightPlans);
                 returnFlights.sortFlightPlans("departureTimeAscending");
             }
         }
 
 
-
+        System.out.println(departureFlights.getFlightPlans().size());
         view.addObject("departureFlights", departureFlights);
         view.addObject("returnFlights", returnFlights);
         return view;

@@ -1,5 +1,6 @@
 package group3.seng3150;
 
+import group3.seng3150.entities.Availability;
 import group3.seng3150.entities.Flight;
 
 import java.sql.Timestamp;
@@ -8,6 +9,7 @@ import java.util.List;
 
 public class FlightPlan {
     private List<Flight> flights;
+    private List<Availability> availabilities;
 
     public FlightPlan(){
         flights = new LinkedList<>();
@@ -23,9 +25,9 @@ public class FlightPlan {
 
     public String getAirlines(){
         String airlines = "";
-        /*for (Flight flight : flights) {
-            airlines += flight.getAirline();
-        }*/
+        for (Flight flight : flights) {
+            airlines += flight.getAirlineCode();
+        }
         return airlines;
     }
 
@@ -73,5 +75,17 @@ public class FlightPlan {
 
     public void setFlights(List<Flight> flights) {
         this.flights = flights;
+    }
+
+    public void add(Flight newFlight){
+        flights.add(newFlight);
+    }
+
+    public List<Availability> getAvailabilities() {
+        return availabilities;
+    }
+
+    public void setAvailabilities(List<Availability> availabilities) {
+        this.availabilities = availabilities;
     }
 }
