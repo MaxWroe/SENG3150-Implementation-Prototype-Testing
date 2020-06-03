@@ -30,7 +30,6 @@
     String address = (String)request.getAttribute("address");
 
 
-
     //checks if session is empty and not logged in
     if(userID == null && email == null){
         %><body><%

@@ -27,7 +27,7 @@
         <div id="side-bar">
             <h4>Departure Flight</h4>
             <p>Price</p>
-            <h4>$${departureFlight.cost}</h4>
+            <h4>$${departureFlight.price}</h4>
             <p>Date/Time</p>
             <h4>${departureFlight.date} ${departureFlight.time}</h4>
             <p>Seat Class</p>
@@ -37,7 +37,7 @@
             <c:if test = "${param.pageDirect eq 'return'}">
             <h4>Return Flight</h4>
             <p>Price</p>
-            <h4>$${returnFlight.cost}</h4>
+            <h4>$${returnFlight.price}</h4>
             <p>Date/Time</p>
             <h4>${returnFlight.date} ${returnFlight.time}</h4>
             <p>Seat Class</p>

@@ -11,6 +11,18 @@ public class FlightPlan {
     private List<Flight> flights;
     private List<Availability> availabilities;
 
+    private int position;
+
+    public void setPosition(int position)
+    {
+        this.position = position;
+    }
+
+    public int getPosition()
+    {
+        return position;
+    }
+
     public FlightPlan(){
         flights = new LinkedList<>();
     }

@@ -19,8 +19,6 @@ public class FlightHolder {
         flightPlans = new ArrayList<>();
     }
 
-
-
     public void addFlight(Flight flight){
         flights.add(flight);
     }
@@ -45,6 +43,7 @@ public class FlightHolder {
 
     public void setFlights(List<Flight> flights) {
         this.flights = flights;
+        setFlightPlanPosition();
     }
 
     public List<FlightPlan> getFlightPlans() {
@@ -69,5 +68,12 @@ public class FlightHolder {
 
     public void setAvailabilities(List<Availability> availabilities) {
         this.availabilities = availabilities;
+    }
+
+    public void setFlightPlanPosition()
+    {
+        for (int i=0; i<flightPlans.size(); i++){
+            flightPlans.get(i).setPosition(i);
+        }
     }
 }

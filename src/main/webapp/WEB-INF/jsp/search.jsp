@@ -278,6 +278,8 @@
             <h4>No flights can be found that match the criteria!</h4>
         </c:if>
 
+        <c:set var = "departureFlights" scope = "session" value = "${departureFlights}"/>
+
         <!-- For each flight returned display -->
         <c:forEach items="${departureFlights}" var="flightPlan">
             <div class="flight-result-oneway">
@@ -297,9 +299,7 @@
                 </div>
                 <div class="flight-result-book">
                     <form action="/bookingtemp" method="post">
-                        <c:forEach items="${flightPlan.flights}" var="flight">
-                            <input type="hidden" id="${flight.flightNumber}" name="departure" value="${flight.flightNumber}">
-                        </c:forEach>
+                        <input type="hidden" id="${flight.position}" name="departure" value="${flight.position}">
                         <button type="submit">Book</button>
                     </form>
                 </div>
