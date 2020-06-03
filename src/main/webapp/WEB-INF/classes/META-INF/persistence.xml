@@ -11,6 +11,7 @@
         <class>group3.seng3150.entities.Plane</class>
         <class>group3.seng3150.entities.UserAccount</class>
         <class>group3.seng3150.entities.Booking</class>
+        <class>group3.seng3150.entities.Availability</class>
 
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
 

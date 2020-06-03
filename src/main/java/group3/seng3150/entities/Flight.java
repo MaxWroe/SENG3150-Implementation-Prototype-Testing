@@ -4,26 +4,28 @@ import java.sql.Timestamp;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Availability")
-@SecondaryTables({
-        @SecondaryTable(name="Flights",
-                pkJoinColumns=@PrimaryKeyJoinColumn(name="FlightNumber")),
-        @SecondaryTable(name="Price",
-                pkJoinColumns=@PrimaryKeyJoinColumn(name="FlightNumber"))
-})
+@Table(name = "Flights")
+
+
+//@SecondaryTables({
+//        @SecondaryTable(name="Flights",
+//                pkJoinColumns=@PrimaryKeyJoinColumn(name="FlightNumber")),
+//        @SecondaryTable(name="Price",
+//                pkJoinColumns=@PrimaryKeyJoinColumn(name="FlightNumber"))
+//})
 public class Flight {
 
     @Id
-    @Column(name = "FlightNumber")
+    @Column(name = "FlightNumber", table = "Flights")
     @Basic(optional = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String flightNumber;
 
-    @Column(name = "AirlineCode", table = "Availability")
+    @Column(name = "AirlineCode", table = "Flights")
     @Basic(optional = false)
     private String airlineCode;
 
-    @Column(name = "DepartureTime", table = "Availability")
+    @Column(name = "DepartureTime", table = "Flights")
     @Basic(optional = false)
     private Timestamp departureDate;
 
@@ -51,28 +53,28 @@ public class Flight {
     @Basic(optional = false)
     private Timestamp arrivalDate;
 
-    @Column(name = "TicketCode", table = "Availability")
-    @Basic(optional = false)
-    private String ticketCode;
-
-    @Column(name = "ClassCode", table = "Availability")
-    @Basic(optional = false)
-    private String classCode;
-
-    @Column(name = "NumberAvailableSeatsLeg1", table = "Availability")
-    @Basic(optional = false)
-    private String numberAvailableSeatsLeg1;
-
-    @Column(name = "NumberAvailableSeatsLeg2", table = "Availability")
-    private String numberAvailableSeatsLeg2;
+//    @Column(name = "TicketCode", table = "Availability")
+//    @Basic(optional = false)
+//    private String ticketCode;
+//
+//    @Column(name = "ClassCode", table = "Availability")
+//    @Basic(optional = false)
+//    private String classCode;
+//
+//    @Column(name = "NumberAvailableSeatsLeg1", table = "Availability")
+//    @Basic(optional = false)
+//    private String numberAvailableSeatsLeg1;
+//
+//    @Column(name = "NumberAvailableSeatsLeg2", table = "Availability")
+//    private String numberAvailableSeatsLeg2;
 
     @Column(name = "Duration", table = "Flights")
     @Basic(optional = false)
     private int duration;
 
-    @Column(name = "Price", table = "Price")
-    @Basic(optional = false)
-    private double price;
+//    @Column(name = "Price", table = "Price")
+//    @Basic(optional = false)
+//    private double price;
 
     //Still to consider
     //disability, amentities, seating map, languages, foodselection
@@ -93,21 +95,21 @@ public class Flight {
         this.airlineCode = airlineCode;
     }
 
-    public String getNumberAvailableSeatsLeg1() {
-        return numberAvailableSeatsLeg1;
-    }
-
-    public void setNumberAvailableSeatsLeg1(String numberAvailableSeatsLeg1) {
-        this.numberAvailableSeatsLeg1 = numberAvailableSeatsLeg1;
-    }
-
-    public String getNumberAvailableSeatsLeg2() {
-        return numberAvailableSeatsLeg2;
-    }
-
-    public void setNumberAvailableSeatsLeg2(String numberAvailableSeatsLeg2) {
-        this.numberAvailableSeatsLeg2 = numberAvailableSeatsLeg2;
-    }
+//    public String getNumberAvailableSeatsLeg1() {
+//        return numberAvailableSeatsLeg1;
+//    }
+//
+//    public void setNumberAvailableSeatsLeg1(String numberAvailableSeatsLeg1) {
+//        this.numberAvailableSeatsLeg1 = numberAvailableSeatsLeg1;
+//    }
+//
+//    public String getNumberAvailableSeatsLeg2() {
+//        return numberAvailableSeatsLeg2;
+//    }
+//
+//    public void setNumberAvailableSeatsLeg2(String numberAvailableSeatsLeg2) {
+//        this.numberAvailableSeatsLeg2 = numberAvailableSeatsLeg2;
+//    }
 
     public String getDepartureCode() {
         return departureCode;
@@ -173,21 +175,21 @@ public class Flight {
         this.arrivalDate = arrivalDate;
     }
 
-    public String getTicketCode() {
-        return ticketCode;
-    }
-
-    public void setTicketCode(String ticketCode) {
-        this.ticketCode = ticketCode;
-    }
-
-    public String getClassCode() {
-        return classCode;
-    }
-
-    public void setClassCode(String classCode) {
-        this.classCode = classCode;
-    }
+//    public String getTicketCode() {
+//        return ticketCode;
+//    }
+//
+//    public void setTicketCode(String ticketCode) {
+//        this.ticketCode = ticketCode;
+//    }
+//
+//    public String getClassCode() {
+//        return classCode;
+//    }
+//
+//    public void setClassCode(String classCode) {
+//        this.classCode = classCode;
+//    }
 
     public int getDuration() {
         return duration;
@@ -197,13 +199,13 @@ public class Flight {
         this.duration = duration;
     }
 
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
+//    public double getPrice() {
+//        return price;
+//    }
+//
+//    public void setPrice(double price) {
+//        this.price = price;
+//    }
 
 
 
@@ -222,12 +224,15 @@ public class Flight {
     public String toString() {
         return "Flight{" +
                 "flightNumber='" + flightNumber + '\'' +
+                ", airlineCode='" + airlineCode + '\'' +
                 ", departureDate=" + departureDate +
+                ", departureCode='" + departureCode + '\'' +
+                ", stopOverCode='" + stopOverCode + '\'' +
+                ", arrivalStopOverTime=" + arrivalStopOverTime +
+                ", departureTimeStopOver=" + departureTimeStopOver +
+                ", destination='" + destination + '\'' +
                 ", arrivalDate=" + arrivalDate +
-                ", ticketCode='" + ticketCode + '\'' +
-                ", classCode='" + classCode + '\'' +
                 ", duration=" + duration +
-                ", price=" + price +
                 '}';
     }
 }
