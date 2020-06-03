@@ -1,5 +1,6 @@
 package group3.seng3150;
 
+import group3.seng3150.entities.Availability;
 import group3.seng3150.entities.Flight;
 
 import java.util.ArrayList;
@@ -10,6 +11,7 @@ public class FlightHolder {
     private List<Flight> flights;
     private FlightsSort sorter;
     private List<FlightPlan> flightPlans;
+    private List<Availability> availabilities;
 
     public FlightHolder(){
         flights = new ArrayList<>();
@@ -61,5 +63,11 @@ public class FlightHolder {
         this.sorter = sorter;
     }
 
+    public List<Availability> getAvailabilities() {
+        return availabilities;
+    }
 
+    public void setAvailabilities(List<Availability> availabilities) {
+        this.availabilities = availabilities;
+    }
 }

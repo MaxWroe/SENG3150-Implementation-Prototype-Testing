@@ -1,5 +1,6 @@
 package group3.seng3150;
 
+import group3.seng3150.entities.Availability;
 import group3.seng3150.entities.Flight;
 
 import java.sql.Timestamp;
@@ -15,23 +16,43 @@ public class FlightPlanSearch {
         setAirports();
     }
 
-    public List<FlightPlan> createFlightPlans(List<Flight> flights, String departureLocation, String destination, boolean stopOverNeeded, String startingTimeString){
+    public List<FlightPlan> createFlightPlans(List<Flight> flights, String departureLocation, String destination, boolean stopOverNeeded, String startingTimeString, List<Availability> parsedAvailabilities){
         Timestamp startingTime = Timestamp.valueOf(startingTimeString);
         List<FlightPlan> flightPlans = new LinkedList<>();
+        List<Flight> filteredFlights = filterByAvailabilities(flights, parsedAvailabilities);
         System.out.println("parsed in flights: " + flights.size() + " stop over needed: " + stopOverNeeded);
-        if(stopOverNeeded && flights.size()>0){
-            flightPlans.add(getShortestPathDuration(flights, departureLocation, destination, startingTime));
+        if(stopOverNeeded && filteredFlights.size()>0){
+            flightPlans.add(getShortestPathDuration(filteredFlights, departureLocation, destination, startingTime));
         }
         else{
-            for(int i=0; i<flights.size(); i++){
+            for(int i=0; i<filteredFlights.size(); i++){
                 flightPlans.add(new FlightPlan());
-                flightPlans.get(i).add(flights.get(i));
+                flightPlans.get(i).add(filteredFlights.get(i));
             }
         }
         return flightPlans;
     }
 
-    public FlightPlan getShortestPathDuration(List<Flight> flights, String departureLocation, String arrivalLocation, Timestamp startingTime){
+    private List<Flight> filterByAvailabilities(List<Flight> flights, List<Availability> availabilities){
+        List<Flight> filteredFlights = new LinkedList<>();
+        boolean contains = false;
+        for(int i=0; i<flights.size(); i++){
+            contains = false;
+            for (int j=0; j<flights.size(); j++)
+            {
+                if(flights.get(i).getFlightNumber().equals(availabilities.get(j).getFlightNumber())){
+                    contains = true;
+                }
+            }
+            if(contains = false){
+                flights.remove(i);
+                i--;
+            }
+        }
+        return filteredFlights;
+    }
+
+    private FlightPlan getShortestPathDuration(List<Flight> flights, String departureLocation, String arrivalLocation, Timestamp startingTime){
         FlightPlan flightPlan = new FlightPlan();
         ArrayList<DijkstraNode> airportFlightNodes = new ArrayList<>();
         for(int i=0; i<airports.size(); i++){
@@ -64,7 +85,7 @@ public class FlightPlanSearch {
         return flightPlan;
     }
 
-    public static DijkstraGraph calculateShortestPathFromSource(DijkstraGraph graph, DijkstraNode source, Timestamp startingTime) {
+    private static DijkstraGraph calculateShortestPathFromSource(DijkstraGraph graph, DijkstraNode source, Timestamp startingTime) {
         source.setDistance(0);
 
         Set<DijkstraNode> settledNodes = new HashSet<>();
@@ -116,6 +137,8 @@ public class FlightPlanSearch {
             evaluationNode.setShortestPathFlights(shortestPathFlights);
         }
     }
+
+
 
     private void setAirports(){
         airports.add("ADL");
