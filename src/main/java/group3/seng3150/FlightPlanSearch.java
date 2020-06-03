@@ -17,17 +17,17 @@ public class FlightPlanSearch {
         setAirports();
     }
 
-    public List<FlightPlan> createFlightPlans(List<Flight> flights, String departureLocation, String destination, boolean stopOverNeeded, String startingTimeString, List<Availability> parsedAvailabilities, EntityManager em){
+    public List<FlightPlan> createFlightPlans(List<Flight> flights, String departureLocation, String destination, boolean stopOverNeeded, String startingTimeString, List<Availability> parsedAvailabilities){
         Timestamp startingTime = Timestamp.valueOf(startingTimeString);
         List<FlightPlan> flightPlans = new LinkedList<>();
         List<Flight> filteredFlights = filterByAvailabilities(flights, parsedAvailabilities);
         System.out.println("parsed in flights: " + flights.size() + " stop over needed: " + stopOverNeeded);
         if(stopOverNeeded && filteredFlights.size()>0){
-            flightPlans.add(getShortestPathDuration(filteredFlights, departureLocation, destination, startingTime, em));
+            flightPlans.add(getShortestPathDuration(filteredFlights, departureLocation, destination, startingTime));
         }
         else{
             for(int i=0; i<filteredFlights.size(); i++){
-                flightPlans.add(new FlightPlan(em));
+                flightPlans.add(new FlightPlan());
                 flightPlans.get(i).add(filteredFlights.get(i));
             }
         }
@@ -53,8 +53,8 @@ public class FlightPlanSearch {
         return flights;
     }
 
-    private FlightPlan getShortestPathDuration(List<Flight> flights, String departureLocation, String arrivalLocation, Timestamp startingTime, EntityManager em){
-        FlightPlan flightPlan = new FlightPlan(em);
+    private FlightPlan getShortestPathDuration(List<Flight> flights, String departureLocation, String arrivalLocation, Timestamp startingTime){
+        FlightPlan flightPlan = new FlightPlan();
         ArrayList<DijkstraNode> airportFlightNodes = new ArrayList<>();
         for(int i=0; i<airports.size(); i++){
             airportFlightNodes.add(new DijkstraNode(airports.get(i)));

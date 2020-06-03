@@ -2,6 +2,7 @@ package group3.seng3150;
 
 import group3.seng3150.entities.Availability;
 import group3.seng3150.entities.Flight;
+import group3.seng3150.entities.Price;
 
 import javax.persistence.EntityManager;
 import java.sql.Timestamp;
@@ -14,11 +15,13 @@ public class FlightPlan {
     private EntityManager em;
     private PriceFinder priceFinder;
     private int position;
+    private List<Price> prices;
 
-    public FlightPlan(EntityManager em){
-        this.em = em;
+
+    public FlightPlan(){
         flights = new LinkedList<>();
-        priceFinder = new PriceFinder(em);
+        availabilities = new LinkedList<>();
+        prices = new LinkedList<>();
     }
 
     public Timestamp getDepartureDate(){
@@ -37,8 +40,22 @@ public class FlightPlan {
         return airlines;
     }
 
-    public int getPrice(){
+    public void setPrices(EntityManager em){
+        PriceFinder priceFinder = new PriceFinder(em);
 
+
+    }
+
+    public int getPriceFromAvailability(Availability availability){
+        for(int i=0; i<prices.size(); i++){
+            if (prices.get(i).getFlightNumber().equals(availability.getFlightNumber())  && prices.get(i).getClassCode().equals(availability.getClassCode())){
+                return prices.get(i).getPrice();
+            }
+        }
+        return 0;
+    }
+
+    public int getPrice(){
         int out = 0;
         int tempInt = availabilities.size();
         for(int i=0; i<flights.size(); i++){
@@ -47,7 +64,7 @@ public class FlightPlan {
                     tempInt = j;
                 }
             }
-            out += priceFinder.getPrice(0,availabilities.get(tempInt));
+            out += getPriceFromAvailability(availabilities.get(tempInt));
             tempInt = availabilities.size();
         }
         return  out;

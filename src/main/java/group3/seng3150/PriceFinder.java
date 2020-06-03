@@ -15,7 +15,7 @@ public class PriceFinder {
     }
 
 
-    public int getPrice(int leg, Availability av){
+    public List<Price> getPrice(int leg, Availability av){
 
 
         String ac = av.getAirlineCode();
@@ -31,26 +31,7 @@ public class PriceFinder {
                         "AND p.classCode = '"+cc+"' " +
                         "AND p.ticketCode = '"+tc+"' " +
                         "AND p.startDate = '"+sd+"'", Price.class).getResultList();
-        Price price = prices.get(0);
+        return prices;
 
-        int money = 0;
-
-        switch(leg){
-            case 0:
-                money = price.getPrice();
-                break;
-
-            case 1:
-                money = price.getPriceLeg1();
-                break;
-
-            case 2:
-                money = price.getPriceLeg2();
-                break;
-
-
-        }
-
-        return money;
     }
 }
