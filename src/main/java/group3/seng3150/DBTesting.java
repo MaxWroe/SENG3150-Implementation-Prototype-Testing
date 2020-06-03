@@ -19,6 +19,7 @@ public class DBTesting {
     private EntityManager em;
 
     public DBTesting(EntityManager em){
+
         this.em = em;
     }
 

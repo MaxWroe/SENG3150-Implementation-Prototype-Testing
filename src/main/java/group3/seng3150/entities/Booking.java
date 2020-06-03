@@ -47,14 +47,7 @@ public class Booking {
     @Basic(optional = false)
     private int groupSize;
 
-    @Column(name = "FamilyMembers")
-    private String familyMembers;
 
-    @Column(name = "EmergencyContact")
-    private String emergencyContact;
-
-    @Column(name = "Address")
-    private String address;
 
     //flight 1 - data is all foreign keys
     @Column(name = "AirlineCode")
@@ -185,30 +178,6 @@ public class Booking {
 
     public void setUserID(String userID) {
         this.userID = userID;
-    }
-
-    public String getFamilyMembers() {
-        return familyMembers;
-    }
-
-    public void setFamilyMembers(String familyMembers) {
-        this.familyMembers = familyMembers;
-    }
-
-    public String getEmergencyContact() {
-        return emergencyContact;
-    }
-
-    public void setEmergencyContact(String emergencyContact) {
-        this.emergencyContact = emergencyContact;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
     }
 
     public String getAirlineCode() {
@@ -393,9 +362,6 @@ public class Booking {
                 ", dateOfBirth=" + dateOfBirth +
                 ", bookingDate=" + bookingDate +
                 ", groupSize=" + groupSize +
-                ", familyMembers='" + familyMembers + '\'' +
-                ", emergencyContact='" + emergencyContact + '\'' +
-                ", address='" + address + '\'' +
                 ", airlineCode='" + airlineCode + '\'' +
                 ", flightNumber='" + flightNumber + '\'' +
                 ", departureTime=" + departureTime +

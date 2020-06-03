@@ -5,16 +5,10 @@ import java.sql.Timestamp;
 
 @Entity
 @Table(name = "Availability")
-@SecondaryTables({
-//        @SecondaryTable(name="Flights",
-////                pkJoinColumns=@PrimaryKeyJoinColumn(name="FlightNumber")),
-//        @SecondaryTable(name="Price",
-//                pkJoinColumns=@PrimaryKeyJoinColumn(name="FlightNumber"))
-})
 public class Availability {
 
     @Id
-    @Column(name = "FlightNumber")
+    @Column(name = "FlightNumber", table = "Availability")
     @Basic(optional = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String flightNumber;
@@ -70,9 +64,9 @@ public class Availability {
 //    @Basic(optional = false)
 //    private int duration;
 //
-//    @Column(name = "Price", table = "Price")
-//    @Basic(optional = false)
-//    private double price;
+    @Column(name = "Price", table = "Price")
+    @Basic(optional = false)
+    private double price;
 
     //Still to consider
     //disability, amentities, seating map, languages, foodselection

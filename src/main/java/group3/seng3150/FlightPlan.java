@@ -3,6 +3,7 @@ package group3.seng3150;
 import group3.seng3150.entities.Availability;
 import group3.seng3150.entities.Flight;
 
+import javax.persistence.EntityManager;
 import java.sql.Timestamp;
 import java.util.LinkedList;
 import java.util.List;
@@ -10,21 +11,13 @@ import java.util.List;
 public class FlightPlan {
     private List<Flight> flights;
     private List<Availability> availabilities;
+    private EntityManager em;
+    private PriceFinder priceFinder;
 
-    private int position;
-
-    public void setPosition(int position)
-    {
-        this.position = position;
-    }
-
-    public int getPosition()
-    {
-        return position;
-    }
-
-    public FlightPlan(){
+    public FlightPlan(EntityManager em){
+        this.em = em;
         flights = new LinkedList<>();
+        priceFinder = new PriceFinder(em);
     }
 
     public Timestamp getDepartureDate(){
@@ -43,28 +36,36 @@ public class FlightPlan {
         return airlines;
     }
 
-//    public int getPrice(){
-//        int out = 0;
-//        for(int i=0; i<flights.size();i++){
-//            out += flights.get(i).getPrice();
-//        }
-//        return  out;
-//    }
-//
-//    public int getNumberAvailableSeats(){
-//        int out = Integer.parseInt(flights.get(0).getNumberAvailableSeatsLeg1());
-//        for(int i=0; i<flights.size();i++){
-//            if(Integer.parseInt(flights.get(i).getNumberAvailableSeatsLeg1())<out){
-//                out = Integer.parseInt(flights.get(i).getNumberAvailableSeatsLeg1());
-//            }
-//            if(flights.get(i).getStopOverCode()!=null){
-//                if(Integer.parseInt(flights.get(i).getNumberAvailableSeatsLeg2())<out){
-//                    out = Integer.parseInt(flights.get(i).getNumberAvailableSeatsLeg2());
-//                }
-//            }
-//        }
-//        return  out;
-//    }
+    public int getPrice(){
+
+        int out = 0;
+        int tempInt = availabilities.size();
+        for(int i=0; i<flights.size(); i++){
+            for(int j=0; j<availabilities.size();j++) {
+                if(flights.get(i).getFlightNumber().equals(availabilities.get(j).getFlightNumber()) && j<tempInt) {
+                    tempInt = j;
+                }
+            }
+            out += priceFinder.getPrice(0,availabilities.get(tempInt));
+            tempInt = availabilities.size();
+        }
+        return  out;
+    }
+
+    public int getNumberAvailableSeats(){
+        int out = Integer.parseInt(availabilities.get(0).getNumberAvailableSeatsLeg1());
+        for(int i=0; i<flights.size();i++){
+            if(Integer.parseInt(availabilities.get(i).getNumberAvailableSeatsLeg1())<out){
+                out = Integer.parseInt(availabilities.get(i).getNumberAvailableSeatsLeg1());
+            }
+            if(availabilities.get(i).getNumberAvailableSeatsLeg2()!=null){
+                if(Integer.parseInt(availabilities.get(i).getNumberAvailableSeatsLeg2())<out){
+                    out = Integer.parseInt(availabilities.get(i).getNumberAvailableSeatsLeg2());
+                }
+            }
+        }
+        return  out;
+    }
 
     public int getNumberStopOvers(){
         int out = -1;

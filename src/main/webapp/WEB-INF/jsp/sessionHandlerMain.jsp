@@ -29,6 +29,7 @@
     String emergencyContacts = (String)request.getAttribute("emergencyContacts");
     String address = (String)request.getAttribute("address");
 
+    request.setAttribute("userID", userID1);
 
     //checks if session is empty and not logged in
     if(userID == null && email == null){
