@@ -13,6 +13,7 @@ public class FlightPlan {
     private List<Availability> availabilities;
     private EntityManager em;
     private PriceFinder priceFinder;
+    private int position;
 
     public FlightPlan(EntityManager em){
         this.em = em;
@@ -100,5 +101,15 @@ public class FlightPlan {
 
     public void setAvailabilities(List<Availability> availabilities) {
         this.availabilities = availabilities;
+    }
+
+    public void setPosition(int position)
+    {
+        this.position = position;
+    }
+
+    public int getPosition()
+    {
+        return position;
     }
 }

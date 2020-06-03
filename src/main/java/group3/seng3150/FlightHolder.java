@@ -24,11 +24,13 @@ public class FlightHolder {
     }
 
     public List<FlightPlan> getFlightPlans() {
+        setFlightPlanPositions();
         return flightPlans;
     }
 
     public void setFlightPlans(List<FlightPlan> flightPlans) {
         this.flightPlans = flightPlans;
+        setFlightPlanPositions();
     }
 
     public FlightsSort getSorter() {
@@ -37,6 +39,7 @@ public class FlightHolder {
 
     public void setSorter(FlightsSort sorter) {
         this.sorter = sorter;
+        setFlightPlanPositions();
     }
 
     public List<Availability> getAvailabilities() {
@@ -45,5 +48,12 @@ public class FlightHolder {
 
     public void setAvailabilities(List<Availability> availabilities) {
         this.availabilities = availabilities;
+    }
+
+    public void setFlightPlanPositions()
+    {
+        for (int i=0; i<flightPlans.size(); i++){
+            flightPlans.get(i).setPosition(i);
+        }
     }
 }
