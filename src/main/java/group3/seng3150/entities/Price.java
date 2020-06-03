@@ -31,8 +31,46 @@ public class Price {
     @Basic(optional = false)
     private Date startDate;
 
+    @Column(name = "Price")
+    @Basic(optional = false)
+    private int price;
+
+    @Column(name = "PriceLeg1")
+    @Basic(optional = false)
+    private int priceLeg1;
+
+    @Column(name = "PriceLeg2")
+    @Basic(optional = false)
+    private int priceLeg2;
+
+
 
     public Price() {
+    }
+
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public int getPriceLeg1() {
+        return priceLeg1;
+    }
+
+    public void setPriceLeg1(int priceLeg1) {
+        this.priceLeg1 = priceLeg1;
+    }
+
+    public int getPriceLeg2() {
+        return priceLeg2;
+    }
+
+    public void setPriceLeg2(int priceLeg2) {
+        this.priceLeg2 = priceLeg2;
     }
 
     public String getAirlineCode() {

@@ -26,9 +26,11 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2fa4c939-f298-44e8-ba1d-7353dd1d77f5" name="Default Changelist" comment="Changed AccountController to be less cluttered, edit the session as well as the DB so the updated details are displayed correctly.">
+    <list default="true" id="2fa4c939-f298-44e8-ba1d-7353dd1d77f5" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/group3/seng3150/AccountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/group3/seng3150/AccountController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/group3/seng3150/DBTesting.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/group3/seng3150/DBTesting.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/group3/seng3150/entities/Availability.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/group3/seng3150/entities/Availability.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/group3/seng3150/entities/Price.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/group3/seng3150/entities/Price.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,7 +73,7 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="UPDATE_TYPE" value="REBASE" />
+    <option name="UPDATE_TYPE" value="MERGE" />
   </component>
   <component name="LogFilters">
     <option name="FILTER_ERRORS" value="false" />
@@ -217,6 +219,28 @@
         <item itemvalue="Gradle.SENG3150-Implementaion-Prototype [build]" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand>
+              <path>
+                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+                <item name="Tomcat Server" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              </path>
+              <path>
+                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+                <item name="Tomcat Server" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+                <item name="Finished" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              </path>
+            </expand>
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -428,6 +452,7 @@
                   </entry>
                 </map>
               </option>
+              <option name="COLUMN_ORDER" />
             </State>
           </value>
         </entry>
@@ -448,7 +473,6 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initial database setup" />
@@ -504,11 +528,11 @@
     <state x="305" y="103" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1591064655501" />
     <state x="305" y="104" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1050/1920.0.1920.1050@0.0.1920.1050" timestamp="1590444181782" />
     <state x="305" y="103" key="#com.intellij.execution.impl.EditConfigurationsDialog/1920.-77.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1590125175946" />
-    <state x="765" y="213" key="#com.intellij.ide.util.MemberChooser" timestamp="1590922038050">
+    <state x="765" y="213" key="#com.intellij.ide.util.MemberChooser" timestamp="1591162007623">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="765" y="213" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1590375103705" />
-    <state x="765" y="213" key="#com.intellij.ide.util.MemberChooser/1920.-77.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1590922038050" />
+    <state x="765" y="213" key="#com.intellij.ide.util.MemberChooser/1920.-77.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1591162007623" />
     <state x="609" y="372" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog" timestamp="1591062346473">
       <screen x="0" y="0" width="1504" height="1003" />
     </state>
@@ -702,14 +726,14 @@
     <state x="484" y="244" key="com.intellij.ide.util.TipDialog/0.0.1600.860/-1360.114.1360.728@0.0.1600.860" timestamp="1591151078810" />
     <state x="484" y="244" key="com.intellij.ide.util.TipDialog/0.0.1600.860@0.0.1600.860" timestamp="1589846833773" />
     <state x="2385" y="159" key="com.intellij.ide.util.TipDialog/1920.-77.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1589717169914" />
-    <state x="770" y="437" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1591160866168">
+    <state x="769" y="437" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1591162601051">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="603" y="421" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1504.1003@0.0.1504.1003" timestamp="1591080792922" />
     <state x="641" y="361" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1600.860/-1360.114.1360.728@0.0.1600.860" timestamp="1589863045995" />
     <state x="770" y="437" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1591160866168" />
     <state x="770" y="441" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1050/1920.0.1920.1050@0.0.1920.1050" timestamp="1590416827663" />
-    <state x="769" y="437" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/1920.-77.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1591160820986" />
+    <state x="769" y="437" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/1920.-77.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1591162601051" />
     <state x="2013" y="16" width="1350" height="638" key="dock-window-1" timestamp="1589717198987">
       <screen x="1920" y="-77" width="1536" height="832" />
     </state>
