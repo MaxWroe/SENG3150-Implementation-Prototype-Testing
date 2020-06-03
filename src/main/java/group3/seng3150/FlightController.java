@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.persistence.EntityManager;
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.LinkedList;
@@ -37,7 +38,8 @@ public class FlightController{
             @RequestParam(name="classCode", defaultValue="") String classCode,
             @RequestParam(name="type", defaultValue = "oneway") String type,
             @RequestParam(name="adults", defaultValue = "") int adults,
-            @RequestParam(name="children", defaultValue = "") int children)
+            @RequestParam(name="children", defaultValue = "") int children,
+    HttpSession session)
     {
 
         //dates need to be strictly of '2015-09-24 09:50:00' format
@@ -123,8 +125,8 @@ public class FlightController{
             }
         }
 
-
         System.out.println(departureFlights.getFlightPlans().size());
+//        session.setAttribute("flightHolder", departureFlights);
         view.addObject("departureFlights", departureFlights);
         view.addObject("returnFlights", returnFlights);
         return view;
@@ -134,7 +136,8 @@ public class FlightController{
     @RequestMapping("/sort")
     public ModelAndView search(
             @RequestParam(name="sortby", defaultValue="") String sortby,
-            @RequestParam(name="sortMethod", defaultValue="") String sortMethod
+            @RequestParam(name="sortMethod", defaultValue="") String sortMethod,
+            HttpSession session
     ){
         ModelAndView view = new ModelAndView("sort");
         departureFlights.sortFlightPlans(sortby+sortMethod);

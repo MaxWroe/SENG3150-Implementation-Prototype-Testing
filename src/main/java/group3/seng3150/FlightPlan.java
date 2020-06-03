@@ -31,28 +31,35 @@ public class FlightPlan {
         return airlines;
     }
 
-//    public int getPrice(){
-//        int out = 0;
-//        for(int i=0; i<flights.size();i++){
-//            out += flights.get(i).getPrice();
-//        }
-//        return  out;
-//    }
-//
-//    public int getNumberAvailableSeats(){
-//        int out = Integer.parseInt(flights.get(0).getNumberAvailableSeatsLeg1());
-//        for(int i=0; i<flights.size();i++){
-//            if(Integer.parseInt(flights.get(i).getNumberAvailableSeatsLeg1())<out){
-//                out = Integer.parseInt(flights.get(i).getNumberAvailableSeatsLeg1());
-//            }
-//            if(flights.get(i).getStopOverCode()!=null){
-//                if(Integer.parseInt(flights.get(i).getNumberAvailableSeatsLeg2())<out){
-//                    out = Integer.parseInt(flights.get(i).getNumberAvailableSeatsLeg2());
-//                }
-//            }
-//        }
-//        return  out;
-//    }
+    public int getPrice(){
+        int out = 0;
+        int tempInt = availabilities.size();
+        for(int i=0; i<flights.size(); i++){
+            for(int j=0; j<availabilities.size();j++) {
+                if(flights.get(i).getFlightNumber().equals(availabilities.get(j).getFlightNumber()) && j<tempInt) {
+                    tempInt = j;
+                }
+            }
+//            out += availabilities.get(tempInt).getPrice();
+            tempInt = availabilities.size();
+        }
+        return  out;
+    }
+
+    public int getNumberAvailableSeats(){
+        int out = Integer.parseInt(availabilities.get(0).getNumberAvailableSeatsLeg1());
+        for(int i=0; i<flights.size();i++){
+            if(Integer.parseInt(availabilities.get(i).getNumberAvailableSeatsLeg1())<out){
+                out = Integer.parseInt(availabilities.get(i).getNumberAvailableSeatsLeg1());
+            }
+            if(availabilities.get(i).getNumberAvailableSeatsLeg2()!=null){
+                if(Integer.parseInt(availabilities.get(i).getNumberAvailableSeatsLeg2())<out){
+                    out = Integer.parseInt(availabilities.get(i).getNumberAvailableSeatsLeg2());
+                }
+            }
+        }
+        return  out;
+    }
 
     public int getNumberStopOvers(){
         int out = -1;
