@@ -2,12 +2,15 @@ package group3.seng3150;
 
 import group3.seng3150.entities.UserAccount;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import javax.persistence.EntityManager;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.sql.Date;
 import java.util.List;
 
@@ -21,17 +24,24 @@ public class AccountController {
 
     //get method AccountDetails
     @GetMapping("/accountDetails") //Ask about the jsp this comes from and why it is a POST form that maps to the Get mapping
-    public ModelAndView displayAccountDetails(@RequestParam("userID") String userEmail) {
-        String emailSearch = "'" + userEmail + "'";
+    public ModelAndView displayAccountDetails(HttpSession session) {
+        //@RequestParam("userID") String userID //maybe these
+        //<!--<%=request.setAttribute("userID", session.getAttribute("userID"))%>-->
+    /*
+        String IDSearch = "'" + session.getAttribute("userID") + "'";
         String standard = "default";
         String userTypeWords = "Personal";
-        UserAccount user = (UserAccount) em.createQuery("SELECT u FROM UserAccount u WHERE u.email=" + emailSearch).getSingleResult();
+        UserAccount user = (UserAccount) em.createQuery("SELECT u FROM UserAccount u WHERE u.UserID=" + IDSearch).getSingleResult();
         if(user.getUserType()==2) {
             userTypeWords = "Family";
         } else if(user.getUserType()==1){
             userTypeWords = "Business";
         }
+    */
+
         ModelAndView view = new ModelAndView("accountDetails");
+        /*
+        //view.addObject("userID", user.getUserID());
         view.addObject("firstName", user.getFirstName());
         view.addObject("lastName", user.getLastName());
         view.addObject("email", user.getEmail());
@@ -46,6 +56,8 @@ public class AccountController {
         //view.addObject("emergencyContact", user.getEmergencyContact()); Emergency Contact has yet to be added to the DB, when it is, this will handle it.
         //view.addObject("familyMembers", user.getFamilyMembers()); Family Members has yet to be added to the DB, when it is, this will handle it.
         view.addObject("phone", user.getPhone());
+        */
+
         return view;
     }
 
@@ -92,11 +104,12 @@ public class AccountController {
                                            //@RequestParam(name="familyMembers") String familyMembers, //Family members not currently in the DB, for when it is
                                            //@RequestParam(name="emergencyContacts") String emergencyContacts, //Emergency Contacts members not currently in the DB, for when it is
                                            //@RequestParam(name="address") String address, //address not currently in the DB, for when it is
-                                           @RequestParam(name="userType") String userType) {
+                                           @RequestParam(name="userType") String userType,
+                                           HttpSession session) {
         String emailSearch = "'" + userEmail + "'";
         String standard = "default";
         //Retrieve the user's information
-        UserAccount user = (UserAccount) em.createQuery("SELECT u FROM UserAccount u WHERE u.email=" + emailSearch).getSingleResult();
+        UserAccount user = (UserAccount) em.createQuery("SELECT u FROM UserAccount u WHERE u.UserID=" + emailSearch).getSingleResult();
 
         int userTypeNum = 0;
         if(userType.equals("Personal")) {
@@ -151,6 +164,25 @@ public class AccountController {
         //view.addObject("emergencyContact", user.getEmergencyContact()); Emergency Contact has yet to be added to the DB, when it is, this will handle it.
         //view.addObject("familyMembers", user.getFamilyMembers()); Family Members has yet to be added to the DB, when it is, this will handle it.
         view.addObject("phone", user.getPhone());
+
+
+        //*************************************************************************
+        session.setAttribute("firstName", user.getFirstName());
+        session.setAttribute("lastName", user.getLastName());
+        session.setAttribute("email", user.getEmail());
+        session.setAttribute("userType", user.getUserType());
+        session.setAttribute("dateOfBirth", user.getDateOfBirth());
+        session.setAttribute("citizenship", user.getCitizenship());
+        session.setAttribute("gender", user.getGender());
+        session.setAttribute("address", standard);
+        session.setAttribute("emergencyContact", standard);
+        session.setAttribute("familyMembers", standard);
+        //session.setAttribute("address", user.getAddress()); Address has yet to be added to the DB, when it is, this will handle it.
+        //session.setAttribute("emergencyContact", user.getEmergencyContact()); Emergency Contact has yet to be added to the DB, when it is, this will handle it.
+        //session.setAttribute("familyMembers", user.getFamilyMembers()); Family Members has yet to be added to the DB, when it is, this will handle it.
+        session.setAttribute("phone", user.getPhone());
+        //*************************************************************************
+
         return view;
     }
 
