@@ -3,6 +3,7 @@ package group3.seng3150;
 import group3.seng3150.entities.Availability;
 import group3.seng3150.entities.Flight;
 
+import javax.persistence.EntityManager;
 import java.sql.Timestamp;
 import java.util.LinkedList;
 import java.util.List;
@@ -10,8 +11,10 @@ import java.util.List;
 public class FlightPlan {
     private List<Flight> flights;
     private List<Availability> availabilities;
+    private EntityManager em;
 
-    public FlightPlan(){
+    public FlightPlan(EntityManager em){
+        this.em = em;
         flights = new LinkedList<>();
     }
 

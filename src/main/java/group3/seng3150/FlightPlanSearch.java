@@ -3,6 +3,7 @@ package group3.seng3150;
 import group3.seng3150.entities.Availability;
 import group3.seng3150.entities.Flight;
 
+import javax.persistence.EntityManager;
 import java.sql.Timestamp;
 import java.util.*;
 //search options duration, price
@@ -16,17 +17,17 @@ public class FlightPlanSearch {
         setAirports();
     }
 
-    public List<FlightPlan> createFlightPlans(List<Flight> flights, String departureLocation, String destination, boolean stopOverNeeded, String startingTimeString, List<Availability> parsedAvailabilities){
+    public List<FlightPlan> createFlightPlans(List<Flight> flights, String departureLocation, String destination, boolean stopOverNeeded, String startingTimeString, List<Availability> parsedAvailabilities, EntityManager em){
         Timestamp startingTime = Timestamp.valueOf(startingTimeString);
         List<FlightPlan> flightPlans = new LinkedList<>();
         List<Flight> filteredFlights = filterByAvailabilities(flights, parsedAvailabilities);
         System.out.println("parsed in flights: " + flights.size() + " stop over needed: " + stopOverNeeded);
         if(stopOverNeeded && filteredFlights.size()>0){
-            flightPlans.add(getShortestPathDuration(filteredFlights, departureLocation, destination, startingTime));
+            flightPlans.add(getShortestPathDuration(filteredFlights, departureLocation, destination, startingTime, em));
         }
         else{
             for(int i=0; i<filteredFlights.size(); i++){
-                flightPlans.add(new FlightPlan());
+                flightPlans.add(new FlightPlan(em));
                 flightPlans.get(i).add(filteredFlights.get(i));
             }
         }
@@ -52,8 +53,8 @@ public class FlightPlanSearch {
         return filteredFlights;
     }
 
-    private FlightPlan getShortestPathDuration(List<Flight> flights, String departureLocation, String arrivalLocation, Timestamp startingTime){
-        FlightPlan flightPlan = new FlightPlan();
+    private FlightPlan getShortestPathDuration(List<Flight> flights, String departureLocation, String arrivalLocation, Timestamp startingTime, EntityManager em){
+        FlightPlan flightPlan = new FlightPlan(em);
         ArrayList<DijkstraNode> airportFlightNodes = new ArrayList<>();
         for(int i=0; i<airports.size(); i++){
             airportFlightNodes.add(new DijkstraNode(airports.get(i)));
