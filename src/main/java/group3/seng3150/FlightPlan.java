@@ -23,9 +23,9 @@ public class FlightPlan {
 
     public String getAirlines(){
         String airlines = "";
-        /*for (Flight flight : flights) {
-            airlines += flight.getAirline();
-        }*/
+        for (Flight flight : flights) {
+            airlines += flight.getAirlineCode();
+        }
         return airlines;
     }
 
