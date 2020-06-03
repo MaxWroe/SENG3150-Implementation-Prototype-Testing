@@ -12,10 +12,12 @@ public class FlightPlan {
     private List<Flight> flights;
     private List<Availability> availabilities;
     private EntityManager em;
+    private PriceFinder priceFinder;
 
     public FlightPlan(EntityManager em){
         this.em = em;
         flights = new LinkedList<>();
+        priceFinder = new PriceFinder(em);
     }
 
     public Timestamp getDepartureDate(){
@@ -35,6 +37,7 @@ public class FlightPlan {
     }
 
     public int getPrice(){
+
         int out = 0;
         int tempInt = availabilities.size();
         for(int i=0; i<flights.size(); i++){
@@ -43,7 +46,7 @@ public class FlightPlan {
                     tempInt = j;
                 }
             }
-//            out += availabilities.get(tempInt).getPrice();
+            out += priceFinder.getPrice(0,availabilities.get(tempInt));
             tempInt = availabilities.size();
         }
         return  out;
