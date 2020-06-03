@@ -57,6 +57,15 @@ public class UserAccount {
     @Basic(optional = false)
     private String password;
 
+    @Column(name = "FamilyMembers")
+    private String familyMembers;
+
+    @Column(name = "EmergencyContact")
+    private String emergencyContact;
+
+    @Column(name = "Address")
+    private String address;
+
     //Constructors
     public UserAccount() {
     }
@@ -145,6 +154,30 @@ public class UserAccount {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getFamilyMembers() {
+        return familyMembers;
+    }
+
+    public void setFamilyMembers(String familyMembers) {
+        this.familyMembers = familyMembers;
+    }
+
+    public String getEmergencyContact() {
+        return emergencyContact;
+    }
+
+    public void setEmergencyContact(String emergencyContact) {
+        this.emergencyContact = emergencyContact;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     //Override Methods

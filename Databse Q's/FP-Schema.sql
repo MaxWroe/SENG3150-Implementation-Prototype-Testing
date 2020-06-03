@@ -138,6 +138,9 @@ CREATE TABLE `UserAccount`  (
                                 `DateOfBirth` date NOT NULL,
                                 `UserType` int(2) NOT NULL,
                                 `Password` varchar(14) NOT NULL,
+                                `FamilyMembers` varchar(120),
+                                `EmergencyContact` varchar(60),
+                                `Address` varchar(120),
                                 PRIMARY KEY (`UserID`),
                                 UNIQUE(`Email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -155,9 +158,7 @@ CREATE TABLE `Booking` (
                            `DateOfBirth` date NOT NULL,
                            `BookingDate` date NOT NULL,
                            `GroupSize` int NOT NULL,
-                           `FamilyMembers` varchar(120),
-                           `EmergencyContact` varchar(60),
-                           `Address` varchar(120),
+
 
                            `AirlineCode` char(2) NOT NULL,
                            `FlightNumber` varchar(6) NOT NULL,
@@ -191,9 +192,6 @@ CREATE TABLE `Booking` (
                            FOREIGN KEY (`AirlineCode4`,`FlightNumber4`,`DepartureTime4`,`ClassCode4`,`TicketCode4`) REFERENCES `Availability` (`AirlineCode`,`FlightNumber`,`DepartureTime`,`ClassCode`,`TicketCode`)
 
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-
-
 
 
 
