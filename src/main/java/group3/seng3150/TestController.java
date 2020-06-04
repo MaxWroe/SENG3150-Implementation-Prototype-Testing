@@ -12,11 +12,11 @@ public class TestController {
         return view;
     }
 
-    @GetMapping("/search")
-    public ModelAndView displaySearch() {
-       ModelAndView view = new ModelAndView("home");
-        return view;
-    }
+//    @GetMapping("/search")
+//    public ModelAndView displaySearch() {
+//       ModelAndView view = new ModelAndView("home");
+//        return view;
+//    }
 
     @GetMapping("/recommendations")
     public ModelAndView displayRecomendations() {
