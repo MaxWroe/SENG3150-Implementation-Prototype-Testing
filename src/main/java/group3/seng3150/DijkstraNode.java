@@ -23,6 +23,7 @@ public class DijkstraNode {
 //        adjacentNodes.put(destination,distance);
         if(!adjacentNodesFlights.containsKey(destination)){
             ArrayList<Flight> tempList = new ArrayList<>();
+            tempList.add(flight);
             adjacentNodesFlights.put(destination, tempList);
         }
         else {
@@ -32,50 +33,38 @@ public class DijkstraNode {
         }
     }
 
-    public void setShortestDurations(){
+    public void setShortestDurations(Timestamp startingTime){
 //        if(shortestPathFlights.size()>0) {
 //            Flight previousFlight = shortestPathFlights.get(shortestPathFlights.size() - 1);
 //        }
         if(shortestPathFlights.size()>0){
             for (Map.Entry<DijkstraNode, List<Flight>> adjacencyPair : adjacentNodesFlights.entrySet()) {
-                shortestDuration(adjacencyPair.getKey(), shortestPathFlights.getLast());
+                shortestDuration(adjacencyPair.getKey(), shortestPathFlights.getLast(), startingTime);
             }
         }
         else{
             for (Map.Entry<DijkstraNode, List<Flight>> adjacencyPair : adjacentNodesFlights.entrySet()) {
-                shortestDuration(adjacencyPair.getKey(), null);
+                shortestDuration(adjacencyPair.getKey(), null, startingTime);
             }
         }
     }
 
-    public long shortestDuration(DijkstraNode destination, Flight previousFlight){
+    private void shortestDuration(DijkstraNode destination, Flight previousFlight, Timestamp parsedStartingTime){
         List<Flight> tempList = adjacentNodesFlights.get(destination);
         long out = Long.MAX_VALUE;
         int counter = 0;
-        if(previousFlight != null){
-        Timestamp startingTime = previousFlight.getArrivalDate();
-        long rawStartingTime = previousFlight.getArrivalDate().getTime();
-            for(int i=0; i<tempList.size(); i++){
-                if(tempList.get(i).getDepartureDate().after(startingTime)){
-                    if(tempList.get(i).getArrivalDate().getTime()<out){
-                        out = tempList.get(i).getArrivalDate().getTime();
-                        counter = i;
-                    }
-                }
-            }
+        Timestamp startingTime = parsedStartingTime;
+        if(previousFlight != null) {
+            startingTime = previousFlight.getArrivalDate();
         }
-        else{
-            for(int i=0; i<tempList.size(); i++){
+        for(int i=0; i<tempList.size(); i++){
+            if(tempList.get(i).getDepartureDate().after(startingTime)){
                 if(tempList.get(i).getArrivalDate().getTime()<out){
-                    out = tempList.get(i).getArrivalDate().getTime();
                     counter = i;
                 }
             }
         }
-
         adjacentNodesFlightShortest.put(destination, tempList.get(counter));
-        return out;
-
     }
 
     public long getShortestDurationToNode(DijkstraNode destination, Timestamp startingTime){
@@ -116,25 +105,12 @@ public class DijkstraNode {
         this.adjacentNodesFlights = adjacentNodesFlights;
     }
 
-//    public List<Flight> getShortestPathFlights() {
-//        return shortestPathFlights;
-//    }
-//
-//    public void setShortestPathFlights(List<Flight> shortestPathFlights) {
-//        this.shortestPathFlights = shortestPathFlights;
-//    }
-
-
     public LinkedList<DijkstraNode> getShortestPath() {
         return shortestPath;
     }
 
     public void setShortestPath(LinkedList<DijkstraNode> shortestPath) {
         this.shortestPath = shortestPath;
-    }
-
-    public void setDistance(long distance) {
-        this.distance = distance;
     }
 
     public List<Flight> getShortestPathFlights() {
@@ -157,7 +133,7 @@ public class DijkstraNode {
         return distance;
     }
 
-    public void setDistance(Integer distance) {
+    public void setDistance(long distance) {
         this.distance = distance;
     }
 

@@ -3,6 +3,7 @@ package group3.seng3150;
 import group3.seng3150.entities.Availability;
 import group3.seng3150.entities.Flight;
 
+import javax.persistence.EntityManager;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -53,7 +54,18 @@ public class FlightHolder {
     public void setFlightPlanPositions()
     {
         for (int i=0; i<flightPlans.size(); i++){
-            flightPlans.get(i).setPosition(i);
+            if(flightPlans.get(i)!=null) {
+                flightPlans.get(i).setPosition(i);
+            }
+        }
+    }
+
+    public void setAllPrices(EntityManager em){
+
+        for(int i=0; i<flightPlans.size(); i++){
+            if(flightPlans.get(i)!=null) {
+                flightPlans.get(i).setPrices(em);
+            }
         }
     }
 }
