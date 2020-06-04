@@ -31,6 +31,7 @@ public class FlightPlanSearch {
                 flightPlans.get(i).add(filteredFlights.get(i));
             }
         }
+
         return flightPlans;
     }
 

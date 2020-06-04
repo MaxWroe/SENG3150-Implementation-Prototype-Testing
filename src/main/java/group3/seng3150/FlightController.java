@@ -56,7 +56,7 @@ public class FlightController{
                 " AND f.departureDate>='" + departureTimeStart + "'" +
                 " AND f.departureDate<='" + departureTimeEnd + "'", Flight.class).getResultList();
 
-        if(retrievedFlights.size()>1) {
+        if(retrievedFlights.size()>0) {
             flightNumberString = "('" + retrievedFlights.get(0).getFlightNumber() + "'";
             for(int i=1; i<retrievedFlights.size(); i++){
                 flightNumberString += ", '" + retrievedFlights.get(i).getFlightNumber() + "'"; }
@@ -91,8 +91,6 @@ public class FlightController{
             departureFlights.setAllPrices(em);
         }
 
-
-
         if (type.equals("return")) {
             String returnTimeStart = returnDate + " 00:00:01";
             String returnTimeEnd = returnDate + "23:59:59";
@@ -101,7 +99,7 @@ public class FlightController{
                 " AND f.arrivalDate>='" + returnTimeStart + "'" +
                 " AND f.arrivalDate<='" + returnTimeEnd + "'", Flight.class).getResultList();
 
-            if(retrievedFlights.size()>1) {
+            if(retrievedFlights.size()>0) {
                 flightNumberString = "('" + retrievedFlights.get(0).getFlightNumber() + "'";
                 for(int i=1; i<retrievedFlights.size(); i++){
                     flightNumberString += ", '" + retrievedFlights.get(i).getFlightNumber() + "'"; }

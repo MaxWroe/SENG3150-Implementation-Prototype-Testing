@@ -54,13 +54,18 @@ public class FlightHolder {
     public void setFlightPlanPositions()
     {
         for (int i=0; i<flightPlans.size(); i++){
-            flightPlans.get(i).setPosition(i);
+            if(flightPlans.get(i)!=null) {
+                flightPlans.get(i).setPosition(i);
+            }
         }
     }
 
     public void setAllPrices(EntityManager em){
+
         for(int i=0; i<flightPlans.size(); i++){
-            flightPlans.get(i).setPrices(em);
+            if(flightPlans.get(i)!=null) {
+                flightPlans.get(i).setPrices(em);
+            }
         }
     }
 }
