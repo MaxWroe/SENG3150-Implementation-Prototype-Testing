@@ -40,8 +40,8 @@ public class BookingsController {
 
     @PostMapping("/bookingtemp")
     public ModelAndView displayBooking(HttpSession session,
-                                       @RequestParam(name="departure") int positionDeparture,
-                                       @RequestParam(name="return") int positionReturn,
+                                       @RequestParam(name="onewayFlightPlan") int positionDeparture,
+                                       @RequestParam(name="returnFlightPlan") int positionReturn,
                                        @RequestParam(name="trip") String trip,
                                        @RequestParam(name="onewayAdultsBooking") int onewayAdultsBooking,
                                        @RequestParam(name="onewayChildrenBooking") int onewayChildrenBooking,
