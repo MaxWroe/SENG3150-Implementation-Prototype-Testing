@@ -32,6 +32,11 @@ public class DBTesting {
         List<Availability> Availability =  em.createQuery("SELECT f FROM Availability f WHERE f.departureDate > '2010-11-16 21:00:00'", Availability.class).getResultList();
         List<Flight> flights = em.createQuery("SELECT f FROM Flight f WHERE f.departureDate > '2010-11-16 21:00:00'", Flight.class).getResultList();
         List<Booking> bookings = em.createQuery("SELECT b FROM Booking b", Booking.class).getResultList();
+        List<Price> pricesdemo = em.createQuery("SELECT pr FROM Price pr", Price.class).getResultList();
+        Availability av = Availability.get(0);
+
+        PriceFinder pf = new PriceFinder(em);
+        List<Price> prices = pf.getPrice(1, av);
 
         //this is an example of how to fill the database
         //start a transaction
