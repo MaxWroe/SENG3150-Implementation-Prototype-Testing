@@ -27,7 +27,7 @@ public class FlightPlan {
     }
 
     public Timestamp getArrivalDate(){
-        return flights.get(flights.size()).getArrivalDate();
+        return flights.get(flights.size()-1).getArrivalDate();
     }
 
     public String getAirlines(){
@@ -38,10 +38,18 @@ public class FlightPlan {
         return airlines;
     }
 
+    public void setAvailabilitiesFiltered(List<Availability> parsedAvailabilities){
+        for(int i=0; i<flights.size(); i++){
+            for(int j=0; j<availabilities.size();j++) {
+                if(flights.get(i).getFlightNumber().equals(parsedAvailabilities.get(j).getFlightNumber())){
+                    availabilities.add(parsedAvailabilities.get(j));
+                }
+            }
+        }
+    }
+
     public void setPrices(EntityManager em){
         PriceFinder priceFinder = new PriceFinder(em);
-
-
     }
 
     public int getPriceFromAvailability(Availability availability){
@@ -55,7 +63,10 @@ public class FlightPlan {
 
     public int getPrice(){
         int out = 0;
-        int tempInt = availabilities.size();
+        if(availabilities.size()==0){
+            return 0;
+        }
+        int tempInt = availabilities.size()-1;
         for(int i=0; i<flights.size(); i++){
             for(int j=0; j<availabilities.size();j++) {
                 if(flights.get(i).getFlightNumber().equals(availabilities.get(j).getFlightNumber()) && j<tempInt) {
@@ -63,20 +74,25 @@ public class FlightPlan {
                 }
             }
             out += getPriceFromAvailability(availabilities.get(tempInt));
-            tempInt = availabilities.size();
+            tempInt = availabilities.size()-1;
         }
         return  out;
     }
 
     public int getNumberAvailableSeats(){
-        int out = Integer.parseInt(availabilities.get(0).getNumberAvailableSeatsLeg1());
+        int out = 100;
         for(int i=0; i<flights.size();i++){
-            if(Integer.parseInt(availabilities.get(i).getNumberAvailableSeatsLeg1())<out){
-                out = Integer.parseInt(availabilities.get(i).getNumberAvailableSeatsLeg1());
-            }
-            if(availabilities.get(i).getNumberAvailableSeatsLeg2()!=null){
-                if(Integer.parseInt(availabilities.get(i).getNumberAvailableSeatsLeg2())<out){
-                    out = Integer.parseInt(availabilities.get(i).getNumberAvailableSeatsLeg2());
+            for(int j=0; j<availabilities.size(); j++) {
+                if (flights.get(i).getFlightNumber().equals(availabilities.get(j).getFlightNumber())) {
+                    if (Integer.parseInt(availabilities.get(i).getNumberAvailableSeatsLeg1()) < out) {
+                        out = Integer.parseInt(availabilities.get(i).getNumberAvailableSeatsLeg1());
+                    }
+                    if (availabilities.get(i).getNumberAvailableSeatsLeg2() != null) {
+                        if (Integer.parseInt(availabilities.get(i).getNumberAvailableSeatsLeg2()) < out) {
+                            out = Integer.parseInt(availabilities.get(i).getNumberAvailableSeatsLeg2());
+                        }
+                    }
+                    break;
                 }
             }
         }

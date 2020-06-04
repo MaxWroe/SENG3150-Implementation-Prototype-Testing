@@ -12,7 +12,6 @@ public class Price {
     @Id
     @Column(name = "AirlineCode")
     @Basic(optional = false)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String airlineCode;
 
     @Column(name = "FlightNumber")
@@ -21,7 +20,7 @@ public class Price {
 
     @Column(name = "ClassCode")
     @Basic(optional = false)
-    private Timestamp classCode;
+    private String classCode;
 
     @Column(name = "TicketCode")
     @Basic(optional = false)
@@ -29,19 +28,21 @@ public class Price {
 
     @Column(name = "StartDate")
     @Basic(optional = false)
-    private Date startDate;
+    private Timestamp startDate;
+
+    @Column(name = "EndDate")
+    @Basic(optional = false)
+    private Timestamp endDate;
 
     @Column(name = "Price")
     @Basic(optional = false)
     private int price;
 
     @Column(name = "PriceLeg1")
-    @Basic(optional = false)
-    private int priceLeg1;
+    private String priceLeg1;
 
     @Column(name = "PriceLeg2")
-    @Basic(optional = false)
-    private int priceLeg2;
+    private String priceLeg2;
 
 
 
@@ -57,19 +58,19 @@ public class Price {
         this.price = price;
     }
 
-    public int getPriceLeg1() {
+    public String getPriceLeg1() {
         return priceLeg1;
     }
 
-    public void setPriceLeg1(int priceLeg1) {
+    public void setPriceLeg1(String priceLeg1) {
         this.priceLeg1 = priceLeg1;
     }
 
-    public int getPriceLeg2() {
+    public String getPriceLeg2() {
         return priceLeg2;
     }
 
-    public void setPriceLeg2(int priceLeg2) {
+    public void setPriceLeg2(String priceLeg2) {
         this.priceLeg2 = priceLeg2;
     }
 
@@ -89,11 +90,11 @@ public class Price {
         this.flightNumber = flightNumber;
     }
 
-    public Timestamp getClassCode() {
+    public String getClassCode() {
         return classCode;
     }
 
-    public void setClassCode(Timestamp classCode) {
+    public void setClassCode(String classCode) {
         this.classCode = classCode;
     }
 
@@ -105,11 +106,19 @@ public class Price {
         this.ticketCode = ticketCode;
     }
 
-    public Date getStartDate() {
+    public Timestamp getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Timestamp endDate) {
+        this.endDate = endDate;
+    }
+
+    public Timestamp getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(Timestamp startDate) {
         this.startDate = startDate;
     }
 

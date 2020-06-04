@@ -22,7 +22,7 @@ public class PriceFinder {
         String fn = av.getFlightNumber();
         String cc = av.getClassCode();
         String tc = av.getTicketCode();
-        String sd = av.getDepartureDate().toString();
+        String dd = av.getDepartureDate().toString();
 
 
         List<Price> prices = em.createQuery(
@@ -30,7 +30,7 @@ public class PriceFinder {
                         "AND p.flightNumber = '"+fn+"' " +
                         "AND p.classCode = '"+cc+"' " +
                         "AND p.ticketCode = '"+tc+"' " +
-                        "AND p.startDate = '"+sd+"'", Price.class).getResultList();
+                        "AND p.startDate <'"+dd+"' AND p.endDate>'"+dd+"'", Price.class).getResultList();
         return prices;
 
     }

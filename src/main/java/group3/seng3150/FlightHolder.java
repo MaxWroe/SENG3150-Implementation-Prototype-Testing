@@ -18,7 +18,6 @@ public class FlightHolder {
         flightPlans = new ArrayList<>();
     }
 
-
     public List<FlightPlan> sortFlightPlans(String sortMethod){
         flightPlans = sorter.sortFlightPlan(flightPlans, sortMethod);
         return flightPlans;
@@ -61,7 +60,6 @@ public class FlightHolder {
     }
 
     public void setAllPrices(EntityManager em){
-
         for(int i=0; i<flightPlans.size(); i++){
             if(flightPlans.get(i)!=null) {
                 flightPlans.get(i).setPrices(em);
