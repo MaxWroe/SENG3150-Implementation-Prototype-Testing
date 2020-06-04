@@ -31,8 +31,16 @@ public class FlightPlanSearch {
                 flightPlans.get(i).add(filteredFlights.get(i));
             }
         }
-
+        flightPlans = SetFlightPlansAvailabilities(flightPlans, parsedAvailabilities);
         return flightPlans;
+    }
+
+    private List<FlightPlan> SetFlightPlansAvailabilities(List<FlightPlan> flightPlans, List<Availability> availabilities){
+        List<FlightPlan> flightPlanList= flightPlans;
+        for(int i=0; i<flightPlanList.size(); i++){
+            flightPlanList.get(i).setAvailabilitiesFiltered(availabilities);
+        }
+        return flightPlanList;
     }
 
     private List<Flight> filterByAvailabilities(List<Flight> flights, List<Availability> availabilities){

@@ -71,9 +71,9 @@ public class FlightController{
             departureFlights.setAllPrices(em);
         }
         else{
-            Timestamp departureTimeEndStamp = Timestamp.valueOf(departureTimeEnd);
-            departureTimeEndStamp.setTime(departureTimeEndStamp.getTime() + 172800000);
-            departureTimeEnd = departureTimeEndStamp.toString();
+//            Timestamp departureTimeEndStamp = Timestamp.valueOf(departureTimeEnd);
+//            departureTimeEndStamp.setTime(departureTimeEndStamp.getTime() + 172800000);
+//            departureTimeEnd = departureTimeEndStamp.toString();
             retrievedFlights = em.createQuery( "SELECT f From Flight f WHERE f.departureDate>='" + departureTimeStart + "'" +
                 " AND f.departureDate<='" + departureTimeEnd + "'", Flight.class).getResultList();
             if(retrievedFlights.size()>0) {
@@ -114,9 +114,9 @@ public class FlightController{
                 returnFlights.setAllPrices(em);
             }
             else{
-                Timestamp returnTimeStartStamp = Timestamp.valueOf(returnTimeStart);
-                returnTimeStartStamp.setTime(returnTimeStartStamp.getTime() - 172800000);
-                returnTimeStart = returnTimeStartStamp.toString();
+//                Timestamp returnTimeStartStamp = Timestamp.valueOf(returnTimeStart);
+//                returnTimeStartStamp.setTime(returnTimeStartStamp.getTime() - 172800000);
+//                returnTimeStart = returnTimeStartStamp.toString();
                 retrievedFlights = em.createQuery( "SELECT f From Flight f WHERE f.arrivalDate>='" + returnTimeStart + "'" +
                     " AND f.arrivalDate<='" + returnTimeEnd + "'", Flight.class).getResultList();
                 if(retrievedFlights.size()>0) {
