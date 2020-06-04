@@ -82,9 +82,9 @@ public class AccountController {
         user.setDateOfBirth(dateOfBirth);
         user.setEmail(email);
         user.setPhone(phoneNumber);
-        //user.setFamilyMembers(familyMembers); Family members not currently in the DB, for when it is
-        //user.setFamilyMembers(emergencyContacts); Emergency Contacts members not currently in the DB, for when it is
-        //user.setAddress(address); address not currently in the DB, for when it is
+        user.setFamilyMembers(familyMembers);
+        user.setFamilyMembers(emergencyContacts);
+        user.setAddress(address);
         em.persist(user);
         em.getTransaction().commit();
 
@@ -100,9 +100,9 @@ public class AccountController {
         view.addObject("address", standard);
         view.addObject("emergencyContact", standard);
         view.addObject("familyMembers", standard);
-        //view.addObject("address", user.getAddress()); Address has yet to be added to the DB, when it is, this will handle it.
-        //view.addObject("emergencyContact", user.getEmergencyContact()); Emergency Contact has yet to be added to the DB, when it is, this will handle it.
-        //view.addObject("familyMembers", user.getFamilyMembers()); Family Members has yet to be added to the DB, when it is, this will handle it.
+        view.addObject("address", user.getAddress());
+        view.addObject("emergencyContact", user.getEmergencyContact());
+        view.addObject("familyMembers", user.getFamilyMembers());
         view.addObject("phone", user.getPhone());
 
 
@@ -118,10 +118,10 @@ public class AccountController {
         session.setAttribute("address", standard);
         session.setAttribute("emergencyContact", standard);
         session.setAttribute("familyMembers", standard);
-        session.setAttribute("address", address);
-        session.setAttribute("emergencyContact", emergencyContacts);
-        session.setAttribute("familyMembers", familyMembers);
-        session.setAttribute("phone", user.getPhone());
+        session.setAttribute("address", user.getAddress());
+        session.setAttribute("emergencyContact", user.getAddress());
+        session.setAttribute("familyMembers", user.getAddress());
+        //session.setAttribute("phone", user.getPhone()());
         //*************************************************************************
 
         return view;

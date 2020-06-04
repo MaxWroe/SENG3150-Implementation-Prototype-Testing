@@ -41,7 +41,6 @@
         //sets user session
         session.setAttribute("userId", userID1);
         session.setAttribute("email", email);
-
         session.setAttribute("firstName", firstName);
         session.setAttribute("lastName", lastName);
         session.setAttribute("userType", userType);

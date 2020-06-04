@@ -228,7 +228,7 @@
                 <!-- Check if any departure flights returned -->
                 <c:if test="${empty departureFlights.flightPlans}">
                     <div class="flight-result-return-departure">
-                        <h4>No depature flights can be found that match the criteria!</h4>
+                        <h4>No departure flights can be found that match the criteria!</h4>
                     </div>
                 </c:if>
 
