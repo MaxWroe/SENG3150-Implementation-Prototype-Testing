@@ -3,6 +3,7 @@ package group3.seng3150.entities;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.sql.Timestamp;
 
 @Entity
 @Table(name="Booking")
@@ -58,7 +59,7 @@ public class Booking {
     private String flightNumber;
     @Column(name = "DepartureTime")
     @Basic(optional = false)
-    private Date departureTime;
+    private Timestamp departureTime;
     @Column(name = "ClassCode")
     @Basic(optional = false)
     private String classCode;
@@ -72,7 +73,7 @@ public class Booking {
     @Column(name = "FlightNumber2")
     private String flightNumber2;
     @Column(name = "DepartureTime2")
-    private Date departureTime2;
+    private Timestamp departureTime2;
     @Column(name = "ClassCode2")
     private String classCode2;
     @Column(name = "TicketCode2")
@@ -84,7 +85,7 @@ public class Booking {
     @Column(name = "FlightNumber3")
     private String flightNumber3;
     @Column(name = "DepartureTime3")
-    private Date departureTime3;
+    private Timestamp departureTime3;
     @Column(name = "ClassCode3")
     private String classCode3;
     @Column(name = "TicketCode3")
@@ -96,7 +97,7 @@ public class Booking {
     @Column(name = "FlightNumber4")
     private String flightNumber4;
     @Column(name = "DepartureTime4")
-    private Date departureTime4;
+    private Timestamp departureTime4;
     @Column(name = "ClassCode4")
     private String classCode4;
     @Column(name = "TicketCode4")
@@ -196,11 +197,11 @@ public class Booking {
         this.flightNumber = flightNumber;
     }
 
-    public Date getDepartureTime() {
+    public Timestamp getDepartureTime() {
         return departureTime;
     }
 
-    public void setDepartureTime(Date departureTime) {
+    public void setDepartureTime(Timestamp departureTime) {
         this.departureTime = departureTime;
     }
 
@@ -236,11 +237,11 @@ public class Booking {
         this.flightNumber2 = flightNumber2;
     }
 
-    public Date getDepartureTime2() {
+    public Timestamp getDepartureTime2() {
         return departureTime2;
     }
 
-    public void setDepartureTime2(Date departureTime2) {
+    public void setDepartureTime2(Timestamp departureTime2) {
         this.departureTime2 = departureTime2;
     }
 
@@ -276,11 +277,11 @@ public class Booking {
         this.flightNumber3 = flightNumber3;
     }
 
-    public Date getDepartureTime3() {
+    public Timestamp getDepartureTime3() {
         return departureTime3;
     }
 
-    public void setDepartureTime3(Date departureTime3) {
+    public void setDepartureTime3(Timestamp departureTime3) {
         this.departureTime3 = departureTime3;
     }
 
@@ -316,11 +317,11 @@ public class Booking {
         this.flightNumber4 = flightNumber4;
     }
 
-    public Date getDepartureTime4() {
+    public Timestamp getDepartureTime4() {
         return departureTime4;
     }
 
-    public void setDepartureTime4(Date departureTime4) {
+    public void setDepartureTime4(Timestamp departureTime4) {
         this.departureTime4 = departureTime4;
     }
 
