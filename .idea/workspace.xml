@@ -27,10 +27,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2fa4c939-f298-44e8-ba1d-7353dd1d77f5" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/group3/seng3150/FlightController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/group3/seng3150/FlightController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/group3/seng3150/FlightHolder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/group3/seng3150/FlightHolder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/group3/seng3150/FlightPlanSearch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/group3/seng3150/FlightPlanSearch.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/group3/seng3150/FlightPlan.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/group3/seng3150/FlightPlan.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -244,7 +243,7 @@
               <path>
                 <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
                 <item name="Tomcat Server" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="Running" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+                <item name="Finished" type="7427dc5b:ServiceModel$ServiceGroupNode" />
               </path>
             </expand>
             <select />
@@ -559,13 +558,13 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="580" y="235" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1591230427896" />
-    <state x="777" y="386" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog" timestamp="1591221765975">
+    <state x="777" y="386" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog" timestamp="1591238237221">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="609" y="372" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/0.0.1504.1003@0.0.1504.1003" timestamp="1591062346473" />
     <state x="648" y="319" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/0.0.1600.860/-1360.114.1360.728@0.0.1600.860" timestamp="1590746652391" />
     <state x="648" y="319" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/0.0.1600.860@0.0.1600.860" timestamp="1591180872429" />
-    <state x="777" y="386" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1591221765975" />
+    <state x="777" y="386" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1591238237221" />
     <state x="778" y="386" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/1920.-77.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1590922051421" />
     <state x="340" y="138" key="#com.intellij.openapi.projectRoots.ui.ProjectJdksEditor" timestamp="1590381691329">
       <screen x="0" y="0" width="1504" height="1003" />
@@ -753,10 +752,10 @@
     </state>
     <state x="279" y="145" key="SettingsEditor/0.0.1600.860/-1360.114.1360.728@0.0.1600.860" timestamp="1590126055728" />
     <state x="335" y="175" key="SettingsEditor/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1591223445641" />
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1591227674861">
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1591238224600">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1591227674861" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1591238224600" />
     <state x="552" y="253" key="Vcs.Push.Dialog.v2/1920.-77.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1591067394468" />
     <state x="2362" y="125" key="Vcs.Push.Dialog.v2/1920.-77.1536.832/0.0.1920.1040@1920.-77.1536.832" timestamp="1590922098399" />
     <state x="484" y="244" key="com.intellij.ide.util.TipDialog" timestamp="1591151078810">

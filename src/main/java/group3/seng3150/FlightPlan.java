@@ -63,7 +63,7 @@ public class FlightPlan {
 
     public int getPrice(){
         int out = 0;
-        int tempInt = availabilities.size();
+        int tempInt = availabilities.size()-1;
         for(int i=0; i<flights.size(); i++){
             for(int j=0; j<availabilities.size();j++) {
                 if(flights.get(i).getFlightNumber().equals(availabilities.get(j).getFlightNumber()) && j<tempInt) {
@@ -71,7 +71,7 @@ public class FlightPlan {
                 }
             }
             out += getPriceFromAvailability(availabilities.get(tempInt));
-            tempInt = availabilities.size();
+            tempInt = availabilities.size()-1;
         }
         return  out;
     }
