@@ -13,11 +13,11 @@
 <head>
     <title>Search Page</title>
 
-    <link rel="stylesheet" type="text/css" href="/css/main.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css">
 
-    <script src="/js/searchFormAssistor.js"></script>
-    <script src="/js/flightSelectAssistor.js"></script>
-    <script src="/js/dynamicLink.js"></script>
+    <script src="${pageContext.request.contextPath}/js/searchFormAssistor.js"></script>
+    <script src="${pageContext.request.contextPath}/js/flightSelectAssistor.js"></script>
+    <script src="${pageContext.request.contextPath}/js/dynamicLink.js"></script>
 </head>
 <body>
 <!-- session handler -->
@@ -32,7 +32,7 @@
     <div id="search-criteria">
         <h4 style="margin: auto;">Search Criteria</h4>
         <!-- Flight search fields -->
-        <form name="searchFlight" method="get" id="searchFlight" action="/search" onsubmit="return validateForm()">
+        <form name="searchFlight" method="get" id="searchFlight" action="${pageContext.request.contextPath}/search" onsubmit="return validateForm()">
             <!-- Starting airport -->
             <div class="search-form-group">
                 <input list="destinations" name="departureLocation" id="departureLocation" value="${param.departureLocation}" required>
@@ -189,7 +189,7 @@
                     <h3>$${flightPlan.price}</h3>
                 </div>
                 <div class="flight-result-book">
-                    <form action="/bookingtemp" method="post">
+                    <form action="${pageContext.request.contextPath}/flightBooking" method="post">
                         <input type="hidden" id="onewayBooking" name="trip" value="oneway">
                         <input type="hidden" id="onewayAdultsBooking" value="${param.adults}">
                         <input type="hidden" id="onewayChildrenBooking" value="${param.children}">
@@ -215,7 +215,7 @@
         <c:set var = "departureFlights" scope = "session" value = "${departureFlights}"/>
         <c:set var = "returnFlights" scope = "session" value = "${returnFlights}"/>
 
-        <form name="bookFlight" method="post" id="bookFlight" action="/bookingtemp" onsubmit="return validateFlightSelection()">
+        <form method="post" action="${pageContext.request.contextPath}/flightBooking" onsubmit="return validateFlightSelection()">
             <!--<input type="hidden" id="pageDirect" name="pageDirect" value="return">-->
 
             <input type="hidden" id="returnBooking" name="trip" value="return">
@@ -232,7 +232,7 @@
                     </div>
                 </c:if>
 
-                <!-- For each depature flight returned display -->
+                <!-- For each departure flight returned display -->
                 <div id="flight-departure-results">
                     <c:forEach items="${departureFlights.flightPlans}" var="flightPlan">
                         <div class="flight-result-return-windows">
