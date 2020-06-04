@@ -13,7 +13,7 @@
     <link rel="stylesheet" type="text/css" href="/css/main.css">
     <script src="/js/formValidations.js"></script>
 </head>
-
+<body>
 <!-- session handler -->
 <jsp:include page="sessionHandlerRegister.jsp"/>
 

@@ -15,6 +15,7 @@
 
     <script src="/js/dynamicLink.js"></script>
 </head>
+<body>
 
 <!-- session checker -->
 <jsp:include page="sessionHandlerUser.jsp"/>
@@ -31,7 +32,7 @@
 
         <!-- parse all booked flights -->
         <div class="my-bookings">
-            <c:forEach items="${something}">
+            <c:forEach items="${booking}">
                 <p>Booking number:<c:out value= "${bookingNumber}"></c:out></p> <br>
                 <p>Airline:<c:out value= " ${airline}"></c:out></p> <br>
                 <p>Flight Details:<c:out value= " ${flightDetails}"></c:out></p> <br>

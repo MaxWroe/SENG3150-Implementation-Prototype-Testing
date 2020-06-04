@@ -15,7 +15,7 @@
 
     <script src="/js/dynamicLink.js"></script>
 </head>
-
+<body>
 <!-- session handler -->
 <jsp:include page="sessionHandlerLogin.jsp"/>
 

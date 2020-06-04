@@ -15,6 +15,7 @@
 
     <script src="/js/dynamicLink.js"></script>
 </head>
+<body>
 
 <!-- session handler -->
 <jsp:include page="sessionHandlerUser.jsp"/>
@@ -27,7 +28,7 @@
         <h1>Customer Support</h1>
         <h4>My Enquiries</h4>
 
-        <div class="enquiries">
+        <div class="enquiries-container">
             <!-- user's enquiries-->
             <div class="my-enquiries">
                 <c:forEach items="${enquiries}">
@@ -49,6 +50,29 @@
                     <h4>Booking Number: </h4> <p> 1</p> <br>
                     <h4>Submission Date: </h4>  <p>22/05/2020</p> <br>
                     <h4>Agent Answer: </h4> <p>No clue</p> <br>
+
+                <div class="update-enquiry">
+                    <form method="post" action="/updateEnquiry">
+                        <button type="submit">Update</button>
+                    </form>
+                </div>
+
+            </div>
+
+            <div class="my-enquiries">
+                <h4>Ticket title: </h4> <p>Help!</p> <br>
+                <h4>Ticket enquiry: </h4> <p>Cannot cancel a booking</p> <br>
+                <h4>Email address: </h4> <p> Test@test.test</p> <br>
+                <h4>Booking Number: </h4> <p> 1</p> <br>
+                <h4>Submission Date: </h4>  <p>22/05/2020</p> <br>
+                <h4>Agent Answer: </h4> <p>No clue</p> <br>
+
+                <div class="update-enquiry">
+                    <form method="post" action="/updateEnquiry">
+                        <button type="submit">Update</button>
+                    </form>
+                </div>
+
             </div>
 
             <!-- submit an enquiry -->
@@ -74,7 +98,7 @@
 
                 <!-- userID -->
                 <input type ="hidden" id="userID" name="userID" value="<%=session.getAttribute("userId")%>"/>
-                <input type="submit" value="Submit Enquiry"/>
+                    <input type="submit" value="Submit Enquiry"/>
 
             </form>
 

@@ -36,6 +36,7 @@
                             <a href="/accountDetails">Account Details</a>
                             <a href="/manageBooking">Manage Booking</a>
                             <a href="/customerSupport">Customer Support</a>
+                            <a href="/submitReview">Submit Review</a>
                     </div>
                </div>
            </li>

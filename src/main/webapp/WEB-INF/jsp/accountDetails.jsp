@@ -16,7 +16,7 @@
 
     <script src="/js/dynamicLink.js"></script>
 </head>
-
+<body>
 <!-- session handler -->
 <jsp:include page="sessionHandlerUser.jsp"/>
 
@@ -31,17 +31,17 @@
         <!-- user's details -->
         <div class ="my-account">
             <div class="user-details">
-                <p>First Name: <%= session.getAttribute("firstName")%></p> <br>
-                <p>Last Name: <%= session.getAttribute("lastName")%></p><br>
-                <p>Email: <%= session.getAttribute("email")%></p><br>
-                <p>User type: <%= session.getAttribute("userType")%></p> <br>
-                <p>Date of Birth: <%= session.getAttribute("dateOfBirth")%></p><br>
-                <p>Gender: <%= session.getAttribute("gender")%></p><br>
-                <p>Citizenship: <%= session.getAttribute("citizenship")%></p><br>
-                <p>Phone Number: <%= session.getAttribute("phone")%></p><br>
-                <p>Family Members: <%= session.getAttribute("familyMembers")%></p><br>
-                <p>Emergency Contacts: <%= session.getAttribute("emergencyContacts")%></p><br>
-                <p>Address: <%= session.getAttribute("address")%></p><br>
+                <h4>First Name: </h4> <p><%= session.getAttribute("firstName")%> </p><br>
+                <h4>Last Name:  </h4>  <p><%= session.getAttribute("lastName")%></p><br>
+                <h4>Email: </h4>  <p> <%= session.getAttribute("email")%> </p><br>
+                <h4>User type: </h4>  <p><%= session.getAttribute("userType")%> </p><br>
+                <h4>Date of Birth: </h4>  <p><%= session.getAttribute("dateOfBirth")%></p><br>
+                <h4>Gender: </h4>  <p> <%= session.getAttribute("gender")%></p><br>
+                <h4>Citizenship: </h4>  <p> <%= session.getAttribute("citizenship")%></p><br>
+                <h4>Phone Number: </h4> <p><%= session.getAttribute("phone")%></p><br>
+                <h4>Family Members: </h4> <p><%= session.getAttribute("familyMembers")%></p><br>
+                <h4>Emergency Contacts:</h4> <p><%= session.getAttribute("emergencyContacts")%></p><br>
+                <h4>Address: </h4> <p><%= session.getAttribute("address")%></p><br>
             </div>
 
           <button id="editAccount" type="submit" onclick="displayForm('accountForm')"> Edit Account </button>

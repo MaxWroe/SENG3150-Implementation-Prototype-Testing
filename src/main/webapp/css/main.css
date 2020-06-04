@@ -417,13 +417,38 @@ input:hover
     content: "✖";
 }
 
-.my-enquiries, .my-bookings, .user-details{
+.user-details{
     display: block;
     background: #fff;
     padding: 10px;
     border-radius: 25px;
 }
 
-.my-enquiries h4, .my-bookings h4{
+.my-enquiries, .my-bookings{
+    background: #fff;
+    padding: 10px;
+    display: block;
+}
+
+.my-enquiries h4, .my-bookings h4, .user-details h4{
     display: inline;
 }
+
+.update-enquiry{
+    grid-column: 4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.slider{
+    appearance: none;
+}
+
+.slider:hover{
+    opacity:1;
+}
+
+
+

@@ -76,4 +76,10 @@ public class TestController {
         ModelAndView view = new ModelAndView("logout");
         return view;
     }
+
+    @GetMapping("/submitReview")
+    public ModelAndView displaySubmitReview() {
+        ModelAndView view = new ModelAndView("submitReview");
+        return view;
+    }
 }
