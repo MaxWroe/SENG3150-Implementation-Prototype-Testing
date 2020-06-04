@@ -33,7 +33,7 @@ public class BookingsController {
     }
 
     //get method manage bookings
-    @GetMapping("/manageBooking/cancel")
+    @PostMapping("/manageBooking/cancel")
     public ModelAndView manageBookingCancelling(HttpSession session,
                                                 @RequestParam("userID") String userID,
                                                 @RequestParam("bookingNumber") int bookingNumber) {

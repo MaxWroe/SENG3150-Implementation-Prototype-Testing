@@ -25,11 +25,8 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2fa4c939-f298-44e8-ba1d-7353dd1d77f5" name="Default Changelist" comment="BookingsController bookingtemp should be finished, however could not properly test since search was broken.&#10;&#10;Added comment to flightBooking.jsp with question on how to handle something.">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="2fa4c939-f298-44e8-ba1d-7353dd1d77f5" name="Default Changelist" comment="ManageBooking and manageBooking/cancel have been handled in the controller, need jsp to be updated to reflect it properly.">
       <change beforePath="$PROJECT_DIR$/src/main/java/group3/seng3150/BookingsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/group3/seng3150/BookingsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/flightBooking.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/flightBooking.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/manageBooking.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/manageBooking.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -454,7 +451,14 @@
       <option name="project" value="LOCAL" />
       <updated>1591287213971</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="ManageBooking and manageBooking/cancel have been handled in the controller, need jsp to be updated to reflect it properly.">
+      <created>1591290799687</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1591290799687</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -520,7 +524,8 @@
     <MESSAGE value="fix to price" />
     <MESSAGE value="fix to search" />
     <MESSAGE value="BookingsController bookingtemp should be finished, however could not properly test since search was broken.&#10;&#10;Added comment to flightBooking.jsp with question on how to handle something." />
-    <option name="LAST_COMMIT_MESSAGE" value="BookingsController bookingtemp should be finished, however could not properly test since search was broken.&#10;&#10;Added comment to flightBooking.jsp with question on how to handle something." />
+    <MESSAGE value="ManageBooking and manageBooking/cancel have been handled in the controller, need jsp to be updated to reflect it properly." />
+    <option name="LAST_COMMIT_MESSAGE" value="ManageBooking and manageBooking/cancel have been handled in the controller, need jsp to be updated to reflect it properly." />
   </component>
   <component name="WindowStateProjectService">
     <state x="859" y="416" key="#Assign_Data_Sources" timestamp="1591037474563">
