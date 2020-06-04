@@ -27,7 +27,7 @@ public class FlightPlan {
     }
 
     public Timestamp getArrivalDate(){
-        return flights.get(flights.size()).getArrivalDate();
+        return flights.get(flights.size()-1).getArrivalDate();
     }
 
     public String getAirlines(){
