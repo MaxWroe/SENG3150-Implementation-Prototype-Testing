@@ -25,6 +25,10 @@
     <h1>Flight Booking Details</h1>
     <div class="flight-booking">
         <div id="side-bar">
+            <!-- For this do you just want the first flight of the Flight plan to be displayed? If not you will need to add up to 4 of them to be shown-->
+            <!-- Currently have two List<booking> objects being added that has the up to four fl;ight details added for the bookings, and will be populated with the user info and -->
+            <!-- Other names and ages from this page, as well as the payment-->
+            <!-- I did add a departureFLight and returnFlight, which are the first flights of each flightPlan, but I'm not sure that's what we want.-->
             <h4>Departure Flight</h4>
             <p>Price</p>
             <h4>$${departureFlight.price}</h4>

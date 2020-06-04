@@ -121,7 +121,7 @@ public class AccountController {
         session.setAttribute("address", user.getAddress());
         session.setAttribute("emergencyContact", user.getAddress());
         session.setAttribute("familyMembers", user.getAddress());
-        //session.setAttribute("phone", user.getPhone()());
+        //session.setAttribute("phone", user.getPhone());
         //*************************************************************************
 
         return view;
