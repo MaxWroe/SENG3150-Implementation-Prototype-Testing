@@ -62,9 +62,11 @@ public class FlightController{
                 flightNumberString += ", '" + retrievedFlights.get(i).getFlightNumber() + "'"; }
             flightNumberString += ")";
             List<Availability> retrievedAvailabilities = em.createQuery("SELECT a from Availability a WHERE a.flightNumber IN " + flightNumberString +
-                    " AND a.numberAvailableSeatsLeg1>=" + numberPeople +
-                    " AND (a.numberAvailableSeatsLeg2>=" + numberPeople + " OR a.numberAvailableSeatsLeg2='null')" +
-                    " AND a.classCode='" + classCode + "'", Availability.class).getResultList();
+                " AND a.departureDate>='" + departureTimeStart + "'" +
+                " AND a.departureDate<='" + departureTimeEnd + "'" +
+                " AND a.numberAvailableSeatsLeg1>=" + numberPeople +
+                " AND (a.numberAvailableSeatsLeg2>=" + numberPeople + " OR a.numberAvailableSeatsLeg2='null')" +
+                " AND a.classCode='" + classCode + "'", Availability.class).getResultList();
             List<FlightPlan> departureFlightPlans = searcher.createFlightPlans(retrievedFlights, departureLocation, arrivalLocation, false, departureTimeStart, retrievedAvailabilities);
             departureFlights.setFlightPlans(departureFlightPlans);
             departureFlights.sortFlightPlans("departureTimeAscending");
@@ -82,6 +84,8 @@ public class FlightController{
                 flightNumberString += ", '" + retrievedFlights.get(i).getFlightNumber() + "'"; }
             flightNumberString += ")";
             List<Availability> retrievedAvailabilities = em.createQuery("SELECT a from Availability a WHERE a.flightNumber IN " + flightNumberString +
+                " AND a.departureDate>='" + departureTimeStart + "'" +
+                " AND a.departureDate<='" + departureTimeEnd + "'" +
                 " AND a.numberAvailableSeatsLeg1>=" + numberPeople +
                 " AND (a.numberAvailableSeatsLeg2>=" + numberPeople + " OR a.numberAvailableSeatsLeg2='null')" +
                 " AND a.classCode='" + classCode + "'", Availability.class).getResultList();
@@ -105,9 +109,11 @@ public class FlightController{
                     flightNumberString += ", '" + retrievedFlights.get(i).getFlightNumber() + "'"; }
                 flightNumberString += ")";
                 List<Availability> retrievedAvailabilities = em.createQuery("SELECT a from Availability a WHERE a.flightNumber IN " + flightNumberString +
-                        " AND a.numberAvailableSeatsLeg1>=" + numberPeople +
-                        " AND (a.numberAvailableSeatsLeg2>=" + numberPeople + " OR a.numberAvailableSeatsLeg2='null')" +
-                        " AND a.classCode='" + classCode + "'", Availability.class).getResultList();
+                    " AND a.departureDate>='" + departureTimeStart + "'" +
+                    " AND a.departureDate<='" + departureTimeEnd + "'" +
+                    " AND a.numberAvailableSeatsLeg1>=" + numberPeople +
+                    " AND (a.numberAvailableSeatsLeg2>=" + numberPeople + " OR a.numberAvailableSeatsLeg2='null')" +
+                    " AND a.classCode='" + classCode + "'", Availability.class).getResultList();
                 List<FlightPlan> returnFlightPlans = searcher.createFlightPlans(retrievedFlights, departureLocation, arrivalLocation, false, returnTimeStart, retrievedAvailabilities);
                 returnFlights.setFlightPlans(returnFlightPlans);
                 returnFlights.sortFlightPlans("departureTimeAscending");
@@ -125,6 +131,8 @@ public class FlightController{
                     flightNumberString += ", '" + retrievedFlights.get(i).getFlightNumber() + "'"; }
                 flightNumberString += ")";
                 List<Availability> retrievedAvailabilities = em.createQuery("SELECT a from Availability a WHERE a.flightNumber IN " + flightNumberString +
+                    " AND a.departureDate>='" + departureTimeStart + "'" +
+                    " AND a.departureDate<='" + departureTimeEnd + "'" +
                     " AND a.numberAvailableSeatsLeg1>=" + numberPeople +
                     " AND (a.numberAvailableSeatsLeg2>=" + numberPeople + " OR a.numberAvailableSeatsLeg2='null')" +
                     " AND a.classCode='" + classCode + "'", Availability.class).getResultList();
