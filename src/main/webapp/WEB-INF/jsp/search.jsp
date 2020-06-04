@@ -190,8 +190,11 @@
                 </div>
                 <div class="flight-result-book">
                     <form action="/bookingtemp" method="post">
-                        <input type="hidden" id="oneway" name="trip" value="oneway">
-                        <input type="hidden" id="onewayDeparture${flightPlan.position}" name="departure" value="${flightPlan.position}">
+                        <input type="hidden" id="onewayBooking" name="trip" value="oneway">
+                        <input type="hidden" id="onewayAdultsBooking" value="${param.adults}">
+                        <input type="hidden" id="onewayChildrenBooking" value="${param.children}">
+                        <input type="hidden" id="onewayClassBooking" value="${param.classCode}">
+                        <input type="hidden" id="onewayFlightPlan${flightPlan.position}" name="flightPlan" value="${flightPlan.position}">
                         <button type="submit">Book</button>
                     </form>
                 </div>
@@ -213,9 +216,12 @@
         <c:set var = "returnFlights" scope = "session" value = "${returnFlights}"/>
 
         <form name="bookFlight" method="post" id="bookFlight" action="/bookingtemp" onsubmit="return validateFlightSelection()">
-            <input type="hidden" id="pageDirect" name="pageDirect" value="return">
-            <input type="hidden" id="adultsBooked" name="adultsBooked" value="${param.adults}">
-            <input type="hidden" id="childrenBooked" name="childrenBooked" value="${param.children}">
+            <!--<input type="hidden" id="pageDirect" name="pageDirect" value="return">-->
+
+            <input type="hidden" id="returnBooking" name="trip" value="return">
+            <input type="hidden" id="returnAdultsBooking" value="${param.adults}">
+            <input type="hidden" id="returnChildrenBooking" value="${param.children}">
+            <input type="hidden" id="returnClassBooking" value="${param.classCode}">
             <div class="flight-result-return">
                 <!-- Parse all returned flights -->
 
@@ -247,8 +253,8 @@
                                 <h3>$${flightPlan.price}</h3>
                             </div>
                             <div class="flight-result-book">
-                                <label for="returnDeparture${flightPlan.position}">Select: </label>
-                                <input type="radio" id="returnDeparture${flightPlan.position}" name="departure" value="${flightPlan.position}" onchange="updateCost('departure', '${flightPlan.price}')">
+                                <label for="returnDepartureFlightPlan${flightPlan.position}">Select: </label>
+                                <input type="radio" id="returnDepartureFlightPlan${flightPlan.position}" name="departure" value="${flightPlan.position}" onchange="updateCost('departure', '${flightPlan.price}')">
                             </div>
                         </div>
                     </c:forEach>
@@ -282,8 +288,8 @@
                                 <h3>$${flightPlan.price}</h3>
                             </div>
                             <div class="flight-result-book">
-                                <label for="returnReturn${flightPlan.position}">Select: </label>
-                                <input type="radio" id="returnReturn${flightPlan.position}" name="return" value="${flightPlan.position}" onchange="updateCost('return', '${flightPlan.price}')"></div>
+                                <label for="returnReturnFlightPlan${flightPlan.position}">Select: </label>
+                                <input type="radio" id="returnReturnFlightPlan${flightPlan.position}" name="return" value="${flightPlan.position}" onchange="updateCost('return', '${flightPlan.price}')"></div>
                         </div>
                     </c:forEach>
                 </div>

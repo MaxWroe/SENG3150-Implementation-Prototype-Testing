@@ -40,16 +40,24 @@ public class FlightPlan {
 
     public void setAvailabilitiesFiltered(List<Availability> parsedAvailabilities){
         for(int i=0; i<flights.size(); i++){
-            for(int j=0; j<availabilities.size();j++) {
+            for(int j=0; j<parsedAvailabilities.size();j++) {
                 if(flights.get(i).getFlightNumber().equals(parsedAvailabilities.get(j).getFlightNumber())){
                     availabilities.add(parsedAvailabilities.get(j));
+                    System.out.println("adding avilability: " + j);
                 }
             }
         }
+        System.out.println(availabilities.size());
     }
 
     public void setPrices(EntityManager em){
         PriceFinder priceFinder = new PriceFinder(em);
+        for(int i=0; i<availabilities.size(); i++){
+            List<Price> tempList = priceFinder.getPrice(0,availabilities.get(i));
+            for (int j=0; j<tempList.size(); j++){
+                prices.add(tempList.get(j));
+            }
+        }
     }
 
     public int getPriceFromAvailability(Availability availability){
@@ -66,15 +74,16 @@ public class FlightPlan {
         if(availabilities.size()==0){
             return 0;
         }
-        int tempInt = availabilities.size()-1;
+        int tempInt;
         for(int i=0; i<flights.size(); i++){
+            tempInt = availabilities.size()-1;
             for(int j=0; j<availabilities.size();j++) {
                 if(flights.get(i).getFlightNumber().equals(availabilities.get(j).getFlightNumber()) && j<tempInt) {
                     tempInt = j;
                 }
             }
             out += getPriceFromAvailability(availabilities.get(tempInt));
-            tempInt = availabilities.size()-1;
+
         }
         return  out;
     }

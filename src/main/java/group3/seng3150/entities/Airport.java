@@ -10,19 +10,10 @@ public class Airport {
     @Column(name = "DestinationCode", table = "Destinations")
     @Basic(optional = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String name;
+    private String destinationCode;
 
     @Column(name = "CountryCode3", table = "Destinations")
     private String country;
-
-
-    //still to be considered
-//    private String state;
-//    private String suburb;
-//    private String address;
-//    private int postcode;
-//    private String disabilitySupport;
-//    private String languages;
 
 
     //Constructor
@@ -30,13 +21,12 @@ public class Airport {
     }
 
     //Getters and Setters
-
-    public String getName() {
-        return name;
+    public String getDestinationCode() {
+        return destinationCode;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setDestinationCode(String destinationCode) {
+        this.destinationCode = destinationCode;
     }
 
     public String getCountry() {
@@ -48,8 +38,6 @@ public class Airport {
     }
 
     //Override Methods
-
-
     @Override
     public int hashCode() {
         return super.hashCode();
@@ -63,7 +51,7 @@ public class Airport {
     @Override
     public String toString() {
         return "Airport{" +
-                "name='" + name + '\'' +
+                "destinationCode='" + destinationCode + '\'' +
                 ", country='" + country + '\'' +
                 '}';
     }
