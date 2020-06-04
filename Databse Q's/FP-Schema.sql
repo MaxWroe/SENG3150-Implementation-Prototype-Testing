@@ -193,8 +193,16 @@ CREATE TABLE `Booking` (
 
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+ALTER TABLE Booking AUTO_INCREMENT=1;
 
 
+CREATE TABLE `Enquiry`(
+                          `EnquiryID` int NOT NULL AUTO_INCREMENT,
+                          `Description` varchar(500) NOT NULL,
 
+                          PRIMARY KEY (`EnquiryID`)
+)ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+ALTER TABLE Enquiry AUTO_INCREMENT=1;
 
 
