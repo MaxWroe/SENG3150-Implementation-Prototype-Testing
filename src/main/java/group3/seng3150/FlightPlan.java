@@ -63,6 +63,9 @@ public class FlightPlan {
 
     public int getPrice(){
         int out = 0;
+        if(availabilities.size()==0){
+            return 0;
+        }
         int tempInt = availabilities.size()-1;
         for(int i=0; i<flights.size(); i++){
             for(int j=0; j<availabilities.size();j++) {
