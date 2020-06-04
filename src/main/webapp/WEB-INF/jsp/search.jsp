@@ -8,6 +8,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
 <html>
 <head>
     <title>Search Page</title>
@@ -162,14 +163,14 @@
         <!-- Parse all returned flights -->
 
         <!-- Check if any flights returned -->
-        <c:if test="${empty departureFlights}">
+        <c:if test="${empty departureFlights.flightPlans}">
             <h4>No flights can be found that match the criteria!</h4>
         </c:if>
 
         <c:set var = "departureFlights" scope = "session" value = "${departureFlights}"/>
 
         <!-- For each flight returned display -->
-        <c:forEach items="${departureFlights}" var="flightPlan">
+        <c:forEach items="${departureFlights.flightPlans}" var="flightPlan">
             <div class="flight-result-oneway">
                 <div class="flight-result-time">
                     <p>Depart time</p>
@@ -179,7 +180,9 @@
                 </div>
                 <div class="flight-result-details">
                     <p>${flightPlan.airlines}</p>
+                    <br>
                     <p>Stop overs: ${flightPlan.numberStopOvers}</p>
+                    <br>
                     <p>Available seats: ${flightPlan.numberAvailableSeats}</p>
                 </div>
                 <div class="flight-result-cost">
@@ -187,7 +190,8 @@
                 </div>
                 <div class="flight-result-book">
                     <form action="/bookingtemp" method="post">
-                        <input type="hidden" id="${flightPlan.position}" name="departure" value="${flightPlan.position}">
+                        <input type="hidden" id="oneway" name="trip" value="oneway">
+                        <input type="hidden" id="onewayDeparture${flightPlan.position}" name="departure" value="${flightPlan.position}">
                         <button type="submit">Book</button>
                     </form>
                 </div>
@@ -216,7 +220,7 @@
                 <!-- Parse all returned flights -->
 
                 <!-- Check if any departure flights returned -->
-                <c:if test="${empty departureFlights}">
+                <c:if test="${empty departureFlights.flightPlans}">
                     <div class="flight-result-return-departure">
                         <h4>No depature flights can be found that match the criteria!</h4>
                     </div>
@@ -224,7 +228,7 @@
 
                 <!-- For each depature flight returned display -->
                 <div id="flight-departure-results">
-                    <c:forEach items="${departureFlights}" var="flightPlan">
+                    <c:forEach items="${departureFlights.flightPlans}" var="flightPlan">
                         <div class="flight-result-return-windows">
                             <div class="flight-result-time">
                                 <p>Depart time</p>
@@ -234,22 +238,24 @@
                             </div>
                             <div class="flight-result-details">
                                 <p>${flightPlan.airlines}</p>
+                                <br>
                                 <p>Stop overs: ${flightPlan.numberStopOvers}</p>
+                                <br>
                                 <p>Available seats: ${flightPlan.numberAvailableSeats}</p>
                             </div>
                             <div class="flight-result-cost">
                                 <h3>$${flightPlan.price}</h3>
                             </div>
                             <div class="flight-result-book">
-                                <label for="${flightPlan.position}">Select: </label>
-                                <input type="radio" id="${flightPlan.position}" name="departure" value="${flightPlan.position}" onchange="updateCost('departure', '${flightPlan.price}')">
+                                <label for="returnDeparture${flightPlan.position}">Select: </label>
+                                <input type="radio" id="returnDeparture${flightPlan.position}" name="departure" value="${flightPlan.position}" onchange="updateCost('departure', '${flightPlan.price}')">
                             </div>
                         </div>
                     </c:forEach>
                 </div>
 
                 <!-- Check if any return flights returned -->
-                <c:if test="${empty returnFlights.flights}">
+                <c:if test="${empty returnFlights.flightPlans}">
                     <div class="flight-result-return-return">
                         <h4>No return flights can be found that match the criteria!</h4>
                     </div>
@@ -257,7 +263,7 @@
 
                 <!-- For each return flight returned display -->
                 <div id="flight-return-results">
-                    <c:forEach items="${returnFlights}" var="flightPlan">
+                    <c:forEach items="${returnFlights.flightPlans}" var="flightPlan">
                         <div class="flight-result-return-windows">
                             <div class="flight-result-time">
                                 <p>Depart time</p>
@@ -267,15 +273,17 @@
                             </div>
                             <div class="flight-result-details">
                                 <p>${flightPlan.airlines}</p>
+                                <br>
                                 <p>Stop overs: ${flightPlan.numberStopOvers}</p>
+                                <br>
                                 <p>Available seats: ${flightPlan.numberAvailableSeats}</p>
                             </div>
                             <div class="flight-result-cost">
                                 <h3>$${flightPlan.price}</h3>
                             </div>
                             <div class="flight-result-book">
-                                <label for="${flightPlan.position}">Select: </label>
-                                <input type="radio" id="${flightPlan.position}" name="return" value="${flightPlan.position}" onchange="updateCost('return', '${flightPlan.price}')"></div>
+                                <label for="returnReturn${flightPlan.position}">Select: </label>
+                                <input type="radio" id="returnReturn${flightPlan.position}" name="return" value="${flightPlan.position}" onchange="updateCost('return', '${flightPlan.price}')"></div>
                         </div>
                     </c:forEach>
                 </div>
@@ -283,6 +291,7 @@
             <br>
             <div id="flight-result-return-book">
                 <h4 id="booking-cost">Total cost: </h4>
+                <input type="hidden" id="return" name="trip" value="return">
                 <button type="submit" id="return-flight-book">Book</button>
             </div>
         </form>
