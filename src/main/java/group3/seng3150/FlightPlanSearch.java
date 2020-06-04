@@ -48,7 +48,7 @@ public class FlightPlanSearch {
         boolean contains = false;
         for(int i=0; i<flights.size(); i++){
             contains = false;
-            for (int j=0; j<flights.size(); j++)
+            for (int j=0; j<availabilities.size(); j++)
             {
                 if(flights.get(i).getFlightNumber().equals(availabilities.get(j).getFlightNumber())){
                     contains = true;
