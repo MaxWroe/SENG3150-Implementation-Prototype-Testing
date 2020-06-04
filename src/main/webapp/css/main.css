@@ -450,5 +450,10 @@ input:hover
     opacity:1;
 }
 
+.faqs{
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 25px;
 
+}
 

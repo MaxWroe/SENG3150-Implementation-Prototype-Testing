@@ -16,10 +16,14 @@
     <nav class="primary-nav">
         <ul>
             <li class="nav-link">
-                <a href="/search">Flight Search</a>
+                <a href="/home">Flight Search</a>
             </li>
             <li class="nav-link">
                 <a href="/recommendations">Travel Recommendations</a>
+            </li>
+
+            <li class="nav-link">
+                <a href="/faqs">FAQs</a>
             </li>
 
             <!-- changes depending if the user is logged in our not -->

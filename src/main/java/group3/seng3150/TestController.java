@@ -82,4 +82,10 @@ public class TestController {
         ModelAndView view = new ModelAndView("submitReview");
         return view;
     }
+
+    @GetMapping("/faqs")
+    public ModelAndView displayFaqs() {
+        ModelAndView view = new ModelAndView("faqs");
+        return view;
+    }
 }
