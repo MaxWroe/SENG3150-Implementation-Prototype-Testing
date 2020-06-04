@@ -58,7 +58,7 @@
         <!-- cancel a booking-->
         <button id="cancelBooking" type="submit" onclick="displayForm('cancelForm')"> Cancel a booking </button>
 
-        <form id="cancelForm" method="post" action="/manageBooking/cancel" style="display: none">
+        <form id="cancelForm" method="post" action="${pageContext.request.contextPath}/manageBooking/cancel" style="display: none">
 
             <label for="bookingNumber">Booking number you want to cancel </label>
 

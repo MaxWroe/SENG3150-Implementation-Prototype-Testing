@@ -33,9 +33,51 @@ public class BookingsController {
     }
 
     //get method manage bookings
-    @GetMapping("/manageBooking")
-    public ModelAndView manageBooking(HttpSession session) {
+    @GetMapping("/manageBooking/cancel")
+    public ModelAndView manageBookingCancelling(HttpSession session,
+                                                @RequestParam("userID") String userID,
+                                                @RequestParam("bookingNumber") int bookingNumber) {
         ModelAndView view = new ModelAndView("manageBooking");
+        //String UserID = session.getAttribute(userId);
+        String message = new String();
+        try{
+            List<Booking> booking = em.createQuery("SELECT b FROM Booking b WHERE b.userID=" + userID).getResultList();
+            em.getTransaction().begin();
+            em.remove(booking.get(bookingNumber));
+            em.getTransaction().commit();
+
+            booking.remove(bookingNumber);
+
+            view.addObject("booking", booking);
+        }
+        catch(Exception e)
+        {
+            message = "No bookings found for this user.";
+            view.addObject("message", message);
+            e.printStackTrace();
+        }
+
+        return view;
+    }
+
+    //get method manage bookings
+    @GetMapping("/manageBooking")
+    public ModelAndView manageBooking(HttpSession session,
+                                      @RequestParam("userID") String userID) {
+        ModelAndView view = new ModelAndView("manageBooking");
+        //String UserID = session.getAttribute(userId);
+        String message = new String();
+        try{
+            List<Booking> booking = em.createQuery("SELECT b FROM Booking b WHERE b.userID=" + userID).getResultList();
+            view.addObject("booking", booking);
+        }
+        catch(Exception e)
+        {
+            message = "No bookings found for this user.";
+            view.addObject("message", message);
+            e.printStackTrace();
+        }
+
         return view;
     }
 
@@ -352,7 +394,6 @@ public class BookingsController {
             }
             bookingsDeparture.add(newBooking);
         }
-
 
         //return flight if one exists goes under here
         if(returnTrip) {

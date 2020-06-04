@@ -31,7 +31,7 @@
             <!-- I did add a departureFLight and returnFlight, which are the first flights of each flightPlan, but I'm not sure that's what we want.-->
             <h4>Departure Flight</h4>
             <p>Price</p>
-            <h4>$${departureFlight.price}</h4>
+            <h4>${departureFlight.price}</h4>
             <p>Date/Time</p>
             <h4>${departureFlight.date} ${departureFlight.time}</h4>
             <p>Seat Class</p>
@@ -41,7 +41,7 @@
             <c:if test = "${param.pageDirect eq 'return'}">
             <h4>Return Flight</h4>
             <p>Price</p>
-            <h4>$${returnFlight.price}</h4>
+            <h4>${returnFlight.price}</h4>
             <p>Date/Time</p>
             <h4>${returnFlight.date} ${returnFlight.time}</h4>
             <p>Seat Class</p>
