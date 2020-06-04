@@ -42,7 +42,7 @@ public class Booking {
 
     @Column(name = "BookingDate")
     @Basic(optional = false)
-    private Date bookingDate;
+    private Timestamp bookingDate;
 
     @Column(name = "GroupSize")
     @Basic(optional = false)
@@ -161,11 +161,11 @@ public class Booking {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public Date getBookingDate() {
+    public Timestamp getBookingDate() {
         return bookingDate;
     }
 
-    public void setBookingDate(Date bookingDate) {
+    public void setBookingDate(Timestamp bookingDate) {
         this.bookingDate = bookingDate;
     }
 

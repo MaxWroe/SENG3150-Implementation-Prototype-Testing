@@ -156,7 +156,7 @@ CREATE TABLE `Booking` (
                            `MiddleNames` varchar(60),
                            `LastName` varchar(20) NOT NULL,
                            `DateOfBirth` date NOT NULL,
-                           `BookingDate` date NOT NULL,
+                           `BookingDate` datetime NOT NULL,
                            `GroupSize` int NOT NULL,
 
 
