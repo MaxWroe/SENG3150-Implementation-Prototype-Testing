@@ -108,7 +108,7 @@ public class BookingsController {
         List<Booking> departureBooking = (List<Booking>)session.getAttribute("departureBookings");
         List<Booking> returnBooking = (List<Booking>)session.getAttribute("returnBookings");
         //request.getParameter("");
-        ModelAndView view = new ModelAndView("manageBooking");
+        ModelAndView view = new ModelAndView("home");
         String tempName = new String();
         int currentPosition = 1;
         for(int i=1; i<=adultsBooking;i++) {

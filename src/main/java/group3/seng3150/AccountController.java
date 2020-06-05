@@ -41,9 +41,9 @@ public class AccountController {
                                            @RequestParam(name="phone", defaultValue="") String phone,
                                            @RequestParam(name="dateOfBirth") Date dateOfBirth,
                                            @RequestParam(name="citizenship") String citizenship,
-                                           @RequestParam(name="familyMembers") String familyMembers, //Family members not currently in the DB, for when it is
-                                           @RequestParam(name="emergencyContacts") String emergencyContacts, //Emergency Contacts members not currently in the DB, for when it is
-                                           @RequestParam(name="address") String address, //address not currently in the DB, for when it is
+                                           @RequestParam(name="familyMembers") String familyMembers,
+                                           @RequestParam(name="emergencyContacts") String emergencyContacts,
+                                           @RequestParam(name="address") String address,
                                            @RequestParam(name="userType") String userType,
                                            HttpSession session) {
         String emailSearch = "'" + userEmail + "'";
@@ -72,12 +72,12 @@ public class AccountController {
 
 
         //Update the information in the database
-        em.getTransaction().begin(); //Currently throwing an error when committing the transaction
-        //user.setUserType(userTypeNum); //Currently broken, stored as int in DB and the USerAccount set tries to set a String, uncomment when fixed
+        em.getTransaction().begin();
+        user.setUserType(userTypeNum);
         user.setCitizenship(citizenship);
         user.setFirstName(firstName);
         user.setLastName(lastName);
-        //user.setGender(userGender); //Currently broken, stored as int in DB and the UserAccount set tries to set a String, uncomment when fixed
+        user.setGender(userGender);
         user.setPassword(password);
         user.setDateOfBirth(dateOfBirth);
         user.setEmail(email);
