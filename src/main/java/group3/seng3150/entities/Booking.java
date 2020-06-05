@@ -66,6 +66,9 @@ public class Booking {
     @Column(name = "TicketCode")
     @Basic(optional = false)
     private String ticketCode;
+    @Column(name = "Price")
+    @Basic(optional = false)
+    private int price;
 
     //flight 2
     @Column(name = "AirlineCode2")
@@ -78,6 +81,8 @@ public class Booking {
     private String classCode2;
     @Column(name = "TicketCode2")
     private String ticketCode2;
+    @Column(name = "Price2")
+    private int price2;
 
     //flight 3
     @Column(name = "AirlineCode3")
@@ -90,6 +95,8 @@ public class Booking {
     private String classCode3;
     @Column(name = "TicketCode3")
     private String ticketCode3;
+    @Column(name = "Price3")
+    private int price3;
 
     //flight 4
     @Column(name = "AirlineCode4")
@@ -102,6 +109,8 @@ public class Booking {
     private String classCode4;
     @Column(name = "TicketCode4")
     private String ticketCode4;
+    @Column(name = "Price4")
+    private int price4;
 
 
 
@@ -339,6 +348,38 @@ public class Booking {
 
     public void setTicketCode4(String ticketCode4) {
         this.ticketCode4 = ticketCode4;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public int getPrice2() {
+        return price2;
+    }
+
+    public void setPrice2(int price2) {
+        this.price2 = price2;
+    }
+
+    public int getPrice3() {
+        return price3;
+    }
+
+    public void setPrice3(int price3) {
+        this.price3 = price3;
+    }
+
+    public int getPrice4() {
+        return price4;
+    }
+
+    public void setPrice4(int price4) {
+        this.price4 = price4;
     }
 
     @Override
