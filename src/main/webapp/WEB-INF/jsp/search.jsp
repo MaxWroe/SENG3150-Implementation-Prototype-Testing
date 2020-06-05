@@ -189,7 +189,7 @@
                     <h3>$${flightPlan.price}</h3>
                 </div>
                 <div class="flight-result-book">
-                    <form action="${pageContext.request.contextPath}/flightBooking" method="post">
+                    <form action="${pageContext.request.contextPath}/flightBookingOneway" method="post">
                         <input type="hidden" id="onewayBooking" name="trip" value="oneway">
                         <input type="hidden" id="onewayAdultsBooking" value="${param.adults}">
                         <input type="hidden" id="onewayChildrenBooking" value="${param.children}">
@@ -215,9 +215,8 @@
         <c:set var = "departureFlights" scope = "session" value = "${departureFlights}"/>
         <c:set var = "returnFlights" scope = "session" value = "${returnFlights}"/>
 
-        <form method="post" action="${pageContext.request.contextPath}/flightBooking" onsubmit="return validateFlightSelection()">
+        <form method="post" action="${pageContext.request.contextPath}/flightBookingReturn" onsubmit="return validateFlightSelection()">
             <!--<input type="hidden" id="pageDirect" name="pageDirect" value="return">-->
-
             <input type="hidden" id="returnBooking" name="trip" value="return">
             <input type="hidden" id="returnAdultsBooking" value="${param.adults}">
             <input type="hidden" id="returnChildrenBooking" value="${param.children}">
