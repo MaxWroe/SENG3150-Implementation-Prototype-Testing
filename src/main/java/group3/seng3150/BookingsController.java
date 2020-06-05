@@ -133,8 +133,6 @@ public class BookingsController {
                 departureBooking.get(i-1).setDateOfBirth(tempDate1);
                 returnBooking.get(i-1).setDateOfBirth(tempDate1);
             }
-
-
         }
 
         for(int j=1; j<=childrenBookingS;j++) {

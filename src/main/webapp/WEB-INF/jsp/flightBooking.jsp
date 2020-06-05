@@ -1,4 +1,4 @@
-<%--
+<%@ page import="java.sql.Date" %><%--
   JSP for booking a specific flight plan.
   SENG3150 Group 3
   Date: 22/05/2020
@@ -50,7 +50,9 @@
         <!-- Check if user is logged in -->
         <%
         String userID = (String)session.getAttribute("userId");
+        Date dateOfBirth = (Date)session.getAttribute("dateOfBirth");
         session.setAttribute("userID", userID);
+        session.setAttribute("dateOfBirth", dateOfBirth);
         if(userID != null){%>
         <div class="booking-details">
             <form method="post" action="/bookFlight">
