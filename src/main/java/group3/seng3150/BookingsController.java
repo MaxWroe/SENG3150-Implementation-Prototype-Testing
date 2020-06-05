@@ -102,6 +102,9 @@ public class BookingsController {
         int adultsBooking = Integer.parseInt(adultsBookingS);
         int childrenBookingS = Integer.parseInt(childrenBooking);
         String UserID = (String)session.getAttribute("userId");
+        String firstName = (String)session.getAttribute("firstName");
+        String lastName = (String)session.getAttribute("lastName");
+        Date dob = (Date)session.getAttribute("dateOfBirth");
         List<Booking> departureBooking = (List<Booking>)session.getAttribute("departureBookings");
         List<Booking> returnBooking = (List<Booking>)session.getAttribute("returnBookings");
         //request.getParameter("");
@@ -110,18 +113,28 @@ public class BookingsController {
         for(int i=1; i<=adultsBooking;i++) {
             departureBooking.get(i-1).setUserID(UserID);
             returnBooking.get(i-1).setUserID(UserID);
-            tempName = "adultFirstName" + Integer.toString(i);
-            departureBooking.get(i-1).setFirstName(request.getParameter(tempName));
-            returnBooking.get(i-1).setFirstName(request.getParameter(tempName));
-            tempName = "adultLastName" + Integer.toString(i);
-            departureBooking.get(i-1).setLastName(request.getParameter(tempName));
-            returnBooking.get(i-1).setLastName(request.getParameter(tempName));
-            tempName = "adultDOB" + Integer.toString(i);
-            String testDate = "2010-09-09";
-            String temp = request.getParameter(tempName);
-            Date tempDate1 = Date.valueOf(temp);
-            departureBooking.get(i-1).setDateOfBirth(tempDate1);
-            returnBooking.get(i-1).setDateOfBirth(tempDate1);
+            if(i==1){
+                departureBooking.get(i-1).setFirstName(firstName);
+                returnBooking.get(i-1).setFirstName(firstName);
+                departureBooking.get(i-1).setLastName(lastName);
+                returnBooking.get(i-1).setLastName(lastName);
+                departureBooking.get(i-1).setDateOfBirth(dob);
+                returnBooking.get(i-1).setDateOfBirth(dob);
+            }else{
+                tempName = "adultFirstName" + Integer.toString(i);
+                departureBooking.get(i-1).setFirstName(request.getParameter(tempName));
+                returnBooking.get(i-1).setFirstName(request.getParameter(tempName));
+                tempName = "adultLastName" + Integer.toString(i);
+                departureBooking.get(i-1).setLastName(request.getParameter(tempName));
+                returnBooking.get(i-1).setLastName(request.getParameter(tempName));
+                tempName = "adultDOB" + Integer.toString(i);
+                String temp = request.getParameter(tempName);
+                Date tempDate1 = Date.valueOf(temp);
+                departureBooking.get(i-1).setDateOfBirth(tempDate1);
+                returnBooking.get(i-1).setDateOfBirth(tempDate1);
+            }
+
+
         }
 
         for(int j=1; j<=childrenBookingS;j++) {
