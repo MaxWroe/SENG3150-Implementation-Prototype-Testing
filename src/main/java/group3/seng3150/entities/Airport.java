@@ -20,7 +20,6 @@ public class Airport {
     @Column(name = "CountryCode3", table = "Destinations")
     private String country;
 
-
     //Constructor
     public Airport() {
     }

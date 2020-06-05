@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class TestController {
+public class DefaultController {
     @GetMapping("/home")
     public ModelAndView Index() {
         ModelAndView view = new ModelAndView("home");
@@ -31,11 +31,7 @@ public class TestController {
         return view;
     }
     */
-    @GetMapping("/userHome")
-    public ModelAndView displayUserHome() {
-        ModelAndView view = new ModelAndView("userHome");
-        return view;
-    }
+
 
 /*
     @GetMapping("/accountDetails")

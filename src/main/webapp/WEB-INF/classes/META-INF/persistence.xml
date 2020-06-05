@@ -5,7 +5,6 @@
 
         <non-jta-data-source>java:comp/env/jdbc/DBDataSource</non-jta-data-source>
 
-        <class>group3.seng3150.entities.Country</class>
         <class>group3.seng3150.entities.Airport</class>
         <class>group3.seng3150.entities.Flight</class>
         <class>group3.seng3150.entities.Plane</class>
