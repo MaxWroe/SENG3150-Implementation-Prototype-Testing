@@ -1,13 +1,12 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%--
-  Created by IntelliJ IDEA.
-  User: jfpr2
+  JSP for searching, sorting and displaying flight plans.
+  SENG3150 Group 3
   Date: 19/05/2020
   Time: 2:53 pm
-  To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,7 +19,7 @@
     <script src="${pageContext.request.contextPath}/js/dynamicLink.js"></script>
 </head>
 <body>
-<!-- session handler -->
+<!-- Session handler -->
 <jsp:include page="sessionHandlerGuest.jsp"/>
 
 <!-- Site header -->
@@ -89,6 +88,7 @@
                 </select>
             </div>
 
+            <!-- Ticket class -->
             <div class="search-form-group">
                 <select id="classCode" name="classCode">
                     <option value="ECO">Economy</option>
@@ -99,13 +99,16 @@
             </div>
 
             <div class="search-form-group">
+                <!-- Adult passengers -->
                 <input type="number" id="adults" name="adults" min="1" max="9" value="${param.adults}" required>
                 <p>Adult/s</p>
+                <!-- Children passengers -->
                 <input type="number" id="children" name="children" min="0" max="9" value="${param.children}" required>
                 <p>Children</p>
             </div>
             <br>
 
+            <!-- Depart date -->
             <div class="search-form-group">
                 <div class="home-form-group">
                     <jsp:useBean id="now" class="java.util.Date"/>
@@ -114,12 +117,14 @@
                 </div>
             </div>
 
+            <!-- Return date -->
             <div id="search-form-return-date">
                 <p>to</p>
                 <input type="date" id="returnDate" name="returnDate" min="<fmt:formatDate pattern="yyyy-MM-dd" value="${now}" />"
                        value="${param.returnDate}" disabled>
             </div>
 
+            <!-- Apply sorting -->
             <div id="sort-criteria">
                 <h4 style="display: inline;padding-right: 50px;">Sort Criteria</h4>
                 <p>Sort by:</p>
@@ -167,6 +172,7 @@
             <h4>No flights can be found that match the criteria!</h4>
         </c:if>
 
+        <!-- Set flights returned (FlightHolder) to session scope -->
         <c:set var = "departureFlights" scope = "session" value = "${departureFlights}"/>
 
         <!-- For each flight returned display -->
@@ -189,11 +195,13 @@
                     <h3>$${flightPlan.price}</h3>
                 </div>
                 <div class="flight-result-book">
+                    <!-- Information to send to booking controller -->
                     <form action="${pageContext.request.contextPath}/flightBookingOneway" method="post">
                         <input type="hidden" id="onewayBooking" name="trip" value="oneway">
                         <input type="hidden" id="onewayAdultsBooking" name="onewayAdultsBooking" value="${param.adults}">
                         <input type="hidden" id="onewayChildrenBooking" name="onewayChildrenBooking" value="${param.children}">
                         <input type="hidden" id="onewayClassBooking" name="onewayClassBooking" value="${param.classCode}">
+                        <!-- Position of the specific flight plan within the FlightHolder FlightPlans list -->
                         <input type="hidden" id="onewayFlightPlan${flightPlan.position}" name="flightPlan" value="${flightPlan.position}">
                         <button type="submit">Book</button>
                     </form>
@@ -201,6 +209,7 @@
             </div>
         </c:forEach>
     </c:if>
+
     <!-- If searched trip is return -->
     <c:if test = "${param.type eq 'return'}">
         <div class="flight-result-return">
@@ -212,15 +221,17 @@
             </div>
         </div>
 
+        <!-- Set flights returned (FlightHolders) to session scope -->
         <c:set var = "departureFlights" scope = "session" value = "${departureFlights}"/>
         <c:set var = "returnFlights" scope = "session" value = "${returnFlights}"/>
 
+        <!-- Information to send to booking controller -->
         <form method="post" action="${pageContext.request.contextPath}/flightBookingReturn" onsubmit="return validateFlightSelection()">
-            <!--<input type="hidden" id="pageDirect" name="pageDirect" value="return">-->
             <input type="hidden" id="returnBooking" name="trip" value="return">
             <input type="hidden" id="returnAdultsBooking" name="returnAdultsBooking" value="${param.adults}">
             <input type="hidden" id="returnChildrenBooking" name="returnChildrenBooking" value="${param.children}">
             <input type="hidden" id="returnClassBooking" name="returnClassBooking" value="${param.classCode}">
+
             <div class="flight-result-return">
                 <!-- Parse all returned flights -->
 
@@ -252,6 +263,7 @@
                                 <h3>$${flightPlan.price}</h3>
                             </div>
                             <div class="flight-result-book">
+                                <!-- Position of the specific flight plan within the FlightHolder FlightPlans list -->
                                 <label for="returnDepartureFlightPlan${flightPlan.position}">Select: </label>
                                 <input type="radio" id="returnDepartureFlightPlan${flightPlan.position}" name="departure" value="${flightPlan.position}" onchange="updateCost('departure', '${flightPlan.price}')">
                             </div>
@@ -287,6 +299,7 @@
                                 <h3>$${flightPlan.price}</h3>
                             </div>
                             <div class="flight-result-book">
+                                <!-- Position of the specific flight plan within the FlightHolder FlightPlans list -->
                                 <label for="returnReturnFlightPlan${flightPlan.position}">Select: </label>
                                 <input type="radio" id="returnReturnFlightPlan${flightPlan.position}" name="return" value="${flightPlan.position}" onchange="updateCost('return', '${flightPlan.price}')"></div>
                         </div>
@@ -296,7 +309,6 @@
             <br>
             <div id="flight-result-return-book">
                 <h4 id="booking-cost">Total cost: </h4>
-                <input type="hidden" id="return" name="trip" value="return">
                 <button type="submit" id="return-flight-book">Book</button>
             </div>
         </form>

@@ -1,9 +1,8 @@
 <%--
-  Created by IntelliJ IDEA.
-  User: jfpr2
+  JSP for booking a specific flight plan.
+  SENG3150 Group 3
   Date: 22/05/2020
   Time: 4:43 pm
-  To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -11,12 +10,13 @@
 <head>
     <title>Flight Booking Page</title>
 
-    <link rel="stylesheet" type="text/css" href="/css/main.css">
-    <script src="/js/dynamicLink.js"></script>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css">
+    <script src="${pageContext.request.contextPath}/js/dynamicLink.js"></script>
 </head>
 <body>
-<!-- session handler -->
+<!-- Session handler -->
 <jsp:include page="sessionHandlerGuest.jsp"/>
+
 <!-- Site header -->
 <jsp:include page="header.jsp"/>
 
@@ -34,7 +34,7 @@
             <h4>${param.departureClass}</h4>
             <p>Seats Remaining</p>
             <h4>${param.departureSeatsLeft}</h4>
-            <c:if test = "${param.pageDirect eq 'return'}">
+            <c:if test = "${param.trip eq 'return'}">
             <h4>Return Flight</h4>
             <p>Price</p>
             <h4>${param.returnPrice}</h4>
@@ -107,10 +107,10 @@
         <div class="booking-details">
             <p>You're not logged in!</p>
             <form id="loginForm" method="post" action="/login">
-                <!-- email address -->
+                <!-- Email address -->
                 <label for="email">Email address</label>
                 <input id="email" type="email" name ="email" required/> <br>
-                <!-- password -->
+                <!-- Password -->
                 <label for="password">Password</label>
                 <input type ="password" id="password" name ="password" required/> <br>
                 <input type="submit" value="Login"/>
@@ -119,6 +119,7 @@
         <%}%>
 
         <div class="booking-details">
+            <!-- Did not have time to complete
             <h4>Extra Details</h4>
             <h4>Departure Flight</h4>
             <p>Ticket Transferrable: ${departureFlight.transferrable}</p>
@@ -140,6 +141,7 @@
             <p>Earned Frequent Flyer Points: ${returnFlight.frequentFlyerPoints}</p>
             <br>
             </c:if>
+            -->
         </div>
     </div>
 </main>
