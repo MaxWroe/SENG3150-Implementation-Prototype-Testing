@@ -6,9 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import javax.persistence.EntityManager;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.sql.Date;
 import java.util.*;
@@ -36,17 +38,18 @@ public class BookingsController {
     @PostMapping("/manageBooking/cancel")
     public ModelAndView manageBookingCancelling(HttpSession session,
                                                 @RequestParam("userID") String userID,
-                                                @RequestParam("bookingNumber") int bookingNumber) {
+                                                @RequestParam("bookingID") String bookingID) {
         ModelAndView view = new ModelAndView("manageBooking");
         //String UserID = session.getAttribute(userId);
         String message = new String();
         try{
             List<Booking> booking = em.createQuery("SELECT b FROM Booking b WHERE b.userID=" + userID).getResultList();
+
             em.getTransaction().begin();
-            em.remove(booking.get(bookingNumber));
+            //em.remove(booking.get(bookingID));
             em.getTransaction().commit();
 
-            booking.remove(bookingNumber);
+            booking.remove(bookingID);
 
             view.addObject("booking", booking);
         }
@@ -89,10 +92,14 @@ public class BookingsController {
 
     @PostMapping("/bookFlight")
     public ModelAndView bookFlight(HttpSession session,
-                                   @RequestParam("dateOfBirth") Date dateOfBirth,
-                                   @RequestParam("firstName") String firstName,
+                                   HttpServletRequest request,
+                                   //@RequestParam("age") Date dateOfBirth,
+                                   //@RequestParam("firstName") String firstName,
                                    @RequestParam("userID") String userID){
         ModelAndView view = new ModelAndView("manageBooking");
+        //For(int i; i<=) {
+        //    request.getParameter("" + i);
+        //}
         return view;
     }
 
@@ -380,6 +387,7 @@ public class BookingsController {
         for (int i = 0; i < onewayAdultsBooking + onewayChildrenBooking; i++) {
             Booking newBooking = new Booking();
             newBooking.setGroupSize(onewayAdultsBooking + onewayChildrenBooking);
+            newBooking.setReturnTrip(1);
             //Works based on a flightPlan having no more than 4 flights, as per assumptions for bookings
             for (int j = 0; j < flightPlan.getFlights().size(); j++) {
                 if (j == 0) {
@@ -421,6 +429,7 @@ public class BookingsController {
         for (int i = 0; i < onewayAdultsBooking + onewayChildrenBooking; i++) {
             Booking newBooking = new Booking();
             newBooking.setGroupSize(onewayAdultsBooking + onewayChildrenBooking);
+            newBooking.setReturnTrip(1);
             //Works based on a flightPlan having no more than 4 flights, as per assumptions for bookings
             for (int j = 0; j < flightPlanR.getFlights().size(); j++) {
                 if (j == 0) {
@@ -627,6 +636,7 @@ public class BookingsController {
         for (int i = 0; i < onewayAdultsBooking + onewayChildrenBooking; i++) {
             Booking newBooking = new Booking();
             newBooking.setGroupSize(onewayAdultsBooking + onewayChildrenBooking);
+            newBooking.setReturnTrip(0);
             //Works based on a flightPlan having no more than 4 flights, as per assumptions for bookings
             for (int j = 0; j < flightPlan.getFlights().size(); j++) {
                 if (j == 0) {
