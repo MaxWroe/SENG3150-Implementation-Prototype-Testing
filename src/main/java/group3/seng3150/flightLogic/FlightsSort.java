@@ -1,6 +1,6 @@
-package group3.seng3150;
+package group3.seng3150.flightLogic;
 
-import group3.seng3150.entities.Flight;
+import group3.seng3150.FlightPlan;
 
 import java.util.ArrayList;
 import java.util.List;

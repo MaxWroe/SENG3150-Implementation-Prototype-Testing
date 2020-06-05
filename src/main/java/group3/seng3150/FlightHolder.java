@@ -1,11 +1,10 @@
 package group3.seng3150;
 
+import group3.seng3150.flightLogic.FlightsSort;
 import group3.seng3150.entities.Availability;
-import group3.seng3150.entities.Flight;
 
 import javax.persistence.EntityManager;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 public class FlightHolder {

@@ -1,4 +1,4 @@
-package group3.seng3150;
+package group3.seng3150.flightLogic;
 
 import group3.seng3150.entities.Flight;
 
