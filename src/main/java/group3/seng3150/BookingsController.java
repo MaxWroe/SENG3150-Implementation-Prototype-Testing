@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpSessionAttributeListener;
 import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.Collection;
 import java.util.Iterator;
@@ -100,14 +102,49 @@ public class BookingsController {
         int adultsBooking = Integer.parseInt(adultsBookingS);
         int childrenBookingS = Integer.parseInt(childrenBooking);
         String UserID = (String)session.getAttribute("userId");
-        request.getParameter("");
+        List<Booking> departureBooking = (List<Booking>)session.getAttribute("departureBookings");
+        List<Booking> returnBooking = (List<Booking>)session.getAttribute("returnBookings");
+        //request.getParameter("");
         ModelAndView view = new ModelAndView("manageBooking");
+        String tempName = new String();
         for(int i=1; i<=adultsBooking;i++) {
-            request.getParameter("" + i);
+            tempName = "adultFirstName" + Integer.toString(i);
+            departureBooking.get(i-1).setFirstName(request.getParameter(tempName));
+            returnBooking.get(i-1).setFirstName(request.getParameter(tempName));
+            tempName = "adultLastName" + Integer.toString(i);
+            departureBooking.get(i-1).setLastName(request.getParameter(tempName));
+            returnBooking.get(i-1).setLastName(request.getParameter(tempName));
+            tempName = "adultDOB" + Integer.toString(i);
+            String testDate = "2010-09-09";
+            String temp = request.getParameter(tempName);
+            Date tempDate1 = Date.valueOf(temp);
+            departureBooking.get(i-1).setDateOfBirth(tempDate1);
+            returnBooking.get(i-1).setDateOfBirth(tempDate1);
         }
 
         for(int j=1; j<=childrenBookingS;j++) {
-            request.getParameter("" + j);
+
+            tempName = "childFirstName" + Integer.toString(j);
+            departureBooking.get(j-1).setFirstName(request.getParameter(tempName));
+            returnBooking.get(j-1).setFirstName(request.getParameter(tempName));
+            tempName = "childLastName" + Integer.toString(j);
+            departureBooking.get(j-1).setLastName(request.getParameter(tempName));
+            returnBooking.get(j-1).setLastName(request.getParameter(tempName));
+            tempName = "childDOB" + Integer.toString(j);
+            String temp = request.getParameter(tempName);
+            Date tempDate1 = Date.valueOf(temp);
+            departureBooking.get(j-1).setDateOfBirth(tempDate1);
+            returnBooking.get(j-1).setDateOfBirth(tempDate1);
+        }
+        for(int i =0; i<departureBooking.size();i++) {
+            em.getTransaction().begin();
+            em.merge(departureBooking.get(i));
+            em.getTransaction().commit();
+        }
+        for(int i =0; i<returnBooking.size();i++) {
+            em.getTransaction().begin();
+            em.merge(returnBooking.get(i));
+            em.getTransaction().commit();
         }
 
         return view;
@@ -128,258 +165,8 @@ public class BookingsController {
         //and persist it
         ModelAndView view = new ModelAndView("flightBooking");
 
-        List<Booking> bookingsDeparture = new List<Booking>() {
-            @Override
-            public int size() {
-                return 0;
-            }
-
-            @Override
-            public boolean isEmpty() {
-                return false;
-            }
-
-            @Override
-            public boolean contains(Object o) {
-                return false;
-            }
-
-            @Override
-            public Iterator<Booking> iterator() {
-                return null;
-            }
-
-            @Override
-            public Object[] toArray() {
-                return new Object[0];
-            }
-
-            @Override
-            public <T> T[] toArray(T[] a) {
-                return null;
-            }
-
-            @Override
-            public boolean add(Booking booking) {
-                return false;
-            }
-
-            @Override
-            public boolean remove(Object o) {
-                return false;
-            }
-
-            @Override
-            public boolean containsAll(Collection<?> c) {
-                return false;
-            }
-
-            @Override
-            public boolean addAll(Collection<? extends Booking> c) {
-                return false;
-            }
-
-            @Override
-            public boolean addAll(int index, Collection<? extends Booking> c) {
-                return false;
-            }
-
-            @Override
-            public boolean removeAll(Collection<?> c) {
-                return false;
-            }
-
-            @Override
-            public boolean retainAll(Collection<?> c) {
-                return false;
-            }
-
-            @Override
-            public void clear() {
-
-            }
-
-            @Override
-            public boolean equals(Object o) {
-                return false;
-            }
-
-            @Override
-            public int hashCode() {
-                return 0;
-            }
-
-            @Override
-            public Booking get(int index) {
-                return null;
-            }
-
-            @Override
-            public Booking set(int index, Booking element) {
-                return null;
-            }
-
-            @Override
-            public void add(int index, Booking element) {
-
-            }
-
-            @Override
-            public Booking remove(int index) {
-                return null;
-            }
-
-            @Override
-            public int indexOf(Object o) {
-                return 0;
-            }
-
-            @Override
-            public int lastIndexOf(Object o) {
-                return 0;
-            }
-
-            @Override
-            public ListIterator<Booking> listIterator() {
-                return null;
-            }
-
-            @Override
-            public ListIterator<Booking> listIterator(int index) {
-                return null;
-            }
-
-            @Override
-            public List<Booking> subList(int fromIndex, int toIndex) {
-                return null;
-            }
-        };
-        List<Booking> bookingsReturn = new List<Booking>() {
-            @Override
-            public int size() {
-                return 0;
-            }
-
-            @Override
-            public boolean isEmpty() {
-                return false;
-            }
-
-            @Override
-            public boolean contains(Object o) {
-                return false;
-            }
-
-            @Override
-            public Iterator<Booking> iterator() {
-                return null;
-            }
-
-            @Override
-            public Object[] toArray() {
-                return new Object[0];
-            }
-
-            @Override
-            public <T> T[] toArray(T[] a) {
-                return null;
-            }
-
-            @Override
-            public boolean add(Booking booking) {
-                return false;
-            }
-
-            @Override
-            public boolean remove(Object o) {
-                return false;
-            }
-
-            @Override
-            public boolean containsAll(Collection<?> c) {
-                return false;
-            }
-
-            @Override
-            public boolean addAll(Collection<? extends Booking> c) {
-                return false;
-            }
-
-            @Override
-            public boolean addAll(int index, Collection<? extends Booking> c) {
-                return false;
-            }
-
-            @Override
-            public boolean removeAll(Collection<?> c) {
-                return false;
-            }
-
-            @Override
-            public boolean retainAll(Collection<?> c) {
-                return false;
-            }
-
-            @Override
-            public void clear() {
-
-            }
-
-            @Override
-            public boolean equals(Object o) {
-                return false;
-            }
-
-            @Override
-            public int hashCode() {
-                return 0;
-            }
-
-            @Override
-            public Booking get(int index) {
-                return null;
-            }
-
-            @Override
-            public Booking set(int index, Booking element) {
-                return null;
-            }
-
-            @Override
-            public void add(int index, Booking element) {
-
-            }
-
-            @Override
-            public Booking remove(int index) {
-                return null;
-            }
-
-            @Override
-            public int indexOf(Object o) {
-                return 0;
-            }
-
-            @Override
-            public int lastIndexOf(Object o) {
-                return 0;
-            }
-
-            @Override
-            public ListIterator<Booking> listIterator() {
-                return null;
-            }
-
-            @Override
-            public ListIterator<Booking> listIterator(int index) {
-                return null;
-            }
-
-            @Override
-            public List<Booking> subList(int fromIndex, int toIndex) {
-                return null;
-            }
-        };
+        List<Booking> bookingsDeparture = new LinkedList<Booking>();
+        List<Booking> bookingsReturn = new LinkedList<Booking>();
 
         Boolean returnTrip = false;
         if(trip.equals("return")){
@@ -533,132 +320,7 @@ public class BookingsController {
         //create a List of new bookings with the flight details selected, and add it to the session for the actual booking page to receive payment
         //and persist it
         ModelAndView view = new ModelAndView("flightBooking");
-        List<Booking> bookingsDeparture = new List<Booking>() {
-            @Override
-            public int size() {
-                return 0;
-            }
-
-            @Override
-            public boolean isEmpty() {
-                return false;
-            }
-
-            @Override
-            public boolean contains(Object o) {
-                return false;
-            }
-
-            @Override
-            public Iterator<Booking> iterator() {
-                return null;
-            }
-
-            @Override
-            public Object[] toArray() {
-                return new Object[0];
-            }
-
-            @Override
-            public <T> T[] toArray(T[] a) {
-                return null;
-            }
-
-            @Override
-            public boolean add(Booking booking) {
-                return false;
-            }
-
-            @Override
-            public boolean remove(Object o) {
-                return false;
-            }
-
-            @Override
-            public boolean containsAll(Collection<?> c) {
-                return false;
-            }
-
-            @Override
-            public boolean addAll(Collection<? extends Booking> c) {
-                return false;
-            }
-
-            @Override
-            public boolean addAll(int index, Collection<? extends Booking> c) {
-                return false;
-            }
-
-            @Override
-            public boolean removeAll(Collection<?> c) {
-                return false;
-            }
-
-            @Override
-            public boolean retainAll(Collection<?> c) {
-                return false;
-            }
-
-            @Override
-            public void clear() {
-
-            }
-
-            @Override
-            public boolean equals(Object o) {
-                return false;
-            }
-
-            @Override
-            public int hashCode() {
-                return 0;
-            }
-
-            @Override
-            public Booking get(int index) {
-                return null;
-            }
-
-            @Override
-            public Booking set(int index, Booking element) {
-                return null;
-            }
-
-            @Override
-            public void add(int index, Booking element) {
-
-            }
-
-            @Override
-            public Booking remove(int index) {
-                return null;
-            }
-
-            @Override
-            public int indexOf(Object o) {
-                return 0;
-            }
-
-            @Override
-            public int lastIndexOf(Object o) {
-                return 0;
-            }
-
-            @Override
-            public ListIterator<Booking> listIterator() {
-                return null;
-            }
-
-            @Override
-            public ListIterator<Booking> listIterator(int index) {
-                return null;
-            }
-
-            @Override
-            public List<Booking> subList(int fromIndex, int toIndex) {
-                return null;
-            }
-        };
+        List<Booking> bookingsDeparture = new LinkedList<Booking>();
 
         FlightHolder searchDeparture = (FlightHolder) session.getAttribute("departureFlights");
         searchDeparture.setFlightPlanPositions();
