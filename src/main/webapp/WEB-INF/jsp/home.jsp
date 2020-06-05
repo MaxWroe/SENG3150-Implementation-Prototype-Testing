@@ -1,28 +1,23 @@
-
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
 <%--
-  Created by IntelliJ IDEA.
-  User: jfpr2
+  JSP for initial searching of flight plans.
+  SENG3150 Group 3
   Date: 17/05/2020
   Time: 3:22 pm
-  To change this template use File | Settings | File Templates.
 --%>
-
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
     <title>Home Page</title>
 
-    <link rel="stylesheet" type="text/css" href="/css/main.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css">
 
-    <script src="/js/searchFormAssistor.js"></script>
-    <script src="/js/dynamicLink.js"></script>
+    <script src="${pageContext.request.contextPath}/js/searchFormAssistor.js"></script>
+    <script src="${pageContext.request.contextPath}/js/dynamicLink.js"></script>
 </head>
 <body>
-<!-- session handler -->
+<!-- Session handler -->
 <jsp:include page="sessionHandlerMain.jsp"/>
 
 <!-- Site header -->

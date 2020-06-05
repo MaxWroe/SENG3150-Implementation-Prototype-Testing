@@ -41,37 +41,68 @@
             <c:forEach items="${booking}" var ="booking">
 
                 <!-- checks if one-way or return -->
-                <c:if test="${empty booking.airlineCode3}">
+                <c:if test="${booking.returnTrip == 0}">
                     <h4>ONE-WAY</h4>
                 </c:if>
-                <c:if test="${not empty booking.airlineCode3}">
+                <c:if test="${booking.returnTrip == 1}">
                     <h4>RETURN</h4>
                 </c:if>
+
+                <!-- checks group size -->
+                <c:if test="${booking.groupSize > 1}">
+                    <h4>GROUP-BOOKING</h4>
+                </c:if>
+
                 <!-- flight details -->
 
-                <h4>Booking number: </h4> <p><c:out value= "${booking.bookingID}"></c:out></p><br>
+                <h4>Booking ID: </h4> <p><c:out value= "${booking.bookingID}"></c:out></p><br>
 
-                <h4>Airline from: </h4> <p><c:out value= " ${booking.airlineCode}"></c:out></p><br>
-                <h4>Flight number from: </h4><p><c:out value= " ${booking.flightNumber}"></c:out></p> <br>
+                <h4>First Name: </h4> <p><c:out value="${booking.firstName}"></c:out> </p>
+                <h4>Last Name: </h4>  <p><c:out value="${booking.lastName}"></c:out></p>
+
+
+                <h4>Leg 1</h4>
+                <h4>Airline: </h4> <p><c:out value= " ${booking.airlineCode}"></c:out></p><br>
+                <h4>Flight number: </h4><p><c:out value= " ${booking.flightNumber}"></c:out></p> <br>
                 <h4>Departure time: </h4><p><c:out value="${booking.departureTime}"></c:out></p> <br>
+                <h4>Destination: </h4><p><c:out value="${}"></c:out></p> <br>
+                <h4>Arrival time:  </h4><p><c:out value="${}"></c:out></p> <br>
+                <h4>Class type: </h4><p><c:out value="${booking.classCode}"></c:out></p>
 
-                <h4>Airline to: </h4><p><c:out value="${booking.airlineCode2}"></c:out></p> <br>
-                <h4>Flight Number to: </h4> <p><c:out value= " ${booking.flightNumber2}"></c:out></p> <br>
-                <h4>Arrival time: </h4><p><c:out value="${booking.departureTime2}" ></c:out></p> <br>
 
-                <!-- if return -->
-                <c:if test="${not empty booking.airlineCode3}">
-                    <!-- return flights details-->
-
-                    <h4>Airline from: </h4><p><c:out value= " ${booking.airlineCode3}"></c:out></p> <br>
-                    <h4>Flight number from: </h4><p><c:out value= " ${booking.flightNumber3}"></c:out></p> <br>
-                    <h4>Departure time: </h4><p><c:out value="${booking.departureTime3}"></c:out></p> <br>
-
-                    <h4>Airline to: </h4> <p><c:out value="${booking.airlineCode4}"></c:out></p> <br>
-                    <h4>Flight Number to: </h4><p><c:out value= " ${booking.flightNumber4}"></c:out></p> <br>
-                    <h4>Arrival time: </h4><p><c:out value="${booking.departureTime4}" ></c:out></p> <br>
-
+                <!-- check if leg 2 -->
+                <c:if test="${not empty booking.flightNumber2}">
+                    <h4>Leg 2</h4>
+                    <h4>Airline: </h4> <p><c:out value= " ${booking.airlineCode2}"></c:out></p><br>
+                    <h4>Flight number: </h4><p><c:out value= " ${booking.flightNumber2}"></c:out></p> <br>
+                    <h4>Departure time: </h4><p><c:out value="${booking.departureTime2}"></c:out></p> <br>
+                    <h4>Destination: </h4><p><c:out value="${}"></c:out></p> <br>
+                    <h4>Arrival time:  </h4><p><c:out value="${}"></c:out></p> <br>
+                    <h4>Class type: </h4><p><c:out value="${booking.classCode2}"></c:out></p>
                 </c:if>
+
+                <!-- check if leg 3 exist-->
+                <c:if test="${not empty booking.flightNumber3}">
+                    <h4>Leg 3</h4>
+                    <h4>Airline: </h4> <p><c:out value= " ${booking.airlineCode3}"></c:out></p><br>
+                    <h4>Flight number: </h4><p><c:out value= " ${booking.flightNumber3}"></c:out></p> <br>
+                    <h4>Departure time: </h4><p><c:out value="${booking.departureTime3}"></c:out></p> <br>
+                    <h4>Destination: </h4><p><c:out value="${}"></c:out></p> <br>
+                    <h4>Arrival time:  </h4><p><c:out value="${}"></c:out></p> <br>
+                    <h4>Class type: </h4><p><c:out value="${booking.classCode3}"></c:out></p>
+                </c:if>
+
+                <!-- check if leg 4 exist -->
+                <c:if test="${not empty booking.flightNumber4}">
+                    <h4>Leg 4</h4>
+                    <h4>Airline: </h4> <p><c:out value= " ${booking.airlineCode4}"></c:out></p><br>
+                    <h4>Flight number: </h4><p><c:out value= " ${booking.flightNumber4}"></c:out></p> <br>
+                    <h4>Departure time: </h4><p><c:out value="${booking.departureTime4}"></c:out></p> <br>
+                    <h4>Destination: </h4><p><c:out value="${}"></c:out></p> <br>
+                    <h4>Arrival time:  </h4><p><c:out value="${}"></c:out></p> <br>
+                    <h4>Class type: </h4><p><c:out value="${booking.classCode4}"></c:out></p>
+                </c:if>
+
 
                 <h4>Booking Date: </h4><p><c:out value= " ${booking.bookingDate}"></c:out></p> <br>
 

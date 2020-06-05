@@ -1,29 +1,27 @@
 <%--
-  Created by IntelliJ IDEA.
-  User: jfpr2
+  JSP for displaying travel recommendations.
+  SENG3150 Group 3
   Date: 22/05/2020
   Time: 4:35 pm
-  To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>Travel Recommendations</title>
 
-    <link rel="stylesheet" type="text/css" href="/css/main.css">
-    <script src="/js/dynamicLink.js"></script>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css">
+    <script src="${pageContext.request.contextPath}/js/dynamicLink.js"></script>
 </head>
 <body>
-<!-- session checker -->
+<!-- Session checker -->
 <jsp:include page="sessionHandlerGuest.jsp"/>
 
 <!-- Site header -->
 <jsp:include page="header.jsp"/>
 
 <!-- Page content -->
-<!-- Page content -->
 <main class="main-content">
-    <!-- stuff like deals, popular destinations, quiet (high seat capacity) flights? -->
+    <!-- possible content: deals, popular destinations, quiet (high seat capacity) flights -->
     <h1>Travel Recommendations</h1>
     <h4>Deals</h4>
     <div class="recommendation">
