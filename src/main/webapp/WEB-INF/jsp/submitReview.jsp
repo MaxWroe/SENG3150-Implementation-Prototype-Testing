@@ -1,10 +1,10 @@
 <%--
-  Created by IntelliJ IDEA.
-  User: acero
+  JSP for submitting reviews
+  SENG3150 Group 3
   Date: 4/06/2020
   Time: 11:32 am
-  To change this template use File | Settings | File Templates.
 --%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -26,7 +26,7 @@
         <h1>Submit a Review</h1>
 
 
-
+        <!-- review form -->
         <form id="submitReviewForm" method="post" action="/submitReview">
 
             <!-- name -->
@@ -60,8 +60,6 @@
             rating.oninput = function() {
                 output.innerHTML = this.value;
             }
-
-
         </script>
 
 

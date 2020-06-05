@@ -1,10 +1,11 @@
-<%@ page import="java.util.Date" %><%--
-  Created by IntelliJ IDEA.
-  User: acero
+<%--
+  JSP for handling main initial session
+  SENG3150 Group 3
   Date: 29/05/2020
   Time: 8:30 pm
-  To change this template use File | Settings | File Templates.
 --%>
+
+<%@ page import="java.util.Date" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <!-- session handler -->
