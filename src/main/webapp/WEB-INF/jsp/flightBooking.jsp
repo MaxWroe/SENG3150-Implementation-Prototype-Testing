@@ -94,13 +94,13 @@
                 <input type="text" id="name" name="name" required>
                 <br>
                 <label for="cardno">Card Number:</label>
-                <input type="number" id="cardno" name="cardno" required>
+                <input type="number" id="cardno" name="cardno" maxlength="16" minlength="16" required>
                 <br>
                 <label for="cardexpiry">Expiry Date:</label>
                 <input type="month" id="cardexpiry" name="cardexpiry" required>
                 <br>
                 <label for="cardcvc">CVC:</label>
-                <input type="number" id="cardcvc" name="cardcvc" required>
+                <input type="number" id="cardcvc" name="cardcvc" maxlength="3" required>
 
                 <br>
                 <button type="submit" style="width: 50%;">Book</button>
