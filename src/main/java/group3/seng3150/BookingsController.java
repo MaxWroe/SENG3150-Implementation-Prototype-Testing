@@ -108,6 +108,8 @@ public class BookingsController {
         ModelAndView view = new ModelAndView("manageBooking");
         String tempName = new String();
         for(int i=1; i<=adultsBooking;i++) {
+            departureBooking.get(i-1).setUserID(UserID);
+            returnBooking.get(i-1).setUserID(UserID);
             tempName = "adultFirstName" + Integer.toString(i);
             departureBooking.get(i-1).setFirstName(request.getParameter(tempName));
             returnBooking.get(i-1).setFirstName(request.getParameter(tempName));
@@ -123,7 +125,8 @@ public class BookingsController {
         }
 
         for(int j=1; j<=childrenBookingS;j++) {
-
+            departureBooking.get(j-1).setUserID(UserID);
+            returnBooking.get(j-1).setUserID(UserID);
             tempName = "childFirstName" + Integer.toString(j);
             departureBooking.get(j-1).setFirstName(request.getParameter(tempName));
             returnBooking.get(j-1).setFirstName(request.getParameter(tempName));
