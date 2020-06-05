@@ -81,7 +81,7 @@ public class Booking {
     private String destination;
     @Column(name = "ArrivalTime")
     @Basic(optional = false)
-    private String arrivalTime;
+    private Timestamp arrivalTime;
     @Column(name = "Price")
     @Basic(optional = false)
     private int price;
@@ -101,7 +101,7 @@ public class Booking {
     private String departure2;
     @Column(name = "Destination2")
     private String destination2;
-    @Column(name = "ArrivalTime2")
+    @Column(Timestamp = "ArrivalTime2")
     private String arrivalTime2;
     @Column(name = "Price2")
     private int price2;
@@ -122,7 +122,7 @@ public class Booking {
     @Column(name = "Destination3")
     private String destination3;
     @Column(name = "ArrivalTime3")
-    private String arrivalTime3;
+    private Timestamp arrivalTime3;
     @Column(name = "Price3")
     private int price3;
 
@@ -142,7 +142,7 @@ public class Booking {
     @Column(name = "Destination4")
     private String destination4;
     @Column(name = "ArrivalTime4")
-    private String arrivalTime4;
+    private Timestamp arrivalTime4;
     @Column(name = "Price4")
     private int price4;
 
