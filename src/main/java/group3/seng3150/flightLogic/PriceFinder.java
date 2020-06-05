@@ -6,6 +6,11 @@ import group3.seng3150.entities.Price;
 import javax.persistence.EntityManager;
 import java.util.List;
 
+/*
+Author: Chris Mather
+Description: this class takes a list of availabilities and returns a list of prices that are lined to those availabilities
+ */
+
 public class PriceFinder {
 
     private EntityManager em;
@@ -15,15 +20,13 @@ public class PriceFinder {
     }
 
 
+    //returns a list of prices that fit criteria of an availability
     public List<Price> getPrice(int leg, Availability av){
-
-
         String ac = av.getAirlineCode();
         String fn = av.getFlightNumber();
         String cc = av.getClassCode();
         String tc = av.getTicketCode();
         String dd = av.getDepartureDate().toString();
-
 
         List<Price> prices = em.createQuery(
                 "SELECT p FROM Price p WHERE p.airlineCode = '"+ac+"' " +

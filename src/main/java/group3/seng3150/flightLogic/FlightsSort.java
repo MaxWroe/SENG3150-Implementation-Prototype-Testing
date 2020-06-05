@@ -5,15 +5,18 @@ import group3.seng3150.FlightPlan;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+Author: Chris Mather
+Description: this class takes a list of flight plans and a sorting method and rerturns that list in a sorted manner
+uses merge sort to sort flight plans
+ */
+
 public class FlightsSort {
 
     public FlightsSort(){}
 
-    //departure time ascending
-    //departure time descending
-    //price ascending
-    //price descending
-
+    //splits inserted list in half and until those halves are in size two keeps splitting
+    //then recursively runs merge on the halves
     public List<FlightPlan> sortFlightPlan(List<FlightPlan> list, String sortMethod){
         if(list.size()<2){
             return list;
@@ -25,6 +28,7 @@ public class FlightsSort {
                 sortMethod);
     }
 
+    //sorts the parsed in lists and sorts them based on sent in criteria
     public List<FlightPlan> mergeFlightPlan(List<FlightPlan> left, List<FlightPlan> right, String sortMethod){
         int leftIndex = 0;
         int rightIndex = 0;

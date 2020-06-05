@@ -6,8 +6,11 @@ import group3.seng3150.entities.Flight;
 
 import java.sql.Timestamp;
 import java.util.*;
-//search options duration, price
 
+/*
+Author: Chris Mather
+Description: this class processes a list of flights and returns information about it
+ */
 
 public class FlightPlanSearch {
     private ArrayList<String> airports;
@@ -17,26 +20,32 @@ public class FlightPlanSearch {
         setAirports();
     }
 
+    //finds and returns a list of flight plans from sent in flights that match the criteria
     public List<FlightPlan> createFlightPlans(List<Flight> flights, String departureLocation, String destination, boolean stopOverNeeded, String startingTimeString, List<Availability> parsedAvailabilities){
         Timestamp startingTime = Timestamp.valueOf(startingTimeString);
         List<FlightPlan> flightPlans = new LinkedList<>();
         List<Flight> filteredFlights = filterByAvailabilities(flights, parsedAvailabilities);
-        System.out.println("parsed in flights: " + flights.size() + " stop over needed: " + stopOverNeeded);
+        //if a stop over is needed and sent in flights has flights will run Dijkstras on the flights and returns the found flight plans
         if(stopOverNeeded && filteredFlights.size()>0){
             flightPlans.add(getShortestPathDuration(filteredFlights, departureLocation, destination, startingTime));
         }
+
+        //simply compiles sent in list of flights into flight plans
         else{
             for(int i=0; i<filteredFlights.size(); i++){
                 flightPlans.add(new FlightPlan());
                 flightPlans.get(i).add(filteredFlights.get(i));
             }
         }
+
+        //sets availabilities
         if(flightPlans.get(0)!= null) {
             flightPlans = SetFlightPlansAvailabilities(flightPlans, parsedAvailabilities);
         }
         return flightPlans;
     }
 
+    //method that sets availabilities of a snet in flight plans
     private List<FlightPlan> SetFlightPlansAvailabilities(List<FlightPlan> flightPlans, List<Availability> availabilities){
         List<FlightPlan> flightPlanList = flightPlans;
         if(availabilities.size()>0) {
@@ -47,6 +56,7 @@ public class FlightPlanSearch {
         return flightPlanList;
     }
 
+    //removes flights from the lsit that do not have an availability in the sent in list
     private List<Flight> filterByAvailabilities(List<Flight> flights, List<Availability> availabilities){
         List<Flight> filteredFlights = new LinkedList<>();
         boolean contains = false;
@@ -66,6 +76,7 @@ public class FlightPlanSearch {
         return flights;
     }
 
+    //returns a flight plan that matches sent in criteria, if non exist returns an empty flight plan
     private FlightPlan getShortestPathDuration(List<Flight> flights, String departureLocation, String arrivalLocation, Timestamp startingTime){
         FlightPlan flightPlan = new FlightPlan();
         ArrayList<DijkstraNode> airportFlightNodes = new ArrayList<>();
@@ -104,6 +115,7 @@ public class FlightPlanSearch {
         }
     }
 
+    //runs Dijsktras in a sent in graph from the source node sent in
     private static DijkstraGraph calculateShortestPathFromSource(DijkstraGraph graph, DijkstraNode source, Timestamp startingTime) {
         source.setDistance(0);
 
@@ -159,6 +171,7 @@ public class FlightPlanSearch {
 
 
 
+    //sets list of airports to this static list
     private void setAirports(){
         airports.add("ADL");
         airports.add("AMS");
