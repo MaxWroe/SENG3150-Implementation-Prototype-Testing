@@ -43,7 +43,7 @@
             <p>Seat Class</p>
             <h4>${returnClass}</h4>
             <p>Seats Remaining</p>
-            <h4>${SeatsLeft}</h4>
+            <h4>${seatsLeft}</h4>
             </c:if>
         </div>
 
