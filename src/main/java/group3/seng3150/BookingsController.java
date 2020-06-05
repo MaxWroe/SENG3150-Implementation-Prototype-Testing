@@ -42,7 +42,7 @@ public class BookingsController {
     public ModelAndView manageBookingCancelling(HttpSession session,
                                                 @RequestParam("userID") String userID,
                                                 @RequestParam("bookingID") String bookingID) {
-        ModelAndView view = new ModelAndView("manageBooking");
+        ModelAndView view = new ModelAndView("home");
         //String UserID = session.getAttribute(userId);
         String message = new String();
         try{
