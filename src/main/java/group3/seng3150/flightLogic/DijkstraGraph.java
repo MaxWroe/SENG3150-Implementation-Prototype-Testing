@@ -3,6 +3,11 @@ package group3.seng3150.flightLogic;
 import java.util.HashSet;
 import java.util.Set;
 
+/*
+Author: Chris Mather
+Description: class that stores nodes for running Dijkstras on
+ */
+
 public class DijkstraGraph {
 
     private Set<DijkstraNode> nodes = new HashSet<>();

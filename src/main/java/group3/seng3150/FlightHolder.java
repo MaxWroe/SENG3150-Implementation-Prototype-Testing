@@ -7,6 +7,12 @@ import javax.persistence.EntityManager;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+Author: Chris Mather
+Description: This class is a bean that stores lists of flightsPlans and availabilites and can call methods to manipulate them
+ */
+
+
 public class FlightHolder {
     private FlightsSort sorter;
     private List<FlightPlan> flightPlans;
@@ -17,6 +23,7 @@ public class FlightHolder {
         flightPlans = new ArrayList<>();
     }
 
+    //sorts the list of flights by the sorting method
     public List<FlightPlan> sortFlightPlans(String sortMethod){
         flightPlans = sorter.sortFlightPlan(flightPlans, sortMethod);
         return flightPlans;
@@ -49,6 +56,7 @@ public class FlightHolder {
         this.availabilities = availabilities;
     }
 
+    //
     public void setFlightPlanPositions()
     {
         for (int i=0; i<flightPlans.size(); i++){
@@ -58,6 +66,7 @@ public class FlightHolder {
         }
     }
 
+    //gives flight plans the entity manager and sets prices for those flight plans based on their availabilities
     public void setAllPrices(EntityManager em){
         for(int i=0; i<flightPlans.size(); i++){
             if(flightPlans.get(i)!=null) {

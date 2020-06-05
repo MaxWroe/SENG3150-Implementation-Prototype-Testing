@@ -5,11 +5,15 @@ import group3.seng3150.entities.Flight;
 import java.sql.Timestamp;
 import java.util.*;
 
+/*
+Author: Chris Mather
+Description: class that stores a node and information about its directed edges as flights to other nodes
+and has acitons to return and set information for htose edges
+ */
+
 public class DijkstraNode {
     private String name;
-//    private List<DijkstraNode> shortestPath = new LinkedList<>();
     private long distance = Integer.MAX_VALUE;
-//    private Map<DijkstraNode, Integer> adjacentNodes = new HashMap<>();
     private Map<DijkstraNode, List<Flight>> adjacentNodesFlights = new HashMap<>();
     private LinkedList<Flight> shortestPathFlights = new LinkedList<>();
     private LinkedList<DijkstraNode> shortestPath = new LinkedList<>();
@@ -19,8 +23,8 @@ public class DijkstraNode {
         this.name = Name;
     }
 
+    //adds sent in flight to connect to sent in node
     public void addDestination(DijkstraNode destination, Flight flight){
-//        adjacentNodes.put(destination,distance);
         if(!adjacentNodesFlights.containsKey(destination)){
             ArrayList<Flight> tempList = new ArrayList<>();
             tempList.add(flight);
@@ -33,10 +37,8 @@ public class DijkstraNode {
         }
     }
 
+    //sets sortest durations of this node to all other adjacent nodes
     public void setShortestDurations(Timestamp startingTime){
-//        if(shortestPathFlights.size()>0) {
-//            Flight previousFlight = shortestPathFlights.get(shortestPathFlights.size() - 1);
-//        }
         if(shortestPathFlights.size()>0){
             for (Map.Entry<DijkstraNode, List<Flight>> adjacencyPair : adjacentNodesFlights.entrySet()) {
                 shortestDuration(adjacencyPair.getKey(), shortestPathFlights.getLast(), startingTime);
@@ -49,6 +51,7 @@ public class DijkstraNode {
         }
     }
 
+    //sets shortest of this node to the source node being run on the graph
     private void shortestDuration(DijkstraNode destination, Flight previousFlight, Timestamp parsedStartingTime){
         List<Flight> tempList = adjacentNodesFlights.get(destination);
         long out = Long.MAX_VALUE;
@@ -67,6 +70,7 @@ public class DijkstraNode {
         adjacentNodesFlightShortest.put(destination, tempList.get(counter));
     }
 
+    //returns shortest duration of this node to sent in node
     public long getShortestDurationToNode(DijkstraNode destination, Timestamp startingTime){
         if (adjacentNodesFlightShortest.containsKey(destination)) {
             if (shortestPathFlights.size()>0) {
@@ -88,14 +92,6 @@ public class DijkstraNode {
     public void setName(String name) {
         this.name = name;
     }
-
-//    public List<DijkstraNode> getShortestPath() {
-//        return shortestPath;
-//    }
-//
-//    public void setShortestPath(List<DijkstraNode> shortestPath) {
-//        this.shortestPath = shortestPath;
-//    }
 
     public Map<DijkstraNode, List<Flight>> getAdjacentNodesFlights() {
         return adjacentNodesFlights;
@@ -137,11 +133,4 @@ public class DijkstraNode {
         this.distance = distance;
     }
 
-//    public Map<DijkstraNode, Integer> getAdjacentNodes() {
-//        return adjacentNodes;
-//    }
-//
-//    public void setAdjacentNodes(Map<DijkstraNode, Integer> adjacentNodes) {
-//        this.adjacentNodes = adjacentNodes;
-//    }
 }
