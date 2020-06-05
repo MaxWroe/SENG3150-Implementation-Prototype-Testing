@@ -79,6 +79,11 @@
     <option name="FILTER_DEBUG" value="true" />
     <option name="CUSTOM_FILTER" />
   </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="-6" />
+    <option name="width" value="1379" />
+    <option name="height" value="735" />
+  </component>
   <component name="ProjectId" id="1c1DL55cemOMjQ8BAbxwTY1YHvk" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="1" id="Add" />
