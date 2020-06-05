@@ -97,9 +97,9 @@ public class AccountController {
         view.addObject("dateOfBirth", user.getDateOfBirth());
         view.addObject("citizenship", user.getCitizenship());
         view.addObject("gender", user.getGender());
-        view.addObject("address", standard);
-        view.addObject("emergencyContact", standard);
-        view.addObject("familyMembers", standard);
+        view.addObject("address", user.getAddress());
+        view.addObject("emergencyContact", user.getEmergencyContact());
+        view.addObject("familyMembers", user.getFamilyMembers());
         view.addObject("address", user.getAddress());
         view.addObject("emergencyContact", user.getEmergencyContact());
         view.addObject("familyMembers", user.getFamilyMembers());
@@ -115,15 +115,14 @@ public class AccountController {
         session.setAttribute("dateOfBirth", user.getDateOfBirth());
         session.setAttribute("citizenship", user.getCitizenship());
         session.setAttribute("gender", user.getGender());
-        session.setAttribute("address", standard);
-        session.setAttribute("emergencyContact", standard);
-        session.setAttribute("familyMembers", standard);
+        session.setAttribute("address", user.getAddress());
+        session.setAttribute("emergencyContacts", user.getEmergencyContact());
+        session.setAttribute("familyMembers", user.getFamilyMembers());
         session.setAttribute("address", user.getAddress());
         session.setAttribute("emergencyContact", user.getAddress());
         session.setAttribute("familyMembers", user.getAddress());
-        //session.setAttribute("phone", user.getPhone());
+        session.setAttribute("phone", user.getPhone());
         //*************************************************************************
-
         return view;
     }
 
