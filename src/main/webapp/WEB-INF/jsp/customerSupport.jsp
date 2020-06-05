@@ -39,9 +39,14 @@
                     <h4>Submission Date: </h4><p><c:out value= " ${enquiries.submissionDate}"></c:out></p> <br>
                     <h4>Agent Answer: </h4><p><c:out value= "${enquiries.agentAnswer}"></c:out></p> <br>
 
+                    <!--update ticket -->
                     <div class="update-enquiry">
-                        <form method="post" action="/updateEnquiry">
-                            <button type="submit">Update</button>
+                        <form id="updateForm" method="post" action="/customerSupport/update" >
+                            <!-- ticket update -->
+                            <label for="update">Ticket update: </label><br>
+                            <textarea id="update" name="ticketEnquiry" rows="4" cols="50" required>... </textarea> <br>
+
+                            <button id="updateEnquiry" type="submit"> Update </button>
                         </form>
                     </div>
                 </c:forEach>
@@ -58,8 +63,12 @@
                     <h4>Agent Answer: </h4> <p>No clue</p> <br>
 
                 <div class="update-enquiry">
-                    <form method="post" action="/updateEnquiry">
-                        <button type="submit">Update</button>
+                    <form id="updateForm1" method="post" action="/customerSupport/update" >
+                        <!-- ticket update -->
+                        <label for="update">Ticket update: </label><br>
+                        <textarea id="update1" name="ticketEnquiry" rows="4" cols="50" required>... </textarea> <br>
+
+                        <button id="updateEnquiry1" type="submit"> Update </button>
                     </form>
                 </div>
 
@@ -74,8 +83,12 @@
                 <h4>Agent Answer: </h4> <p>No clue</p> <br>
 
                 <div class="update-enquiry">
-                    <form method="post" action="/updateEnquiry">
-                        <button type="submit">Update</button>
+                    <form id="updateForm2" method="post" action="/customerSupport/update" >
+                        <!-- ticket update -->
+                        <label for="update">Ticket update: </label><br>
+                        <textarea id="update2" name="ticketEnquiry" rows="4" cols="50" required>... </textarea> <br>
+
+                        <button id="updateEnquiry2" type="submit"> Update </button>
                     </form>
                 </div>
 
