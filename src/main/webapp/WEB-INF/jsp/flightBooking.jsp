@@ -53,22 +53,25 @@
         if(userID != null){%>
         <div class="booking-details">
             <form method="post" action="/bookFlight">
+                <input type="hidden" id="adultsBooking" name="adultsBooking" value="${adultsBooked}">
+                <input type="hidden" id="childrenBooking" name="childrenBooking" value="${childrenBooked}">
+
                 <h4>Passenger Details</h4>
                 <br>
                 <!-- Autofill first adult from logged in account -->
                 <label for="adultFirstName1">Booking Adult Name:</label>
                 <input type="text" id="adultFirstName1" name="adultFirstName1" value="${sessionScope.firstName}" readonly required>
                 <input type="text" id="adultLastName1" name="adultLastName1" value="${sessionScope.lastName}" readonly required>
-                <label for="adultAge1">Age:</label>
-                <input type="date" id="adultAge1" name="adultAge1" value="${sessionScope.dateOfBirth}" required>
+                <label for="adultDOB1">DOB:</label>
+                <input type="date" id="adultDOB1" name="adultDOB1" value="${sessionScope.dateOfBirth}" readonly required>
                 <br>
                 <!-- Get details of all booking passengers -->
                 <c:forEach var = "i" begin = "2" end = "${adultsBooked}">
                     <label for="adultFirstName<c:out value = "${i}"/>">Adult <c:out value = "${i}"/> Name:</label>
-                    <input type="text" id="adultFirstName<c:out value = "${i}"/>" name="adultFirstName<c:out value = "${i}"/>" required>
-                    <input type="text" id="adultLastName<c:out value = "${i}"/>" name="adultLastName<c:out value = "${i}"/>" required>
-                    <label for="adultAge<c:out value = "${i}"/>">Age:</label>
-                    <input type="date" id="adultAge<c:out value = "${i}"/>" name="adultAge<c:out value = "${i}"/>" required>
+                    <input type="text" id="adultFirstName<c:out value = "${i}"/>" name="adultFirstName<c:out value = "${i}"/>" placeholder="First" required>
+                    <input type="text" id="adultLastName<c:out value = "${i}"/>" name="adultLastName<c:out value = "${i}"/>" placeholder="Last" required>
+                    <label for="adultDOB<c:out value = "${i}"/>">DOB:</label>
+                    <input type="date" id="adultDOB<c:out value = "${i}"/>" name="adultDOB<c:out value = "${i}"/>" required>
                     <br>
                 </c:forEach>
                 <c:if test="${childrenBooked > 0}">
@@ -77,10 +80,10 @@
                 </c:if>
                 <c:forEach var = "i" begin = "1" end = "${childrenBooked}">
                     <label for="childFirstName<c:out value = "${i}"/>">Child <c:out value = "${i}"/> Name:</label>
-                    <input type="text" id="childFirstName<c:out value = "${i}"/>" name="childFirstName<c:out value = "${i}"/>" required>
-                    <input type="text" id="childLastName<c:out value = "${i}"/>" name="childLastName<c:out value = "${i}"/>" required>
-                    <label for="childAge<c:out value = "${i}"/>">Age:</label>
-                    <input type="date" id="childAge<c:out value = "${i}"/>" name="childAge<c:out value = "${i}"/>" required>
+                    <input type="text" id="childFirstName<c:out value = "${i}"/>" name="childFirstName<c:out value = "${i}"/>" placeholder="First" required>
+                    <input type="text" id="childLastName<c:out value = "${i}"/>" name="childLastName<c:out value = "${i}"/>" placeholder="Last" required>
+                    <label for="childDOB<c:out value = "${i}"/>">DOB:</label>
+                    <input type="date" id="childDOB<c:out value = "${i}"/>" name="childDOB<c:out value = "${i}"/>" required>
                     <br>
                 </c:forEach>
 
