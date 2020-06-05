@@ -29,7 +29,7 @@
             <p>Price</p>
             <h4>${param.departurePrice}</h4>
             <p>Date/Time</p>
-            <h4>${departureFlight.departureTime}</h4>
+            <h4>${departureFlight.departureDate}</h4>
             <p>Seat Class</p>
             <h4>${param.departureClass}</h4>
             <p>Seats Remaining</p>
@@ -39,7 +39,7 @@
             <p>Price</p>
             <h4>${param.returnPrice}</h4>
             <p>Date/Time</p>
-            <h4>${returnFlight.departureTime}</h4>
+            <h4>${returnFlight.departureDate}</h4>
             <p>Seat Class</p>
             <h4>${param.returnClass}</h4>
             <p>Seats Remaining</p>
@@ -119,6 +119,7 @@
         <%}%>
 
         <div class="booking-details">
+            <%--
             <!-- Did not have time to complete
             <h4>Extra Details</h4>
             <h4>Departure Flight</h4>
@@ -142,6 +143,7 @@
             <br>
             </c:if>
             -->
+            --%>
         </div>
     </div>
 </main>
