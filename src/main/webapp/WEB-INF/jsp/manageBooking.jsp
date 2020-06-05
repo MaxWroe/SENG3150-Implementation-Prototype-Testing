@@ -126,28 +126,6 @@
 
           </c:forEach>
         </div>
-
-        <!-- temp bookings -->
-        <div class ="my-bookings">
-            <h4>Booking number: </h4> <p>1</p>  <br>
-            <h4>Airline: </h4> <p>Qantas </p> <br>
-            <h4>Flight Details: </h4> <p>XGH524</p>  <br>
-            <h4>Date: </h4> <p>22/5/2020</p><br>
-            <h4>Time: </h4>  <p>12:30am</p> <br>
-            <h4>Location: </h4> <p>SYDNEY</p><br>
-            <h4>Reviews: </h4> <p>Nice!</p> <br>
-
-            <!-- cancel booking -->
-            <div class="cancel-booking">
-                <form id="cancelForm1" method="post" action="${pageContext.request.contextPath}/manageBooking/cancel">
-                    <!-- userID -->
-                    <input type ="hidden" id="userID1" name="userID1" value="<%=session.getAttribute("userId")%>"/>
-
-                    <button type="submit">Cancel</button>
-                </form>
-            </div>
-
-        </div>
     </div>
 </main>
 
