@@ -96,15 +96,19 @@ public class BookingsController {
                                    HttpServletRequest request,
                                    @RequestParam("adultsBooking") String adultsBookingS,
                                    @RequestParam("childrenBooking") String childrenBooking
-                                   //@RequestParam("userID") String userID)
     ){
         int adultsBooking = Integer.parseInt(adultsBookingS);
+        int childrenBookingS = Integer.parseInt(childrenBooking);
         String UserID = (String)session.getAttribute("userId");
         request.getParameter("");
         ModelAndView view = new ModelAndView("manageBooking");
-        //For(int i; i<=) {
-        //    request.getParameter("" + i);
-        //}
+        for(int i=1; i<=adultsBooking;i++) {
+            request.getParameter("" + i);
+        }
+
+        for(int j=1; j<=childrenBookingS;j++) {
+            request.getParameter("" + j);
+        }
 
         return view;
     }
