@@ -1,3 +1,8 @@
+//Class: Airport
+//Author: Angus Simmons
+// Description: This is an entity that uses the hibernate framework to extract data from a database
+// in this instance it is representing flight bookings in the database
+
 package group3.seng3150.entities;
 
 
@@ -39,7 +44,6 @@ public class Booking {
     @Basic(optional = false)
     private Date dateOfBirth;
 
-
     @Column(name = "BookingDate")
     @Basic(optional = false)
     private Timestamp bookingDate;
@@ -52,8 +56,7 @@ public class Booking {
     @Basic(optional = false)
     private int returnTrip;
 
-
-
+    //If there was more time we would but booked flights into their own table to keep booking from being this big.
     //flight 1 - data is all foreign keys
     @Column(name = "AirlineCode")
     @Basic(optional = false)
@@ -70,6 +73,15 @@ public class Booking {
     @Column(name = "TicketCode")
     @Basic(optional = false)
     private String ticketCode;
+    @Column(name = "Departure")
+    @Basic(optional = false)
+    private String departure;
+    @Column(name = "Destination")
+    @Basic(optional = false)
+    private String destination;
+    @Column(name = "ArrivalTime")
+    @Basic(optional = false)
+    private Timestamp arrivalTime;
     @Column(name = "Price")
     @Basic(optional = false)
     private int price;
@@ -85,6 +97,12 @@ public class Booking {
     private String classCode2;
     @Column(name = "TicketCode2")
     private String ticketCode2;
+    @Column(name = "Departure2")
+    private String departure2;
+    @Column(name = "Destination2")
+    private String destination2;
+    @Column(name = "ArrivalTime2")
+    private Timestamp arrivalTime2;
     @Column(name = "Price2")
     private int price2;
 
@@ -99,6 +117,12 @@ public class Booking {
     private String classCode3;
     @Column(name = "TicketCode3")
     private String ticketCode3;
+    @Column(name = "Departure3")
+    private String departure3;
+    @Column(name = "Destination3")
+    private String destination3;
+    @Column(name = "ArrivalTime3")
+    private Timestamp arrivalTime3;
     @Column(name = "Price3")
     private int price3;
 
@@ -113,6 +137,12 @@ public class Booking {
     private String classCode4;
     @Column(name = "TicketCode4")
     private String ticketCode4;
+    @Column(name = "Departure4")
+    private String departure4;
+    @Column(name = "Destination4")
+    private String destination4;
+    @Column(name = "ArrivalTime4")
+    private Timestamp arrivalTime4;
     @Column(name = "Price4")
     private int price4;
 
@@ -392,6 +422,102 @@ public class Booking {
 
     public void setPrice4(int price4) {
         this.price4 = price4;
+    }
+
+    public String getDeparture() {
+        return departure;
+    }
+
+    public void setDeparture(String departure) {
+        this.departure = departure;
+    }
+
+    public String getDestination() {
+        return destination;
+    }
+
+    public void setDestination(String destination) {
+        this.destination = destination;
+    }
+
+    public Timestamp getArrivalTime() {
+        return arrivalTime;
+    }
+
+    public void setArrivalTime(Timestamp arrivalTime) {
+        this.arrivalTime = arrivalTime;
+    }
+
+    public String getDeparture2() {
+        return departure2;
+    }
+
+    public void setDeparture2(String departure2) {
+        this.departure2 = departure2;
+    }
+
+    public String getDestination2() {
+        return destination2;
+    }
+
+    public void setDestination2(String destination2) {
+        this.destination2 = destination2;
+    }
+
+    public Timestamp getArrivalTime2() {
+        return arrivalTime2;
+    }
+
+    public void setArrivalTime2(Timestamp arrivalTime2) {
+        this.arrivalTime2 = arrivalTime2;
+    }
+
+    public String getDeparture3() {
+        return departure3;
+    }
+
+    public void setDeparture3(String departure3) {
+        this.departure3 = departure3;
+    }
+
+    public String getDestination3() {
+        return destination3;
+    }
+
+    public void setDestination3(String destination3) {
+        this.destination3 = destination3;
+    }
+
+    public Timestamp getArrivalTime3() {
+        return arrivalTime3;
+    }
+
+    public void setArrivalTime3(Timestamp arrivalTime3) {
+        this.arrivalTime3 = arrivalTime3;
+    }
+
+    public String getDeparture4() {
+        return departure4;
+    }
+
+    public void setDeparture4(String departure4) {
+        this.departure4 = departure4;
+    }
+
+    public String getDestination4() {
+        return destination4;
+    }
+
+    public void setDestination4(String destination4) {
+        this.destination4 = destination4;
+    }
+
+    public Timestamp getArrivalTime4() {
+        return arrivalTime4;
+    }
+
+    public void setArrivalTime4(Timestamp arrivalTime4) {
+        this.arrivalTime4 = arrivalTime4;
     }
 
     @Override
