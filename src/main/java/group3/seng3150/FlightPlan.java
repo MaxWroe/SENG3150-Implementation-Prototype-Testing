@@ -10,13 +10,6 @@ import java.sql.Timestamp;
 import java.util.LinkedList;
 import java.util.List;
 
-/*
-Author: Chris Mather
-Description: this class stores a list of flights and corresponding lists of availabilities and prices for those flights
-and contains methods to get information on the flight plan
- */
-
-
 public class FlightPlan {
     private List<Flight> flights;
     private List<Availability> availabilities;
@@ -38,7 +31,6 @@ public class FlightPlan {
         return flights.get(flights.size()-1).getArrivalDate();
     }
 
-    //returns airline names of the flights
     public String getAirlines(){
         String airlines = "";
         for (Flight flight : flights) {
@@ -47,19 +39,18 @@ public class FlightPlan {
         return airlines;
     }
 
-    //sets availabilities so that availabilities stored are those from the parsed in list corresponding to the stored flights
     public void setAvailabilitiesFiltered(List<Availability> parsedAvailabilities){
         for(int i=0; i<flights.size(); i++){
             for(int j=0; j<parsedAvailabilities.size();j++) {
                 if(flights.get(i).getFlightNumber().equals(parsedAvailabilities.get(j).getFlightNumber())){
                     availabilities.add(parsedAvailabilities.get(j));
+                    System.out.println("adding avilability: " + j);
                 }
             }
         }
         System.out.println(availabilities.size());
     }
 
-    //sets prices to those corresponding to stored availabilities
     public void setPrices(EntityManager em){
         PriceFinder priceFinder = new PriceFinder(em);
         for(int i=0; i<availabilities.size(); i++){
@@ -70,7 +61,6 @@ public class FlightPlan {
         }
     }
 
-    //returns a price based on a specific availability
     public int getPriceFromAvailability(Availability availability){
         for(int i=0; i<prices.size(); i++){
             if (prices.get(i).getFlightNumber().equals(availability.getFlightNumber())  && prices.get(i).getClassCode().equals(availability.getClassCode())){
@@ -80,7 +70,6 @@ public class FlightPlan {
         return 0;
     }
 
-    //returns sum of prices from all flights in the flight plans
     public int getPrice(){
         int out = 0;
         if(availabilities.size()==0){
@@ -100,7 +89,6 @@ public class FlightPlan {
         return  out;
     }
 
-    //returns the number of seats as the lowest number of seats for an individual flights
     public int getNumberAvailableSeats(){
         int out = 100;
         for(int i=0; i<flights.size();i++){
@@ -121,7 +109,6 @@ public class FlightPlan {
         return  out;
     }
 
-    //returns total number of locations that a flight plan has so 2 + every stop over location
     public int getNumberStopOvers(){
         int out = -1;
         for (int i=0; i<flights.size(); i++){

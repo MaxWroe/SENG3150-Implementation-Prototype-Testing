@@ -1,11 +1,11 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
-  Created by IntelliJ IDEA.
-  User: acero
+  JSP for viewing bookings and cancelling it
+  SENG3150 Group 3
   Date: 26/05/2020
   Time: 11:12 am
-  To change this template use File | Settings | File Templates.
 --%>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -57,50 +57,54 @@
 
                 <h4>Booking ID: </h4> <p><c:out value= "${booking.bookingID}"></c:out></p><br>
 
-                <h4>First Name: </h4> <p><c:out value="${booking.firstName}"></c:out> </p>
-                <h4>Last Name: </h4>  <p><c:out value="${booking.lastName}"></c:out></p>
+                <h4>First Name: </h4> <p><c:out value="${booking.firstName}"></c:out> </p><br>
+                <h4>Last Name: </h4>  <p><c:out value="${booking.lastName}"></c:out></p><br>
 
 
-                <h4>Leg 1</h4>
+                <h4>Leg 1</h4><br>
                 <h4>Airline: </h4> <p><c:out value= " ${booking.airlineCode}"></c:out></p><br>
+                <h4>Departure: </h4> <p><c:out value= " ${booking.departure}"></c:out></p> <br>
                 <h4>Flight number: </h4><p><c:out value= " ${booking.flightNumber}"></c:out></p> <br>
                 <h4>Departure time: </h4><p><c:out value="${booking.departureTime}"></c:out></p> <br>
-                <h4>Destination: </h4><p><c:out value="${}"></c:out></p> <br>
-                <h4>Arrival time:  </h4><p><c:out value="${}"></c:out></p> <br>
-                <h4>Class type: </h4><p><c:out value="${booking.classCode}"></c:out></p>
+                <h4>Destination: </h4><p><c:out value="${booking.destination}"></c:out></p> <br>
+                <h4>Arrival time:  </h4><p><c:out value="${booking.arrivalTime}"></c:out></p> <br>
+                <h4>Class type: </h4><p><c:out value="${booking.classCode}"></c:out></p><br>
 
 
                 <!-- check if leg 2 -->
                 <c:if test="${not empty booking.flightNumber2}">
-                    <h4>Leg 2</h4>
+                    <h4>Leg 2</h4><br>
                     <h4>Airline: </h4> <p><c:out value= " ${booking.airlineCode2}"></c:out></p><br>
+                    <h4>Departure: </h4> <p><c:out value= " ${booking.departure2}"></c:out></p> <br>
                     <h4>Flight number: </h4><p><c:out value= " ${booking.flightNumber2}"></c:out></p> <br>
                     <h4>Departure time: </h4><p><c:out value="${booking.departureTime2}"></c:out></p> <br>
-                    <h4>Destination: </h4><p><c:out value="${}"></c:out></p> <br>
-                    <h4>Arrival time:  </h4><p><c:out value="${}"></c:out></p> <br>
-                    <h4>Class type: </h4><p><c:out value="${booking.classCode2}"></c:out></p>
+                    <h4>Destination: </h4><p><c:out value="${booking.destination2}"></c:out></p> <br>
+                    <h4>Arrival time:  </h4><p><c:out value="${booking.arrivalTime2}"></c:out></p> <br>
+                    <h4>Class type: </h4><p><c:out value="${booking.classCode2}"></c:out></p><br>
                 </c:if>
 
                 <!-- check if leg 3 exist-->
                 <c:if test="${not empty booking.flightNumber3}">
-                    <h4>Leg 3</h4>
+                    <h4>Leg 3</h4><br>
                     <h4>Airline: </h4> <p><c:out value= " ${booking.airlineCode3}"></c:out></p><br>
+                    <h4>Departure: </h4> <p><c:out value= " ${booking.departure3}"></c:out></p> <br>
                     <h4>Flight number: </h4><p><c:out value= " ${booking.flightNumber3}"></c:out></p> <br>
                     <h4>Departure time: </h4><p><c:out value="${booking.departureTime3}"></c:out></p> <br>
-                    <h4>Destination: </h4><p><c:out value="${}"></c:out></p> <br>
-                    <h4>Arrival time:  </h4><p><c:out value="${}"></c:out></p> <br>
-                    <h4>Class type: </h4><p><c:out value="${booking.classCode3}"></c:out></p>
+                    <h4>Destination: </h4><p><c:out value="${booking.destination3}"></c:out></p> <br>
+                    <h4>Arrival time:  </h4><p><c:out value="${booking.arrivalTime3}"></c:out></p> <br>
+                    <h4>Class type: </h4><p><c:out value="${booking.classCode3}"></c:out></p><br>
                 </c:if>
 
                 <!-- check if leg 4 exist -->
                 <c:if test="${not empty booking.flightNumber4}">
-                    <h4>Leg 4</h4>
+                    <h4>Leg 4</h4><br>
                     <h4>Airline: </h4> <p><c:out value= " ${booking.airlineCode4}"></c:out></p><br>
+                    <h4>Departure: </h4> <p><c:out value= " ${booking.departure4}"></c:out></p> <br>
                     <h4>Flight number: </h4><p><c:out value= " ${booking.flightNumber4}"></c:out></p> <br>
                     <h4>Departure time: </h4><p><c:out value="${booking.departureTime4}"></c:out></p> <br>
-                    <h4>Destination: </h4><p><c:out value="${}"></c:out></p> <br>
-                    <h4>Arrival time:  </h4><p><c:out value="${}"></c:out></p> <br>
-                    <h4>Class type: </h4><p><c:out value="${booking.classCode4}"></c:out></p>
+                    <h4>Destination: </h4><p><c:out value="${booking.destination4}"></c:out></p> <br>
+                    <h4>Arrival time:  </h4><p><c:out value="${booking.arrivalTime4}"></c:out></p> <br>
+                    <h4>Class type: </h4><p><c:out value="${booking.classCode4}"></c:out></p><br>
                 </c:if>
 
 
@@ -120,7 +124,7 @@
                 </form>
                 </div>
 
-            </c:forEach>
+          </c:forEach>
         </div>
 
         <!-- temp bookings -->
@@ -144,11 +148,6 @@
             </div>
 
         </div>
-
-        <!-- cancel a booking-->
-       <!-- <button id="cancelBooking" type="submit" onclick="displayForm('cancelForm')"> Cancel a booking </button> -->
-
-
     </div>
 </main>
 
