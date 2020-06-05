@@ -89,7 +89,7 @@
             </div>
 
             <!-- Ticket class -->
-            <div class="search-form-group">
+            <div class="search-form-group" value="${param.classCode}">
                 <select id="classCode" name="classCode">
                     <option value="ECO">Economy</option>
                     <option value="PME">Premium Economy</option>
