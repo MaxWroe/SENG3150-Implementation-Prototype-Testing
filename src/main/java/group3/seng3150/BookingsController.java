@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.persistence.EntityManager;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpSessionAttributeListener;
 import java.sql.Date;
 import java.util.*;
 import java.util.Collection;
@@ -92,14 +93,18 @@ public class BookingsController {
 
     @PostMapping("/bookFlight")
     public ModelAndView bookFlight(HttpSession session,
-                                   HttpServletRequest request,
+                                   HttpServletRequest request
                                    //@RequestParam("age") Date dateOfBirth,
                                    //@RequestParam("firstName") String firstName,
-                                   @RequestParam("userID") String userID){
+                                   //@RequestParam("userID") String userID)
+    ){
+        String UserID = (String)session.getAttribute("userId");
+        request.getParameter("");
         ModelAndView view = new ModelAndView("manageBooking");
         //For(int i; i<=) {
         //    request.getParameter("" + i);
         //}
+
         return view;
     }
 

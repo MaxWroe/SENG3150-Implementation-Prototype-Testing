@@ -119,14 +119,15 @@ public class FlightController{
                 flightNumberString += ")";
                 //this returns a list of availabilites linked to retrieved flights
                 List<Availability> retrievedAvailabilities = em.createQuery("SELECT a from Availability a WHERE a.flightNumber IN " + flightNumberString +
-                    " AND a.departureDate>='" + departureTimeStart + "'" +
-                    " AND a.departureDate<='" + departureTimeEnd + "'" +
+                    " AND a.departureDate>='" + returnTimeStart + "'" +
+                    " AND a.departureDate<='" + returnTimeEnd + "'" +
                     " AND a.numberAvailableSeatsLeg1>=" + numberPeople +
                     " AND (a.numberAvailableSeatsLeg2>=" + numberPeople + " OR a.numberAvailableSeatsLeg2='null')" +
                     " AND a.classCode='" + classCode + "'", Availability.class).getResultList();
                 //creates flight plans based on retrieved flights
-                List<FlightPlan> returnFlightPlans = searcher.createFlightPlans(retrievedFlights, departureLocation, arrivalLocation, false, returnTimeStart, retrievedAvailabilities);
+                //List<FlightPlan> returnFlightPlans = searcher.createFlightPlans(retrievedFlights, departureLocation, arrivalLocation, false, returnTimeStart, retrievedAvailabilities);
                 //sets variables for flight holder bean
+                List<FlightPlan> returnFlightPlans = searcher.createFlightPlans(retrievedFlights, arrivalLocation, departureLocation, false, returnTimeStart, retrievedAvailabilities);
                 returnFlights.setFlightPlans(returnFlightPlans);
                 returnFlights.sortFlightPlans("departureTimeAscending");
                 returnFlights.setAllPrices(em);
@@ -144,14 +145,15 @@ public class FlightController{
                     flightNumberString += ")";
                     //returns availabilities linked to retrieved flights
                     List<Availability> retrievedAvailabilities = em.createQuery("SELECT a from Availability a WHERE a.flightNumber IN " + flightNumberString +
-                            " AND a.departureDate>='" + departureTimeStart + "'" +
-                            " AND a.departureDate<='" + departureTimeEnd + "'" +
+                            " AND a.departureDate>='" + returnTimeStart + "'" +
+                            " AND a.departureDate<='" + returnTimeEnd + "'" +
                             " AND a.numberAvailableSeatsLeg1>=" + numberPeople +
                             " AND (a.numberAvailableSeatsLeg2>=" + numberPeople + " OR a.numberAvailableSeatsLeg2='null')" +
                             " AND a.classCode='" + classCode + "'", Availability.class).getResultList();
                     //generates a list of flight plans based on retrieved flights
-                    List<FlightPlan> returnFlightPlans = searcher.createFlightPlans(retrievedFlights, departureLocation, arrivalLocation, true, returnTimeStart, retrievedAvailabilities);
+                    //List<FlightPlan> returnFlightPlans = searcher.createFlightPlans(retrievedFlights, departureLocation, arrivalLocation, true, returnTimeStart, retrievedAvailabilities);
                     //sets variables for flightholder bean
+                    List<FlightPlan> returnFlightPlans = searcher.createFlightPlans(retrievedFlights, arrivalLocation, departureLocation, true, returnTimeStart, retrievedAvailabilities);
                     returnFlights.setFlightPlans(returnFlightPlans);
                     returnFlights.sortFlightPlans("departureTimeAscending");
                     returnFlights.setAllPrices(em);

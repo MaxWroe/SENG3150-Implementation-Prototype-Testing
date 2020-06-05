@@ -50,6 +50,7 @@
         <!-- Check if user is logged in -->
         <%
         String userID = (String)session.getAttribute("userId");
+        session.setAttribute("userID", userID);
         if(userID != null){%>
         <div class="booking-details">
             <form method="post" action="/bookFlight">
@@ -100,6 +101,7 @@
                 <br>
                 <label for="cardcvc">CVC:</label>
                 <input type="number" id="cardcvc" name="cardcvc" required>
+
                 <br>
                 <button type="submit" style="width: 50%;">Book</button>
             </form>
