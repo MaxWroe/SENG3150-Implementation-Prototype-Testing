@@ -6,11 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import javax.persistence.EntityManager;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.sql.Date;
 import java.util.*;
@@ -38,18 +36,17 @@ public class BookingsController {
     @PostMapping("/manageBooking/cancel")
     public ModelAndView manageBookingCancelling(HttpSession session,
                                                 @RequestParam("userID") String userID,
-                                                @RequestParam("bookingID") String bookingID) {
+                                                @RequestParam("bookingNumber") int bookingNumber) {
         ModelAndView view = new ModelAndView("manageBooking");
         //String UserID = session.getAttribute(userId);
         String message = new String();
         try{
             List<Booking> booking = em.createQuery("SELECT b FROM Booking b WHERE b.userID=" + userID).getResultList();
-
             em.getTransaction().begin();
-            //em.remove(booking.get(bookingID));
+            em.remove(booking.get(bookingNumber));
             em.getTransaction().commit();
 
-            booking.remove(bookingID);
+            booking.remove(bookingNumber);
 
             view.addObject("booking", booking);
         }
@@ -92,22 +89,21 @@ public class BookingsController {
 
     @PostMapping("/bookFlight")
     public ModelAndView bookFlight(HttpSession session,
-                                   HttpServletRequest request,
-                                   //@RequestParam("age") Date dateOfBirth,
-                                   //@RequestParam("firstName") String firstName,
+                                   @RequestParam("dateOfBirth") Date dateOfBirth,
+                                   @RequestParam("firstName") String firstName,
                                    @RequestParam("userID") String userID){
         ModelAndView view = new ModelAndView("manageBooking");
-        //For(int i; i<=) {
-        //    request.getParameter("" + i);
-        //}
         return view;
     }
 
     @PostMapping("/flightBookingReturn")
     public ModelAndView displayBooking(HttpSession session,
-                                       @RequestParam(name="departure") String positionDepartureS,
+                                       @RequestParam(name="flightPlan") String positionDepartureS,
                                        @RequestParam(name="return") String positionReturnS,
                                        @RequestParam(name="trip") String trip,
+                                       @RequestParam(name="onewayAdultsBooking") int onewayAdultsBooking,
+                                       @RequestParam(name="onewayChildrenBooking") int onewayChildrenBooking,
+                                       @RequestParam(name="onewayClassBooking") String onewayClassBooking,
                                        @RequestParam(name="returnAdultsBooking") int returnAdultsBooking,
                                        @RequestParam(name="returnChildrenBooking") int returnChildrenBooking,
                                        @RequestParam(name="returnClassBooking") String returnClassBooking
@@ -381,38 +377,36 @@ public class BookingsController {
         FlightPlan flightPlan = searchDeparture.getFlightPlans().get(positionDeparture);
         flightPlan.getDepartureDate();
 
-        for (int i = 0; i < returnAdultsBooking + returnChildrenBooking; i++) {
+        for (int i = 0; i < onewayAdultsBooking + onewayChildrenBooking; i++) {
             Booking newBooking = new Booking();
-            newBooking.setGroupSize(returnAdultsBooking + returnChildrenBooking);
-            newBooking.setReturnTrip(1);
+            newBooking.setGroupSize(onewayAdultsBooking + onewayChildrenBooking);
             //Works based on a flightPlan having no more than 4 flights, as per assumptions for bookings
             for (int j = 0; j < flightPlan.getFlights().size(); j++) {
                 if (j == 0) {
-                    //set arrival time, departure and destination
                     newBooking.setAirlineCode(flightPlan.getFlights().get(j).getAirlineCode());
                     newBooking.setDepartureTime(flightPlan.getFlights().get(j).getDepartureDate());
                     newBooking.setBookingDate(flightPlan.getFlights().get(j).getArrivalDate());
                     newBooking.setFlightNumber(flightPlan.getFlights().get(j).getFlightNumber());
                     newBooking.setTicketCode(generateTicketNumber());
-                    newBooking.setClassCode(returnClassBooking);
+                    newBooking.setClassCode(onewayClassBooking);
                 } else if (j == 1) {
                     newBooking.setAirlineCode2(flightPlan.getFlights().get(j).getAirlineCode());
                     newBooking.setDepartureTime2(flightPlan.getFlights().get(j).getDepartureDate());
                     newBooking.setFlightNumber2(flightPlan.getFlights().get(j).getFlightNumber());
                     newBooking.setTicketCode2(generateTicketNumber());
-                    newBooking.setClassCode2(returnClassBooking);
+                    newBooking.setClassCode2(onewayClassBooking);
                 } else if (j == 2) {
                     newBooking.setAirlineCode3(flightPlan.getFlights().get(j).getAirlineCode());
                     newBooking.setDepartureTime3(flightPlan.getFlights().get(j).getDepartureDate());
                     newBooking.setFlightNumber3(flightPlan.getFlights().get(j).getFlightNumber());
                     newBooking.setTicketCode3(generateTicketNumber());
-                    newBooking.setClassCode3(returnClassBooking);
+                    newBooking.setClassCode3(onewayClassBooking);
                 } else if (j == 3) {
                     newBooking.setAirlineCode4(flightPlan.getFlights().get(j).getAirlineCode());
                     newBooking.setDepartureTime4(flightPlan.getFlights().get(j).getDepartureDate());
                     newBooking.setFlightNumber4(flightPlan.getFlights().get(j).getFlightNumber());
                     newBooking.setTicketCode4(generateTicketNumber());
-                    newBooking.setClassCode4(returnClassBooking);
+                    newBooking.setClassCode4(onewayClassBooking);
                 }
             }
             bookingsDeparture.add(newBooking);
@@ -424,10 +418,9 @@ public class BookingsController {
         FlightPlan flightPlanR = searchReturn.getFlightPlans().get(positionDeparture);
         flightPlan.getDepartureDate();
 
-        for (int i = 0; i < returnAdultsBooking + returnChildrenBooking; i++) {
+        for (int i = 0; i < onewayAdultsBooking + onewayChildrenBooking; i++) {
             Booking newBooking = new Booking();
-            newBooking.setGroupSize(returnAdultsBooking + returnChildrenBooking);
-            newBooking.setReturnTrip(1);
+            newBooking.setGroupSize(onewayAdultsBooking + onewayChildrenBooking);
             //Works based on a flightPlan having no more than 4 flights, as per assumptions for bookings
             for (int j = 0; j < flightPlanR.getFlights().size(); j++) {
                 if (j == 0) {
@@ -476,10 +469,10 @@ public class BookingsController {
         view.addObject("returnTrip", returnTrip);
         view.addObject("departurePrice", flightPlan.getPrice());
         view.addObject("returnPrice", flightPlanR.getPrice());
-        view.addObject("departureClass", returnClassBooking);
+        view.addObject("departureClass", onewayClassBooking);
         view.addObject("returnClass", returnClassBooking);
-        view.addObject("adultsBooked", returnAdultsBooking);
-        view.addObject("childrenBooked", returnChildrenBooking);
+        view.addObject("adultsBooked", onewayAdultsBooking);
+        view.addObject("childrenBooked", onewayChildrenBooking);
         //*****************SUBJECT TO CHANGE**********************************
         view.addObject("returnFlight", flightPlan.getFlights().get(0));
         //*****************SUBJECT TO CHANGE**********************************
@@ -634,7 +627,6 @@ public class BookingsController {
         for (int i = 0; i < onewayAdultsBooking + onewayChildrenBooking; i++) {
             Booking newBooking = new Booking();
             newBooking.setGroupSize(onewayAdultsBooking + onewayChildrenBooking);
-            newBooking.setReturnTrip(0);
             //Works based on a flightPlan having no more than 4 flights, as per assumptions for bookings
             for (int j = 0; j < flightPlan.getFlights().size(); j++) {
                 if (j == 0) {

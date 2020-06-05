@@ -1,11 +1,11 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
-  JSP for sending ticket enquiries and updating them
-  SENG3150 Group 3
+  Created by IntelliJ IDEA.
+  User: acero
   Date: 26/05/2020
   Time: 11:12 am
+  To change this template use File | Settings | File Templates.
 --%>
-
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
