@@ -110,6 +110,7 @@ public class BookingsController {
         //request.getParameter("");
         ModelAndView view = new ModelAndView("manageBooking");
         String tempName = new String();
+        int currentPosition = 1;
         for(int i=1; i<=adultsBooking;i++) {
             departureBooking.get(i-1).setUserID(UserID);
             returnBooking.get(i-1).setUserID(UserID);
@@ -132,23 +133,24 @@ public class BookingsController {
                 Date tempDate1 = Date.valueOf(temp);
                 departureBooking.get(i-1).setDateOfBirth(tempDate1);
                 returnBooking.get(i-1).setDateOfBirth(tempDate1);
+                currentPosition = i;
             }
         }
 
         for(int j=1; j<=childrenBookingS;j++) {
-            departureBooking.get(j-1).setUserID(UserID);
-            returnBooking.get(j-1).setUserID(UserID);
+            departureBooking.get(currentPosition-1).setUserID(UserID);
+            returnBooking.get(currentPosition-1).setUserID(UserID);
             tempName = "childFirstName" + Integer.toString(j);
-            departureBooking.get(j-1).setFirstName(request.getParameter(tempName));
-            returnBooking.get(j-1).setFirstName(request.getParameter(tempName));
+            departureBooking.get(currentPosition-1).setFirstName(request.getParameter(tempName));
+            returnBooking.get(currentPosition-1).setFirstName(request.getParameter(tempName));
             tempName = "childLastName" + Integer.toString(j);
-            departureBooking.get(j-1).setLastName(request.getParameter(tempName));
-            returnBooking.get(j-1).setLastName(request.getParameter(tempName));
+            departureBooking.get(currentPosition-1).setLastName(request.getParameter(tempName));
+            returnBooking.get(currentPosition-1).setLastName(request.getParameter(tempName));
             tempName = "childDOB" + Integer.toString(j);
             String temp = request.getParameter(tempName);
             Date tempDate1 = Date.valueOf(temp);
-            departureBooking.get(j-1).setDateOfBirth(tempDate1);
-            returnBooking.get(j-1).setDateOfBirth(tempDate1);
+            departureBooking.get(currentPosition-1).setDateOfBirth(tempDate1);
+            returnBooking.get(currentPosition-1).setDateOfBirth(tempDate1);
         }
         for(int i =0; i<departureBooking.size();i++) {
             em.getTransaction().begin();
