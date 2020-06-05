@@ -49,7 +49,7 @@ public class BookingsController {
             List<Booking> booking = em.createQuery("SELECT b FROM Booking b WHERE b.userID=" + userID).getResultList();
 
             em.getTransaction().begin();
-            //em.remove(booking.get(bookingID));
+            em.remove(booking.get(Integer.parseInt(bookingID)));
             em.getTransaction().commit();
 
             booking.remove(bookingID);
