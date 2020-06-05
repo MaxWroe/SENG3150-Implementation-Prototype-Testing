@@ -1,5 +1,6 @@
 package group3.seng3150;
 
+import group3.seng3150.flightLogic.PriceFinder;
 import group3.seng3150.entities.Availability;
 import group3.seng3150.entities.Flight;
 import group3.seng3150.entities.Price;

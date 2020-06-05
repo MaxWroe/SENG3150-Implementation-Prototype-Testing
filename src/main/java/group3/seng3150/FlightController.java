@@ -1,5 +1,6 @@
 package group3.seng3150;
 
+import group3.seng3150.flightLogic.FlightPlanSearch;
 import group3.seng3150.entities.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,11 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.persistence.EntityManager;
 import javax.servlet.http.HttpSession;
-import java.sql.Time;
-import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.LinkedList;
 
 @Controller
 @RequestMapping("/search")

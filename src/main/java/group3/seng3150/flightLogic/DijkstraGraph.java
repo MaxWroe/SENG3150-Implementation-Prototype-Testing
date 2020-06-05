@@ -1,4 +1,4 @@
-package group3.seng3150;
+package group3.seng3150.flightLogic;
 
 import java.util.HashSet;
 import java.util.Set;

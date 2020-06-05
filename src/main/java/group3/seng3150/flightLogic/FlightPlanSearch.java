@@ -1,9 +1,9 @@
-package group3.seng3150;
+package group3.seng3150.flightLogic;
 
+import group3.seng3150.FlightPlan;
 import group3.seng3150.entities.Availability;
 import group3.seng3150.entities.Flight;
 
-import javax.persistence.EntityManager;
 import java.sql.Timestamp;
 import java.util.*;
 //search options duration, price

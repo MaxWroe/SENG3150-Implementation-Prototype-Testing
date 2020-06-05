@@ -1,5 +1,6 @@
 package group3.seng3150;
 
+import group3.seng3150.flightLogic.PriceFinder;
 import group3.seng3150.entities.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
