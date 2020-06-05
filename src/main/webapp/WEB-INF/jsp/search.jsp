@@ -185,7 +185,9 @@
                     <h4>${flightPlan.arrivalDate}</h4>
                 </div>
                 <div class="flight-result-details">
+                    <%--
                     <p>${flightPlan.airlines}</p>
+                    --%>
                     <br>
                     <p>Stop overs: ${flightPlan.numberStopOvers}</p>
                     <br>
@@ -253,7 +255,9 @@
                                 <h4>${flightPlan.arrivalDate}</h4>
                             </div>
                             <div class="flight-result-details">
+                                <%--
                                 <p>${flightPlan.airlines}</p>
+                                --%>
                                 <br>
                                 <p>Stop overs: ${flightPlan.numberStopOvers}</p>
                                 <br>
@@ -289,7 +293,9 @@
                                 <h4>${flightPlan.arrivalDate}</h4>
                             </div>
                             <div class="flight-result-details">
+                                <%--
                                 <p>${flightPlan.airlines}</p>
+                                --%>
                                 <br>
                                 <p>Stop overs: ${flightPlan.numberStopOvers}</p>
                                 <br>
