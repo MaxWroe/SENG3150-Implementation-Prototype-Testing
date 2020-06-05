@@ -27,19 +27,62 @@
     <div class="card-body">
         <h1>Manage Booking</h1>
         <h4>Booked flights</h4>
+        <h4>${message}</h4>
 
         <!-- user's booking/s-->
 
         <!-- parse all booked flights -->
         <div class="my-bookings">
-            <c:forEach items="${booking}">
-                <p>Booking number:<c:out value= "${bookingNumber}"></c:out></p> <br>
-                <p>Airline:<c:out value= " ${airline}"></c:out></p> <br>
-                <p>Flight Details:<c:out value= " ${flightDetails}"></c:out></p> <br>
-                <p>Date:<c:out value= " ${date}"></c:out></p> <br>
-                <p>Time:<c:out value= " ${time}"></c:out></p> <br>
-                <p>Location: <c:out value= "${location}"></c:out></p> <br>
-                <p>Reviews:<c:out value= " ${reviews}"></c:out></p> <br>
+            <c:forEach items="${booking}" var ="booking">
+
+                <!-- checks if one-way or return -->
+                <c:if test="${empty booking.airlineCode3}">
+                    <h4>ONE-WAY</h4>
+                </c:if>
+                <c:if test="${not empty booking.airlineCode3}">
+                    <h4>RETURN</h4>
+                </c:if>
+
+                <h4>Booking number: </h4> <p><c:out value= "${booking.bookingID}"></c:out></p><br>
+
+                <h4>Airline from: </h4> <p><c:out value= " ${booking.airlineCode}"></c:out></p><br>
+                <h4>Flight number from: </h4><p><c:out value= " ${booking.flightNumber}"></c:out></p> <br>
+                <h4>Departure time: </h4><p><c:out value="${booking.departureTime}"></c:out></p> <br>
+
+                <h4>Airline to: </h4><p><c:out value="${booking.airlineCode2}"></c:out></p> <br>
+                <h4>Flight Number to: </h4> <p><c:out value= " ${booking.flightNumber2}"></c:out></p> <br>
+                <h4>Arrival time: </h4><p><c:out value="${booking.departureTime2}" ></c:out></p> <br>
+
+                <!-- if return -->
+                <c:if test="${not empty booking.airlineCode3}">
+                    <!-- return flights -->
+
+                    <h4>Airline from: </h4><p><c:out value= " ${booking.airlineCode3}"></c:out></p> <br>
+                    <h4>Flight number from: </h4><p><c:out value= " ${booking.flightNumber3}"></c:out></p> <br>
+                    <h4>Departure time: </h4><p><c:out value="${booking.departureTime3}"></c:out></p> <br>
+
+                    <h4>Airline to: </h4> <p><c:out value="${booking.airlineCode4}"></c:out></p> <br>
+                    <h4>Flight Number to: </h4><p><c:out value= " ${booking.flightNumber4}"></c:out></p> <br>
+                    <h4>Arrival time: </h4><p><c:out value="${booking.departureTime4}" ></c:out></p> <br>
+
+                </c:if>
+
+                <h4>Booking Date: </h4><p><c:out value= " ${booking.bookingDate}"></c:out></p> <br>
+
+                <!-- cancel booking -->
+                <div class="cancel-booking">
+                <form id="cancelForm" method="post" action="${pageContext.request.contextPath}/manageBooking/cancel" style="display: none">
+
+                    <!-- userID -->
+                    <input type ="hidden" id="userID" name="userID" value="<%=session.getAttribute("userId")%>"/>
+                    <!-- booking ID -->
+                    <input type ="hidden" id="bookingID" name="bookingID" value="${booking.bookingID}"/>
+
+                    <button type="submit">Cancel</button>
+
+                </form>
+                </div>
+
             </c:forEach>
         </div>
 
@@ -56,26 +99,9 @@
         </div>
 
         <!-- cancel a booking-->
-        <button id="cancelBooking" type="submit" onclick="displayForm('cancelForm')"> Cancel a booking </button>
+       <!-- <button id="cancelBooking" type="submit" onclick="displayForm('cancelForm')"> Cancel a booking </button> -->
 
-        <form id="cancelForm" method="post" action="${pageContext.request.contextPath}/manageBooking/cancel" style="display: none">
 
-            <label for="bookingNumber">Booking number you want to cancel </label>
-
-            <!-- temp options-->
-            <select id="bookingNumber" name="bookingNumber">
-                <option value="1"> 1 </option>
-                <option value="2"> 2 </option>
-                <option value="3"> 3 </option>
-
-            </select><br>
-
-            <!-- userID -->
-            <input type ="hidden" id="userID" name="userID" value="<%=session.getAttribute("userId")%>"/>
-
-            <input type="submit" value="Cancel Booking"/>
-
-        </form>
     </div>
 </main>
 

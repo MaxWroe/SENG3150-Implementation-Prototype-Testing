@@ -434,7 +434,7 @@ input:hover
     display: inline;
 }
 
-.update-enquiry{
+.update-enquiry, .cancel-booking{
     grid-column: 4;
     display: flex;
     justify-content: center;

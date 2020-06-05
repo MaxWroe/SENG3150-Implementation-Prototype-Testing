@@ -62,17 +62,23 @@ public class BookingsController {
 
     //get method manage bookings
     @GetMapping("/manageBooking")
-    public ModelAndView manageBooking(HttpSession session,
-                                      @RequestParam("userID") String userID) {
+    public ModelAndView manageBooking(HttpSession session) {
         ModelAndView view = new ModelAndView("manageBooking");
-        //String UserID = session.getAttribute(userId);
+        String UserID = (String)session.getAttribute("userId");
         String message = new String();
         try{
-            List<Booking> booking = em.createQuery("SELECT b FROM Booking b WHERE b.userID=" + userID).getResultList();
+            List<Booking> booking = em.createQuery("SELECT b FROM Booking b WHERE b.userID=" + UserID).getResultList();
             view.addObject("booking", booking);
+
+            //checks if booking is empty
+            if(booking.isEmpty()){
+                message = "No bookings found for this user.";
+                view.addObject("message", message);
+            }
         }
         catch(Exception e)
         {
+            //doesn't seem to be going here
             message = "No bookings found for this user.";
             view.addObject("message", message);
             e.printStackTrace();

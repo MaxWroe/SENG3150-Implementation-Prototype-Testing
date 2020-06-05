@@ -31,13 +31,19 @@
         <div class="enquiries-container">
             <!-- user's enquiries-->
             <div class="my-enquiries">
-                <c:forEach items="${enquiries}">
-                    <p>Ticket title:<c:out value= "${ticketTitle}"></c:out></p> <br>
-                    <p>Ticket enquiry:<c:out value= " ${ticketEnquiry}"></c:out></p> <br>
-                    <p>Email address:<c:out value= " ${emailAddress}"></c:out></p> <br>
-                    <p>Booking Number:<c:out value= " ${bookingNumber}"></c:out></p> <br>
-                    <p>Submission Date:<c:out value= " ${submissionDate}"></c:out></p> <br>
-                    <p>Agent Answer: <c:out value= "${agentAnswer}"></c:out></p> <br>
+                <c:forEach items="${enquiries}" var="enquiries">
+                    <h4>Ticket title: </h4> <p><c:out value= "${enquiries.ticketTitle}"></c:out></p> <br>
+                    <h4>Ticket enquiry: </h4><p><c:out value= " ${enquiries.ticketEnquiry}"></c:out></p> <br>
+                    <h4>Email address: </h4> <p><c:out value= " ${enquiries.emailAddress}"></c:out></p> <br>
+                    <h4>Booking Number: </h4> <p><c:out value= " ${enquiries.bookingNumber}"></c:out></p> <br>
+                    <h4>Submission Date: </h4><p><c:out value= " ${enquiries.submissionDate}"></c:out></p> <br>
+                    <h4>Agent Answer: </h4><p><c:out value= "${enquiries.agentAnswer}"></c:out></p> <br>
+
+                    <div class="update-enquiry">
+                        <form method="post" action="/updateEnquiry">
+                            <button type="submit">Update</button>
+                        </form>
+                    </div>
                 </c:forEach>
             </div>
 
