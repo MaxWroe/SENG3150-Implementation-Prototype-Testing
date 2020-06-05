@@ -191,9 +191,9 @@
                 <div class="flight-result-book">
                     <form action="${pageContext.request.contextPath}/flightBookingOneway" method="post">
                         <input type="hidden" id="onewayBooking" name="trip" value="oneway">
-                        <input type="hidden" id="onewayAdultsBooking" value="${param.adults}">
-                        <input type="hidden" id="onewayChildrenBooking" value="${param.children}">
-                        <input type="hidden" id="onewayClassBooking" value="${param.classCode}">
+                        <input type="hidden" id="onewayAdultsBooking" name="onewayAdultsBooking" value="${param.adults}">
+                        <input type="hidden" id="onewayChildrenBooking" name="onewayChildrenBooking" value="${param.children}">
+                        <input type="hidden" id="onewayClassBooking" name="onewayClassBooking" value="${param.classCode}">
                         <input type="hidden" id="onewayFlightPlan${flightPlan.position}" name="flightPlan" value="${flightPlan.position}">
                         <button type="submit">Book</button>
                     </form>
@@ -218,9 +218,9 @@
         <form method="post" action="${pageContext.request.contextPath}/flightBookingReturn" onsubmit="return validateFlightSelection()">
             <!--<input type="hidden" id="pageDirect" name="pageDirect" value="return">-->
             <input type="hidden" id="returnBooking" name="trip" value="return">
-            <input type="hidden" id="returnAdultsBooking" value="${param.adults}">
-            <input type="hidden" id="returnChildrenBooking" value="${param.children}">
-            <input type="hidden" id="returnClassBooking" value="${param.classCode}">
+            <input type="hidden" id="returnAdultsBooking" name="returnAdultsBooking" value="${param.adults}">
+            <input type="hidden" id="returnChildrenBooking" name="returnChildrenBooking" value="${param.children}">
+            <input type="hidden" id="returnClassBooking" name="returnClassBooking" value="${param.classCode}">
             <div class="flight-result-return">
                 <!-- Parse all returned flights -->
 
