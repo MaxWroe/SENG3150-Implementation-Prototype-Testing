@@ -25,29 +25,25 @@
     <h1>Flight Booking Details</h1>
     <div class="flight-booking">
         <div id="side-bar">
-            <!-- For this do you just want the first flight of the Flight plan to be displayed? If not you will need to add up to 4 of them to be shown-->
-            <!-- Currently have two List<booking> objects being added that has the up to four fl;ight details added for the bookings, and will be populated with the user info and -->
-            <!-- Other names and ages from this page, as well as the payment-->
-            <!-- I did add a departureFLight and returnFlight, which are the first flights of each flightPlan, but I'm not sure that's what we want.-->
             <h4>Departure Flight</h4>
             <p>Price</p>
-            <h4>${departureFlight.price}</h4>
+            <h4>${param.departurePrice}</h4>
             <p>Date/Time</p>
-            <h4>${departureFlight.date} ${departureFlight.time}</h4>
+            <h4>${departureFlight.departureTime}</h4>
             <p>Seat Class</p>
-            <h4>${departureFlight.classCode}</h4>
+            <h4>${param.departureClass}</h4>
             <p>Seats Remaining</p>
-            <h4>${departureFlight.seats}</h4>
+            <h4>${param.departureSeatsLeft}</h4>
             <c:if test = "${param.pageDirect eq 'return'}">
             <h4>Return Flight</h4>
             <p>Price</p>
-            <h4>${returnFlight.price}</h4>
+            <h4>${param.returnPrice}</h4>
             <p>Date/Time</p>
-            <h4>${returnFlight.date} ${returnFlight.time}</h4>
+            <h4>${returnFlight.departureTime}</h4>
             <p>Seat Class</p>
-            <h4>${returnFlight.classCode}</h4>
+            <h4>${param.returnClass}</h4>
             <p>Seats Remaining</p>
-            <h4>${returnFlight.seats}</h4>
+            <h4>${param.SeatsLeft}</h4>
             </c:if>
         </div>
 
@@ -56,21 +52,23 @@
         String userID = (String)session.getAttribute("userId");
         if(userID != null){%>
         <div class="booking-details">
-            <form method="post" action="">
+            <form method="post" action="/bookFlight">
                 <h4>Passenger Details</h4>
                 <br>
                 <!-- Autofill first adult from logged in account -->
-                <label for="adultName1">Booking Adult Name:</label>
-                <input type="text" id="adultName1" name="adultName1" value="${sessionScope.userName}" readonly required>
+                <label for="adultFirstName1">Booking Adult Name:</label>
+                <input type="text" id="adultFirstName1" name="adultFirstName1" value="${sessionScope.firstName}" readonly required>
+                <input type="text" id="adultLastName1" name="adultLastName1" value="${sessionScope.lastName}" readonly required>
                 <label for="adultAge1">Age:</label>
-                <input type="number" id="adultAge1" name="adultAge1" min="18" max="150" value="${sessionScope.userAge}" readonly required>
+                <input type="date" id="adultAge1" name="adultAge1" value="${param.dateOfBirth}" required>
                 <br>
                 <!-- Get details of all booking passengers -->
                 <c:forEach var = "i" begin = "2" end = "${param.adultsBooked}">
-                    <label for="adultName<c:out value = "${i}"/>">Adult <c:out value = "${i}"/> Name:</label>
-                    <input type="text" id="adultName<c:out value = "${i}"/>" name="adultName<c:out value = "${i}"/>" required>
+                    <label for="adultFirstName<c:out value = "${i}"/>">Adult <c:out value = "${i}"/> Name:</label>
+                    <input type="text" id="adultFirstName<c:out value = "${i}"/>" name="adultFirstName<c:out value = "${i}"/>" required>
+                    <input type="text" id="adultLastName<c:out value = "${i}"/>" name="adultLastName<c:out value = "${i}"/>" required>
                     <label for="adultAge<c:out value = "${i}"/>">Age:</label>
-                    <input type="number" id="adultAge<c:out value = "${i}"/>" name="adultAge<c:out value = "${i}"/>" min="18" max="150" required>
+                    <input type="date" id="adultAge<c:out value = "${i}"/>" name="adultAge<c:out value = "${i}"/>" required>
                     <br>
                 </c:forEach>
                 <c:if test="${param.childrenBooked > 0}">
@@ -78,10 +76,11 @@
                     <br>
                 </c:if>
                 <c:forEach var = "i" begin = "1" end = "${param.childrenBooked}">
-                    <label for="childName<c:out value = "${i}"/>">Child <c:out value = "${i}"/> Name:</label>
-                    <input type="text" id="childName<c:out value = "${i}"/>" name="childName<c:out value = "${i}"/>" required>
+                    <label for="childFirstName<c:out value = "${i}"/>">Child <c:out value = "${i}"/> Name:</label>
+                    <input type="text" id="childFirstName<c:out value = "${i}"/>" name="childFirstName<c:out value = "${i}"/>" required>
+                    <input type="text" id="childLastName<c:out value = "${i}"/>" name="childLastName<c:out value = "${i}"/>" required>
                     <label for="childAge<c:out value = "${i}"/>">Age:</label>
-                    <input type="number" id="childAge<c:out value = "${i}"/>" name="childAge<c:out value = "${i}"/>" min="1" max="17" required>
+                    <input type="date" id="childAge<c:out value = "${i}"/>" name="childAge<c:out value = "${i}"/>" required>
                     <br>
                 </c:forEach>
 
