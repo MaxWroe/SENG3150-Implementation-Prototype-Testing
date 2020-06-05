@@ -101,8 +101,8 @@ public class Booking {
     private String departure2;
     @Column(name = "Destination2")
     private String destination2;
-    @Column(Timestamp = "ArrivalTime2")
-    private String arrivalTime2;
+    @Column(name = "ArrivalTime2")
+    private Timestamp arrivalTime2;
     @Column(name = "Price2")
     private int price2;
 
