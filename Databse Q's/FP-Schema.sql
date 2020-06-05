@@ -182,7 +182,7 @@ CREATE TABLE `Booking`
     `DateOfBirth`    date        NOT NULL,
     `BookingDate`    datetime    NOT NULL,
     `GroupSize`      int         NOT NULL,
-
+    `returnTrip`     int         NOT NULL,
 
     `AirlineCode`    char(2)     NOT NULL,
     `FlightNumber`   varchar(6)  NOT NULL,

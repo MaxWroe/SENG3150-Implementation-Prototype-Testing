@@ -48,6 +48,10 @@ public class Booking {
     @Basic(optional = false)
     private int groupSize;
 
+    @Column(name = "returnTrip")
+    @Basic(optional = false)
+    private int returnTrip;
+
 
 
     //flight 1 - data is all foreign keys
@@ -188,6 +192,14 @@ public class Booking {
 
     public void setUserID(String userID) {
         this.userID = userID;
+    }
+
+    public int getReturnTrip() {
+        return returnTrip;
+    }
+
+    public void setReturnTrip(int returnTrip) {
+        this.returnTrip = returnTrip;
     }
 
     public String getAirlineCode() {
