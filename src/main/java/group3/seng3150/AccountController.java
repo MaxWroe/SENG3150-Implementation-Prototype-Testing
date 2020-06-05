@@ -83,7 +83,7 @@ public class AccountController {
         user.setEmail(email);
         user.setPhone(phoneNumber);
         user.setFamilyMembers(familyMembers);
-        user.setFamilyMembers(emergencyContacts);
+        user.setEmergencyContact(emergencyContacts);
         user.setAddress(address);
         em.persist(user);
         em.getTransaction().commit();
@@ -96,7 +96,7 @@ public class AccountController {
         view.addObject("userType", user.getUserType());
         view.addObject("dateOfBirth", user.getDateOfBirth());
         view.addObject("citizenship", user.getCitizenship());
-        view.addObject("gender", user.getGender());
+        view.addObject("gender", gender);
         view.addObject("address", user.getAddress());
         view.addObject("emergencyContact", user.getEmergencyContact());
         view.addObject("familyMembers", user.getFamilyMembers());
