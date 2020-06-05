@@ -237,7 +237,7 @@
 
                 <!-- Check if any departure flights returned -->
                 <c:if test="${empty departureFlights.flightPlans}">
-                    <div class="flight-result-return-departure">
+                    <div class="flight-result-return-windows">
                         <h4>No departure flights can be found that match the criteria!</h4>
                     </div>
                 </c:if>
@@ -273,7 +273,7 @@
 
                 <!-- Check if any return flights returned -->
                 <c:if test="${empty returnFlights.flightPlans}">
-                    <div class="flight-result-return-return">
+                    <div class="flight-result-return-windows">
                         <h4>No return flights can be found that match the criteria!</h4>
                     </div>
                 </c:if>

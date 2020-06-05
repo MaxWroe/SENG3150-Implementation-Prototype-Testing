@@ -1,10 +1,10 @@
 <%--
-  Created by IntelliJ IDEA.
-  User: acero
+  JSP for basic form structure
+  SENG3150 Group 3
   Date: 26/05/2020
   Time: 3:51 pm
-  To change this template use File | Settings | File Templates.
 --%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <!-- user form -->
