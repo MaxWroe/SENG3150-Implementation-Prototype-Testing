@@ -56,7 +56,10 @@
 
                 <!-- citizenship -->
                 <label for="citizenship">Citizenship: </label>
-                <input id="citizenship" name ="citizenship" required/> <br>
+                <select id ="citizenship" name="citizenship" required>
+                   <option>Australian</option>
+                   <option>Others</option>
+                </select> <br>
 
                 <!-- family members -->
                 <label for="familyMembers">Family Members: </label>
