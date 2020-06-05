@@ -440,11 +440,11 @@ public class Booking {
         this.destination = destination;
     }
 
-    public String getArrivalTime() {
+    public Timestamp getArrivalTime() {
         return arrivalTime;
     }
 
-    public void setArrivalTime(String arrivalTime) {
+    public void setArrivalTime(Timestamp arrivalTime) {
         this.arrivalTime = arrivalTime;
     }
 
@@ -464,11 +464,11 @@ public class Booking {
         this.destination2 = destination2;
     }
 
-    public String getArrivalTime2() {
+    public Timestamp getArrivalTime2() {
         return arrivalTime2;
     }
 
-    public void setArrivalTime2(String arrivalTime2) {
+    public void setArrivalTime2(Timestamp arrivalTime2) {
         this.arrivalTime2 = arrivalTime2;
     }
 
@@ -488,11 +488,11 @@ public class Booking {
         this.destination3 = destination3;
     }
 
-    public String getArrivalTime3() {
+    public Timestamp getArrivalTime3() {
         return arrivalTime3;
     }
 
-    public void setArrivalTime3(String arrivalTime3) {
+    public void setArrivalTime3(Timestamp arrivalTime3) {
         this.arrivalTime3 = arrivalTime3;
     }
 
@@ -512,11 +512,11 @@ public class Booking {
         this.destination4 = destination4;
     }
 
-    public String getArrivalTime4() {
+    public Timestamp getArrivalTime4() {
         return arrivalTime4;
     }
 
-    public void setArrivalTime4(String arrivalTime4) {
+    public void setArrivalTime4(Timestamp arrivalTime4) {
         this.arrivalTime4 = arrivalTime4;
     }
 
