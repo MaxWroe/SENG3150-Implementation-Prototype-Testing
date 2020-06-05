@@ -27,23 +27,23 @@
         <div id="side-bar">
             <h4>Departure Flight</h4>
             <p>Price</p>
-            <h4>${param.departurePrice}</h4>
+            <h4>${departurePrice}</h4>
             <p>Date/Time</p>
             <h4>${departureFlight.departureDate}</h4>
             <p>Seat Class</p>
-            <h4>${param.departureClass}</h4>
+            <h4>${departureClass}</h4>
             <p>Seats Remaining</p>
-            <h4>${param.departureSeatsLeft}</h4>
+            <h4>${departureSeatsLeft}</h4>
             <c:if test = "${param.trip eq 'return'}">
             <h4>Return Flight</h4>
             <p>Price</p>
-            <h4>${param.returnPrice}</h4>
+            <h4>${returnPrice}</h4>
             <p>Date/Time</p>
             <h4>${returnFlight.departureDate}</h4>
             <p>Seat Class</p>
-            <h4>${param.returnClass}</h4>
+            <h4>${returnClass}</h4>
             <p>Seats Remaining</p>
-            <h4>${param.SeatsLeft}</h4>
+            <h4>${SeatsLeft}</h4>
             </c:if>
         </div>
 
@@ -60,10 +60,10 @@
                 <input type="text" id="adultFirstName1" name="adultFirstName1" value="${sessionScope.firstName}" readonly required>
                 <input type="text" id="adultLastName1" name="adultLastName1" value="${sessionScope.lastName}" readonly required>
                 <label for="adultAge1">Age:</label>
-                <input type="date" id="adultAge1" name="adultAge1" value="${param.dateOfBirth}" required>
+                <input type="date" id="adultAge1" name="adultAge1" value="${sessionScope.dateOfBirth}" required>
                 <br>
                 <!-- Get details of all booking passengers -->
-                <c:forEach var = "i" begin = "2" end = "${param.adultsBooked}">
+                <c:forEach var = "i" begin = "2" end = "${adultsBooked}">
                     <label for="adultFirstName<c:out value = "${i}"/>">Adult <c:out value = "${i}"/> Name:</label>
                     <input type="text" id="adultFirstName<c:out value = "${i}"/>" name="adultFirstName<c:out value = "${i}"/>" required>
                     <input type="text" id="adultLastName<c:out value = "${i}"/>" name="adultLastName<c:out value = "${i}"/>" required>
@@ -71,11 +71,11 @@
                     <input type="date" id="adultAge<c:out value = "${i}"/>" name="adultAge<c:out value = "${i}"/>" required>
                     <br>
                 </c:forEach>
-                <c:if test="${param.childrenBooked > 0}">
+                <c:if test="${childrenBooked > 0}">
                     <h4>Name of Children</h4>
                     <br>
                 </c:if>
-                <c:forEach var = "i" begin = "1" end = "${param.childrenBooked}">
+                <c:forEach var = "i" begin = "1" end = "${childrenBooked}">
                     <label for="childFirstName<c:out value = "${i}"/>">Child <c:out value = "${i}"/> Name:</label>
                     <input type="text" id="childFirstName<c:out value = "${i}"/>" name="childFirstName<c:out value = "${i}"/>" required>
                     <input type="text" id="childLastName<c:out value = "${i}"/>" name="childLastName<c:out value = "${i}"/>" required>
