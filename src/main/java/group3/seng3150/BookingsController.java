@@ -488,11 +488,11 @@ public class BookingsController {
 
     @PostMapping("/flightBookingOneway")
     public ModelAndView displayBookingOneway(HttpSession session,
-                                       @RequestParam(name="flightPlan") String positionDepartureS,
-                                       @RequestParam(name="onewayAdultsBooking") int onewayAdultsBooking,
-                                       @RequestParam(name="onewayChildrenBooking") int onewayChildrenBooking,
-                                       @RequestParam(name="trip") String trip,
-                                       @RequestParam(name="onewayClassBooking") String onewayClassBooking
+                                             @RequestParam(name="flightPlan") String positionDepartureS,
+                                             @RequestParam(name="onewayAdultsBooking") int onewayAdultsBooking,
+                                             @RequestParam(name="onewayChildrenBooking") int onewayChildrenBooking,
+                                             @RequestParam(name="trip") String trip,
+                                             @RequestParam(name="onewayClassBooking") String onewayClassBooking
     ){
         int positionDeparture = Integer.parseInt(positionDepartureS);
 
