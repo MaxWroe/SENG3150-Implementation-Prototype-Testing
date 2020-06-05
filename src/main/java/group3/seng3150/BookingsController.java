@@ -93,11 +93,12 @@ public class BookingsController {
 
     @PostMapping("/bookFlight")
     public ModelAndView bookFlight(HttpSession session,
-                                   HttpServletRequest request
-                                   //@RequestParam("age") Date dateOfBirth,
-                                   //@RequestParam("firstName") String firstName,
+                                   HttpServletRequest request,
+                                   @RequestParam("adultsBooking") String adultsBookingS,
+                                   @RequestParam("childrenBooking") String childrenBooking
                                    //@RequestParam("userID") String userID)
     ){
+        int adultsBooking = Integer.parseInt(adultsBookingS);
         String UserID = (String)session.getAttribute("userId");
         request.getParameter("");
         ModelAndView view = new ModelAndView("manageBooking");

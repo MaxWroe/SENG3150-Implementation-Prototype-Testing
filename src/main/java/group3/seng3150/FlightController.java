@@ -35,7 +35,7 @@ public class FlightController{
             @RequestParam(name="departureDate", defaultValue="") String departureDate,
             @RequestParam(name="returnDate", defaultValue="") String returnDate,
             @RequestParam(name="classCode", defaultValue="") String classCode,
-            @RequestParam(name="type", defaultValue = "oneway") String type,
+            @RequestParam(name="type") String type,
             @RequestParam(name="adults", defaultValue = "") int adults,
             @RequestParam(name="children", defaultValue = "") int children,
     HttpSession session)
@@ -106,16 +106,16 @@ public class FlightController{
             String returnTimeStart = returnDate + " 00:00:01";
             String returnTimeEnd = returnDate + "23:59:59";
             //returns a list of flights that all arrive on the date sent in that depart from the arrival location and arrive at departure location
-            retrievedFlights = em.createQuery( "SELECT f From Flight f WHERE f.departureCode='" + arrivalLocation + "'" +
+            List<Flight> retrievedFlightsR = em.createQuery( "SELECT f From Flight f WHERE f.departureCode='" + arrivalLocation + "'" +
                 " AND f.destination='" + departureLocation + "'" +
                 " AND f.arrivalDate>='" + returnTimeStart + "'" +
                 " AND f.arrivalDate<='" + returnTimeEnd + "'", Flight.class).getResultList();
 
-            if(retrievedFlights.size()>0) {
+            if(retrievedFlightsR.size()>0) {
                 //generates a string of all the flight numbers in retrieved flights
-                flightNumberString = "('" + retrievedFlights.get(0).getFlightNumber() + "'";
-                for(int i=1; i<retrievedFlights.size(); i++){
-                    flightNumberString += ", '" + retrievedFlights.get(i).getFlightNumber() + "'"; }
+                flightNumberString = "('" + retrievedFlightsR.get(0).getFlightNumber() + "'";
+                for(int i=1; i<retrievedFlightsR.size(); i++){
+                    flightNumberString += ", '" + retrievedFlightsR.get(i).getFlightNumber() + "'"; }
                 flightNumberString += ")";
                 //this returns a list of availabilites linked to retrieved flights
                 List<Availability> retrievedAvailabilities = em.createQuery("SELECT a from Availability a WHERE a.flightNumber IN " + flightNumberString +
@@ -125,22 +125,22 @@ public class FlightController{
                     " AND (a.numberAvailableSeatsLeg2>=" + numberPeople + " OR a.numberAvailableSeatsLeg2='null')" +
                     " AND a.classCode='" + classCode + "'", Availability.class).getResultList();
                 //creates flight plans based on retrieved flights
-                //List<FlightPlan> returnFlightPlans = searcher.createFlightPlans(retrievedFlights, departureLocation, arrivalLocation, false, returnTimeStart, retrievedAvailabilities);
+                //List<FlightPlan> returnFlightPlans = searcher.createFlightPlans(retrievedFlightsR, departureLocation, arrivalLocation, false, returnTimeStart, retrievedAvailabilities);
                 //sets variables for flight holder bean
-                List<FlightPlan> returnFlightPlans = searcher.createFlightPlans(retrievedFlights, arrivalLocation, departureLocation, false, returnTimeStart, retrievedAvailabilities);
+                List<FlightPlan> returnFlightPlans = searcher.createFlightPlans(retrievedFlightsR, arrivalLocation, departureLocation, false, returnTimeStart, retrievedAvailabilities);
                 returnFlights.setFlightPlans(returnFlightPlans);
                 returnFlights.sortFlightPlans("departureTimeAscending");
                 returnFlights.setAllPrices(em);
             }
             else{
                 //returns a list of all flights that arrive on return date
-                retrievedFlights = em.createQuery( "SELECT f From Flight f WHERE f.arrivalDate>='" + returnTimeStart + "'" +
+                retrievedFlightsR = em.createQuery( "SELECT f From Flight f WHERE f.arrivalDate>='" + returnTimeStart + "'" +
                     " AND f.arrivalDate<='" + returnTimeEnd + "'", Flight.class).getResultList();
-                if(retrievedFlights.size()>0) {
+                if(retrievedFlightsR.size()>0) {
                     //generates a string of all of the flight numbers in retrieved flights
-                    flightNumberString = "('" + retrievedFlights.get(0).getFlightNumber() + "'";
-                    for (int i = 1; i < retrievedFlights.size(); i++) {
-                        flightNumberString += ", '" + retrievedFlights.get(i).getFlightNumber() + "'";
+                    flightNumberString = "('" + retrievedFlightsR.get(0).getFlightNumber() + "'";
+                    for (int i = 1; i < retrievedFlightsR.size(); i++) {
+                        flightNumberString += ", '" + retrievedFlightsR.get(i).getFlightNumber() + "'";
                     }
                     flightNumberString += ")";
                     //returns availabilities linked to retrieved flights
@@ -151,9 +151,9 @@ public class FlightController{
                             " AND (a.numberAvailableSeatsLeg2>=" + numberPeople + " OR a.numberAvailableSeatsLeg2='null')" +
                             " AND a.classCode='" + classCode + "'", Availability.class).getResultList();
                     //generates a list of flight plans based on retrieved flights
-                    //List<FlightPlan> returnFlightPlans = searcher.createFlightPlans(retrievedFlights, departureLocation, arrivalLocation, true, returnTimeStart, retrievedAvailabilities);
+                    //List<FlightPlan> returnFlightPlans = searcher.createFlightPlans(retrievedFlightsR, departureLocation, arrivalLocation, true, returnTimeStart, retrievedAvailabilities);
                     //sets variables for flightholder bean
-                    List<FlightPlan> returnFlightPlans = searcher.createFlightPlans(retrievedFlights, arrivalLocation, departureLocation, true, returnTimeStart, retrievedAvailabilities);
+                    List<FlightPlan> returnFlightPlans = searcher.createFlightPlans(retrievedFlightsR, arrivalLocation, departureLocation, true, returnTimeStart, retrievedAvailabilities);
                     returnFlights.setFlightPlans(returnFlightPlans);
                     returnFlights.sortFlightPlans("departureTimeAscending");
                     returnFlights.setAllPrices(em);
