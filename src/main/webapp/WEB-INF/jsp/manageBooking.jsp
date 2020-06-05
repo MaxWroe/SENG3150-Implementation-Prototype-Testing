@@ -42,15 +42,15 @@
 
                 <!-- checks if one-way or return -->
                 <c:if test="${booking.returnTrip == 0}">
-                    <h4>ONE-WAY</h4>
+                    <h4>ONE-WAY</h4><br>
                 </c:if>
                 <c:if test="${booking.returnTrip == 1}">
-                    <h4>RETURN</h4>
+                    <h4>RETURN</h4><br>
                 </c:if>
 
                 <!-- checks group size -->
                 <c:if test="${booking.groupSize > 1}">
-                    <h4>GROUP-BOOKING</h4>
+                    <h4>GROUP-BOOKING</h4><br>
                 </c:if>
 
                 <!-- flight details -->
