@@ -16,14 +16,13 @@ import java.util.List;
 @Controller
 @RequestMapping("/search")
 public class FlightController{
-    private FlightHolder departureFlights;
-    private FlightHolder returnFlights;
+    private FlightHolder flightPlans;
+
     private EntityManager em;
 
     @Autowired
-    public FlightController(FlightHolder departureFlights, FlightHolder returnFlights, EntityManager em) {
-        this.departureFlights = departureFlights;
-        this.returnFlights = returnFlights;
+    public FlightController(FlightHolder flightPlans, EntityManager em) {
+        this.flightPlans = flightPlans;
         this.em =em;
     }
 
@@ -70,9 +69,8 @@ public class FlightController{
             //creates flight plans based on list of retrieved flights
             List<FlightPlan> departureFlightPlans = searcher.createFlightPlans(retrievedFlights, departureLocation, arrivalLocation, false, departureTimeStart, retrievedAvailabilities);
             //sets variables retrieved to the flight holder bean
-            departureFlights.setFlightPlans(departureFlightPlans);
-            departureFlights.sortFlightPlans("departureTimeAscending");
-            departureFlights.setAllPrices(em);
+            flightPlans.setFlightPlansDeparting(departureFlightPlans);
+            flightPlans.sortFlightPlansDeparting("departureTimeAscending");
         }
         else{
             //this returns all flights that depart on the departure date
@@ -94,9 +92,8 @@ public class FlightController{
                 //generates flight plans based on sent in flights
                 List<FlightPlan> departureFlightPlans = searcher.createFlightPlans(retrievedFlights, departureLocation, arrivalLocation, true, departureTimeStart, retrievedAvailabilities);
                 //sets variables in the flight holder bean
-                departureFlights.setFlightPlans(departureFlightPlans);
-                departureFlights.sortFlightPlans("departureTimeAscending");
-                departureFlights.setAllPrices(em);
+                flightPlans.setFlightPlansDeparting(departureFlightPlans);
+                flightPlans.sortFlightPlansDeparting("departureTimeAscending");
             }
         }
 
@@ -129,9 +126,9 @@ public class FlightController{
                 //List<FlightPlan> returnFlightPlans = searcher.createFlightPlans(retrievedFlightsR, departureLocation, arrivalLocation, false, returnTimeStart, retrievedAvailabilities);
                 //sets variables for flight holder bean
                 List<FlightPlan> returnFlightPlans = searcher.createFlightPlans(retrievedFlightsR, arrivalLocation, departureLocation, false, returnTimeStart, retrievedAvailabilities);
-                returnFlights.setFlightPlans(returnFlightPlans);
-                returnFlights.sortFlightPlans("departureTimeAscending");
-                returnFlights.setAllPrices(em);
+                flightPlans.setFlightPlansReturning(returnFlightPlans);
+                flightPlans.sortFlightPlansReturning("departureTimeAscending");
+
             }
             else{
                 //returns a list of all flights that arrive on return date
@@ -155,18 +152,18 @@ public class FlightController{
                     //List<FlightPlan> returnFlightPlans = searcher.createFlightPlans(retrievedFlightsR, departureLocation, arrivalLocation, true, returnTimeStart, retrievedAvailabilities);
                     //sets variables for flightholder bean
                     List<FlightPlan> returnFlightPlans = searcher.createFlightPlans(retrievedFlightsR, arrivalLocation, departureLocation, true, returnTimeStart, retrievedAvailabilities);
-                    returnFlights.setFlightPlans(returnFlightPlans);
-                    returnFlights.sortFlightPlans("departureTimeAscending");
-                    returnFlights.setAllPrices(em);
+                    flightPlans.setFlightPlansReturning(returnFlightPlans);
+                    flightPlans.sortFlightPlansReturning("departureTimeAscending");
+
                 }
             }
         }
 
-        System.out.println(departureFlights.getFlightPlans().size());
+        flightPlans.setAllPrices(em);
+//        System.out.println(departureFlights.getFlightPlans().size());
 //        session.setAttribute("flightHolder", departureFlights);
         //sets the two flightholder beans as objects of view
-        view.addObject("departureFlights", departureFlights);
-        view.addObject("returnFlights", returnFlights);
+        view.addObject("Flights", flightPlans);
         return view;
     }
 
@@ -178,13 +175,11 @@ public class FlightController{
             HttpSession session
     ){
         ModelAndView view = new ModelAndView("sort");
-        //sorts flights in the flightholder bean to desired sorting method
-        departureFlights.sortFlightPlans(sortby+sortMethod);
-        view.addObject("departureFlights", departureFlights);
-        if(returnFlights.getFlightPlans().size()>0) {
-            returnFlights.sortFlightPlans(sortby + sortMethod);
-            view.addObject("returnFlights", returnFlights);
-        }
+        //sorts flights in the flightHolder bean to desired sorting method
+        flightPlans.sortFlightPlansDeparting(sortby+sortMethod);
+        flightPlans.sortFlightPlansReturning(sortby+sortMethod);
+        view.addObject("Flights", flightPlans);
+
         return view;
     }
 

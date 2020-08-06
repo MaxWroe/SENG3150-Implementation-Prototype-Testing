@@ -15,28 +15,43 @@ Description: This class is a bean that stores lists of flightsPlans and availabi
 
 public class FlightHolder {
     private FlightsSort sorter;
-    private List<FlightPlan> flightPlans;
+    private List<FlightPlan> flightPlansDeparting;
+    private List<FlightPlan> flightPlansReturning;
     private List<Availability> availabilities;
 
     public FlightHolder(){
         sorter = new FlightsSort();
-        flightPlans = new ArrayList<>();
+        flightPlansDeparting = new ArrayList<>();
+        flightPlansReturning = new ArrayList<>();
     }
 
     //sorts the list of flights by the sorting method
-    public List<FlightPlan> sortFlightPlans(String sortMethod){
-        flightPlans = sorter.sortFlightPlan(flightPlans, sortMethod);
-        return flightPlans;
+    public List<FlightPlan> sortFlightPlansDeparting(String sortMethod){
+        flightPlansDeparting = sorter.sortFlightPlan(flightPlansDeparting, sortMethod);
+        return flightPlansDeparting;
     }
 
-    public List<FlightPlan> getFlightPlans() {
-        setFlightPlanPositions();
-        return flightPlans;
+    public List<FlightPlan> sortFlightPlansReturning(String sortMethod){
+        flightPlansReturning = sorter.sortFlightPlan(flightPlansReturning, sortMethod);
+        return flightPlansReturning;
     }
 
-    public void setFlightPlans(List<FlightPlan> flightPlans) {
-        this.flightPlans = flightPlans;
+    public List<FlightPlan> getFlightPlansDeparting() {
         setFlightPlanPositions();
+        return flightPlansDeparting;
+    }
+
+    public void setFlightPlansDeparting(List<FlightPlan> flightPlans) {
+        this.flightPlansDeparting = flightPlansDeparting;
+        setFlightPlanPositions();
+    }
+
+    public List<FlightPlan> getFlightPlansReturning() {
+        return flightPlansReturning;
+    }
+
+    public void setFlightPlansReturning(List<FlightPlan> flightPlansReturning) {
+        this.flightPlansReturning = flightPlansReturning;
     }
 
     public FlightsSort getSorter() {
@@ -56,21 +71,31 @@ public class FlightHolder {
         this.availabilities = availabilities;
     }
 
-    //
+
     public void setFlightPlanPositions()
     {
-        for (int i=0; i<flightPlans.size(); i++){
-            if(flightPlans.get(i)!=null) {
-                flightPlans.get(i).setPosition(i);
+        for (int i=0; i<flightPlansDeparting.size(); i++){
+            if(flightPlansDeparting.get(i)!=null) {
+                flightPlansDeparting.get(i).setPosition(i);
+            }
+        }
+        for (int i=0; i<flightPlansReturning.size(); i++){
+            if(flightPlansReturning.get(i)!=null) {
+                flightPlansReturning.get(i).setPosition(i);
             }
         }
     }
 
     //gives flight plans the entity manager and sets prices for those flight plans based on their availabilities
     public void setAllPrices(EntityManager em){
-        for(int i=0; i<flightPlans.size(); i++){
-            if(flightPlans.get(i)!=null) {
-                flightPlans.get(i).setPrices(em);
+        for(int i=0; i<flightPlansDeparting.size(); i++){
+            if(flightPlansDeparting.get(i)!=null) {
+                flightPlansDeparting.get(i).setPrices(em);
+            }
+        }
+        for(int i=0; i<flightPlansReturning.size(); i++){
+            if(flightPlansReturning.get(i)!=null) {
+                flightPlansReturning.get(i).setPrices(em);
             }
         }
     }
