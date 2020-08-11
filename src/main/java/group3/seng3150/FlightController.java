@@ -122,7 +122,7 @@ public class FlightController{
                 for(int i=1; i<retrievedFlightsR.size(); i++){
                     flightNumberString += ", '" + retrievedFlightsR.get(i).getFlightNumber() + "'"; }
                 flightNumberString += ")";
-                //this returns a list of availabilites linked to retrieved flights
+                //this returns a list of availabilities linked to retrieved flights
                 List<Availability> retrievedAvailabilities = em.createQuery("SELECT a from Availability a WHERE a.flightNumber IN " + flightNumberString +
                     " AND a.departureDate>='" + returnTimeStart + "'" +
                     " AND a.departureDate<='" + returnTimeEnd + "'" +
@@ -130,7 +130,6 @@ public class FlightController{
                     " AND (a.numberAvailableSeatsLeg2>=" + numberPeople + " OR a.numberAvailableSeatsLeg2='null')" +
                     " AND a.classCode='" + classCode + "'", Availability.class).getResultList();
                 //creates flight plans based on retrieved flights
-                //List<FlightPlan> returnFlightPlans = searcher.createFlightPlans(retrievedFlightsR, departureLocation, arrivalLocation, false, returnTimeStart, retrievedAvailabilities);
                 //sets variables for flight holder bean
                 List<FlightPlan> returnFlightPlans = searcher.createFlightPlans(retrievedFlightsR, arrivalLocation, departureLocation, false, returnTimeStart, retrievedAvailabilities);
                 flightPlans.setFlightPlansReturning(returnFlightPlans);
@@ -156,7 +155,6 @@ public class FlightController{
                             " AND (a.numberAvailableSeatsLeg2>=" + numberPeople + " OR a.numberAvailableSeatsLeg2='null')" +
                             " AND a.classCode='" + classCode + "'", Availability.class).getResultList();
                     //generates a list of flight plans based on retrieved flights
-                    //List<FlightPlan> returnFlightPlans = searcher.createFlightPlans(retrievedFlightsR, departureLocation, arrivalLocation, true, returnTimeStart, retrievedAvailabilities);
                     //sets variables for flightholder bean
                     List<FlightPlan> returnFlightPlans = searcher.createFlightPlans(retrievedFlightsR, arrivalLocation, departureLocation, true, returnTimeStart, retrievedAvailabilities);
                     flightPlans.setFlightPlansReturning(returnFlightPlans);
