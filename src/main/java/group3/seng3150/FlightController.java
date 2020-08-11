@@ -11,13 +11,13 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.persistence.EntityManager;
 import javax.servlet.http.HttpSession;
+import java.util.LinkedList;
 import java.util.List;
 
 @Controller
 @RequestMapping("/search")
 public class FlightController{
     private FlightHolder flightPlans;
-
     private EntityManager em;
 
     @Autowired
@@ -43,10 +43,17 @@ public class FlightController{
         //dates need to be strictly of '2015-09-24 09:50:00' format
         ModelAndView view = new ModelAndView("search");
         String flightNumberString = "";
-        FlightPlanSearch searcher = new FlightPlanSearch();
+        List<Airport> airports = em.createQuery("SELECT a From Airport a", Airport.class).getResultList();
+        LinkedList<String> airportDestinationCodes = new LinkedList<String>();
+        for(int i=0; i<airports.size(); i++){
+            airportDestinationCodes.add(airports.get(i).getDestinationCode());
+        }
+        FlightPlanSearch searcher = new FlightPlanSearch(airportDestinationCodes);
         int numberPeople = adults + children;
         String departureTimeStart = departureDate + " 00:00:01";
         String departureTimeEnd = departureDate + " 23:59:59";
+
+
         //this returns a lst of flights going directly from the departure locaiton to the arrival locaiton
         List<Flight> retrievedFlights = em.createQuery( "SELECT f From Flight f WHERE f.departureCode='" + departureLocation + "'" +
                 " AND f.destination='" + arrivalLocation + "'" +

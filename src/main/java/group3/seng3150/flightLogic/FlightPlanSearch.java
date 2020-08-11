@@ -20,16 +20,26 @@ public class FlightPlanSearch {
         setAirports();
     }
 
+    public FlightPlanSearch(LinkedList<String> parsedAirports){
+        airports = new ArrayList<>();
+        setAirports(parsedAirports);
+    }
+
     //finds and returns a list of flight plans from sent in flights that match the criteria
     public List<FlightPlan> createFlightPlans(List<Flight> flights, String departureLocation, String destination, boolean stopOverNeeded, String startingTimeString, List<Availability> parsedAvailabilities){
         Timestamp startingTime = Timestamp.valueOf(startingTimeString);
         List<FlightPlan> flightPlans = new LinkedList<>();
         List<Flight> filteredFlights = filterByAvailabilities(flights, parsedAvailabilities);
-        //if a stop over is needed and sent in flights has flights will run Dijkstras on the flights and returns the found flight plans
+        //if a stop over is needed and sent in flights has flights will run Dijkstra's algorithm on the flights and returns the found flight plans
         if(stopOverNeeded && filteredFlights.size()>0){
-            flightPlans.add(getShortestPathDuration(filteredFlights, departureLocation, destination, startingTime));
+            for(int i=0; i<12; i++) {
+                flightPlans.add(getShortestPathDuration(filteredFlights, departureLocation, destination, startingTime));
+                startingTime.setTime(startingTime.getTime()+(2*3600000)); //adds two hours onto the starting time
+            }
         }
+        else if(filteredFlights.size()>10){
 
+        }
         //simply compiles sent in list of flights into flight plans
         else{
             for(int i=0; i<filteredFlights.size(); i++){
@@ -42,6 +52,7 @@ public class FlightPlanSearch {
         if(flightPlans.get(0)!= null) {
             flightPlans = SetFlightPlansAvailabilities(flightPlans, parsedAvailabilities);
         }
+        flightPlans = removeDuplicateFlightPlans(flightPlans);
         return flightPlans;
     }
 
@@ -169,7 +180,28 @@ public class FlightPlanSearch {
         }
     }
 
+    private List<FlightPlan> removeDuplicateFlightPlans(List<FlightPlan> parsedFlightPlans){
+        List<FlightPlan> uniqueFlightPlans = new LinkedList<FlightPlan>();
+        boolean existsIn;
+        for(int i=0; i<parsedFlightPlans.size(); i++){
+            existsIn = false;
+            for(int j=0; j<uniqueFlightPlans.size(); j++){
+                if (parsedFlightPlans.get(i).equals(uniqueFlightPlans.get(j))){
+                    existsIn = true;
+                }
+            }
+            if(existsIn==false){
+                uniqueFlightPlans.add(parsedFlightPlans.get(i));
+            }
+        }
+        return  uniqueFlightPlans;
+    }
 
+    private void setAirports(LinkedList<String> parsedAirports){
+        for (int i=0; i<parsedAirports.size(); i++){
+         airports.add(parsedAirports.get(i));
+        }
+    }
 
     //sets list of airports to this static list
     private void setAirports(){
