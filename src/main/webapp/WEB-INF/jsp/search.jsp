@@ -124,22 +124,6 @@
                        value="${param.returnDate}" disabled>
             </div>
 
-            <!-- Apply sorting -->
-            <div id="sort-criteria">
-                <h4 style="display: inline;padding-right: 50px;">Sort Criteria</h4>
-                <p>Sort by:</p>
-                <select id="sortby" name="sortby">
-                    <option value="price">Price</option>
-                    <option value="time">Time</option>
-                    <option value="capacity">Capacity</option>
-                    <option value="stopovers">Stop Overs</option>
-                </select>
-                <select id="sortMethod" name="sortMethod">
-                    <option value="descending">Descending</option>
-                    <option value="ascending">Ascending</option>
-                </select>
-            </div>
-
             <button class="btn btn-lg btn-outline-success text-uppercase" type="submit">Go</button>
         </form>
         <script>
@@ -162,6 +146,42 @@
             document.getElementById("classCode").value = "${param.classCode}";
         </script>
     </div>
+    <div id="search-criteria">
+        <!-- Apply sorting -->
+        <div id="sort-criteria">
+            <h4 style="display: inline;padding-right: 50px;">Sort Criteria</h4>
+            <p>Sort by:</p>
+            <select class="sortby">
+                <option value="price">Price</option>
+                <option value="time">Time</option>
+                <option value="capacity">Capacity</option>
+                <option value="stopovers">Stop Overs</option>
+            </select>
+            <select class="sortMethod">
+                <option value="descending">Descending</option>
+                <option value="ascending">Ascending</option>
+            </select>
+            <button id="sort">Sort</button>
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script>
+        let method;
+        function Price_sort(a, b) {
+            if(method === "descending")
+            {
+                return ($(b).data('price')) > ($(a).data('price')) ? 1 : -1;
+            }
+            if(method === "ascending")
+            {
+                return ($(b).data('price')) < ($(a).data('price')) ? 1 : -1;
+            }
+        }
+        $("#sort").on('click', function(){
+            method = $('select.sortMethod').children("option:selected").val();
+            $(".fro").children('li').sort(Price_sort).appendTo(".fro");
+        });
+    </script>
 
     <!-- If searched trip is one-way -->
     <c:if test = "${param.type eq 'oneway'}">
@@ -176,7 +196,10 @@
         <c:set var = "departureFlights" scope = "session" value = "${departureFlights}"/>
 
         <!-- For each flight returned display -->
+        <ul class="fro">
         <c:forEach items="${departureFlights.flightPlans}" var="flightPlan">
+            <li data-price="${flightPlan.price}">
+
             <div class="flight-result-oneway">
                 <div class="flight-result-time">
                     <p>Depart time</p>
@@ -209,7 +232,10 @@
                     </form>
                 </div>
             </div>
+
+            </li>
         </c:forEach>
+        </ul>
     </c:if>
 
     <!-- If searched trip is return -->
