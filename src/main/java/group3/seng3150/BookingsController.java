@@ -192,7 +192,7 @@ public class BookingsController {
 
         FlightHolder searchDeparture = (FlightHolder) session.getAttribute("departureFlights");
         searchDeparture.setFlightPlanPositions();
-        FlightPlan flightPlan = searchDeparture.getFlightPlans().get(positionDeparture);
+        FlightPlan flightPlan = searchDeparture.getFlightPlansDeparting().get(positionDeparture);
         flightPlan.getDepartureDate();
 
         for (int i = 0; i < returnAdultsBooking + returnChildrenBooking; i++) {
@@ -247,7 +247,7 @@ public class BookingsController {
 
         FlightHolder searchReturn = (FlightHolder) session.getAttribute("returnFlights");
         searchReturn.setFlightPlanPositions();
-        FlightPlan flightPlanR = searchReturn.getFlightPlans().get(positionReturn);
+        FlightPlan flightPlanR = searchReturn.getFlightPlansReturning().get(positionReturn);
         flightPlan.getDepartureDate();
 
         for (int i = 0; i < returnAdultsBooking + returnChildrenBooking; i++) {
@@ -341,7 +341,7 @@ public class BookingsController {
 
         FlightHolder searchDeparture = (FlightHolder) session.getAttribute("departureFlights");
         searchDeparture.setFlightPlanPositions();
-        FlightPlan flightPlan = searchDeparture.getFlightPlans().get(positionDeparture);
+        FlightPlan flightPlan = searchDeparture.getFlightPlansDeparting().get(positionDeparture);
         flightPlan.getDepartureDate();
 
         for (int i = 0; i < onewayAdultsBooking + onewayChildrenBooking; i++) {
