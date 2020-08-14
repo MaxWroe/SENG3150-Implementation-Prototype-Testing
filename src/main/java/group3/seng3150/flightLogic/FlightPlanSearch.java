@@ -51,8 +51,8 @@ public class FlightPlanSearch {
         //sets availabilities
         if(flightPlans.get(0)!= null) {
             flightPlans = SetFlightPlansAvailabilities(flightPlans, parsedAvailabilities);
+            flightPlans = removeDuplicateFlightPlans(flightPlans);
         }
-        flightPlans = removeDuplicateFlightPlans(flightPlans);
         return flightPlans;
     }
 
