@@ -41,7 +41,7 @@ public class FlightHolder {
         return flightPlansDeparting;
     }
 
-    public void setFlightPlansDeparting(List<FlightPlan> flightPlans) {
+    public void setFlightPlansDeparting(List<FlightPlan> flightPlansDeparting) {
         this.flightPlansDeparting = flightPlansDeparting;
         setFlightPlanPositions();
     }
@@ -62,15 +62,6 @@ public class FlightHolder {
         this.sorter = sorter;
         setFlightPlanPositions();
     }
-
-    public List<Availability> getAvailabilities() {
-        return availabilities;
-    }
-
-    public void setAvailabilities(List<Availability> availabilities) {
-        this.availabilities = availabilities;
-    }
-
 
     public void setFlightPlanPositions()
     {

@@ -75,9 +75,11 @@ public class FlightController{
                 " AND a.classCode='" + classCode + "'", Availability.class).getResultList();
             //creates flight plans based on list of retrieved flights
             List<FlightPlan> departureFlightPlans = searcher.createFlightPlans(retrievedFlights, departureLocation, arrivalLocation, false, departureTimeStart, retrievedAvailabilities);
+            System.out.println("number of flight plans created by searcher: " + departureFlightPlans.size());
             //sets variables retrieved to the flight holder bean
             flightPlans.setFlightPlansDeparting(departureFlightPlans);
             flightPlans.sortFlightPlansDeparting("departureTimeAscending");
+            System.out.println("number of flight plans in departure flights post sort: " + flightPlans.getFlightPlansDeparting().size());
         }
         else{
             //this returns all flights that depart on the departure date
@@ -165,9 +167,8 @@ public class FlightController{
         }
 
         flightPlans.setAllPrices(em);
-//        System.out.println(departureFlights.getFlightPlans().size());
-//        session.setAttribute("flightHolder", departureFlights);
-        //sets the two flightholder beans as objects of view
+        System.out.println("number of flight plans Departing: " + flightPlans.getFlightPlansDeparting().size());
+        //sets the flightholder beans as objects of view
         view.addObject("flights", flightPlans);
         return view;
     }
