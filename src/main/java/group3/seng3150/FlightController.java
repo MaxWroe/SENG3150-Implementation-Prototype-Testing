@@ -168,7 +168,7 @@ public class FlightController{
 //        System.out.println(departureFlights.getFlightPlans().size());
 //        session.setAttribute("flightHolder", departureFlights);
         //sets the two flightholder beans as objects of view
-        view.addObject("Flights", flightPlans);
+        view.addObject("flights", flightPlans);
         return view;
     }
 
@@ -183,7 +183,7 @@ public class FlightController{
         //sorts flights in the flightHolder bean to desired sorting method
         flightPlans.sortFlightPlansDeparting(sortby+sortMethod);
         flightPlans.sortFlightPlansReturning(sortby+sortMethod);
-        view.addObject("Flights", flightPlans);
+        view.addObject("flights", flightPlans);
 
         return view;
     }
