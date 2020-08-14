@@ -188,16 +188,16 @@
         <!-- Parse all returned flights -->
 
         <!-- Check if any flights returned -->
-        <c:if test="${empty departureFlights.flightPlans}">
+        <c:if test="${empty flights.flightPlansDeparting}">
             <h4>No flights can be found that match the criteria!</h4>
         </c:if>
 
         <!-- Set flights returned (FlightHolder) to session scope -->
-        <c:set var = "departureFlights" scope = "session" value = "${departureFlights}"/>
+        <c:set var = "departureFlights" scope = "session" value = "${flights.flightPlansDeparting}"/>
 
         <!-- For each flight returned display -->
         <ul class="fro">
-        <c:forEach items="${departureFlights.flightPlans}" var="flightPlan">
+        <c:forEach items="${flights.flightPlansDeparting}" var="flightPlan">
             <li data-price="${flightPlan.price}">
 
             <div class="flight-result-oneway">
@@ -250,8 +250,8 @@
         </div>
 
         <!-- Set flights returned (FlightHolders) to session scope -->
-        <c:set var = "departureFlights" scope = "session" value = "${departureFlights}"/>
-        <c:set var = "returnFlights" scope = "session" value = "${returnFlights}"/>
+        <c:set var = "departureFlights" scope = "session" value = "${flights.flightPlansDeparting}"/>
+        <c:set var = "returnFlights" scope = "session" value = "${flights.flightPlansReturning}"/>
 
         <!-- Information to send to booking controller -->
         <form method="post" action="${pageContext.request.contextPath}/flightBookingReturn" onsubmit="return validateFlightSelection()">
@@ -264,7 +264,7 @@
                 <!-- Parse all returned flights -->
 
                 <!-- Check if any departure flights returned -->
-                <c:if test="${empty departureFlights.flightPlans}">
+                <c:if test="${empty flights.flightPlansDeparting}">
                     <div class="flight-result-return-windows">
                         <h4>No departure flights can be found that match the criteria!</h4>
                     </div>
@@ -272,7 +272,7 @@
 
                 <!-- For each departure flight returned display -->
                 <div id="flight-departure-results">
-                    <c:forEach items="${departureFlights.flightPlans}" var="flightPlan">
+                    <c:forEach items="${flights.flightPlansDeparting}" var="flightPlan">
                         <div class="flight-result-return-windows">
                             <div class="flight-result-time">
                                 <p>Depart time</p>
@@ -302,7 +302,7 @@
                 </div>
 
                 <!-- Check if any return flights returned -->
-                <c:if test="${empty returnFlights.flightPlans}">
+                <c:if test="${empty flights.flightPlansReturning}">
                     <div class="flight-result-return-windows">
                         <h4>No return flights can be found that match the criteria!</h4>
                     </div>
@@ -310,7 +310,7 @@
 
                 <!-- For each return flight returned display -->
                 <div id="flight-return-results">
-                    <c:forEach items="${returnFlights.flightPlans}" var="flightPlan">
+                    <c:forEach items="${flights.flightPlansReturning}" var="flightPlan">
                         <div class="flight-result-return-windows">
                             <div class="flight-result-time">
                                 <p>Depart time</p>
