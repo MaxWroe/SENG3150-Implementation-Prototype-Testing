@@ -122,21 +122,54 @@ body
     padding: 20px;
     text-align: left;
 }
-
-.home-form-group
+/* Flight search field home page */
+#home-search .form-group
 {
-    width: 250px;
-    display: inline;
+    width: 350px;
+    display: block;
 }
 
-#home-form-group-trip
+#home-search .form-group-trip
 {
     display: block;
 }
 
-#home-form-group-return-date
+#home-search .form-group-return-date
 {
     display: none;
+}
+/* Flight search field flight search results page */
+#results-search
+{
+    width: 100%;
+    background: #fff;
+    padding: 10px;
+    border-radius: 25px;
+}
+
+#results-search .form-group
+{
+    display: inline;
+}
+
+#results-search .form-group input
+{
+    display: inline;
+}
+
+#results-search .form-group p
+{
+    display: inline;
+}
+
+#results-search .form-group-return-date
+{
+    display: none;
+}
+
+#results-search .form-group-return-date input, p
+{
+    display: inline;
 }
 
 input[type=date]
@@ -280,31 +313,6 @@ input:hover
     background: #fff;
     padding: 10px;
     border-radius: 25px;
-}
-
-.search-form-group
-{
-    display: inline;
-}
-
-.search-form-group input
-{
-    display: inline;
-}
-
-.search-form-group p
-{
-    display: inline;
-}
-
-#search-form-return-date
-{
-    display: none;
-}
-
-#search-form-return-date input, p
-{
-    display: inline;
 }
 
 .flight-booking

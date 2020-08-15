@@ -6,63 +6,63 @@
   Date: 14/08/2020
   Time: 11:05 am
 --%>
+<script src="${pageContext.request.contextPath}/js/searchFormAssistor.js"></script>
 <!-- Flight search fields -->
-<form name="searchFlight" method="get" id="searchFlight" action="/search" onsubmit="return validateForm()">
+<form name="searchFlight" method="get" id="searchFlight" action="${pageContext.request.contextPath}/search" onsubmit="return validateForm()">
     <!-- Return or one-way trip -->
-    <div id="home-form-group-trip">
+    <div class="form-group-trip">
         <label for="type">Trip:</label>
-        <select id="type" name="type" onchange="showDiv('home-form-group-return-date', 'returnDate', this)">
+        <select id="type" name="type" onchange="showDiv('form-group-return-date', 'returnDate', this)">
             <option value="oneway">One-way</option>
             <option value="return">Return</option>
         </select>
     </div>
 
-    <!-- Ticket class -->
-    <label for="classCode">Class:</label>
-    <select id="classCode" name="classCode">
-        <option value="ECO">Economy</option>
-        <option value="PME">Premium Economy</option>
-        <option value="BUS">Business Class</option>
-        <option value="FIR">First Class</option>
-    </select>
-    <br>
+    <div class="form-group">
+        <!-- Ticket class -->
+        <label for="classCode">Class:</label>
+        <select id="classCode" name="classCode">
+            <option value="ECO">Economy</option>
+            <option value="PME">Premium Economy</option>
+            <option value="BUS">Business Class</option>
+            <option value="FIR">First Class</option>
+        </select>
+    </div>
 
-    <!-- Adult passengers -->
-    <label for="adults">Adults:</label>
-    <input type="number" id="adults" name="adults" min="1" max="9" value="1" required>
-    <br>
-
-    <!-- Children passengers -->
-    <label for="children">Children:</label>
-    <input type="number" id="children" name="children" min="0" max="9" value="0" required>
-    <br>
+    <div class="form-group">
+        <!-- Adult passengers -->
+        <label for="adults">Adults:</label>
+        <input type="number" id="adults" name="adults" min="1" max="9" required>
+        <!-- Children passengers -->
+        <label for="children">Children:</label>
+        <input type="number" id="children" name="children" min="0" max="9" required>
+    </div>
 
     <!-- Starting airport -->
-    <div class="home-form-group">
+    <div class="form-group">
         <label for="departureLocation">From:</label>
         <input list="destinations" name="departureLocation" id="departureLocation" required>
     </div>
 
     <!-- Destination airport -->
-    <div class="home-form-group">
+    <div class="form-group">
         <label for="arrivalLocation">To:</label>
         <input list="destinations" name="arrivalLocation" id="arrivalLocation" required>
     </div>
-    <br>
 
     <!-- Depart date -->
-    <div class="home-form-group">
+    <div class="form-group">
         <label for="departureDate">Depart:</label>
         <jsp:useBean id="now" class="java.util.Date"/>
-        <input type="date" id="departureDate" name="departureDate" min="<fmt:formatDate pattern="yyyy-MM-dd" value="${now}" />" onchange="restrictDepart()" required>
+        <input type="date" id="departureDate" name="departureDate" min="<fmt:formatDate pattern="yyyy-MM-dd" value="${now}" />"
+               onchange="restrictDepart()" required>
     </div>
 
     <!-- Return date -->
-    <div id="home-form-group-return-date">
+    <div id="form-group-return-date">
         <label for="returnDate">Return:</label>
         <input type="date" id="returnDate" name="returnDate" min="<fmt:formatDate pattern="yyyy-MM-dd" value="${now}" />" disabled>
     </div>
-    <br>
 
     <!-- Search button -->
     <button class="btn btn-lg btn-outline-success text-uppercase" type="submit">Search</button>

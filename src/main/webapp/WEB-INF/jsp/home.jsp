@@ -13,7 +13,6 @@
 
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css">
 
-    <script src="${pageContext.request.contextPath}/js/searchFormAssistor.js"></script>
     <script src="${pageContext.request.contextPath}/js/dynamicLink.js"></script>
 </head>
 <body>
@@ -26,10 +25,21 @@
 <!-- Page content -->
 <main class="main-content">
     <div class="card-body">
-        <h1>Search</h1>
-        <h4>Search for Flight</h4>
-        <!-- Flight search form jsp -->
-        <jsp:include page="searchForm.jsp"/>
+        <div id="home-search">
+            <h1>Search</h1>
+            <h4>Search for Flight</h4>
+            <!-- Flight search form jsp -->
+            <jsp:include page="searchForm.jsp"/>
+            <!-- Javascript to set fields to default values -->
+            <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>-->
+            <script>
+                document.getElementById("departureLocation").value = '';
+                document.getElementById("arrivalLocation").value = '';
+                document.getElementById("adults").value = 1;
+                document.getElementById("children").value = 0;
+                document.getElementById("form-group-return-date").style.display = 'none';
+            </script>
+        </div>
     </div>
 </main>
 </body>

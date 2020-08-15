@@ -14,7 +14,6 @@
 
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css">
 
-    <script src="${pageContext.request.contextPath}/js/searchFormAssistor.js"></script>
     <script src="${pageContext.request.contextPath}/js/flightSelectAssistor.js"></script>
     <script src="${pageContext.request.contextPath}/js/dynamicLink.js"></script>
 </head>
@@ -28,116 +27,32 @@
 <!-- Page content -->
 <main class="main-content">
     <!-- The current search criteria -->
-    <div id="search-criteria">
+    <div id="results-search">
         <h4 style="margin: auto;">Search Criteria</h4>
-        <!-- Flight search fields -->
-        <form name="searchFlight" method="get" id="searchFlight" action="${pageContext.request.contextPath}/search" onsubmit="return validateForm()">
-            <!-- Starting airport -->
-            <div class="search-form-group">
-                <input list="destinations" name="departureLocation" id="departureLocation" value="${param.departureLocation}" required>
-                <p>to</p>
-                <input list="destinations" name="arrivalLocation" id="arrivalLocation" value="${param.arrivalLocation}" required>
-            </div>
-
-            <!-- Airport destinations -->
-            <datalist id="destinations">
-                <option value="ADL">Adelaide - ADL</option>
-                <option value="AMS">Amsterdam - AMS</option>
-                <option value="ATL">Atlanta - ATL</option>
-                <option value="BKK">Bangkok - BKK</option>
-                <option value="BNE">Brisbane - BNE</option>
-                <option value="CBR">Canberra - CBR</option>
-                <option value="CDG">Paris - Charles De Gaulle - CDG</option>
-                <option value="CNS">Cairns - CNS</option>
-                <option value="DOH">Doha - DOH</option>
-                <option value="DRW">Darwin - DRW</option>
-                <option value="DXB">Dubai - DXB</option>
-                <option value="FCO">Rome-Fiumicino - FCO</option>
-                <option value="GIG">Rio De Janeiro - GIG</option>
-                <option value="HBA">Hobart - HBA</option>
-                <option value="HEL">Helsinki - HEL</option>
-                <option value="HKG">Hong Kong - HKG</option>
-                <option value="HNL">Honolulu - HNL</option>
-                <option value="JFK">New York - JFK - JFK</option>
-                <option value="JNB">Johannesburg - JNB</option>
-                <option value="KUL">Kuala Lumpur - KUL</option>
-                <option value="LAX">Los Angeles - LAX</option>
-                <option value="LGA">New York - Laguardia - LGA</option>
-                <option value="LGW">London-Gatwick - LGW</option>
-                <option value="LHR">London-Heathrow - LHR</option>
-                <option value="MAD">Madrid - MAD</option>
-                <option value="MEL">Melbourne - MEL</option>
-                <option value="MIA">Miami - MIA</option>
-                <option value="MUC">Munich - MUC</option>
-                <option value="NRT">Tokyo - Narita - NRT</option>
-                <option value="OOL">Gold Coast - OOL</option>
-                <option value="ORD">Chicago - OHare Intl. - ORD</option>
-                <option value="ORY">Paris - Orly - ORY</option>
-                <option value="PER">Perth - PER</option>
-                <option value="SFO">San Francisco - SFO</option>
-                <option value="SIN">Singapore - SIN</option>
-                <option value="SYD">Sydney - SYD</option>
-                <option value="VIE">Vienna - VIE</option>
-                <option value="YYZ">Toronto - YYZ</option>
-            </datalist>
-
-            <div class="search-form-group">
-                <select id="type" name="type" onchange="showDiv('search-form-return-date', 'returnDate', this)">
-                    <option value="oneway">One-way</option>
-                    <option value="return">Return</option>
-                </select>
-            </div>
-
-            <!-- Ticket class -->
-            <div class="search-form-group" value="${param.classCode}">
-                <select id="classCode" name="classCode">
-                    <option value="ECO">Economy</option>
-                    <option value="PME">Premium Economy</option>
-                    <option value="BUS">Business Class</option>
-                    <option value="FIR">First Class</option>
-                </select>
-            </div>
-
-            <div class="search-form-group">
-                <!-- Adult passengers -->
-                <input type="number" id="adults" name="adults" min="1" max="9" value="${param.adults}" required>
-                <p>Adult/s</p>
-                <!-- Children passengers -->
-                <input type="number" id="children" name="children" min="0" max="9" value="${param.children}" required>
-                <p>Children</p>
-            </div>
-            <br>
-
-            <!-- Depart date -->
-            <div class="search-form-group">
-                <div class="home-form-group">
-                    <jsp:useBean id="now" class="java.util.Date"/>
-                    <input type="date" id="departureDate" name="departureDate" min="<fmt:formatDate pattern="yyyy-MM-dd" value="${now}" />"
-                           onchange="restrictDepart()" value="${param.departureDate}" required>
-                </div>
-            </div>
-
-            <!-- Return date -->
-            <div id="search-form-return-date">
-                <p>to</p>
-                <input type="date" id="returnDate" name="returnDate" min="<fmt:formatDate pattern="yyyy-MM-dd" value="${now}" />"
-                       value="${param.returnDate}" disabled>
-            </div>
-
-            <button class="btn btn-lg btn-outline-success text-uppercase" type="submit">Go</button>
-        </form>
+        <!-- Flight search form jsp -->
+        <jsp:include page="searchForm.jsp"/>
         <script>
             // Check if incoming search trip type, set type select field and return date div
             var trip = "${param.type}";
 
+            // Set fields to incoming search parameters
+            document.getElementById("classCode").value = "${param.classCode}";
+            document.getElementById("adults").value = "${param.adults}";
+            document.getElementById("children").value = "${param.children}";
+            document.getElementById("departureLocation").value = "${param.departureLocation}";
+            document.getElementById("arrivalLocation").value = "${param.arrivalLocation}";
+            document.getElementById("departureDate").value = "${param.departureDate}";
+            document.getElementById("returnDate").value = "${param.returnDate}";
+
             if (trip === "oneway")
             {
                 document.getElementById("type").value = "oneway";
+                document.getElementById("form-group-return-date").style.display = 'none';
             }
             else if (trip === "return")
             {
                 document.getElementById("type").value = "return";
-                document.getElementById("search-form-return-date").style.display = 'inline';
+                document.getElementById("form-group-return-date").style.display = 'inline';
                 document.getElementById("returnDate").required = true;
                 document.getElementById("returnDate").disabled = false;
             }
