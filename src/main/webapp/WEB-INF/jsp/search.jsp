@@ -129,6 +129,11 @@
                     <br>
                     <p>Stop overs: ${flightPlan.numberStopOvers}</p>
                     <br>
+                        <c:forEach items="${flightPlan.flights}" var="flightPlanFlights">
+                            <p>Stop over airports:</p>
+                            <h4>${flightPlanFlights.stopOverCode}</h4>
+                        </c:forEach>
+                    <br>
                     <p>Available seats: ${flightPlan.numberAvailableSeats}</p>
                 </div>
                 <div class="flight-result-cost">
