@@ -56,7 +56,7 @@ public class Booking {
     @Basic(optional = false)
     private int returnTrip;
 
-    //If there was more time we would but booked flights into their own table to keep booking from being this big.
+    //If there was more time we would put booked flights into their own table to keep booking from being this big.
     //flight 1 - data is all foreign keys
     @Column(name = "AirlineCode")
     @Basic(optional = false)
