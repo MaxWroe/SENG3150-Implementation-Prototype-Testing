@@ -122,21 +122,105 @@ body
     padding: 20px;
     text-align: left;
 }
+
+input[type=date]
+{
+    border-radius: 10px;
+    border: 0;
+    box-shadow: 0 0 15px 4px rgba(0,0,0,0.06);
+    border-bottom: 1px solid #eee;
+    font-family:inherit;
+    font-size: inherit;
+}
+
+select
+{
+    border-radius: 10px;
+    border: 0;
+    box-shadow: 0 0 15px 4px rgba(0,0,0,0.06);
+    border-bottom: 1px solid #eee;
+    font-family:inherit;
+    font-size: inherit;
+    margin: 10px 0;
+}
+
+input
+{
+    border-radius: 10px;
+    border: 0;
+    box-shadow: 0 0 15px 4px rgba(0,0,0,0.06);
+    border-bottom: 1px solid #eee;
+    font-family:inherit;
+    font-size: inherit;
+    margin: 10px 0;
+}
+
+button
+{
+    appearance: none;
+    -webkit-appearance: none;
+    border: none;
+    background-color: rgb(30, 128, 155);
+    color: #fff;
+    font-weight: 600;
+    border-radius: 5px;
+    width: 100%;
+}
+
+#home-card-body
+{
+    width: 100%;
+    height: 500px;
+    background-image: url("/img/home-splash-pic.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#home-search
+{
+    width: 40%;
+    /*margin: 0 auto;*/
+    border-radius: 25px;
+    background: #fff;
+    padding: 10px;
+    text-align: left;
+    font-size: small;
+    margin-left: 100px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
 /* Flight search field home page */
 #home-search .form-group
 {
     width: 350px;
     display: block;
 }
-
 #home-search .form-group-trip
 {
     display: block;
 }
-
 #home-search .form-group-return-date
 {
     display: none;
+}
+#home-search .form-group-departure-local, .form-group-arrival-local
+{
+    display: inline;
+}
+#home-search .form-group-depart-date
+{
+    display: inline-block;
+}
+#home-search input, select, input[type=date]
+{
+    padding: 5px;
+}
+#home-search button
+{
+    padding: 10px;
 }
 /* Flight search field flight search results page */
 #results-search
@@ -170,54 +254,6 @@ body
 #results-search .form-group-return-date input, p
 {
     display: inline;
-}
-
-input[type=date]
-{
-    padding: 10px;
-    border-radius: 10px;
-    border: 0;
-    box-shadow: 0 0 15px 4px rgba(0,0,0,0.06);
-    border-bottom: 1px solid #eee;
-    font-family:inherit;
-    font-size: inherit;
-}
-
-select
-{
-    padding: 10px;
-    border-radius: 10px;
-    border: 0;
-    box-shadow: 0 0 15px 4px rgba(0,0,0,0.06);
-    border-bottom: 1px solid #eee;
-    font-family:inherit;
-    font-size: inherit;
-    margin: 10px 0;
-}
-
-input
-{
-    padding: 10px;
-    border-radius: 10px;
-    border: 0;
-    box-shadow: 0 0 15px 4px rgba(0,0,0,0.06);
-    border-bottom: 1px solid #eee;
-    font-family:inherit;
-    font-size: inherit;
-    margin: 10px 0;
-}
-
-button
-{
-    appearance: none;
-    -webkit-appearance: none;
-    padding: 10px;
-    border: none;
-    background-color: #3F51B5;
-    color: #fff;
-    font-weight: 600;
-    border-radius: 5px;
-    width: 100%;
 }
 
 input:hover

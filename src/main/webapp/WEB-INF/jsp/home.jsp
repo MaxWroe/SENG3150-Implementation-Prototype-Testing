@@ -24,10 +24,9 @@
 
 <!-- Page content -->
 <main class="main-content">
-    <div class="card-body">
+    <div id="home-card-body">
         <div id="home-search">
-            <h1>Search</h1>
-            <h4>Search for Flight</h4>
+            <h1>Search for a flight</h1>
             <!-- Flight search form jsp -->
             <jsp:include page="searchForm.jsp"/>
             <!-- Javascript to set fields to default values -->

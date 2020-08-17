@@ -39,19 +39,19 @@
     </div>
 
     <!-- Starting airport -->
-    <div class="form-group">
+    <div class="form-group-departure-local">
         <label for="departureLocation">From:</label>
         <input list="destinations" name="departureLocation" id="departureLocation" required>
     </div>
 
     <!-- Destination airport -->
-    <div class="form-group">
+    <div class="form-group-arrival-local">
         <label for="arrivalLocation">To:</label>
         <input list="destinations" name="arrivalLocation" id="arrivalLocation" required>
     </div>
 
     <!-- Depart date -->
-    <div class="form-group">
+    <div class="form-group-depart-date">
         <label for="departureDate">Depart:</label>
         <jsp:useBean id="now" class="java.util.Date"/>
         <input type="date" id="departureDate" name="departureDate" min="<fmt:formatDate pattern="yyyy-MM-dd" value="${now}" />"
