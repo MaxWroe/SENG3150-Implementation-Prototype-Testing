@@ -37,6 +37,15 @@ public class DijkstraNode {
         }
     }
 
+    public Flight removeDestination(String destination){
+        Flight removedEdge = new Flight();
+        if(adjacentNodesFlights.containsKey(destination)){
+            removedEdge = adjacentNodesFlights.remove(destination).get(0);
+            removedEdge = adjacentNodesFlightShortest.remove(destination);
+        }
+        return removedEdge;
+    }
+
     //sets sortest durations of this node to all other adjacent nodes
     public void setShortestDurations(Timestamp startingTime){
         if(shortestPathFlights.size()>0){
@@ -119,6 +128,12 @@ public class DijkstraNode {
 
     public Map<DijkstraNode, Flight> getAdjacentNodesFlightShortest() {
         return adjacentNodesFlightShortest;
+    }
+
+    public List<Flight> getAdjacentNodesFlightsShortestList(){
+        List<Flight> outFlights = new LinkedList<Flight>();
+        outFlights.addAll(adjacentNodesFlightShortest.values());
+        return outFlights;
     }
 
     public void setAdjacentNodesFlightShortest(Map<DijkstraNode, Flight> adjacentNodesFlightShortest) {

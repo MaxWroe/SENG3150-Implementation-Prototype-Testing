@@ -52,36 +52,37 @@ public class FlightController{
         int numberPeople = adults + children;
         String departureTimeStart = departureDate + " 00:00:01";
         String departureTimeEnd = departureDate + " 23:59:59";
+        List<Flight> retrievedFlights;
 
 
         //this returns a lst of flights going directly from the departure locaiton to the arrival locaiton
-        List<Flight> retrievedFlights = em.createQuery( "SELECT f From Flight f WHERE f.departureCode='" + departureLocation + "'" +
-                " AND f.destination='" + arrivalLocation + "'" +
-                " AND f.departureDate>='" + departureTimeStart + "'" +
-                " AND f.departureDate<='" + departureTimeEnd + "'", Flight.class).getResultList();
+//        List<Flight> retrievedFlights = em.createQuery( "SELECT f From Flight f WHERE f.departureCode='" + departureLocation + "'" +
+//                " AND f.destination='" + arrivalLocation + "'" +
+//                " AND f.departureDate>='" + departureTimeStart + "'" +
+//                " AND f.departureDate<='" + departureTimeEnd + "'", Flight.class).getResultList();
 
-        if(retrievedFlights.size()>0) {
-            //this generates a string of all of the flight numbers in retrieved flights
-            flightNumberString = "('" + retrievedFlights.get(0).getFlightNumber() + "'";
-            for(int i=1; i<retrievedFlights.size(); i++){
-                flightNumberString += ", '" + retrievedFlights.get(i).getFlightNumber() + "'"; }
-            flightNumberString += ")";
-            //this returns a list of all of the availabilities that are linked to the retrieved flights
-            List<Availability> retrievedAvailabilities = em.createQuery("SELECT a from Availability a WHERE a.flightNumber IN " + flightNumberString +
-                " AND a.departureDate>='" + departureTimeStart + "'" +
-                " AND a.departureDate<='" + departureTimeEnd + "'" +
-                " AND a.numberAvailableSeatsLeg1>=" + numberPeople +
-                " AND (a.numberAvailableSeatsLeg2>=" + numberPeople + " OR a.numberAvailableSeatsLeg2='null')" +
-                " AND a.classCode='" + classCode + "'", Availability.class).getResultList();
-            //creates flight plans based on list of retrieved flights
-            List<FlightPlan> departureFlightPlans = searcher.createFlightPlans(retrievedFlights, departureLocation, arrivalLocation, false, departureTimeStart, retrievedAvailabilities);
-            System.out.println("number of flight plans created by searcher: " + departureFlightPlans.size());
-            //sets variables retrieved to the flight holder bean
-            flightPlans.setFlightPlansDeparting(departureFlightPlans);
-            flightPlans.sortFlightPlansDeparting("departureTimeAscending");
-            System.out.println("number of flight plans in departure flights post sort: " + flightPlans.getFlightPlansDeparting().size());
-        }
-        else{
+//        if(retrievedFlights.size()>0) {
+//            //this generates a string of all of the flight numbers in retrieved flights
+//            flightNumberString = "('" + retrievedFlights.get(0).getFlightNumber() + "'";
+//            for(int i=1; i<retrievedFlights.size(); i++){
+//                flightNumberString += ", '" + retrievedFlights.get(i).getFlightNumber() + "'"; }
+//            flightNumberString += ")";
+//            //this returns a list of all of the availabilities that are linked to the retrieved flights
+//            List<Availability> retrievedAvailabilities = em.createQuery("SELECT a from Availability a WHERE a.flightNumber IN " + flightNumberString +
+//                " AND a.departureDate>='" + departureTimeStart + "'" +
+//                " AND a.departureDate<='" + departureTimeEnd + "'" +
+//                " AND a.numberAvailableSeatsLeg1>=" + numberPeople +
+//                " AND (a.numberAvailableSeatsLeg2>=" + numberPeople + " OR a.numberAvailableSeatsLeg2='null')" +
+//                " AND a.classCode='" + classCode + "'", Availability.class).getResultList();
+//            //creates flight plans based on list of retrieved flights
+//            List<FlightPlan> departureFlightPlans = searcher.createFlightPlans(retrievedFlights, departureLocation, arrivalLocation, false, departureTimeStart, retrievedAvailabilities);
+////            System.out.println("number of flight plans created by searcher: " + departureFlightPlans.size());
+//            //sets variables retrieved to the flight holder bean
+//            flightPlans.setFlightPlansDeparting(departureFlightPlans);
+//            flightPlans.sortFlightPlansDeparting("departureTimeAscending");
+////            System.out.println("number of flight plans in departure flights post sort: " + flightPlans.getFlightPlansDeparting().size());
+//        }
+//        else{
             //this returns all flights that depart on the departure date
             retrievedFlights = em.createQuery( "SELECT f From Flight f WHERE f.departureDate>='" + departureTimeStart + "'" +
                 " AND f.departureDate<='" + departureTimeEnd + "'", Flight.class).getResultList();
@@ -99,12 +100,13 @@ public class FlightController{
                     " AND (a.numberAvailableSeatsLeg2>=" + numberPeople + " OR a.numberAvailableSeatsLeg2='null')" +
                     " AND a.classCode='" + classCode + "'", Availability.class).getResultList();
                 //generates flight plans based on sent in flights
-                List<FlightPlan> departureFlightPlans = searcher.createFlightPlans(retrievedFlights, departureLocation, arrivalLocation, true, departureTimeStart, retrievedAvailabilities);
+                List<FlightPlan> departureFlightPlans = searcher.createFlightPlans(retrievedFlights, departureLocation, arrivalLocation, departureTimeStart, retrievedAvailabilities);
                 //sets variables in the flight holder bean
                 flightPlans.setFlightPlansDeparting(departureFlightPlans);
-                flightPlans.sortFlightPlansDeparting("departureTimeAscending");
+                flightPlans.sortFlightPlansDeparting("timeascending");
+//                System.out.println("sort of flight plans complete");
             }
-        }
+//        }
 
         //only runs if a return list is desired
         if (type.equals("return")) {
@@ -133,9 +135,9 @@ public class FlightController{
                     " AND a.classCode='" + classCode + "'", Availability.class).getResultList();
                 //creates flight plans based on retrieved flights
                 //sets variables for flight holder bean
-                List<FlightPlan> returnFlightPlans = searcher.createFlightPlans(retrievedFlightsR, arrivalLocation, departureLocation, false, returnTimeStart, retrievedAvailabilities);
+                List<FlightPlan> returnFlightPlans = searcher.createFlightPlans(retrievedFlightsR, arrivalLocation, departureLocation, returnTimeStart, retrievedAvailabilities);
                 flightPlans.setFlightPlansReturning(returnFlightPlans);
-                flightPlans.sortFlightPlansReturning("departureTimeAscending");
+                flightPlans.sortFlightPlansReturning("timeascending");
 
             }
             else{
@@ -158,16 +160,17 @@ public class FlightController{
                             " AND a.classCode='" + classCode + "'", Availability.class).getResultList();
                     //generates a list of flight plans based on retrieved flights
                     //sets variables for flightholder bean
-                    List<FlightPlan> returnFlightPlans = searcher.createFlightPlans(retrievedFlightsR, arrivalLocation, departureLocation, true, returnTimeStart, retrievedAvailabilities);
+                    List<FlightPlan> returnFlightPlans = searcher.createFlightPlans(retrievedFlightsR, arrivalLocation, departureLocation, returnTimeStart, retrievedAvailabilities);
                     flightPlans.setFlightPlansReturning(returnFlightPlans);
-                    flightPlans.sortFlightPlansReturning("departureTimeAscending");
+                    flightPlans.sortFlightPlansReturning("timeascending");
 
                 }
             }
         }
 
-        flightPlans.setAllPrices(em);
         System.out.println("number of flight plans Departing: " + flightPlans.getFlightPlansDeparting().size());
+        flightPlans.setAllPrices(em);
+
         //sets the flightholder beans as objects of view
         view.addObject("flights", flightPlans);
         return view;

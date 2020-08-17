@@ -30,6 +30,12 @@ public class FlightPlan {
         prices = new LinkedList<>();
     }
 
+    public FlightPlan(List<Flight> parsedFlights){
+        flights = parsedFlights;
+        availabilities = new LinkedList<>();
+        prices = new LinkedList<>();
+    }
+
     public Timestamp getDepartureDate(){
         return flights.get(0).getDepartureDate();
     }
@@ -56,7 +62,7 @@ public class FlightPlan {
                 }
             }
         }
-        System.out.println(availabilities.size());
+//        System.out.println(availabilities.size());
     }
 
     //sets prices to those corresponding to stored availabilities
@@ -165,5 +171,26 @@ public class FlightPlan {
     public int getPosition()
     {
         return position;
+    }
+
+    public int getNumberOfFlights(){
+        return flights.size();
+    }
+
+    public FlightPlan copyTo(int i){
+        LinkedList<Flight> cloneFlights = new LinkedList<Flight>();
+        if(i>flights.size()){
+            i=flights.size();
+        }
+        for(int j=0; j<i; j++){
+            Flight tempFlight = flights.get(j);
+            cloneFlights.add(tempFlight);
+        }
+
+        return new FlightPlan(cloneFlights);
+    }
+
+    public void addFlights(FlightPlan parsedFlightPlan){
+        flights.addAll(parsedFlightPlan.getFlights());
     }
 }

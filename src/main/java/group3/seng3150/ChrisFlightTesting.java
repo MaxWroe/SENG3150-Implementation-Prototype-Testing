@@ -59,7 +59,7 @@ public class ChrisFlightTesting {
 
 
 
-        List<FlightPlan> flightPlans = searcher.createFlightPlans(flightsList,"ADL", "ATL", true, "2020-10-10 6:00:00",availabilityList);
+        List<FlightPlan> flightPlans = searcher.createFlightPlans(flightsList,"ADL", "ATL", "2020-10-10 6:00:00",availabilityList);
 
 //        List<FlightPlan> departureFlightPlans = searcher.createFlightPlans(retrievedFlights, departureLocation, arrivalLocation, true);
 
