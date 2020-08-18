@@ -7,25 +7,26 @@ body
     font-family: Verdana, Geneva, sans-serif;
     color: #25283d;
     background-color: #ecf0f1;
+    padding: 0;
+    margin: 0;
 }
 
 .main-content
 {
-    padding: 60px 5% 2em;
+    /*padding: 60px 5% 2em;*/
     overflow: hidden;
     text-align: center;
 }
 
 .navbar
 {
-    position: fixed;
+    background-color: #fff;
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+    width: 100%;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 50px;
-    background-color: #fff;
-   /* overflow: hidden;  this hides the dropdown content*/
-
 }
 
 .nav-logo
@@ -183,8 +184,6 @@ button
 #home-search
 {
     width: 40%;
-    /*margin: 0 auto;*/
-    border-radius: 25px;
     background: #fff;
     padding: 10px;
     text-align: left;
