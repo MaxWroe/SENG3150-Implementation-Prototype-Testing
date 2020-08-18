@@ -222,6 +222,13 @@ button
 {
     padding: 10px;
 }
+
+#search-grid
+{
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: auto auto auto;
+}
 /* Flight search field flight search results page */
 #results-search
 {
@@ -229,38 +236,32 @@ button
     background: #fff;
     padding: 10px;
     border-radius: 25px;
+    grid-column: 1 / span 2;
+    grid-row: 1;
 }
-
-#results-search .form-group
+#results-search .form-group, .form-group-trip, .form-group-departure-local, .form-group-arrival-local
 {
     display: inline;
 }
-
+#results-search .form-group-depart-date
+{
+    display: inline-block;
+}
 #results-search .form-group input
 {
     display: inline;
 }
-
 #results-search .form-group p
 {
     display: inline;
 }
-
 #results-search .form-group-return-date
 {
     display: none;
 }
-
 #results-search .form-group-return-date input, p
 {
     display: inline;
-}
-
-input:hover
-{
-    /* shouldn't shifts elements
-    border: 1px solid #aaa;
-    */
 }
 
 #search-criteria
@@ -269,10 +270,20 @@ input:hover
     background: #fff;
     padding: 10px;
     border-radius: 25px;
+    grid-column: 2;
+    grid-row: 2;
+}
+
+#search-sidebar
+{
+    grid-column: 1;
+    grid-row: 2 / span 2;
 }
 
 .flight-result-oneway
 {
+    grid-column: 2;
+    grid-row: 3;
     width: 80%;
     margin: 0 auto;
     background: #fff;
