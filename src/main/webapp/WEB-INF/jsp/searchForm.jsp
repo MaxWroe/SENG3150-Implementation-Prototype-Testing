@@ -7,66 +7,132 @@
   Time: 11:05 am
 --%>
 <script src="${pageContext.request.contextPath}/js/searchFormAssistor.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <!-- Flight search fields -->
 <form name="searchFlight" method="get" id="searchFlight" action="${pageContext.request.contextPath}/search" onsubmit="return validateForm()">
-    <!-- Return or one-way trip -->
-    <div class="form-group-trip">
-        <label for="type">Trip:</label>
-        <select id="type" name="type" onchange="showDiv('form-group-return-date', 'returnDate', this)">
-            <option value="oneway">One-way</option>
-            <option value="return">Return</option>
-        </select>
+    <div class="search-form">
+        <div class="main-search-fields">
+            <!-- Return or one-way trip -->
+            <div class="form-group-trip">
+                <label for="type">Trip:</label>
+                <select id="type" name="type" onchange="showDiv('form-group-return-date', 'returnDate', this)">
+                    <option value="oneway">One-way</option>
+                    <option value="return">Return</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <!-- Ticket class -->
+                <label for="classCode">Class:</label>
+                <select id="classCode" name="classCode">
+                    <option value="ECO">Economy</option>
+                    <option value="PME">Premium Economy</option>
+                    <option value="BUS">Business Class</option>
+                    <option value="FIR">First Class</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <!-- Adult passengers -->
+                <label for="adults">Adults:</label>
+                <input type="number" id="adults" name="adults" min="1" max="9" required>
+                <!-- Children passengers -->
+                <label for="children">Children:</label>
+                <input type="number" id="children" name="children" min="0" max="9" required>
+            </div>
+
+            <!-- Starting airport -->
+            <div class="form-group-departure-local">
+                <label for="departureLocation">From:</label>
+                <input list="destinations" name="departureLocation" id="departureLocation" required>
+            </div>
+
+            <!-- Destination airport -->
+            <div class="form-group-arrival-local">
+                <label for="arrivalLocation">To:</label>
+                <input list="destinations" name="arrivalLocation" id="arrivalLocation" required>
+            </div>
+
+            <!-- Depart date -->
+            <div class="form-group-depart-date">
+                <label for="departureDate">Depart:</label>
+                <jsp:useBean id="now" class="java.util.Date"/>
+                <input type="date" id="departureDate" name="departureDate" min="<fmt:formatDate pattern="yyyy-MM-dd" value="${now}" />"
+                       onchange="restrictDepart()" required>
+            </div>
+
+            <!-- Return date -->
+            <div id="form-group-return-date">
+                <label for="returnDate">Return:</label>
+                <input type="date" id="returnDate" name="returnDate" min="<fmt:formatDate pattern="yyyy-MM-dd" value="${now}" />" disabled>
+            </div>
+
+            <div>
+                <p>Extra Options</p>
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+                <div class="container">
+                    <div class="fa fa-arrow-down rotate"></div>
+                </div>
+                <script>
+                    $(".rotate").click(function(){
+                        $(this).toggleClass("up");
+                        $('.extra-search-fields').toggle("slow");
+                    })
+                </script>
+            </div>
+        </div>
+        <div class="extra-search-fields" style="display:none">
+            <input type="checkbox" id="depart-range" name="depart-range">
+            <label for="depart-range">Search within date range</label>
+            <div id="depart-range-div" style="display:none">
+                <input type="date" id="departureDateRange" name="departureDateRange" disabled>
+            </div>
+        </div>
+        <script>
+            function range_restrict()
+            {
+                $('#departureDateRange').attr("min", function () {
+                    return $('#departureDate').val()
+                });
+                $('#departureDateRange').attr("max", function () {
+                    var date = new Date($('#departureDate').val());
+                    var limit = new Date(date);
+                    limit.setDate(limit.getDate() + 7);
+                    var day = limit.getDate();
+                    if (day < 10)
+                    {
+                        day = "0"+day;
+                    }
+                    var month = limit.getMonth() + 1;
+                    if (month < 10)
+                    {
+                        month = "0"+month;
+                    }
+                    var year = limit.getFullYear();
+                    return (year+"-"+ month+"-"+day);
+                });
+            }
+
+            $('#depart-range').click(function() {
+                range_restrict();
+                if ( $('#departureDateRange').val() != "")
+                {
+                    $('#departureDateRange').prop( "disabled", false );
+                }
+                $("#depart-range-div").toggle(this.checked);
+            });
+
+            $('#departureDate').change(function () {
+                $('#departureDateRange').val("");
+                $('#departureDateRange').prop( "disabled", false );
+                range_restrict();
+            })
+        </script>
+        <!-- Search button -->
+        <div class="search-button">
+            <button class="btn btn-lg btn-outline-success text-uppercase" type="submit">Search</button>
+        </div>
     </div>
-
-    <div class="form-group">
-        <!-- Ticket class -->
-        <label for="classCode">Class:</label>
-        <select id="classCode" name="classCode">
-            <option value="ECO">Economy</option>
-            <option value="PME">Premium Economy</option>
-            <option value="BUS">Business Class</option>
-            <option value="FIR">First Class</option>
-        </select>
-    </div>
-
-    <div class="form-group">
-        <!-- Adult passengers -->
-        <label for="adults">Adults:</label>
-        <input type="number" id="adults" name="adults" min="1" max="9" required>
-        <!-- Children passengers -->
-        <label for="children">Children:</label>
-        <input type="number" id="children" name="children" min="0" max="9" required>
-    </div>
-
-    <!-- Starting airport -->
-    <div class="form-group-departure-local">
-        <label for="departureLocation">From:</label>
-        <input list="destinations" name="departureLocation" id="departureLocation" required>
-    </div>
-
-    <!-- Destination airport -->
-    <div class="form-group-arrival-local">
-        <label for="arrivalLocation">To:</label>
-        <input list="destinations" name="arrivalLocation" id="arrivalLocation" required>
-    </div>
-
-    <!-- Depart date -->
-    <div class="form-group-depart-date">
-        <label for="departureDate">Depart:</label>
-        <jsp:useBean id="now" class="java.util.Date"/>
-        <input type="date" id="departureDate" name="departureDate" min="<fmt:formatDate pattern="yyyy-MM-dd" value="${now}" />"
-               onchange="restrictDepart()" required>
-    </div>
-
-    <!-- Return date -->
-    <div id="form-group-return-date">
-        <label for="returnDate">Return:</label>
-        <input type="date" id="returnDate" name="returnDate" min="<fmt:formatDate pattern="yyyy-MM-dd" value="${now}" />" disabled>
-    </div>
-
-    <!-- Search button -->
-    <button class="btn btn-lg btn-outline-success text-uppercase" type="submit">Search</button>
-
     <!-- Airport destinations -->
     <datalist id="destinations">
         <option value="ADL">Adelaide - ADL</option>

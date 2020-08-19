@@ -175,6 +175,7 @@ button
     background-image: url("/img/home-splash-pic.jpg");
     background-repeat: no-repeat;
     background-size: cover;
+    /*max-width: 5983px;*/
 
     display: flex;
     flex-direction: column;
@@ -220,6 +221,40 @@ button
 #home-search button
 {
     padding: 10px;
+}
+
+.search-form
+{
+    /*display: grid;
+    grid-template-columns: 60% 40%;*/
+}
+.main-search-fields
+{
+    /*grid-column: 1;*/
+}
+.extra-search-fields
+{
+    /*grid-column: 2;*/
+    /*position: relative;*/
+}
+.search-button
+{
+    /*grid-column: 1;*/
+}
+
+.container {
+    display: inline;
+    font-size: large;
+}
+.rotate{
+    -moz-transition: all 1s ease;
+    -webkit-transition: all 1s ease;
+    transition: all 1s ease;
+}
+.rotate.up{
+    -moz-transform:rotateZ(180deg);
+    -webkit-transform:rotateZ(180deg);
+    transform:rotateZ(180deg);
 }
 
 #search-grid
