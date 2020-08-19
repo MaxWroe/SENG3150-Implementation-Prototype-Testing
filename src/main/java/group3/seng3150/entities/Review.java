@@ -26,11 +26,12 @@ public class Review {
     @Column(name = "Comment")
     private String comment;
 
+    //1 to 5
     @Column(name = "Rating")
     @Basic(optional = false)
     private int rating;
 
-    //this will have a scheme to be decided
+    //0 for review of a flight, 1 for airports, 2 for review of website
     @Column(name = "reviewType")
     @Basic(optional = false)
     private int reviewType;
