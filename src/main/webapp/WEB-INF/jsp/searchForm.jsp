@@ -85,6 +85,7 @@
             <input type="checkbox" id="depart-range" name="depart-range">
             <label for="depart-range">Search within date range</label>
             <div id="depart-range-div" style="display:none">
+                <p>Get departing flights between </p><p id="start-date-range">00/00/0000</p><p> and:</p>
                 <input type="date" id="departureDateRange" name="departureDateRange" disabled>
             </div>
         </div>
@@ -109,8 +110,18 @@
                         month = "0"+month;
                     }
                     var year = limit.getFullYear();
+                    set_label(day, month, year);
+
                     return (year+"-"+ month+"-"+day);
                 });
+            }
+
+            function set_label(day, month, year)
+            {
+                if (!isNaN(day))
+                {
+                    $('#start-date-range').text(day + "/" + month + "/" + year);
+                }
             }
 
             $('#depart-range').click(function() {
