@@ -67,8 +67,8 @@
                 <input type="date" id="returnDate" name="returnDate" min="<fmt:formatDate pattern="yyyy-MM-dd" value="${now}" />" disabled>
             </div>
 
-            <div>
-                <p>Extra Options</p>
+            <div style="padding-bottom: 5px">
+                <p style="display: inline">Extra Options</p>
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
                 <div class="container">
                     <div class="fa fa-arrow-down rotate"></div>
@@ -85,7 +85,7 @@
             <input type="checkbox" id="depart-range" name="depart-range">
             <label for="depart-range">Search within date range</label>
             <div id="depart-range-div" style="display:none">
-                <p>Get departing flights between </p><p id="start-date-range">00/00/0000</p><p> and:</p>
+                <p style="display: inline">Get departing flights between </p><p id="start-date-range" style="display: inline">00/00/0000</p><p style="display: inline"> and:</p>
                 <input type="date" id="departureDateRange" name="departureDateRange" disabled>
             </div>
         </div>
@@ -126,11 +126,20 @@
 
             $('#depart-range').click(function() {
                 range_restrict();
+                // if first departure date not selected yet disable range date
                 if ( $('#departureDateRange').val() != "")
                 {
                     $('#departureDateRange').prop( "disabled", false );
                 }
+                // change visibility of departure date range div
                 $("#depart-range-div").toggle(this.checked);
+                // make departure date range input required if option selected
+                if ($('#depart-range').is(':checked')) {
+                    $('#departureDateRange').prop( "required", true );
+                }
+                else {
+                    $('#departureDateRange').prop( "required", false );
+                }
             });
 
             $('#departureDate').change(function () {

@@ -28,10 +28,29 @@
 <main class="main-content">
     <!-- The current search criteria -->
     <div id="search-grid">
-        <div id="results-search">
-            <h4 style="margin: auto;">Search Criteria</h4>
-            <!-- Flight search form jsp -->
+        <div id="search-overlay">
             <jsp:include page="searchForm.jsp"/>
+        </div>
+        <script>
+            function on() {
+                document.getElementById("search-overlay").style.display = "block";
+            }
+
+            function off() {
+                document.getElementById("search-overlay").style.display = "none";
+            }
+        </script>
+        <div id="results-search">
+            <table>
+                <tr>
+                    <td>Search Criteria: <button onclick="on()">Change Search</button></td>
+                    <td>${param.type}, ${param.classCode}</td>
+                    <td>${param.adults} Adult/s, ${param.children} Children</td>
+                    <td>${param.departureLocation} to ${param.arrivalLocation}</td>
+                    <td>Depart ${param.departureDate}</td>
+                </tr>
+            </table>
+
             <script>
                 // Check if incoming search trip type, set type select field and return date div
                 var trip = "${param.type}";

@@ -192,33 +192,34 @@ button
     margin-left: 100px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
-/* Flight search field home page */
-#home-search .form-group
+/* Flight search field */
+.form-group
 {
     width: 350px;
     display: block;
 }
-#home-search .form-group-trip
+.form-group-trip
 {
     display: block;
 }
-#home-search .form-group-return-date
+.form-group-return-date
 {
     display: none;
 }
-#home-search .form-group-departure-local, .form-group-arrival-local
+.form-group-departure-local, .form-group-arrival-local
 {
     display: inline;
 }
-#home-search .form-group-depart-date
+.form-group-depart-date
 {
     display: inline-block;
 }
-#home-search input, select, input[type=date]
+.search-form input, select, input[type=date]
 {
     padding: 5px;
+    margin: 5px;
 }
-#home-search button
+.search-form button
 {
     padding: 10px;
 }
@@ -267,35 +268,52 @@ button
 #results-search
 {
     width: 100%;
-    background: #fff;
-    padding: 10px;
-    border-radius: 25px;
+    background: rgb(30, 128, 155);
     grid-column: 1 / span 2;
     grid-row: 1;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
-#results-search .form-group, .form-group-trip, .form-group-departure-local, .form-group-arrival-local
+#results-search table
 {
-    display: inline;
+    width: 100%;
 }
-#results-search .form-group-depart-date
+#results-search table td
 {
-    display: inline-block;
+    color: #fff;
+    height: 50px;
 }
-#results-search .form-group input
+#results-search table td + td
 {
-    display: inline;
+    border-left: 2px solid black;
 }
-#results-search .form-group p
+
+#search-overlay
 {
-    display: inline;
-}
-#results-search .form-group-return-date
-{
+    position: fixed;
     display: none;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 2;
 }
-#results-search .form-group-return-date input, p
+#search-grid .search-form
 {
-    display: inline;
+    width: 40%;
+    background: #fff;
+    padding: 10px;
+    text-align: left;
+    font-size: small;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
 }
 
 #search-criteria
@@ -306,6 +324,7 @@ button
     border-radius: 25px;
     grid-column: 2;
     grid-row: 2;
+    margin-top: 16px;
 }
 
 #search-sidebar
