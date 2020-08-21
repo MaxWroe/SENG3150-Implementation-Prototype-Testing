@@ -8,7 +8,7 @@ import java.util.*;
 /*
 Author: Chris Mather
 Description: class that stores a node and information about its directed edges as flights to other nodes
-and has acitons to return and set information for htose edges
+and has actions to return and set information for htose edges
  */
 
 public class DijkstraNode {
@@ -37,16 +37,16 @@ public class DijkstraNode {
         }
     }
 
-    public Flight removeDestination(String destination){
-        Flight removedEdge = new Flight();
+    public List<Flight> removeEdge(String destination){
+        List<Flight> removedEdge = new LinkedList<Flight>();
         if(adjacentNodesFlights.containsKey(destination)){
-            removedEdge = adjacentNodesFlights.remove(destination).get(0);
-            removedEdge = adjacentNodesFlightShortest.remove(destination);
+            removedEdge = adjacentNodesFlights.remove(destination);
+            adjacentNodesFlightShortest.remove(destination);
         }
         return removedEdge;
     }
 
-    //sets sortest durations of this node to all other adjacent nodes
+    //sets shortest durations of this node to all other adjacent nodes
     public void setShortestDurations(Timestamp startingTime){
         if(shortestPathFlights.size()>0){
             for (Map.Entry<DijkstraNode, List<Flight>> adjacencyPair : adjacentNodesFlights.entrySet()) {

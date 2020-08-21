@@ -106,7 +106,7 @@ public class FlightController{
                     " AND (a.numberAvailableSeatsLeg2>=" + numberPeople + " OR a.numberAvailableSeatsLeg2='null')" +
                     " AND a.classCode='" + classCode + "'", Availability.class).getResultList();
                 //generates flight plans based on sent in flights
-                List<FlightPlan> departureFlightPlans = searcher.createFlightPlans(retrievedFlights, departureLocation, arrivalLocation, departureTimeStart, retrievedAvailabilities);
+                List<FlightPlan> departureFlightPlans = searcher.createFlightPlans(retrievedFlights, departureLocation, arrivalLocation, departureTimeStart, departureTimeEnd, retrievedAvailabilities);
                 //sets variables in the flight holder bean
                 flightPlans.setFlightPlansDeparting(departureFlightPlans);
                 flightPlans.sortFlightPlansDeparting("timeascending");
@@ -166,7 +166,7 @@ public class FlightController{
                             " AND a.classCode='" + classCode + "'", Availability.class).getResultList();
                     //generates a list of flight plans based on retrieved flights
                     //sets variables for flightholder bean
-                    List<FlightPlan> returnFlightPlans = searcher.createFlightPlans(retrievedFlightsR, arrivalLocation, departureLocation, returnTimeStart, retrievedAvailabilities);
+                    List<FlightPlan> returnFlightPlans = searcher.createFlightPlans(retrievedFlightsR, arrivalLocation, departureLocation, returnTimeStart, returnTimeEnd, retrievedAvailabilities);
                     flightPlans.setFlightPlansReturning(returnFlightPlans);
                     flightPlans.sortFlightPlansReturning("timeascending");
 

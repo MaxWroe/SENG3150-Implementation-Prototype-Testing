@@ -7,6 +7,7 @@ import group3.seng3150.entities.Price;
 
 import javax.persistence.EntityManager;
 import java.sql.Timestamp;
+import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -17,7 +18,7 @@ and contains methods to get information on the flight plan
  */
 
 
-public class FlightPlan {
+public class FlightPlan implements Comparable<FlightPlan> {
     private List<Flight> flights;
     private List<Availability> availabilities;
     private int position;
@@ -139,6 +140,17 @@ public class FlightPlan {
         return  out;
     }
 
+    public int getDurationTotal(){
+        if(flights.size()==0){
+            return Integer.MAX_VALUE;
+        }
+        long tempLong = 0;
+        tempLong = flights.get(flights.size()-1).getArrivalDate().getTime();
+        tempLong = tempLong - flights.get(flights.size()-1).getDepartureDate().getTime();
+        int out = (int)tempLong/(1000*60);
+        return out;
+    }
+
     public void addToStart(Flight newFlight){
         flights.add(0,newFlight);
     }
@@ -186,11 +198,30 @@ public class FlightPlan {
             Flight tempFlight = flights.get(j);
             cloneFlights.add(tempFlight);
         }
-
-        return new FlightPlan(cloneFlights);
+        FlightPlan outFlightPlan = new FlightPlan(cloneFlights);
+        return outFlightPlan;
     }
 
     public void addFlights(FlightPlan parsedFlightPlan){
         flights.addAll(parsedFlightPlan.getFlights());
+    }
+
+    public String toString(){
+        String out = "";
+        for(Flight currentFlight : flights){
+            out += "Flight: " + currentFlight.getDepartureCode() + " to " + currentFlight.getDestination() + ", ";
+        }
+        return out;
+    }
+
+    public int compareTo(FlightPlan flightPlan){
+        if(getDurationTotal() < flightPlan.getDurationTotal())
+        {
+            return 1;
+        }
+        else if(getDurationTotal() > flightPlan.getDurationTotal()){
+            return -1;
+        }
+        return 0;
     }
 }

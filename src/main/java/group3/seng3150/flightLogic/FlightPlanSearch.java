@@ -26,9 +26,10 @@ public class FlightPlanSearch {
     }
 
     //finds and returns a list of flight plans from sent in flights that match the criteria
-    public List<FlightPlan> createFlightPlans(List<Flight> flights, String departureLocation, String destination, String startingTimeString, List<Availability> parsedAvailabilities){
+    public List<FlightPlan> createFlightPlans(List<Flight> flights, String departureLocation, String destination, String startingTimeString, String endingTimeString, List<Availability> parsedAvailabilities){
         System.out.println("number of flights sent to flightPlanSearch: " + flights.size());
         Timestamp startingTime = Timestamp.valueOf(startingTimeString);
+        Timestamp endingTime = Timestamp.valueOf(endingTimeString);
         List<FlightPlan> flightPlans = new LinkedList<>();
         List<Flight> filteredFlights = filterByAvailabilities(flights, parsedAvailabilities);
         DijkstraGraph graph = buildGraph(filteredFlights);
@@ -37,12 +38,12 @@ public class FlightPlanSearch {
 
 
         if(filteredFlights.size()>0){
-//            for(int i=0; i<3; i++) {
-//                System.out.println("running iteration of search" + i);
-//                startingTime.setTime(startingTime.getTime()+(8*3600000)); //adds two hours onto the starting time
+            for(int i=0; i<10; i++) {
+                System.out.println("running iteration of search" + i);
+                startingTime.setTime(startingTime.getTime()+((endingTime.getTime() - startingTime.getTime())/10)); //adds two hours onto the starting time
 //                flightPlans.add(getShortestPathDuration(graph, departureLocation, destination, startingTime));
                 flightPlans.addAll(getKShortestPaths(graph, departureLocation, destination, startingTime, 10));
-//            }
+            }
         }
         System.out.println("number of flight plans produced by Yenns: " + flightPlans.size());
         //sets availabilities
@@ -54,7 +55,7 @@ public class FlightPlanSearch {
         return flightPlans;
     }
 
-    //method that sets availabilities of a snet in flight plans
+    //method that sets availabilities of a sent in flight plans
     private List<FlightPlan> SetFlightPlansAvailabilities(List<FlightPlan> flightPlans, List<Availability> availabilities){
         List<FlightPlan> flightPlanList = flightPlans;
         if(availabilities.size()>0) {
@@ -67,7 +68,7 @@ public class FlightPlanSearch {
         return flightPlanList;
     }
 
-    //removes flights from the lsit that do not have an availability in the sent in list
+    //removes flights from the list that do not have an availability in the sent in list
     private List<Flight> filterByAvailabilities(List<Flight> flights, List<Availability> availabilities){
         List<Flight> filteredFlights = new LinkedList<>();
         boolean contains = false;
@@ -130,7 +131,7 @@ public class FlightPlanSearch {
         }
     }
 
-    //runs Dijsktras in a sent in graph from the source node sent in
+    //runs Dijkstra's algorithm in a sent in graph from the source node sent in
     private static DijkstraGraph calculateShortestPathFromSource(DijkstraGraph graph, DijkstraNode source, Timestamp startingTime) {
         source.setDistance(0);
 
@@ -186,7 +187,7 @@ public class FlightPlanSearch {
 
     public List<FlightPlan> getKShortestPaths(DijkstraGraph graph, String departureLocation, String arrivalLocation,Timestamp startingTime , int k){
         ArrayList<FlightPlan> kShortestPaths = new ArrayList<FlightPlan>();
-        Queue<FlightPlan> candidates = new LinkedList<FlightPlan>();
+        PriorityQueue<FlightPlan> candidates = new PriorityQueue<>();
 
         try{
 
@@ -199,7 +200,7 @@ public class FlightPlanSearch {
 
                 for(int j = 0; j<previousPath.getNumberOfFlights(); j++) {
 
-                    LinkedList<Flight> removedEdges = new LinkedList<Flight>();
+                    Map<String, List<Flight>> removedEdges = new HashMap<>();
 
                     String spurNode = previousPath.getFlights().get(j).getDepartureCode();
 
@@ -209,9 +210,20 @@ public class FlightPlanSearch {
                         FlightPlan stub = p.copyTo(j);
 
                         if (rootPath.getFlights().equals(stub.getFlights())) {
-                            Flight rootEdge = p.getFlights().get(j);
-                            graph.removeEdge(rootEdge.getDepartureCode(), rootEdge.getDestination());
-                            removedEdges.add(rootEdge);
+                            List<Flight> rootEdge = new LinkedList<Flight>();
+                            rootEdge.add(p.getFlights().get(j));
+                            List<Flight> currentList = graph.removeEdge(rootEdge.get(0).getDepartureCode(), rootEdge.get(0).getDestination());
+
+                            if(currentList!=null && removedEdges.containsKey(rootEdge.get(0))) {
+                                rootEdge.remove(0);
+                                List<Flight> tempList = new LinkedList<Flight>();
+                                tempList.addAll(currentList);
+                                tempList.addAll(removedEdges.get(rootEdge.get(0).getDepartureCode()));
+                                removedEdges.put(rootEdge.get(0).getDepartureCode(), tempList);
+                            }
+                            else{
+                                removedEdges.put(rootEdge.get(0).getDepartureCode(), rootEdge);
+                            }
                         }
                     }
 
@@ -219,7 +231,22 @@ public class FlightPlanSearch {
                     for (Flight rootEdgePath : rootPath.getFlights()) {
                         String rootNode = rootEdgePath.getDepartureCode();
                         if (!rootNode.equals(spurNode)) {
-                            removedEdges.addAll(graph.removeNode(rootNode));
+                            Map<String, List<Flight>> edgesToAndFromNode = new HashMap<>();
+                            edgesToAndFromNode.putAll(graph.removeNode(rootNode));
+                            List<String> keys = new LinkedList<>(edgesToAndFromNode.keySet());
+                            for(String currentKey : keys){
+
+                                if(removedEdges.containsKey(currentKey)){
+                                    List<Flight> tempList = new LinkedList<Flight>();
+                                    tempList.addAll(edgesToAndFromNode.get(currentKey));
+                                    tempList.addAll(removedEdges.get(edgesToAndFromNode.get(currentKey).get(0).getDepartureCode()));
+                                    removedEdges.put(edgesToAndFromNode.get(currentKey).get(0).getDepartureCode(), tempList);
+                                }
+                                else{
+                                    removedEdges.put(currentKey, edgesToAndFromNode.get(currentKey));
+                                }
+                            }
+
                         }
                     }
 
@@ -244,7 +271,9 @@ public class FlightPlanSearch {
                     isNewPath = true;
                     if(kthPath != null){
                         for(FlightPlan p : kShortestPaths){
+                            System.out.println("two paths being compared: " + p.toString() + ", " + kthPath.toString());
                             if(p.getFlights().equals(kthPath.getFlights())){
+//                                System.out.println("not a new path");
                                 isNewPath = false;
                                 break;
                             }
@@ -272,16 +301,19 @@ public class FlightPlanSearch {
         List<FlightPlan> uniqueFlightPlans = new LinkedList<FlightPlan>();
         boolean existsIn;
         for(int i=0; i<parsedFlightPlans.size(); i++){
-            System.out.println("running loop iteration of parsedFlightPlans: " + i);
+//            System.out.println("running loop iteration of parsedFlightPlans: " + i);
             existsIn = false;
             for(int j=0; j<uniqueFlightPlans.size(); j++){
+//                System.out.println("flight plan 1: " + parsedFlightPlans.get(i).toString() + "flight plan 2: " + uniqueFlightPlans.get(j).toString());
                 if (parsedFlightPlans.get(i).getFlights().equals(uniqueFlightPlans.get(j).getFlights())){
-                    System.out.println("running loop iteration of uniqueFlightPlans: " + j);
+//                    System.out.println("running loop iteration of uniqueFlightPlans: " + j);
+
                     existsIn = true;
                 }
             }
             if(existsIn==false){
                 uniqueFlightPlans.add(parsedFlightPlans.get(i));
+                System.out.println("new flight plan added to list: " + uniqueFlightPlans.get(i).toString());
             }
         }
         return  uniqueFlightPlans;
