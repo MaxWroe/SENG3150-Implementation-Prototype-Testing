@@ -32,6 +32,11 @@ public class DijkstraGraph {
         return nodeSet;
     }
 
+    public void resetShortestPaths(){
+        for(String node : nodes.keySet()){
+            nodes.get(node).resetShortestVariables();
+        }
+    }
 
     public void setNodes(HashMap<String, DijkstraNode> nodes) {
         this.nodes = nodes;

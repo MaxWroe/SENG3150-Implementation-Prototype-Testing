@@ -23,6 +23,11 @@ public class DijkstraNode {
         this.name = Name;
     }
 
+    public void resetShortestVariables(){
+        adjacentNodesFlightShortest = new HashMap<>();
+        shortestPathFlights = new LinkedList<>();
+    }
+
     //adds sent in flight to connect to sent in node
     public void addDestination(DijkstraNode destination, Flight flight){
         if(!adjacentNodesFlights.containsKey(destination)){
@@ -64,25 +69,33 @@ public class DijkstraNode {
     private void shortestDuration(DijkstraNode destination, Flight previousFlight, Timestamp parsedStartingTime){
         List<Flight> tempList = adjacentNodesFlights.get(destination);
         long out = Long.MAX_VALUE;
+        boolean flightExists = false;
         int counter = 0;
         Timestamp startingTime = parsedStartingTime;
+//        System.out.println("starting time Sent In: " + startingTime.toString());
         if(previousFlight != null) {
             startingTime = previousFlight.getArrivalDate();
         }
         for(int i=0; i<tempList.size(); i++){
             if(tempList.get(i).getDepartureDate().after(startingTime)){
-                if(tempList.get(i).getArrivalDate().getTime()<out){
+//                System.out.println("add flight to short paths after time: " + tempList.get(i).getDepartureDate().toString() + " this is after: " + startingTime.toString());
+                if(tempList.get(i).getArrivalDate().getTime() < out){
+//                    System.out.println("add Flight to flight shortest: " + tempList.get(i).toString());
                     counter = i;
+                    flightExists = true;
                 }
             }
         }
-        adjacentNodesFlightShortest.put(destination, tempList.get(counter));
+        if(flightExists==true) {
+            adjacentNodesFlightShortest.put(destination, tempList.get(counter));
+        }
+
     }
 
     //returns shortest duration of this node to sent in node
     public long getShortestDurationToNode(DijkstraNode destination, Timestamp startingTime){
-        if (adjacentNodesFlightShortest.containsKey(destination)) {
-            if (shortestPathFlights.size()>0) {
+        if (adjacentNodesFlightShortest.get(destination) != null) {
+            if (shortestPathFlights.size() > 0 && shortestPathFlights.getLast() != null) {
                 return adjacentNodesFlightShortest.get(destination).getDepartureDate().getTime() - shortestPathFlights.getLast().getArrivalDate().getTime();
             }
             else {

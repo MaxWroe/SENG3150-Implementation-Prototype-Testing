@@ -32,24 +32,35 @@ public class FlightPlanSearch {
         Timestamp endingTime = Timestamp.valueOf(endingTimeString);
         List<FlightPlan> flightPlans = new LinkedList<>();
         List<Flight> filteredFlights = filterByAvailabilities(flights, parsedAvailabilities);
-        DijkstraGraph graph = buildGraph(filteredFlights);
+        int numberOfCycles = 7;
+        Timestamp inputTime = startingTime;
 
 
 
 
         if(filteredFlights.size()>0){
-            for(int i=0; i<10; i++) {
-                System.out.println("running iteration of search" + i);
-                startingTime.setTime(startingTime.getTime()+((endingTime.getTime() - startingTime.getTime())/10)); //adds two hours onto the starting time
-//                flightPlans.add(getShortestPathDuration(graph, departureLocation, destination, startingTime));
-                flightPlans.addAll(getKShortestPaths(graph, departureLocation, destination, startingTime, 10));
+            for(int i=0; i<numberOfCycles; i++) {
+                System.out.println("running iteration of search" + i + ", starting time: " + inputTime.toString());
+                DijkstraGraph graph = buildGraph(filteredFlights);
+
+                flightPlans.addAll(getKShortestPaths(graph, departureLocation, destination, inputTime, 10));
+
+                inputTime = new Timestamp(startingTime.getTime()+((endingTime.getTime() - startingTime.getTime())/numberOfCycles)*(i+1));
+                for(int j=0; j<filteredFlights.size(); j++){
+                    if(filteredFlights.get(j).getDepartureDate().before(inputTime)){
+                        filteredFlights.remove(j);
+                        j--;
+                    }
+                }
+
             }
         }
         System.out.println("number of flight plans produced by Yenns: " + flightPlans.size());
         //sets availabilities
-        if(flightPlans.get(0)!= null) {
-            flightPlans = SetFlightPlansAvailabilities(flightPlans, parsedAvailabilities);
+        if(flightPlans.get(0) != null) {
             flightPlans = removeDuplicateFlightPlans(flightPlans);
+            flightPlans = SetFlightPlansAvailabilities(flightPlans, parsedAvailabilities);
+
         }
         System.out.println("flight plan search complete");
         return flightPlans;
@@ -149,7 +160,7 @@ public class FlightPlanSearch {
                 DijkstraNode adjacentNode = adjacencyPair.getKey();
                 long edgeWeight = currentNode.getShortestDurationToNode(adjacentNode, startingTime);
                 if (!settledNodes.contains(adjacentNode)) {
-                    calculateMinimumDistance(adjacentNode, edgeWeight, currentNode);
+                    calculateMinimumDistance(adjacentNode, edgeWeight, currentNode, startingTime);
                     unsettledNodes.add(adjacentNode);
                 }
             }
@@ -172,15 +183,18 @@ public class FlightPlanSearch {
         return lowestDistanceNode;
     }
 
-    private static void calculateMinimumDistance(DijkstraNode evaluationNode, long edgeWeight, DijkstraNode sourceNode) {
+    private static void calculateMinimumDistance(DijkstraNode evaluationNode, long edgeWeight, DijkstraNode sourceNode, Timestamp startingTime) {
         long sourceDistance = sourceNode.getDistance();
         if (sourceDistance + edgeWeight < evaluationNode.getDistance()) {
             evaluationNode.setDistance(sourceDistance + edgeWeight);
             LinkedList<DijkstraNode> shortestPath = new LinkedList<>(sourceNode.getShortestPath());
-            LinkedList<Flight> shortestPathFlights = new LinkedList<>(sourceNode.getShortestPathFlights());
             shortestPath.add(sourceNode);
-            shortestPathFlights.add(sourceNode.getAdjacentNodesFlightShortest().get(evaluationNode));
             evaluationNode.setShortestPath(shortestPath);
+
+            LinkedList<Flight> shortestPathFlights = new LinkedList<>(sourceNode.getShortestPathFlights());
+            if(sourceNode.getAdjacentNodesFlightShortest().get(evaluationNode) != null && sourceNode.getAdjacentNodesFlightShortest().get(evaluationNode).getDepartureDate().after(startingTime)) {
+                shortestPathFlights.add(sourceNode.getAdjacentNodesFlightShortest().get(evaluationNode));
+            }
             evaluationNode.setShortestPathFlights(shortestPathFlights);
         }
     }
@@ -194,9 +208,17 @@ public class FlightPlanSearch {
             FlightPlan kthPath = getShortestPathDuration(graph, departureLocation, arrivalLocation, startingTime);
             kShortestPaths.add(kthPath);
 
+
+
             for(int i=1; i<k; i++){
 
                 FlightPlan previousPath = kShortestPaths.get(i-1);
+
+                if(previousPath == null){
+                    kShortestPaths.remove(i-1);
+                    break;
+                }
+                System.out.println(previousPath.toString());
 
                 for(int j = 0; j<previousPath.getNumberOfFlights(); j++) {
 
@@ -204,10 +226,10 @@ public class FlightPlanSearch {
 
                     String spurNode = previousPath.getFlights().get(j).getDepartureCode();
 
-                    FlightPlan rootPath = previousPath.copyTo(j);
+                    FlightPlan rootPath = previousPath.cloneTo(j);
 
                     for (FlightPlan p : kShortestPaths) {
-                        FlightPlan stub = p.copyTo(j);
+                        FlightPlan stub = p.cloneTo(j);
 
                         if (rootPath.getFlights().equals(stub.getFlights())) {
                             List<Flight> rootEdge = new LinkedList<Flight>();
@@ -250,12 +272,14 @@ public class FlightPlanSearch {
                         }
                     }
 
+                    graph.resetShortestPaths();
                     FlightPlan spurPath = getShortestPathDuration(graph, spurNode, arrivalLocation, startingTime);
+
 
                     if (spurPath != null) {
                         FlightPlan totalPath = new FlightPlan(rootPath.getFlights());
-                        totalPath.addFlights(totalPath);
-
+                        totalPath.addFlights(spurPath);
+                        System.out.println("Candidate option: " + totalPath.toString());
                         if (!candidates.contains(totalPath)) {
                             candidates.add(totalPath);
                         }

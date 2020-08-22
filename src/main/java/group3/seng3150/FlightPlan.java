@@ -18,7 +18,7 @@ and contains methods to get information on the flight plan
  */
 
 
-public class FlightPlan implements Comparable<FlightPlan> {
+public class FlightPlan implements Comparable<FlightPlan>, Cloneable{
     private List<Flight> flights;
     private List<Availability> availabilities;
     private int position;
@@ -189,17 +189,22 @@ public class FlightPlan implements Comparable<FlightPlan> {
         return flights.size();
     }
 
-    public FlightPlan copyTo(int i){
-        LinkedList<Flight> cloneFlights = new LinkedList<Flight>();
-        if(i>flights.size()){
-            i=flights.size();
+    public FlightPlan clone(){
+        return new FlightPlan( flights);
+    }
+
+    public FlightPlan cloneTo(int i){
+        LinkedList<Flight> tempFlights = new LinkedList<Flight>();
+        int c = flights.size();
+        if(i>c){
+            i = c;
         }
+
         for(int j=0; j<i; j++){
-            Flight tempFlight = flights.get(j);
-            cloneFlights.add(tempFlight);
+//            tempFlights.add(flights.get(j).clone());
+            tempFlights.add(flights.get(j));
         }
-        FlightPlan outFlightPlan = new FlightPlan(cloneFlights);
-        return outFlightPlan;
+        return  new FlightPlan(tempFlights);
     }
 
     public void addFlights(FlightPlan parsedFlightPlan){
@@ -209,7 +214,9 @@ public class FlightPlan implements Comparable<FlightPlan> {
     public String toString(){
         String out = "";
         for(Flight currentFlight : flights){
-            out += "Flight: " + currentFlight.getDepartureCode() + " to " + currentFlight.getDestination() + ", ";
+            out += "Flight: " + currentFlight.getDepartureCode() + " " + currentFlight.getDepartureDate() ;
+            out += " to " + currentFlight.getDestination() + " " + currentFlight.getArrivalDate();
+            out += ", ";
         }
         return out;
     }
