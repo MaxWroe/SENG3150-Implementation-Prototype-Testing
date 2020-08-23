@@ -71,6 +71,9 @@ public class UserAccount {
     @Column(name = "Address")
     private String address;
 
+    @Column(name = "closestAirport")
+    private String closestAirport;
+
     //Constructors
     public UserAccount() {
     }
@@ -183,6 +186,14 @@ public class UserAccount {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getClosestAirport() {
+        return closestAirport;
+    }
+
+    public void setClosestAirport(String closestAirport) {
+        this.closestAirport = closestAirport;
     }
 
     //Override Methods

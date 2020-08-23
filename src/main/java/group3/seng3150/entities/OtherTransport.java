@@ -23,6 +23,10 @@ public class OtherTransport {
     @Basic(optional = false)
     private String description;
 
+    @Column(name = "Destination")
+    @Basic(optional = false)
+    private String destination;
+
     public String getOtherTransportID() {
         return otherTransportID;
     }
@@ -45,6 +49,14 @@ public class OtherTransport {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getDestination() {
+        return destination;
+    }
+
+    public void setDestination(String destination) {
+        this.destination = destination;
     }
 
     @Override
