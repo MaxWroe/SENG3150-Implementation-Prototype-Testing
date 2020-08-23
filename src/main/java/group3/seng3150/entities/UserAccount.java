@@ -74,6 +74,10 @@ public class UserAccount {
     @Column(name = "closestAirport")
     private String closestAirport;
 
+    @Column(name = "ROLEID")
+    @Basic(optional = false)
+    private String ROLEDID;
+
     //Constructors
     public UserAccount() {
     }
@@ -194,6 +198,14 @@ public class UserAccount {
 
     public void setClosestAirport(String closestAirport) {
         this.closestAirport = closestAirport;
+    }
+
+    public String getROLEDID() {
+        return ROLEDID;
+    }
+
+    public void setROLEDID(String ROLEDID) {
+        this.ROLEDID = ROLEDID;
     }
 
     //Override Methods
