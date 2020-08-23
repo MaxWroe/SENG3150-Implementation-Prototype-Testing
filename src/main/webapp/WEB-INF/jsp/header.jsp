@@ -26,6 +26,10 @@
                 <a href="/faqs">FAQs</a>
             </li>
 
+            <li class="nav-link">
+                <a href="/reviews">Reviews</a>
+            </li>
+
             <!-- changes depending if the user is logged in our not -->
             <li class="nav-link">
                 <a id="dynamicLink" href="/login" >Login</a>

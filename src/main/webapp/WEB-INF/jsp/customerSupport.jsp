@@ -117,7 +117,7 @@
 
                 <!-- userID -->
                 <input type ="hidden" id="userID" name="userID" value="<%=session.getAttribute("userId")%>"/>
-                    <input type="submit" value="Submit Enquiry"/>
+                <input type="submit" value="Submit Enquiry"/>
 
             </form>
 

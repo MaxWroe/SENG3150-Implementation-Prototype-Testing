@@ -84,4 +84,10 @@ public class DefaultController {
         ModelAndView view = new ModelAndView("faqs");
         return view;
     }
+
+    @GetMapping("/reviews")
+    public ModelAndView displayReview() {
+        ModelAndView view = new ModelAndView("reviews");
+        return view;
+    }
 }
