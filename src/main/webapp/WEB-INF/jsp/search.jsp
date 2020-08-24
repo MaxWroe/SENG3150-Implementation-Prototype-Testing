@@ -35,10 +35,6 @@
             function on() {
                 document.getElementById("search-overlay").style.display = "block";
             }
-
-            function off() {
-                document.getElementById("search-overlay").style.display = "none";
-            }
         </script>
         <div id="results-search">
             <table>
@@ -134,35 +130,38 @@
             <c:set var = "departureFlights" scope = "session" value = "${flights.flightPlansDeparting}"/>
 
             <!-- For each flight returned display -->
-            <ul class="fro">
+            <ul class="flight-list">
             <c:forEach items="${flights.flightPlansDeparting}" var="flightPlan">
                 <li data-price="${flightPlan.price}">
 
                 <div class="flight-result-oneway">
-                    <div class="flight-result-time">
-                        <p>Depart time</p>
-                        <h4>${flightPlan.departureDate}</h4>
-                        <p>Arrival time</p>
-                        <h4>${flightPlan.arrivalDate}</h4>
+                    <div class="flight-result-depart-time">
+                        <fmt:parseDate pattern="yyyy-MM-dd hh:mm:ss" value="${flightPlan.departureDate}" var="parsedDate" />
+
+                        <h4><fmt:formatDate type = "time" dateStyle = "short" timeStyle = "short" value = "${parsedDate}" /></h4>
+                        <p><fmt:formatDate type = "date" value = "${parsedDate}" /></p>
                     </div>
-                    <div class="flight-result-details">
-                        <%--
-                        <p>${flightPlan.airlines}</p>
-                        --%>
-                        <br>
+                    <div class="flight-result-stopovers">
                         <p>Stop overs: ${flightPlan.numberStopOvers}</p>
-                        <br>
+                        <table>
+                            <tr>
+                                <td>${param.departureLocation} --></td>
                             <c:forEach items="${flightPlan.flights}" var="flightPlanFlights">
-                                <p>Stop over airports:</p>
-                                <h4>${flightPlanFlights.stopOverCode}</h4>
+                                <td>${flightPlanFlights.stopOverCode}</td>
                             </c:forEach>
-                        <br>
-                        <p>Available seats: ${flightPlan.numberAvailableSeats}</p>
+                                <td>--> ${param.arrivalLocation}</td>
+                            </tr>
+                        </table>
+                        <p>Total duration: ${flightPlan.durationTotal} hours</p>
+                    </div>
+                    <div class="flight-result-arrival-time">
+                        <fmt:parseDate pattern="yyyy-MM-dd hh:mm:ss" value="${flightPlan.arrivalDate}" var="parsedDate" />
+
+                        <h4><fmt:formatDate type = "time" dateStyle = "short" timeStyle = "short" value = "${parsedDate}" /></h4>
+                        <p><fmt:formatDate type = "date" value = "${parsedDate}" /></p>
                     </div>
                     <div class="flight-result-cost">
-                        <h3>$${flightPlan.price}</h3>
-                    </div>
-                    <div class="flight-result-book">
+                        <p>Available seats: ${flightPlan.numberAvailableSeats}</p>
                         <!-- Information to send to booking controller -->
                         <form action="${pageContext.request.contextPath}/flightBookingOneway" method="post">
                             <input type="hidden" id="onewayBooking" name="trip" value="oneway">
@@ -171,7 +170,7 @@
                             <input type="hidden" id="onewayClassBooking" name="onewayClassBooking" value="${param.classCode}">
                             <!-- Position of the specific flight plan within the FlightHolder FlightPlans list -->
                             <input type="hidden" id="onewayFlightPlan${flightPlan.position}" name="flightPlan" value="${flightPlan.position}">
-                            <button type="submit">Book</button>
+                            <button type="submit">$${flightPlan.price}</button>
                         </form>
                     </div>
                 </div>
