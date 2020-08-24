@@ -1,3 +1,4 @@
+/* Universal styling */
 *, *:before, *:after {
     box-sizing: border-box;
 }
@@ -13,101 +14,8 @@ body
 
 .main-content
 {
-    /*padding: 60px 5% 2em;*/
     overflow: hidden;
     text-align: center;
-}
-
-.navbar
-{
-    background-color: #fff;
-    overflow: hidden;
-    padding: 0;
-    margin: 0;
-    width: 100%;
-    top: 0;
-    left: 0;
-}
-
-.nav-logo
-{
-    float: left;
-    padding-left: 5%;
-    padding-top: 1em;
-    font: italic bold 25px/0px AdihausDIN Cn, Helvetica, Arial, sans-serif;
-}
-
-.nav-logo a
-{
-    text-decoration: none;
-    color: black;
-}
-
-.nav-logo a:visited
-{
-    text-decoration: none;
-    color: black;
-}
-
-.primary-nav
-{
-    float: right;
-    padding-right: 5%;
-}
-
-.primary-nav ul
-{
-    margin: 0;
-    padding: 0;
-    list-style: none;
-}
-
-.primary-nav li
-{
-    display: inline-block;
-    text-align: center;
-    padding: 1em 1em;
-}
-
-.nav-link a
-{
-    text-decoration: none;
-   /* display: inline-block; */
-    padding: 15px 20px;
-    position: relative;
-}
-
-.nav-link a:visited
-{
-    text-decoration: none;
-    color: black;
-}
-
-.nav-link a:after {
-    background: none repeat scroll 0 0 transparent;
-    bottom: 0;
-    content: "";
-    display: block;
-    height: 2px;
-    left: 50%;
-    position: absolute;
-    background: #3F51B5;
-    transition: width 0.3s ease 0s, left 0.3s ease 0s;
-    width: 0;
-}
-
-.nav-link a:hover:after {
-    width: 100%;
-    left: 0;
-}
-
-.nav-link a:hover
-{
-    color: #3F51B5;
-}
-
-.nav-link a:hover:after {
-    width: 100%;
 }
 
 .card-body
@@ -168,6 +76,99 @@ button
     width: 100%;
 }
 
+/* Site navigation bar */
+.navbar
+{
+    background-color: #fff;
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    top: 0;
+    left: 0;
+}
+
+.nav-logo
+{
+    float: left;
+    padding-left: 5%;
+    padding-top: 1em;
+    font: italic bold 25px/0px AdihausDIN Cn, Helvetica, Arial, sans-serif;
+}
+
+.nav-logo a
+{
+    text-decoration: none;
+    color: black;
+}
+
+.nav-logo a:visited
+{
+    text-decoration: none;
+    color: black;
+}
+
+.primary-nav
+{
+    float: right;
+    padding-right: 5%;
+}
+
+.primary-nav ul
+{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.primary-nav li
+{
+    display: inline-block;
+    text-align: center;
+    padding: 1em 1em;
+}
+
+.nav-link a
+{
+    text-decoration: none;
+    padding: 15px 20px;
+    position: relative;
+}
+
+.nav-link a:visited
+{
+    text-decoration: none;
+    color: black;
+}
+
+.nav-link a:after {
+    background: none repeat scroll 0 0 transparent;
+    bottom: 0;
+    content: "";
+    display: block;
+    height: 2px;
+    left: 50%;
+    position: absolute;
+    background: #3F51B5;
+    transition: width 0.3s ease 0s, left 0.3s ease 0s;
+    width: 0;
+}
+
+.nav-link a:hover:after {
+    width: 100%;
+    left: 0;
+}
+
+.nav-link a:hover
+{
+    color: #3F51B5;
+}
+
+.nav-link a:hover:after {
+    width: 100%;
+}
+
+/* Home page styling */
 #home-card-body
 {
     width: 100%;
@@ -175,7 +176,6 @@ button
     background-image: url("/img/home-splash-pic.jpg");
     background-repeat: no-repeat;
     background-size: cover;
-    /*max-width: 5983px;*/
 
     display: flex;
     flex-direction: column;
@@ -192,6 +192,7 @@ button
     margin-left: 100px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
+
 /* Flight search field */
 .form-group
 {
@@ -223,27 +224,8 @@ button
 {
     padding: 10px;
 }
-
-.search-form
-{
-    /*display: grid;
-    grid-template-columns: 60% 40%;*/
-}
-.main-search-fields
-{
-    /*grid-column: 1;*/
-}
-.extra-search-fields
-{
-    /*grid-column: 2;*/
-    /*position: relative;*/
-}
-.search-button
-{
-    /*grid-column: 1;*/
-}
-
-.container {
+/* Styling for rotation of search arrow */
+.search-arrow-container {
     display: inline;
     font-size: large;
 }
@@ -258,13 +240,43 @@ button
     transform:rotateZ(180deg);
 }
 
+/* Flight search results page */
 #search-grid
 {
     display: grid;
     grid-template-columns: auto auto;
     grid-template-rows: auto auto auto;
 }
-/* Flight search field flight search results page */
+#search-grid .search-form
+{
+    width: 40%;
+    background: #fff;
+    padding: 10px;
+    text-align: left;
+    font-size: small;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+}
+
+#search-overlay
+{
+    position: fixed;
+    display: none;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 2;
+}
+
 #results-search
 {
     width: 100%;
@@ -287,35 +299,6 @@ button
     border-left: 2px solid black;
 }
 
-#search-overlay
-{
-    position: fixed;
-    display: none;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0,0,0,0.5);
-    z-index: 2;
-}
-#search-grid .search-form
-{
-    width: 40%;
-    background: #fff;
-    padding: 10px;
-    text-align: left;
-    font-size: small;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    -ms-transform: translate(-50%,-50%);
-}
-
 #search-criteria
 {
     width: 100%;
@@ -333,40 +316,55 @@ button
     grid-row: 2 / span 2;
 }
 
+.flight-list
+{
+    list-style: none;
+}
+
 .flight-result-oneway
 {
-    grid-column: 2;
-    grid-row: 3;
-    width: 80%;
-    margin: 0 auto;
-    background: #fff;
-    padding: 20px;
     display: grid;
     grid-template-columns: auto auto auto auto;
+    grid-column: 2;
+    grid-row: 3;
+
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    background: #fff;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.flight-result-time
+.flight-result-depart-time
 {
     grid-column: 1;
-}
-
-.flight-result-details
-{
-    grid-column: 2;
-}
-
-.flight-result-cost
-{
-    grid-column: 3;
-    display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.flight-result-book
+.flight-result-stopovers
+{
+    grid-column: 2;
+    justify-content: center;
+    align-items: center;
+}
+.flight-result-stopovers table
+{
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.flight-result-arrival-time
+{
+    grid-column: 3;
+    justify-content: center;
+    align-items: center;
+}
+
+.flight-result-cost
 {
     grid-column: 4;
-    display: flex;
     justify-content: center;
     align-items: center;
 }
