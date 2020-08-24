@@ -54,65 +54,59 @@ public class FlightController{
         int numberPeople = adults + children;
         String departureTimeStart = departureDate + " 00:00:01";
         String departureTimeEnd = departureDate + " 23:59:59";
-        List<Flight> retrievedFlights;
+        List<Flight> retrievedFlights = new LinkedList<>();
 
-
-
-        //this returns a lst of flights going directly from the departure locaiton to the arrival locaiton
-//        List<Flight> retrievedFlights = em.createQuery( "SELECT f From Flight f WHERE f.departureCode='" + departureLocation + "'" +
-//                " AND f.destination='" + arrivalLocation + "'" +
-//                " AND f.departureDate>='" + departureTimeStart + "'" +
-//                " AND f.departureDate<='" + departureTimeEnd + "'", Flight.class).getResultList();
-
-//        if(retrievedFlights.size()>0) {
-//            //this generates a string of all of the flight numbers in retrieved flights
-//            flightNumberString = "('" + retrievedFlights.get(0).getFlightNumber() + "'";
-//            for(int i=1; i<retrievedFlights.size(); i++){
-//                flightNumberString += ", '" + retrievedFlights.get(i).getFlightNumber() + "'"; }
-//            flightNumberString += ")";
-//            //this returns a list of all of the availabilities that are linked to the retrieved flights
-//            List<Availability> retrievedAvailabilities = em.createQuery("SELECT a from Availability a WHERE a.flightNumber IN " + flightNumberString +
-//                " AND a.departureDate>='" + departureTimeStart + "'" +
-//                " AND a.departureDate<='" + departureTimeEnd + "'" +
-//                " AND a.numberAvailableSeatsLeg1>=" + numberPeople +
-//                " AND (a.numberAvailableSeatsLeg2>=" + numberPeople + " OR a.numberAvailableSeatsLeg2='null')" +
-//                " AND a.classCode='" + classCode + "'", Availability.class).getResultList();
-//            //creates flight plans based on list of retrieved flights
-//            List<FlightPlan> departureFlightPlans = searcher.createFlightPlans(retrievedFlights, departureLocation, arrivalLocation, false, departureTimeStart, retrievedAvailabilities);
-////            System.out.println("number of flight plans created by searcher: " + departureFlightPlans.size());
-//            //sets variables retrieved to the flight holder bean
-//            flightPlans.setFlightPlansDeparting(departureFlightPlans);
-//            flightPlans.sortFlightPlansDeparting("departureTimeAscending");
-////            System.out.println("number of flight plans in departure flights post sort: " + flightPlans.getFlightPlansDeparting().size());
-//        }
-//        else{
-            //this returns all flights that depart on the departure date
         if(departRange.equals("on")){
             departureTimeEnd = departureDateRange + " 23:59:59";
         }
-            retrievedFlights = em.createQuery( "SELECT f From Flight f WHERE f.departureDate>='" + departureTimeStart + "'" +
-                " AND f.departureDate<='" + departureTimeEnd + "'", Flight.class).getResultList();
-            if(retrievedFlights.size()>0) {
-                //creates a string of all of the flight numbers in retrieved flights
-                    flightNumberString = "('" + retrievedFlights.get(0).getFlightNumber() + "'";
-                for(int i=1; i<retrievedFlights.size(); i++){
-                    flightNumberString += ", '" + retrievedFlights.get(i).getFlightNumber() + "'"; }
-                flightNumberString += ")";
-                //returns a list of availabilities linked ot retrieved flights, in htis case flights all departing on departure date
-                List<Availability> retrievedAvailabilities = em.createQuery("SELECT a from Availability a WHERE a.flightNumber IN " + flightNumberString +
+        System.out.println("getting dates from range: " + departureTimeStart + " to " + departureTimeEnd);
+//        retrievedFlights = em.createQuery( "SELECT f From Flight f WHERE f.departureDate>='" + departureTimeStart + "'" +
+//                " AND f.departureDate<='" + departureTimeEnd + "'", Flight.class).getResultList();
+
+        retrievedFlights = em.createQuery( "SELECT f From Flight f WHERE f.departureDate>='2020-12-13 00:00:01' AND f.departureDate<='2020-12-13 23:59:59'", Flight.class).getResultList();
+
+        for(int j=0; j<retrievedFlights.size(); j++){
+            System.out.println("flight: " + retrievedFlights.get(j).toString());
+        }
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        retrievedFlights = em.createQuery( "SELECT f From Flight f WHERE f.departureDate>='2020-12-13 00:00:01' AND f.departureDate<='2020-12-14 23:59:59'", Flight.class).getResultList();
+
+        for(int j=0; j<retrievedFlights.size(); j++){
+            System.out.println("flight: " + retrievedFlights.get(j).toString());
+        }
+
+        if(retrievedFlights.size()>0) {
+            //creates a string of all of the flight numbers in retrieved flights
+            flightNumberString = "('" + retrievedFlights.get(0).getFlightNumber() + "'";
+            for(int i=1; i<retrievedFlights.size(); i++){
+                flightNumberString += ", '" + retrievedFlights.get(i).getFlightNumber() + "'";
+            }
+            flightNumberString += ")";
+
+//            for(int j=0; j<retrievedFlights.size(); j++){
+//                System.out.println("flight: " + retrievedFlights.get(j).toString());
+//            }
+
+            //returns a list of availabilities linked ot retrieved flights, in htis case flights all departing on departure date
+            List<Availability> retrievedAvailabilities = em.createQuery("SELECT a from Availability a WHERE a.flightNumber IN " + flightNumberString +
                     " AND a.departureDate>='" + departureTimeStart + "'" +
                     " AND a.departureDate<='" + departureTimeEnd + "'" +
                     " AND a.numberAvailableSeatsLeg1>=" + numberPeople +
                     " AND (a.numberAvailableSeatsLeg2>=" + numberPeople + " OR a.numberAvailableSeatsLeg2='null')" +
                     " AND a.classCode='" + classCode + "'", Availability.class).getResultList();
                 //generates flight plans based on sent in flights
-                List<FlightPlan> departureFlightPlans = searcher.createFlightPlans(retrievedFlights, departureLocation, arrivalLocation, departureTimeStart, departureTimeEnd, retrievedAvailabilities);
-                //sets variables in the flight holder bean
-                flightPlans.setFlightPlansDeparting(departureFlightPlans);
-                flightPlans.sortFlightPlansDeparting("timeascending");
-//                System.out.println("sort of flight plans complete");
-            }
-//        }
+            List<FlightPlan> departureFlightPlans = searcher.createFlightPlans(retrievedFlights, departureLocation, arrivalLocation, departureTimeStart, departureTimeEnd, retrievedAvailabilities);
+
+            //sets variables in the flight holder bean
+            flightPlans.setFlightPlansDeparting(departureFlightPlans);
+            flightPlans.sortFlightPlansDeparting("timeascending");
+//            System.out.println("sort of flight plans complete");
+        }
 
         //only runs if a return list is desired
         if (type.equals("return")) {
@@ -120,58 +114,30 @@ public class FlightController{
             flightNumberString = "";
             String returnTimeStart = returnDate + " 00:00:01";
             String returnTimeEnd = returnDate + " 23:59:59";
-            //returns a list of flights that all arrive on the date sent in that depart from the arrival location and arrive at departure location
-//            List<Flight> retrievedFlightsR = em.createQuery( "SELECT f From Flight f WHERE f.departureCode='" + arrivalLocation + "'" +
-//                " AND f.destination='" + departureLocation + "'" +
-//                " AND f.arrivalDate>='" + returnTimeStart + "'" +
-//                " AND f.arrivalDate<='" + returnTimeEnd + "'", Flight.class).getResultList();
 
-//            if(retrievedFlightsR.size()>0) {
-//                //generates a string of all the flight numbers in retrieved flights
-//                flightNumberString = "('" + retrievedFlightsR.get(0).getFlightNumber() + "'";
-//                for(int i=1; i<retrievedFlightsR.size(); i++){
-//                    flightNumberString += ", '" + retrievedFlightsR.get(i).getFlightNumber() + "'"; }
-//                flightNumberString += ")";
-//                //this returns a list of availabilities linked to retrieved flights
-//                List<Availability> retrievedAvailabilities = em.createQuery("SELECT a from Availability a WHERE a.flightNumber IN " + flightNumberString +
-//                    " AND a.departureDate>='" + returnTimeStart + "'" +
-//                    " AND a.departureDate<='" + returnTimeEnd + "'" +
-//                    " AND a.numberAvailableSeatsLeg1>=" + numberPeople +
-//                    " AND (a.numberAvailableSeatsLeg2>=" + numberPeople + " OR a.numberAvailableSeatsLeg2='null')" +
-//                    " AND a.classCode='" + classCode + "'", Availability.class).getResultList();
-//                //creates flight plans based on retrieved flights
-//                //sets variables for flight holder bean
-//                List<FlightPlan> returnFlightPlans = searcher.createFlightPlans(retrievedFlightsR, arrivalLocation, departureLocation, returnTimeStart, retrievedAvailabilities);
-//                flightPlans.setFlightPlansReturning(returnFlightPlans);
-//                flightPlans.sortFlightPlansReturning("timeascending");
-//
-//            }
-//            else{
-                //returns a list of all flights that arrive on return date
-                List <Flight> retrievedFlightsR = em.createQuery( "SELECT f From Flight f WHERE f.arrivalDate>='" + returnTimeStart + "'" +
+            //returns a list of all flights that arrive on return date
+            List <Flight> retrievedFlightsR = em.createQuery( "SELECT f From Flight f WHERE f.arrivalDate>='" + returnTimeStart + "'" +
                     " AND f.arrivalDate<='" + returnTimeEnd + "'", Flight.class).getResultList();
-                if(retrievedFlightsR.size()>0) {
+            if(retrievedFlightsR.size()>0) {
                     //generates a string of all of the flight numbers in retrieved flights
-                    flightNumberString = "('" + retrievedFlightsR.get(0).getFlightNumber() + "'";
-                    for (int i = 1; i < retrievedFlightsR.size(); i++) {
-                        flightNumberString += ", '" + retrievedFlightsR.get(i).getFlightNumber() + "'";
-                    }
-                    flightNumberString += ")";
+                flightNumberString = "('" + retrievedFlightsR.get(0).getFlightNumber() + "'";
+                for (int i = 1; i < retrievedFlightsR.size(); i++) {
+                    flightNumberString += ", '" + retrievedFlightsR.get(i).getFlightNumber() + "'";
+                }
+                flightNumberString += ")";
                     //returns availabilities linked to retrieved flights
-                    List<Availability> retrievedAvailabilities = em.createQuery("SELECT a from Availability a WHERE a.flightNumber IN " + flightNumberString +
-                            " AND a.departureDate>='" + returnTimeStart + "'" +
-                            " AND a.departureDate<='" + returnTimeEnd + "'" +
-                            " AND a.numberAvailableSeatsLeg1>=" + numberPeople +
-                            " AND (a.numberAvailableSeatsLeg2>=" + numberPeople + " OR a.numberAvailableSeatsLeg2='null')" +
-                            " AND a.classCode='" + classCode + "'", Availability.class).getResultList();
+                List<Availability> retrievedAvailabilities = em.createQuery("SELECT a from Availability a WHERE a.flightNumber IN " + flightNumberString +
+                        " AND a.departureDate>='" + returnTimeStart + "'" +
+                        " AND a.departureDate<='" + returnTimeEnd + "'" +
+                        " AND a.numberAvailableSeatsLeg1>=" + numberPeople +
+                        " AND (a.numberAvailableSeatsLeg2>=" + numberPeople + " OR a.numberAvailableSeatsLeg2='null')" +
+                        " AND a.classCode='" + classCode + "'", Availability.class).getResultList();
                     //generates a list of flight plans based on retrieved flights
                     //sets variables for flightholder bean
-                    List<FlightPlan> returnFlightPlans = searcher.createFlightPlans(retrievedFlightsR, arrivalLocation, departureLocation, returnTimeStart, returnTimeEnd, retrievedAvailabilities);
-                    flightPlans.setFlightPlansReturning(returnFlightPlans);
-                    flightPlans.sortFlightPlansReturning("timeascending");
-
-                }
-//            }
+                List<FlightPlan> returnFlightPlans = searcher.createFlightPlans(retrievedFlightsR, arrivalLocation, departureLocation, returnTimeStart, returnTimeEnd, retrievedAvailabilities);
+                flightPlans.setFlightPlansReturning(returnFlightPlans);
+                flightPlans.sortFlightPlansReturning("timeascending");
+            }
         }
 
         System.out.println("number of flight plans Departing: " + flightPlans.getFlightPlansDeparting().size());

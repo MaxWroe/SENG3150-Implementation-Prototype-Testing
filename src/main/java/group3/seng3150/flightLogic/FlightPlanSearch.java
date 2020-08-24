@@ -27,27 +27,33 @@ public class FlightPlanSearch {
 
     //finds and returns a list of flight plans from sent in flights that match the criteria
     public List<FlightPlan> createFlightPlans(List<Flight> flights, String departureLocation, String destination, String startingTimeString, String endingTimeString, List<Availability> parsedAvailabilities){
-        System.out.println("number of flights sent to flightPlanSearch: " + flights.size());
+
         Timestamp startingTime = Timestamp.valueOf(startingTimeString);
         Timestamp endingTime = Timestamp.valueOf(endingTimeString);
         List<FlightPlan> flightPlans = new LinkedList<>();
-        List<Flight> filteredFlights = filterByAvailabilities(flights, parsedAvailabilities);
-        int numberOfCycles = 7;
         Timestamp inputTime = startingTime;
+        int numberOfCycles = 7;
 
+//        for(int j=0; j<flights.size(); j++){
+//            System.out.println("flight: " + flights.get(j).toString());
+//        }
 
-
+        List<Flight> filteredFlights = filterByAvailabilities(flights, parsedAvailabilities);
 
         if(filteredFlights.size()>0){
             for(int i=0; i<numberOfCycles; i++) {
                 System.out.println("running iteration of search" + i + ", starting time: " + inputTime.toString());
-                DijkstraGraph graph = buildGraph(filteredFlights);
+                System.out.println("number of flights in the current iteration: " + filteredFlights.size());
 
+                DijkstraGraph graph = buildGraph(filteredFlights);
                 flightPlans.addAll(getKShortestPaths(graph, departureLocation, destination, inputTime, 10));
+                System.out.println("number of flights after yenns in current iteration: " + filteredFlights.size());
 
                 inputTime = new Timestamp(startingTime.getTime()+((endingTime.getTime() - startingTime.getTime())/numberOfCycles)*(i+1));
+                System.out.println("date for removal: " + inputTime);
                 for(int j=0; j<filteredFlights.size(); j++){
                     if(filteredFlights.get(j).getDepartureDate().before(inputTime)){
+//                        System.out.println("removing flight: " + filteredFlights.get(j).toString());
                         filteredFlights.remove(j);
                         j--;
                     }
@@ -57,7 +63,7 @@ public class FlightPlanSearch {
         }
         System.out.println("number of flight plans produced by Yenns: " + flightPlans.size());
         //sets availabilities
-        if(flightPlans.get(0) != null) {
+        if(flightPlans.size()>0) {
             flightPlans = removeDuplicateFlightPlans(flightPlans);
             flightPlans = SetFlightPlansAvailabilities(flightPlans, parsedAvailabilities);
 
@@ -87,16 +93,18 @@ public class FlightPlanSearch {
             contains = false;
             for (int j=0; j<availabilities.size(); j++)
             {
-                if(flights.get(i).getFlightNumber().equals(availabilities.get(j).getFlightNumber())){
+                if(flights.get(i).getFlightNumber().equals(availabilities.get(j).getFlightNumber()) && flights.get(i).getDepartureDate().equals(availabilities.get(j).getDepartureDate()) && flights.get(i).getAirlineCode().equals(availabilities.get(j).getAirlineCode())){
                     contains = true;
+                    break;
                 }
             }
-            if(contains = false){
-                flights.remove(i);
+            if(contains = true){
+//                System.out.println("adding flight: " + flights.get(i).toString());
+                filteredFlights.add(flights.remove(i));
                 i--;
             }
         }
-        return flights;
+        return filteredFlights;
     }
 
     private DijkstraGraph buildGraph(List<Flight> flights){
