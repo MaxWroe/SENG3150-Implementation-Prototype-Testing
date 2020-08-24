@@ -9,8 +9,9 @@ import java.sql.Timestamp;
 import javax.persistence.*;
 
 @Entity
+@IdClass(FlightID.class)
 @Table(name = "Flights")
-public class Flight {
+public class Flight implements Cloneable{
 
     @Id
     @Column(name = "FlightNumber", table = "Flights")
@@ -18,14 +19,17 @@ public class Flight {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String flightNumber;
 
+    @Id
     @Column(name = "AirlineCode", table = "Flights")
     @Basic(optional = false)
     private String airlineCode;
 
+    @Id
     @Column(name = "DepartureTime", table = "Flights")
     @Basic(optional = false)
     private Timestamp departureDate;
 
+    @Id
     @Column(name = "DepartureCode", table = "Flights")
     @Basic(optional = false)
     private String departureCode; //airport code for departure
@@ -167,4 +171,12 @@ public class Flight {
                 ", duration=" + duration +
                 '}';
     }
+
+    @Override
+    public Flight clone(){
+
+        return null;
+    }
+
+
 }

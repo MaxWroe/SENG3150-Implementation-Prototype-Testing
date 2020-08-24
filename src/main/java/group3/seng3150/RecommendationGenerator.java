@@ -82,13 +82,14 @@ public class RecommendationGenerator {
     }
 
     public List<FlightPlan> generatePersonal(String airport){
-
+        //personal will use best possible hours
         //this will have to use flight search
         return null;
     }
 
     public List<FlightPlan> generateBusiness(String airport){
 
+        //business will use business hours and cheapest pricing
         //this will have to use flight search
         return null;
     }
