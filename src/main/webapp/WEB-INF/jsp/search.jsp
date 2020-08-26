@@ -81,10 +81,10 @@
             <!-- Apply sorting -->
             <div id="sort-criteria">
                 <h4 style="display: inline;padding-right: 50px;">Sort Criteria</h4>
-                <p>Sort by:</p>
-                <select class="sortby">
+                <p style="display: inline">Sort by:</p>
+                <select class="sortType">
                     <option value="price">Price</option>
-                    <option value="time">Time</option>
+                    <option value="duration">Total Duration</option>
                     <option value="capacity">Capacity</option>
                     <option value="stopovers">Stop Overs</option>
                 </select>
@@ -97,25 +97,45 @@
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
             <script>
                 let method;
-                function Price_sort(a, b) {
+                let type;
+                function sort_li(a, b) {
                     if(method === "descending")
                     {
-                        return ($(b).data('price')) > ($(a).data('price')) ? 1 : -1;
+                        return ($(b).data(type)) > ($(a).data(type)) ? 1 : -1;
                     }
                     if(method === "ascending")
                     {
-                        return ($(b).data('price')) < ($(a).data('price')) ? 1 : -1;
+                        return ($(b).data(type)) < ($(a).data(type)) ? 1 : -1;
                     }
                 }
                 $("#sort").on('click', function(){
                     method = $('select.sortMethod').children("option:selected").val();
-                    $(".fro").children('li').sort(Price_sort).appendTo(".fro");
+                    type = $('select.sortType').children("option:selected").val();
+
+                    $(".flight-list").children('li').sort(sort_li).appendTo(".flight-list");
                 });
             </script>
         </div>
         <div id="search-sidebar">
             <p>Side filters</p>
+            <p>Airlines</p>
+            <label for="airline">Airline x</label>
+            <input type="checkbox" id="airline">
         </div>
+        <script>
+            $('#airline').click(function() {
+                if(this.checked) {
+                    $("ul").filter(function() {
+                        return $("li", this).data('airline') === "test";
+                    }).hide();
+                }
+                else {
+                    $("ul").filter(function() {
+                        return $("li", this).data('airline') === "test";
+                    }).show();
+                }
+            });
+        </script>
 
         <!-- If searched trip is one-way -->
         <c:if test = "${param.type eq 'oneway'}">
@@ -132,7 +152,8 @@
             <!-- For each flight returned display -->
             <ul class="flight-list">
             <c:forEach items="${flights.flightPlansDeparting}" var="flightPlan">
-                <li data-price="${flightPlan.price}">
+                <li data-price="${flightPlan.price}" data-duration="${flightPlan.durationTotal}" data-stopovers="${flightPlan.numberStopOvers}"
+                    data-airline="test" >
 
                 <div class="flight-result-oneway">
                     <div class="flight-result-depart-time">
