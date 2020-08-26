@@ -118,21 +118,42 @@
         </div>
         <div id="search-sidebar">
             <p>Side filters</p>
+            <p>Stop Overs</p>
+            <label for="stop1">1</label>
+            <input type="checkbox" id="stop1" name="stopsFilter" value="1">
+            <label for="stop2">2</label>
+            <input type="checkbox" id="stop2" name="stopsFilter" value="2">
             <p>Airlines</p>
             <label for="airline">Airline x</label>
-            <input type="checkbox" id="airline">
+            <input type="checkbox" id="airline" name="airlineFilter" value="test">
         </div>
         <script>
-            $('#airline').click(function() {
-                if(this.checked) {
-                    $("ul").filter(function() {
-                        return $("li", this).data('airline') === "test";
-                    }).hide();
+            var $select = $("#search-sidebar input:checkbox");
+            $select.change(function () {
+                var include = "";
+
+                $select.each(function () {
+                    if ($(this).prop("checked"))
+                    {
+                        var val = $(this).val();
+
+                        switch ($(this).attr("name")) {
+                            case "airlineFilter":
+                                include += "[data-airline='" + val + "']";
+                                break;
+                            case "stopsFilter":
+                                include += "[data-stops='" + val + "']";
+                                break;
+                        }
+                    }
+                });
+                if (include === "")
+                {
+                    $(".flight-list li").show();
                 }
                 else {
-                    $("ul").filter(function() {
-                        return $("li", this).data('airline') === "test";
-                    }).show();
+                    $(".flight-list li").hide();
+                    $(".flight-list li").filter(include).show();
                 }
             });
         </script>
@@ -153,7 +174,7 @@
             <ul class="flight-list">
             <c:forEach items="${flights.flightPlansDeparting}" var="flightPlan">
                 <li data-price="${flightPlan.price}" data-duration="${flightPlan.durationTotal}" data-stopovers="${flightPlan.numberStopOvers}"
-                    data-airline="test" >
+                    data-airline="test" data-stops="${flightPlan.numberStopOvers}">
 
                 <div class="flight-result-oneway">
                     <div class="flight-result-depart-time">
