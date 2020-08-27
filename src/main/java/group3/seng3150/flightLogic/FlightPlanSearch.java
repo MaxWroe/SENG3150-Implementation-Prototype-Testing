@@ -40,15 +40,15 @@ public class FlightPlanSearch {
 
         List<Flight> filteredFlights = filterByAvailabilities(flights, parsedAvailabilities);
 
-        DijkstraGraph graph = buildGraph(filteredFlights);
-        System.out.println(getShortestPathDuration(graph, departureLocation, destination, inputTime).toString());
+//        DijkstraGraph graph = buildGraph(filteredFlights);
+//        System.out.println(getShortestPathDuration(graph, departureLocation, destination, inputTime).toString());
 
         if(filteredFlights.size()>0){
             for(int i=0; i<numberOfCycles; i++) {
                 System.out.println("running iteration of search" + i + ", starting time: " + inputTime.toString());
                 System.out.println("number of flights in the current iteration: " + filteredFlights.size());
 
-//                DijkstraGraph graph = buildGraph(filteredFlights);
+                DijkstraGraph graph = buildGraph(filteredFlights);
                 flightPlans.addAll(getKShortestPaths(graph, departureLocation, destination, inputTime, 10));
                 System.out.println("number of flights after yenns in current iteration: " + filteredFlights.size());
 
@@ -70,9 +70,9 @@ public class FlightPlanSearch {
         }
         System.out.println("number of flight plans produced by Yenns: " + flightPlans.size());
 
-//        for(int j=0; j<flightPlans.size(); j++){
-//            System.out.println("flight: " + flightPlans.get(j).toString());
-//        }
+        for(int j=0; j<flightPlans.size(); j++){
+            System.out.println("flight: " + flightPlans.get(j).toString());
+        }
 
         //sets availabilities
         if(flightPlans.size()>0) {
@@ -179,9 +179,17 @@ public class FlightPlanSearch {
 
             {
                 DijkstraNode adjacentNode = adjacencyPair.getKey();
-                long edgeWeight = currentNode.getShortestDurationToNode(adjacentNode, startingTime);
+                Timestamp currentTime;
+                if(adjacentNode.getShortestPathFlights().size()>0){
+                    currentTime = adjacentNode.getShortestPathFlights().getLast().getArrivalDate();
+                }
+                else{
+                    currentTime = startingTime;
+                }
+                long edgeWeight = currentNode.getShortestDurationToNode(adjacentNode, currentTime);
+                Flight currentEdge = currentNode.getEarliestFlightToNode(adjacentNode, currentTime);
                 if (!settledNodes.contains(adjacentNode)) {
-                    calculateMinimumDistance(adjacentNode, edgeWeight, currentNode, startingTime);
+                    calculateMinimumDistance(adjacentNode, edgeWeight, currentEdge, currentNode, startingTime);
                     unsettledNodes.add(adjacentNode);
                 }
             }
@@ -194,7 +202,7 @@ public class FlightPlanSearch {
         DijkstraNode lowestDistanceNode = null;
         long lowestDistance = Long.MAX_VALUE;
         for (DijkstraNode node: unsettledNodes) {
-            node.setShortestDurations(startingTime);
+//            node.setShortestDurations(startingTime);
             long nodeDistance = node.getDistance();
             if (nodeDistance < lowestDistance) {
                 lowestDistance = nodeDistance;
@@ -204,7 +212,7 @@ public class FlightPlanSearch {
         return lowestDistanceNode;
     }
 
-    private static void calculateMinimumDistance(DijkstraNode evaluationNode, long edgeWeight, DijkstraNode sourceNode, Timestamp startingTime) {
+    private static void calculateMinimumDistance(DijkstraNode evaluationNode, long edgeWeight, Flight currentEdge,  DijkstraNode sourceNode, Timestamp startingTime) {
         long sourceDistance = sourceNode.getDistance();
         if (sourceDistance + edgeWeight < evaluationNode.getDistance()) {
             evaluationNode.setDistance(sourceDistance + edgeWeight);
@@ -213,9 +221,10 @@ public class FlightPlanSearch {
             evaluationNode.setShortestPath(shortestPath);
 
             LinkedList<Flight> shortestPathFlights = new LinkedList<>(sourceNode.getShortestPathFlights());
-            if(sourceNode.getAdjacentNodesFlightShortest().get(evaluationNode) != null && sourceNode.getAdjacentNodesFlightShortest().get(evaluationNode).getDepartureDate().after(startingTime)) {
-                shortestPathFlights.add(sourceNode.getAdjacentNodesFlightShortest().get(evaluationNode));
-            }
+            shortestPathFlights.add(currentEdge);
+//            if(sourceNode.getAdjacentNodesFlightShortest().get(evaluationNode) != null && sourceNode.getAdjacentNodesFlightShortest().get(evaluationNode).getDepartureDate().after(startingTime)) {
+//                shortestPathFlights.add(sourceNode.getAdjacentNodesFlightShortest().get(evaluationNode));
+//            }
             evaluationNode.setShortestPathFlights(shortestPathFlights);
         }
     }
@@ -343,7 +352,7 @@ public class FlightPlanSearch {
 
     private List<FlightPlan> removeDuplicateFlightPlans(List<FlightPlan> parsedFlightPlans){
 //        System.out.println("running removeDuplicateFlightPlans");
-        List<FlightPlan> uniqueFlightPlans = new LinkedList<FlightPlan>();
+        LinkedList<FlightPlan> uniqueFlightPlans = new LinkedList<FlightPlan>();
         boolean existsIn;
         for(int i=0; i<parsedFlightPlans.size(); i++){
 //            System.out.println("running loop iteration of parsedFlightPlans: " + i);
@@ -358,7 +367,7 @@ public class FlightPlanSearch {
             }
             if(existsIn==false){
                 uniqueFlightPlans.add(parsedFlightPlans.get(i));
-                System.out.println("new flight plan added to list: " + uniqueFlightPlans.get(i).toString());
+                System.out.println("new flight plan added to list: " + uniqueFlightPlans.getLast().toString());
             }
         }
         return  uniqueFlightPlans;
