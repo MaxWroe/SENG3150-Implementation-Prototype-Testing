@@ -41,13 +41,13 @@ public class Price {
 
     @Column(name = "Price")
     @Basic(optional = false)
-    private int price;
+    private Double price;
 
     @Column(name = "PriceLeg1")
-    private String priceLeg1;
+    private Double priceLeg1;
 
     @Column(name = "PriceLeg2")
-    private String priceLeg2;
+    private Double priceLeg2;
 
 
 
@@ -55,27 +55,27 @@ public class Price {
     }
 
 
-    public int getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
-    public String getPriceLeg1() {
+    public Double getPriceLeg1() {
         return priceLeg1;
     }
 
-    public void setPriceLeg1(String priceLeg1) {
+    public void setPriceLeg1(Double priceLeg1) {
         this.priceLeg1 = priceLeg1;
     }
 
-    public String getPriceLeg2() {
+    public Double getPriceLeg2() {
         return priceLeg2;
     }
 
-    public void setPriceLeg2(String priceLeg2) {
+    public void setPriceLeg2(Double priceLeg2) {
         this.priceLeg2 = priceLeg2;
     }
 
