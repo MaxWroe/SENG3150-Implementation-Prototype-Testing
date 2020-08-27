@@ -37,7 +37,6 @@ public class Flight implements Cloneable{
 
     //Stopover data can be null
     @Column(name = "StopOverCode", table = "Flights")
-    @Basic(optional = false)
     private String stopOverCode; //airport code for stopover
 
     @Column(name = "ArrivalTimeStopOver", table = "Flights")
@@ -56,7 +55,10 @@ public class Flight implements Cloneable{
 
     @Column(name = "Duration", table = "Flights")
     @Basic(optional = false)
-    private int duration;
+    private Integer duration;
+
+    @Column(name = "DurationSecondLeg", table = "Flights")
+    private Integer durationSecondLeg;
 
 
     //Constructor
@@ -136,14 +138,21 @@ public class Flight implements Cloneable{
         this.arrivalDate = arrivalDate;
     }
 
-    public int getDuration() {
+    public Integer getDuration() {
         return duration;
     }
 
-    public void setDuration(int duration) {
+    public void setDuration(Integer duration) {
         this.duration = duration;
     }
 
+    public Integer getDurationSecondLeg() {
+        return durationSecondLeg;
+    }
+
+    public void setDurationSecondLeg(Integer durationSecondLeg) {
+        this.durationSecondLeg = durationSecondLeg;
+    }
 
     //Override methods
     @Override

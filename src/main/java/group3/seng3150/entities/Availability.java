@@ -36,10 +36,10 @@ public class Availability {
 
     @Column(name = "NumberAvailableSeatsLeg1", table = "Availability")
     @Basic(optional = false)
-    private String numberAvailableSeatsLeg1;
+    private Integer numberAvailableSeatsLeg1;
 
     @Column(name = "NumberAvailableSeatsLeg2", table = "Availability")
-    private String numberAvailableSeatsLeg2;
+    private Integer numberAvailableSeatsLeg2;
 
     //Constructor
     public Availability() {
@@ -55,19 +55,19 @@ public class Availability {
         this.airlineCode = airlineCode;
     }
 
-    public String getNumberAvailableSeatsLeg1() {
+    public Integer getNumberAvailableSeatsLeg1() {
         return numberAvailableSeatsLeg1;
     }
 
-    public void setNumberAvailableSeatsLeg1(String numberAvailableSeatsLeg1) {
+    public void setNumberAvailableSeatsLeg1(Integer numberAvailableSeatsLeg1) {
         this.numberAvailableSeatsLeg1 = numberAvailableSeatsLeg1;
     }
 
-    public String getNumberAvailableSeatsLeg2() {
+    public Integer getNumberAvailableSeatsLeg2() {
         return numberAvailableSeatsLeg2;
     }
 
-    public void setNumberAvailableSeatsLeg2(String numberAvailableSeatsLeg2) {
+    public void setNumberAvailableSeatsLeg2(Integer numberAvailableSeatsLeg2) {
         this.numberAvailableSeatsLeg2 = numberAvailableSeatsLeg2;
     }
 
