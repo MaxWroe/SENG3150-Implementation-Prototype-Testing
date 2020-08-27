@@ -244,7 +244,7 @@ button
 #search-grid
 {
     display: grid;
-    grid-template-columns: 30% 70%;
+    grid-template-columns: 20% 80%;
     grid-template-rows: auto auto auto;
 }
 #search-grid .search-form
@@ -328,12 +328,17 @@ button
     padding: 0;
 }
 
+.flight-list li
+{
+    padding: 10px;
+}
+/* Oneway results */
 .flight-result-oneway
 {
-    display: grid;
-    grid-template-columns: auto auto auto auto;
     grid-column: 2;
     grid-row: 3;
+    display: grid;
+    grid-template-columns: auto auto auto auto;
 
     width: 80%;
     margin: 0 auto;
@@ -376,44 +381,49 @@ button
     align-items: center;
 }
 
-.flight-result-return
+/* Flight results return */
+#flight-result-return-trip
 {
-    width: 90%;
-    margin: 0 auto;
+    grid-column: 2;
+    grid-row: 3;
+
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: 50% 50%;
     grid-column-gap: 15px;
 }
-
-#flight-departure-results
+#flight-result-departure-header
 {
-    height: 500px;
-    display: grid;
-    grid-row-gap: 15px;
-    overflow: scroll;
-    overflow-x: hidden;
+    grid-column: 1;
+    padding: 10px;
+}
+#flight-result-return-header
+{
+    grid-column: 2;
+    padding: 10px;
 }
 
-#flight-return-results
+.flight-result-departure-window
 {
-    height: 500px;
-    display: grid;
-    grid-row-gap: 15px;
-    overflow: scroll;
-    overflow-x: hidden;
+    grid-column: 1;
+}
+.flight-result-return-window
+{
+    grid-column: 2;
 }
 
-.flight-result-return-windows
+.flight-result-return-trip-flight
 {
-    background: #fff;
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+
     padding: 20px;
-    display: grid;
-    max-height: 200px;
-    min-width: 400px;
+    background: #fff;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 #flight-result-return-book
 {
+    grid-column: 1 / span 2;
     display: block;
     background: #fff;
     padding: 10px;
