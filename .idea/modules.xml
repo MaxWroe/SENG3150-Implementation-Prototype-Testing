@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/SENG3150-Implementation-Prototype.iml" filepath="$PROJECT_DIR$/.idea/modules/SENG3150-Implementation-Prototype.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/SENG3150-Implementation-Prototype.main.iml" filepath="$PROJECT_DIR$/.idea/modules/SENG3150-Implementation-Prototype.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/SENG3150-Implementation-Prototype.test.iml" filepath="$PROJECT_DIR$/.idea/modules/SENG3150-Implementation-Prototype.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/group3.seng3150.SENG3150-Implementation-Prototype.iml" filepath="$PROJECT_DIR$/.idea/modules/group3.seng3150.SENG3150-Implementation-Prototype.iml" />
+    </modules>
+  </component>
+</project>

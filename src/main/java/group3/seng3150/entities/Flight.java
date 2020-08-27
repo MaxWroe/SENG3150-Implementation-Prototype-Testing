@@ -58,6 +58,10 @@ public class Flight implements Cloneable{
     @Basic(optional = false)
     private int duration;
 
+    @Column(name = "DurationSecondLeg", table = "Flights")
+    @Basic(optional = false)
+    private int durationSecondLeg;
+
 
     //Constructor
     public Flight() {
@@ -144,6 +148,13 @@ public class Flight implements Cloneable{
         this.duration = duration;
     }
 
+    public int getDurationSecondLeg() {
+        return durationSecondLeg;
+    }
+
+    public void setDurationSecondLeg(int durationSecondLeg) {
+        this.durationSecondLeg = durationSecondLeg;
+    }
 
     //Override methods
     @Override
