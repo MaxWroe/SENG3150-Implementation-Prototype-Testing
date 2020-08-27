@@ -146,7 +146,7 @@ public class FlightPlan implements Comparable<FlightPlan>, Cloneable{
         }
         long tempLong = 0;
         tempLong = flights.get(flights.size()-1).getArrivalDate().getTime();
-        tempLong = tempLong - flights.get(flights.size()-1).getDepartureDate().getTime();
+        tempLong = tempLong - flights.get(0).getDepartureDate().getTime();
         int out = (int)tempLong/(1000*60);
         return out;
     }
@@ -222,11 +222,11 @@ public class FlightPlan implements Comparable<FlightPlan>, Cloneable{
     }
 
     public int compareTo(FlightPlan flightPlan){
-        if(getDurationTotal() < flightPlan.getDurationTotal())
+        if(getDurationTotal() > flightPlan.getDurationTotal())
         {
             return 1;
         }
-        else if(getDurationTotal() > flightPlan.getDurationTotal()){
+        else if(getDurationTotal() < flightPlan.getDurationTotal()){
             return -1;
         }
         return 0;

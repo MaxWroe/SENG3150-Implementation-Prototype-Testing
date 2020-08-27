@@ -13,7 +13,7 @@ and has actions to return and set information for htose edges
 
 public class DijkstraNode {
     private String name;
-    private long distance = Integer.MAX_VALUE;
+    private long distance = Long.MAX_VALUE;
     private Map<DijkstraNode, List<Flight>> adjacentNodesFlights = new HashMap<>();
     private LinkedList<Flight> shortestPathFlights = new LinkedList<>();
     private LinkedList<DijkstraNode> shortestPath = new LinkedList<>();
@@ -94,18 +94,32 @@ public class DijkstraNode {
 
     //returns shortest duration of this node to sent in node
     public long getShortestDurationToNode(DijkstraNode destination, Timestamp startingTime){
-        if (adjacentNodesFlightShortest.get(destination) != null) {
-            if (shortestPathFlights.size() > 0 && shortestPathFlights.getLast() != null) {
-                return adjacentNodesFlightShortest.get(destination).getDepartureDate().getTime() - shortestPathFlights.getLast().getArrivalDate().getTime();
-            }
-            else {
-                return adjacentNodesFlightShortest.get(destination).getDepartureDate().getTime() - startingTime.getTime();
+        long currentWeight = Long.MAX_VALUE;
+        if(adjacentNodesFlights.get(destination) != null) {
+            for (Flight currentFlight : adjacentNodesFlights.get(destination)) {
+                if (currentFlight.getDuration() < currentWeight) {
+                    currentWeight = currentFlight.getDuration();
+                }
+
             }
         }
-        else {
-            return Long.MAX_VALUE;
-        }
+        return currentWeight;
     }
+
+    public long getFlightDuration(Flight parsedFLight){
+        long duration = Long.MAX_VALUE;
+        if(parsedFLight.getDuration() != null) {
+            duration = 0;
+            duration += ;
+        }
+        if(parsedFLight.getDurationSecondLeg() != null){
+            duration += ;
+        }
+
+
+        return duration;
+    }
+
 
     public String getName() {
         return name;
