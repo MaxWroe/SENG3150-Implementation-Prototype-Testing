@@ -32,8 +32,8 @@
             <form id="loginForm" method="post" action="/login">
 
                 <!-- email address -->
-                <label for="email">Email address</label>
-                <input id="email" type="email" name ="email" required/> <br>
+                <label for="username">Email address</label>
+                <input id="username" type="text" name ="username" required/> <br>
 
                 <!-- password -->
                 <label for="password">Password</label>
