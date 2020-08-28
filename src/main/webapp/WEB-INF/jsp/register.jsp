@@ -11,11 +11,11 @@
     <title>Register</title>
 
     <link rel="stylesheet" type="text/css" href="/css/main.css">
-    <script src="/js/formValidations.js"></script>
+    <%--><script src="/js/formValidations.js"></script> --%>
 </head>
 <body>
 <!-- session handler -->
-<jsp:include page="sessionHandlerRegister.jsp"/>
+<%--<jsp:include page="sessionHandlerRegister.jsp"/>--%>
 
 <!-- Site header -->
 <jsp:include page="header.jsp"/>
