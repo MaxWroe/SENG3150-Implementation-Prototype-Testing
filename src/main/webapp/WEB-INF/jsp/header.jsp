@@ -41,11 +41,10 @@
                 <!-- if not logged in -->
                 <security:authorize access="!isAuthenticated()">
                     <div class="dropdown" id="dropdown" style="display: block">
-                        <p id="myAccount">My Account</p>
+                            <a>My Account</a>
                         <div class="dropdown-content">
-
-                                <a href="/login">Login</a>
-                                <a href="/register">Register</a>
+                            <a href="/login">Login</a>
+                            <a href="/register">Register</a>
                         </div>
                 </security:authorize>
 
@@ -53,7 +52,7 @@
                 <!-- if logged in -->
                 <security:authorize access="isAuthenticated()">
                     <div class="dropdown" id="dropdown1">
-                        <p id="myAccount1">My Account</p>
+                        <a><security:authentication property="name"/></a>
 
                         <div class="dropdown-content">
                             <a href="/accountDetails">Account Details</a>
