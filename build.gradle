@@ -31,6 +31,8 @@ dependencies {
     //Spring security dependencies
     compile "org.springframework.security:spring-security-web"
     compile "org.springframework.security:spring-security-config"
+    compile 'org.springframework:spring-jdbc:5.2.8.RELEASE'
+    compile 'org.springframework.security:spring-security-taglibs:5.3.4.RELEASE'
     /*
     implementation group:'org.springframework.boot', name:'spring-boot-starter-security', version: '2.3.3.RELEASE'
     implementation group:'org.springframework.security', name:'spring-security-test', version: '5.3.4.RELEASE'
