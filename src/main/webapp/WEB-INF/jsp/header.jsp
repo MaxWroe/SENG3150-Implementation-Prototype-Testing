@@ -38,18 +38,32 @@
             <!-- new login system -->
             <li class="nav-link">
 
+                <!-- if not logged in -->
                 <security:authorize access="!isAuthenticated()">
-                    <a href="/login" >Login</a>
+                    <div class="dropdown" id="dropdown" style="display: block">
+                        <p id="myAccount">My Account</p>
+                        <div class="dropdown-content">
+
+                                <a href="/login">Login</a>
+                                <a href="/register">Register</a>
+                        </div>
                 </security:authorize>
+
+
+                <!-- if logged in -->
                 <security:authorize access="isAuthenticated()">
-                    <a href="/logout">Logout</a>
+                    <div class="dropdown" id="dropdown1">
+                        <p id="myAccount1">My Account</p>
 
-                    <!-- need to add drop down list -->
-                    <a href="/accountDetails">Account Details</a>
-                    <a href="/manageBooking">Manage Booking</a>
-                    <a href="/customerSupport">Customer Support</a>
-                    <a href="/submitReview">Submit Review</a>
+                        <div class="dropdown-content">
+                            <a href="/accountDetails">Account Details</a>
+                            <a href="/manageBooking">Manage Booking</a>
+                            <a href="/customerSupport">Customer Support</a>
+                            <a href="/submitReview">Submit Review</a>
+                            <a href="/logout">Logout</a>
+                        </div>
 
+                    </div>
                 </security:authorize>
             </li>
 
