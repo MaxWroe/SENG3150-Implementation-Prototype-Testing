@@ -17,7 +17,7 @@
 </head>
 <body>
 <!-- Session handler -->
-<jsp:include page="sessionHandlerMain.jsp"/>
+<%--<jsp:include page="sessionHandlerMain.jsp"/>--%>
 
 <!-- Site header -->
 <jsp:include page="header.jsp"/>

@@ -21,7 +21,7 @@
 </head>
 <body>
 <!-- Session handler -->
-<jsp:include page="sessionHandlerGuest.jsp"/>
+<%--<jsp:include page="sessionHandlerGuest.jsp"/>--%>
 
 <!-- Site header -->
 <jsp:include page="header.jsp"/>

@@ -1,3 +1,5 @@
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
+
 <%--
   Created by IntelliJ IDEA.
   User: jfpr2
@@ -6,6 +8,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 
 
 <!-- Navigation bar -->
@@ -31,10 +34,26 @@
             </li>
 
             <!-- changes depending if the user is logged in our not -->
+
+            <!-- new login system -->
             <li class="nav-link">
-                <a id="dynamicLink" href="/login" >Login</a>
+
+                <security:authorize access="!isAuthenticated()">
+                    <a href="/login" >Login</a>
+                </security:authorize>
+                <security:authorize access="isAuthenticated()">
+                    <a href="/logout">Logout</a>
+
+                    <!-- need to add drop down list -->
+                    <a href="/accountDetails">Account Details</a>
+                    <a href="/manageBooking">Manage Booking</a>
+                    <a href="/customerSupport">Customer Support</a>
+                    <a href="/submitReview">Submit Review</a>
+
+                </security:authorize>
             </li>
 
+            <%--
             <!-- shown only if user is logged in -->
             <li class="nav-link">
                <div class="dropdown" id="dropdown" style="display: none">
@@ -47,7 +66,8 @@
                             <a href="/submitReview">Submit Review</a>
                     </div>
                </div>
-           </li>
+           </li> --%>
+
 
 
         </ul>
