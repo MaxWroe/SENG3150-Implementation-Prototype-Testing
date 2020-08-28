@@ -12,11 +12,11 @@
 
     <link rel="stylesheet" type="text/css" href="/css/main.css">
 
-    <script src="/js/dynamicLink.js"></script>
+    <%--<script src="/js/dynamicLink.js"></script>--%>
 </head>
 <body>
 <!-- session handler -->
-<jsp:include page="sessionHandlerLogin.jsp"/>
+<%--<jsp:include page="sessionHandlerLogin.jsp"/>--%>
 
 <!-- Site header -->
 <jsp:include page="header.jsp"/>
@@ -29,11 +29,11 @@
 
 
                  <!-- login form -->
-            <form id="loginForm" method="post" action="/login">
+            <form id="loginForm" method="post" action="appLogin">
 
                 <!-- email address -->
-                <label for="email">Email address</label>
-                <input id="email" type="email" name ="email" required/> <br>
+                <label for="username">Email address</label>
+                <input id="username" type="text" name ="username" required/> <br>
 
                 <!-- password -->
                 <label for="password">Password</label>

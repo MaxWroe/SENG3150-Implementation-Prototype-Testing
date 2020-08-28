@@ -30,7 +30,7 @@ public class ChrisFlightTesting {
         availability1.setDepartureDate(Timestamp.valueOf("2020-10-10 8:00:00"));
         availability1.setTicketCode("Standard");
         availability1.setClassCode("ECO");
-        availability1.setNumberAvailableSeatsLeg1("10");
+//        availability1.setNumberAvailableSeatsLeg1("10");
 
         Flight flight2 = new Flight();
         flight2.setFlightNumber("A2");
@@ -46,7 +46,7 @@ public class ChrisFlightTesting {
         availability2.setDepartureDate(Timestamp.valueOf("2020-10-10 11:00:00"));
         availability2.setTicketCode("Standard");
         availability2.setClassCode("ECO");
-        availability2.setNumberAvailableSeatsLeg1("10");
+//        availability2.setNumberAvailableSeatsLeg1("10");
 
         FlightPlanSearch searcher = new FlightPlanSearch();
         List<Flight> flightsList = new LinkedList<>();

@@ -2,6 +2,7 @@ package group3.seng3150;
 
 import group3.seng3150.entities.UserAccount;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -9,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import javax.persistence.EntityManager;
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @Controller
@@ -32,7 +35,7 @@ public class AuthenticationController {
         return view;
     }
 
-
+/*
     //post method login
    @PostMapping("/login")
     public ModelAndView executeLogin(@RequestParam(name="email") String email,
@@ -101,7 +104,7 @@ public class AuthenticationController {
         }
 
     }
-
+*/
     //get method register
     @GetMapping("/register")
     public ModelAndView displayRegister() {
@@ -135,6 +138,7 @@ public class AuthenticationController {
     }else{
         userNum = 2;
     }
+        ArrayList<? extends GrantedAuthority> authorities = new ArrayList<>();
         try{
             List<UserAccount> user = em.createQuery("SELECT u FROM UserAccount u WHERE u.email=" + tempEmail).getResultList();
             if(user.isEmpty()){

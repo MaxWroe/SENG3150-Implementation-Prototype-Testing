@@ -19,12 +19,16 @@
         <element id="directory" name="lib">
           <element id="library" level="project" name="Gradle: jstl:jstl:1.2" />
           <element id="library" level="project" name="Gradle: org.springframework:spring-webmvc:5.2.6.RELEASE" />
+          <element id="library" level="project" name="Gradle: org.springframework.security:spring-security-taglibs:5.3.4.RELEASE" />
           <element id="library" level="project" name="Gradle: org.springframework.security:spring-security-web:5.3.4.RELEASE" />
           <element id="library" level="project" name="Gradle: org.springframework:spring-web:5.2.6.RELEASE" />
           <element id="library" level="project" name="Gradle: org.springframework.security:spring-security-config:5.3.4.RELEASE" />
+          <element id="library" level="project" name="Gradle: org.springframework.security:spring-security-acl:5.3.4.RELEASE" />
           <element id="library" level="project" name="Gradle: org.springframework.security:spring-security-core:5.3.4.RELEASE" />
           <element id="library" level="project" name="Gradle: org.springframework:spring-context:5.2.6.RELEASE" />
+          <element id="library" level="project" name="Gradle: org.springframework:spring-jdbc:5.2.8.RELEASE" />
           <element id="library" level="project" name="Gradle: org.springframework:spring-aop:5.2.8.RELEASE" />
+          <element id="library" level="project" name="Gradle: org.springframework:spring-tx:5.2.8.RELEASE" />
           <element id="library" level="project" name="Gradle: org.springframework:spring-beans:5.2.8.RELEASE" />
           <element id="library" level="project" name="Gradle: org.springframework:spring-expression:5.2.8.RELEASE" />
           <element id="library" level="project" name="Gradle: org.springframework:spring-core:5.2.6.RELEASE" />

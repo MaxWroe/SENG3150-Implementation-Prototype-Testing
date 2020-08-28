@@ -16,10 +16,12 @@
 
     <script src="${pageContext.request.contextPath}/js/flightSelectAssistor.js"></script>
     <script src="${pageContext.request.contextPath}/js/dynamicLink.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 </head>
 <body>
 <!-- Session handler -->
-<jsp:include page="sessionHandlerGuest.jsp"/>
+<%--<jsp:include page="sessionHandlerGuest.jsp"/>--%>
 
 <!-- Site header -->
 <jsp:include page="header.jsp"/>
@@ -51,30 +53,53 @@
                 // Check if incoming search trip type, set type select field and return date div
                 var trip = "${param.type}";
 
-                // Set fields to incoming search parameters
-                document.getElementById("classCode").value = "${param.classCode}";
-                document.getElementById("adults").value = "${param.adults}";
-                document.getElementById("children").value = "${param.children}";
-                document.getElementById("departureLocation").value = "${param.departureLocation}";
-                document.getElementById("arrivalLocation").value = "${param.arrivalLocation}";
-                document.getElementById("departureDate").value = "${param.departureDate}";
-                document.getElementById("returnDate").value = "${param.returnDate}";
+                // on load if search criteria being passed
+                $(document).ready(function() {
+                    // Set fields to incoming search parameters
+                    $("#classCode").val("${param.classCode}");
+                    $("#adults").val("${param.adults}");
+                    $("#children").val("${param.children}");
+                    $("#departureLocation").val("${param.departureLocation}");
+                    $("#arrivalLocation").val("${param.arrivalLocation}");
+                    $("#departureDate").val("${param.departureDate}");
+                    $("#returnDate").val("${param.returnDate}");
 
-                if (trip === "oneway")
-                {
-                    document.getElementById("type").value = "oneway";
-                    document.getElementById("form-group-return-date").style.display = 'none';
-                }
-                else if (trip === "return")
-                {
-                    document.getElementById("type").value = "return";
-                    document.getElementById("form-group-return-date").style.display = 'inline';
-                    document.getElementById("returnDate").required = true;
-                    document.getElementById("returnDate").disabled = false;
-                }
+                    $("#departureDateRange").val("${param.departureDateRange}");
 
-                // Set class type to incoming type
-                document.getElementById("classCode").value = "${param.classCode}";
+                    // check if departure range option is selected
+                    if($('departureDateRange').val() !== "")
+                    {
+                        $("#depart-range").prop( "checked", true );
+                        $("#departureDateRange").prop( "disabled", false );
+
+                        $(this).toggleClass("up");
+                        $('.extra-search-fields').toggle();
+
+                        range_restrict();
+                        // if first departure date selected enable range date
+                        if ( $('#departureDateRange').val() !== "")
+                        {
+                            $('#departureDateRange').prop( "disabled", false );
+                        }
+                        // change visibility of departure date range div
+                        $("#depart-range-div").toggle(this.checked);
+                        // make departure date range input required if option selected
+                        $('#departureDateRange').prop( "required", true );
+                    }
+
+                    if (trip === "oneway")
+                    {
+                        $("#type").val("oneway");
+                        $("#form-group-return-date").hide();
+                    }
+                    else if (trip === "return")
+                    {
+                        $("#type").val("return");
+                        $("#form-group-return-date").style.display = 'inline';
+                        $("#returnDate").prop("required", true);
+                        $("#returnDate").prop( "disabled", false );
+                    }
+                });
             </script>
         </div>
         <div id="search-criteria">
@@ -94,7 +119,6 @@
                 </select>
                 <button id="sort">Sort</button>
             </div>
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
             <script>
                 let method;
                 let type;
@@ -224,110 +248,139 @@
 
         <!-- If searched trip is return -->
         <c:if test = "${param.type eq 'return'}">
-            <div class="flight-result-return">
-                <div class="flight-result-return-departure" style="background: none">
+            <div id="flight-result-return-trip">
+                <div id="flight-result-departure-header">
                     <h4 style="margin: 0;">Select a departure flight</h4>
                 </div>
-                <div class="flight-result-return-return" style="background: none">
+                <div id="flight-result-return-header">
                     <h4 style="margin: 0;">Select a return flight</h4>
                 </div>
-            </div>
 
-            <!-- Set flights returned (FlightHolders) to session scope -->
-            <c:set var = "departureFlights" scope = "session" value = "${flights.flightPlansDeparting}"/>
-            <c:set var = "returnFlights" scope = "session" value = "${flights.flightPlansReturning}"/>
 
-            <!-- Information to send to booking controller -->
-            <form method="post" action="${pageContext.request.contextPath}/flightBookingReturn" onsubmit="return validateFlightSelection()">
-                <input type="hidden" id="returnBooking" name="trip" value="return">
-                <input type="hidden" id="returnAdultsBooking" name="returnAdultsBooking" value="${param.adults}">
-                <input type="hidden" id="returnChildrenBooking" name="returnChildrenBooking" value="${param.children}">
-                <input type="hidden" id="returnClassBooking" name="returnClassBooking" value="${param.classCode}">
+                <!-- Set flights returned (FlightHolders) to session scope -->
+                <c:set var = "departureFlights" scope = "session" value = "${flights.flightPlansDeparting}"/>
+                <c:set var = "returnFlights" scope = "session" value = "${flights.flightPlansReturning}"/>
 
-                <div class="flight-result-return">
+                <!-- Information to send to booking controller -->
+                <form method="post" action="${pageContext.request.contextPath}/flightBookingReturn" onsubmit="return validateFlightSelection()"
+                      style="display:contents">
+                    <input type="hidden" id="returnBooking" name="trip" value="return">
+                    <input type="hidden" id="returnAdultsBooking" name="returnAdultsBooking" value="${param.adults}">
+                    <input type="hidden" id="returnChildrenBooking" name="returnChildrenBooking" value="${param.children}">
+                    <input type="hidden" id="returnClassBooking" name="returnClassBooking" value="${param.classCode}">
+
                     <!-- Parse all returned flights -->
 
                     <!-- Check if any departure flights returned -->
                     <c:if test="${empty flights.flightPlansDeparting}">
-                        <div class="flight-result-return-windows">
+                        <div class="flight-result-departure-window">
                             <h4>No departure flights can be found that match the criteria!</h4>
                         </div>
                     </c:if>
 
                     <!-- For each departure flight returned display -->
-                    <div id="flight-departure-results">
+                    <div class="flight-result-departure-window">
+                        <ul class="flight-list">
                         <c:forEach items="${flights.flightPlansDeparting}" var="flightPlan">
-                            <div class="flight-result-return-windows">
-                                <div class="flight-result-time">
-                                    <p>Depart time</p>
-                                    <h4>${flightPlan.departureDate}</h4>
-                                    <p>Arrival time</p>
-                                    <h4>${flightPlan.arrivalDate}</h4>
+                            <li data-price="${flightPlan.price}" data-duration="${flightPlan.durationTotal}" data-stopovers="${flightPlan.numberStopOvers}"
+                                data-airline="test" data-stops="${flightPlan.numberStopOvers}">
+                                <div class="flight-result-return-trip-flight">
+                                    <div class="flight-result-depart-time">
+                                        <fmt:parseDate pattern="yyyy-MM-dd hh:mm:ss" value="${flightPlan.departureDate}" var="parsedDate" />
+
+                                        <h4><fmt:formatDate type = "time" dateStyle = "short" timeStyle = "short" value = "${parsedDate}" /></h4>
+                                        <p><fmt:formatDate type = "date" value = "${parsedDate}" /></p>
+                                    </div>
+                                    <div class="flight-result-stopovers">
+                                        <p>Stop overs: ${flightPlan.numberStopOvers}</p>
+                                        <table>
+                                            <tr>
+                                                <td>${param.departureLocation} --></td>
+                                                <c:forEach items="${flightPlan.flights}" var="flightPlanFlights">
+                                                    <td>${flightPlanFlights.stopOverCode}</td>
+                                                </c:forEach>
+                                                <td>--> ${param.arrivalLocation}</td>
+                                            </tr>
+                                        </table>
+                                        <p>Total duration: ${flightPlan.durationTotal} hours</p>
+                                    </div>
+                                    <div class="flight-result-arrival-time">
+                                        <fmt:parseDate pattern="yyyy-MM-dd hh:mm:ss" value="${flightPlan.arrivalDate}" var="parsedDate" />
+
+                                        <h4><fmt:formatDate type = "time" dateStyle = "short" timeStyle = "short" value = "${parsedDate}" /></h4>
+                                        <p><fmt:formatDate type = "date" value = "${parsedDate}" /></p>
+                                    </div>
+                                    <div class="flight-result-cost">
+                                        <p>Available seats: ${flightPlan.numberAvailableSeats}</p>
+                                        <!-- Information to send to booking controller -->
+                                        <label for="returnDepartureFlightPlan${flightPlan.position}">Select: </label>
+                                        <input type="radio" id="returnDepartureFlightPlan${flightPlan.position}"
+                                               name="departure" value="${flightPlan.position}" onchange="updateCost('departure', '${flightPlan.price}')">
+                                    </div>
                                 </div>
-                                <div class="flight-result-details">
-                                    <%--
-                                    <p>${flightPlan.airlines}</p>
-                                    --%>
-                                    <br>
-                                    <p>Stop overs: ${flightPlan.numberStopOvers}</p>
-                                    <br>
-                                    <p>Available seats: ${flightPlan.numberAvailableSeats}</p>
-                                </div>
-                                <div class="flight-result-cost">
-                                    <h3>$${flightPlan.price}</h3>
-                                </div>
-                                <div class="flight-result-book">
-                                    <!-- Position of the specific flight plan within the FlightHolder FlightPlans list -->
-                                    <label for="returnDepartureFlightPlan${flightPlan.position}">Select: </label>
-                                    <input type="radio" id="returnDepartureFlightPlan${flightPlan.position}" name="departure" value="${flightPlan.position}" onchange="updateCost('departure', '${flightPlan.price}')">
-                                </div>
-                            </div>
+                            </li>
                         </c:forEach>
+                        </ul>
                     </div>
 
                     <!-- Check if any return flights returned -->
                     <c:if test="${empty flights.flightPlansReturning}">
-                        <div class="flight-result-return-windows">
+                        <div class="flight-result-return-window">
                             <h4>No return flights can be found that match the criteria!</h4>
                         </div>
                     </c:if>
 
                     <!-- For each return flight returned display -->
-                    <div id="flight-return-results">
+                    <div class="flight-result-return-window">
+                        <ul class="flight-list">
                         <c:forEach items="${flights.flightPlansReturning}" var="flightPlan">
-                            <div class="flight-result-return-windows">
-                                <div class="flight-result-time">
-                                    <p>Depart time</p>
-                                    <h4>${flightPlan.departureDate}</h4>
-                                    <p>Arrival time</p>
-                                    <h4>${flightPlan.arrivalDate}</h4>
+                            <li data-price="${flightPlan.price}" data-duration="${flightPlan.durationTotal}" data-stopovers="${flightPlan.numberStopOvers}"
+                                data-airline="test" data-stops="${flightPlan.numberStopOvers}">
+                                <div class="flight-result-return-trip-flight">
+                                    <div class="flight-result-depart-time">
+                                        <fmt:parseDate pattern="yyyy-MM-dd hh:mm:ss" value="${flightPlan.departureDate}" var="parsedDate" />
+
+                                        <h4><fmt:formatDate type = "time" dateStyle = "short" timeStyle = "short" value = "${parsedDate}" /></h4>
+                                        <p><fmt:formatDate type = "date" value = "${parsedDate}" /></p>
+                                    </div>
+                                    <div class="flight-result-stopovers">
+                                        <p>Stop overs: ${flightPlan.numberStopOvers}</p>
+                                        <table>
+                                            <tr>
+                                                <td>${param.departureLocation} --></td>
+                                                <c:forEach items="${flightPlan.flights}" var="flightPlanFlights">
+                                                    <td>${flightPlanFlights.stopOverCode}</td>
+                                                </c:forEach>
+                                                <td>--> ${param.arrivalLocation}</td>
+                                            </tr>
+                                        </table>
+                                        <p>Total duration: ${flightPlan.durationTotal} hours</p>
+                                    </div>
+                                    <div class="flight-result-arrival-time">
+                                        <fmt:parseDate pattern="yyyy-MM-dd hh:mm:ss" value="${flightPlan.arrivalDate}" var="parsedDate" />
+
+                                        <h4><fmt:formatDate type = "time" dateStyle = "short" timeStyle = "short" value = "${parsedDate}" /></h4>
+                                        <p><fmt:formatDate type = "date" value = "${parsedDate}" /></p>
+                                    </div>
+                                    <div class="flight-result-cost">
+                                        <p>Available seats: ${flightPlan.numberAvailableSeats}</p>
+                                        <!-- Position of the specific flight plan within the FlightHolder FlightPlans list -->
+                                        <label for="returnReturnFlightPlan${flightPlan.position}">Select: </label>
+                                        <input type="radio" id="returnReturnFlightPlan${flightPlan.position}" name="return" value="${flightPlan.position}" onchange="updateCost('return', '${flightPlan.price}')">
+                                    </div>
                                 </div>
-                                <div class="flight-result-details">
-                                    <%--
-                                    <p>${flightPlan.airlines}</p>
-                                    --%>
-                                    <br>
-                                    <p>Stop overs: ${flightPlan.numberStopOvers}</p>
-                                    <br>
-                                    <p>Available seats: ${flightPlan.numberAvailableSeats}</p>
-                                </div>
-                                <div class="flight-result-cost">
-                                    <h3>$${flightPlan.price}</h3>
-                                </div>
-                                <div class="flight-result-book">
-                                    <!-- Position of the specific flight plan within the FlightHolder FlightPlans list -->
-                                    <label for="returnReturnFlightPlan${flightPlan.position}">Select: </label>
-                                    <input type="radio" id="returnReturnFlightPlan${flightPlan.position}" name="return" value="${flightPlan.position}" onchange="updateCost('return', '${flightPlan.price}')"></div>
-                            </div>
+                            </li>
                         </c:forEach>
+                        </ul>
                     </div>
-                </div>
-                <br>
-                <div id="flight-result-return-book">
-                    <h4 id="booking-cost">Total cost: </h4>
-                    <button type="submit" id="return-flight-book">Book</button>
-                </div>
-            </form>
+
+                    <br>
+                    <div id="flight-result-return-book">
+                        <h4 id="booking-cost">Total cost: </h4>
+                        <button type="submit" id="return-flight-book">Book</button>
+                    </div>
+                </form>
+            </div>
         </c:if>
     </div>
 </main>

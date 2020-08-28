@@ -78,7 +78,7 @@ public class FlightPlan implements Comparable<FlightPlan>, Cloneable{
     }
 
     //returns a price based on a specific availability
-    public int getPriceFromAvailability(Availability availability){
+    public double getPriceFromAvailability(Availability availability){
         for(int i=0; i<prices.size(); i++){
             if (prices.get(i).getFlightNumber().equals(availability.getFlightNumber())  && prices.get(i).getClassCode().equals(availability.getClassCode())){
                 return prices.get(i).getPrice();
@@ -108,17 +108,17 @@ public class FlightPlan implements Comparable<FlightPlan>, Cloneable{
     }
 
     //returns the number of seats as the lowest number of seats for an individual flights
-    public int getNumberAvailableSeats(){
-        int out = 100;
+    public double getNumberAvailableSeats(){
+        double out = Double.MAX_VALUE;
         for(int i=0; i<flights.size();i++){
             for(int j=0; j<availabilities.size(); j++) {
                 if (flights.get(i).getFlightNumber().equals(availabilities.get(j).getFlightNumber())) {
-                    if (Integer.parseInt(availabilities.get(i).getNumberAvailableSeatsLeg1()) < out) {
-                        out = Integer.parseInt(availabilities.get(i).getNumberAvailableSeatsLeg1());
+                    if (availabilities.get(i).getNumberAvailableSeatsLeg1() < out) {
+                        out = availabilities.get(i).getNumberAvailableSeatsLeg1();
                     }
                     if (availabilities.get(i).getNumberAvailableSeatsLeg2() != null) {
-                        if (Integer.parseInt(availabilities.get(i).getNumberAvailableSeatsLeg2()) < out) {
-                            out = Integer.parseInt(availabilities.get(i).getNumberAvailableSeatsLeg2());
+                        if (availabilities.get(i).getNumberAvailableSeatsLeg2() < out) {
+                            out = availabilities.get(i).getNumberAvailableSeatsLeg2();
                         }
                     }
                     break;

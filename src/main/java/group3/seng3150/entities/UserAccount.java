@@ -6,6 +6,10 @@
 package group3.seng3150.entities;
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.Collection;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.User;
 
 @Entity
 @Table(name = "UserAccount")
@@ -79,9 +83,9 @@ public class UserAccount {
     private String ROLEDID;
 
     //Constructors
+
     public UserAccount() {
     }
-
 
     //Getters and Setters
     public String getUserID() {
@@ -159,7 +163,7 @@ public class UserAccount {
     public void setDateOfBirth(Date dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
-
+    
     public String getPassword() {
         return password;
     }

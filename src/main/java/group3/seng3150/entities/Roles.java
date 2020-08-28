@@ -6,10 +6,11 @@ import javax.persistence.*;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.Objects;
+import org.springframework.security.core.GrantedAuthority;
 
 @Entity
 @Table(name = "Roles")
-public class Roles {
+public class Roles implements GrantedAuthority{
 
     @Id
     @Column(name = "ROLEID")
@@ -84,5 +85,10 @@ public class Roles {
                 ", READ_PRIVILEGE='" + READ_PRIVILEGE + '\'' +
                 ", WRITE_PRIVILEGE='" + WRITE_PRIVILEGE + '\'' +
                 '}';
+    }
+
+    @Override
+    public String getAuthority() {
+        return USER;
     }
 }
