@@ -19,12 +19,16 @@
         <element id="directory" name="lib">
           <element id="library" level="project" name="Gradle: jstl:jstl:1.2" />
           <element id="library" level="project" name="Gradle: org.springframework:spring-webmvc:5.2.6.RELEASE" />
+          <element id="library" level="project" name="Gradle: org.springframework.security:spring-security-taglibs:5.3.4.RELEASE" />
           <element id="library" level="project" name="Gradle: org.springframework.security:spring-security-web:5.3.4.RELEASE" />
           <element id="library" level="project" name="Gradle: org.springframework:spring-web:5.2.6.RELEASE" />
           <element id="library" level="project" name="Gradle: org.springframework.security:spring-security-config:5.3.4.RELEASE" />
+          <element id="library" level="project" name="Gradle: org.springframework.security:spring-security-acl:5.3.4.RELEASE" />
           <element id="library" level="project" name="Gradle: org.springframework.security:spring-security-core:5.3.4.RELEASE" />
           <element id="library" level="project" name="Gradle: org.springframework:spring-context:5.2.6.RELEASE" />
+          <element id="library" level="project" name="Gradle: org.springframework:spring-jdbc:5.2.8.RELEASE" />
           <element id="library" level="project" name="Gradle: org.springframework:spring-aop:5.2.8.RELEASE" />
+          <element id="library" level="project" name="Gradle: org.springframework:spring-tx:5.2.8.RELEASE" />
           <element id="library" level="project" name="Gradle: org.springframework:spring-beans:5.2.8.RELEASE" />
           <element id="library" level="project" name="Gradle: org.springframework:spring-expression:5.2.8.RELEASE" />
           <element id="library" level="project" name="Gradle: org.springframework:spring-core:5.2.6.RELEASE" />
@@ -52,10 +56,6 @@
           <element id="library" level="project" name="Gradle: com.sun.istack:istack-commons-runtime:3.0.7" />
           <element id="library" level="project" name="Gradle: org.jvnet.staxex:stax-ex:1.8" />
           <element id="library" level="project" name="Gradle: com.sun.xml.fastinfoset:FastInfoset:1.2.15" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.security/spring-security-taglibs/5.3.4.RELEASE/9a0c51dedf2701464e1aeb5539c8ba5e28c86049/spring-security-taglibs-5.3.4.RELEASE.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.security/spring-security-acl/5.3.4.RELEASE/aec8606d6f1a6ffdb58db404195544bc652226e6/spring-security-acl-5.3.4.RELEASE.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-jdbc/5.2.8.RELEASE/72ab49da94436dc4e26a4874abe6046bb2df3883/spring-jdbc-5.2.8.RELEASE.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-tx/5.2.8.RELEASE/69255178069ff00e6b30a7a7ede71894b9e6d91b/spring-tx-5.2.8.RELEASE.jar" />
         </element>
       </element>
     </root>
