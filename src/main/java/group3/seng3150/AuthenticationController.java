@@ -138,7 +138,6 @@ public class AuthenticationController {
     }else{
         userNum = 2;
     }
-        ArrayList<? extends GrantedAuthority> authorities = new ArrayList<>();
         try{
             List<UserAccount> user = em.createQuery("SELECT u FROM UserAccount u WHERE u.email=" + tempEmail).getResultList();
             if(user.isEmpty()){
