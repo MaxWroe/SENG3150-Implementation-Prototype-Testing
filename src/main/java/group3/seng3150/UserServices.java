@@ -35,7 +35,15 @@ public class UserServices implements UserDetailsService {
 
     private UserAccount findUserbyUsername(String email) throws UsernameNotFoundException{
         String newEmail = "'" + email + "'";
-        UserAccount userAcc = (UserAccount) em.createQuery("SELECT u FROM UserAccount u WHERE u.email=" + newEmail).getSingleResult();
+        UserAccount userAcc = null;
+        try{
+            userAcc = (UserAccount) em.createQuery("SELECT u FROM UserAccount u WHERE u.email=" + newEmail).getSingleResult();
+            if(userAcc==null){
+                throw new UsernameNotFoundException("Email address not found");
+            }
+        }catch (Exception e) {
+            throw new UsernameNotFoundException("Database error ");
+        }
         return userAcc;
     }
 }
