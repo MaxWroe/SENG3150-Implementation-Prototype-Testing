@@ -29,7 +29,7 @@
 
 
                  <!-- login form -->
-            <form id="loginForm" method="post" action="/login">
+            <form id="loginForm" method="post" action="appLogin">
 
                 <!-- email address -->
                 <label for="username">Email address</label>

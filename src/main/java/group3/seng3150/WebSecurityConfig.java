@@ -59,7 +59,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.formLogin().loginPage("/login.html");
+        http.formLogin().loginPage("/login.html").
+                loginProcessingUrl("/appLogin");
 
 
         http.authorizeRequests()
@@ -68,7 +69,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .formLogin()
                 .and()
-                .logout().permitAll().logoutSuccessUrl("/login");
+                .logout().permitAll().logoutSuccessUrl("/home");
+        http.csrf().disable();
     }
 
 

@@ -32,7 +32,7 @@ public class AuthenticationController {
         return view;
     }
 
-
+/*
     //post method login
    @PostMapping("/login")
     public ModelAndView executeLogin(@RequestParam(name="email") String email,
@@ -101,7 +101,7 @@ public class AuthenticationController {
         }
 
     }
-
+*/
     //get method register
     @GetMapping("/register")
     public ModelAndView displayRegister() {
