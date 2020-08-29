@@ -37,9 +37,10 @@ public class HolidayPackages {
     @Basic(optional = false)
     private String countryName;
 
-    //delete this
-    @Column(name = "AirlineCode")
-    private String airlineCode;
+    //0 for sponsored, 1 for "hot location" and 2 for self generated
+    @Column(name = "type")
+    @Basic(optional = false)
+    private int type;
 
 
     //change airline code to flight number can be null
@@ -79,29 +80,39 @@ public class HolidayPackages {
         this.countryName = countryName;
     }
 
-    public String getAirlineCode() {
-        return airlineCode;
+    public String getDestination() {
+        return destination;
     }
 
-    public void setAirlineCode(String airlineCode) {
-        this.airlineCode = airlineCode;
+    public void setDestination(String destination) {
+        this.destination = destination;
     }
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
+
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         HolidayPackages that = (HolidayPackages) o;
-        return Objects.equals(packageID, that.packageID) &&
+        return type == that.type &&
+                Objects.equals(packageID, that.packageID) &&
                 Objects.equals(description, that.description) &&
+                Objects.equals(destination, that.destination) &&
                 Objects.equals(countryCode, that.countryCode) &&
-                Objects.equals(countryName, that.countryName) &&
-                Objects.equals(airlineCode, that.airlineCode);
+                Objects.equals(countryName, that.countryName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(packageID, description, countryCode, countryName, airlineCode);
+        return Objects.hash(packageID, description, destination, countryCode, countryName, type);
     }
 
     @Override
@@ -109,9 +120,10 @@ public class HolidayPackages {
         return "HolidayPackages{" +
                 "packageID='" + packageID + '\'' +
                 ", description='" + description + '\'' +
+                ", destination='" + destination + '\'' +
                 ", countryCode='" + countryCode + '\'' +
                 ", countryName='" + countryName + '\'' +
-                ", airlineCode='" + airlineCode + '\'' +
+                ", type=" + type +
                 '}';
     }
 }
