@@ -79,10 +79,19 @@ public class DijkstraGraph {
     }
 
     public void addEdges(Map<String, List<Flight>> parsedEdges) {
+        System.out.println("creating class");
         List<String> keys = new LinkedList<>(parsedEdges.keySet());
         for (String currentKey : keys){
-            List<Flight> tempFlightList = new LinkedList<Flight>();
-            tempFlightList.addAll(parsedEdges.get(currentKey));
+            System.out.println("current key: " + currentKey);
+            System.out.println("Line with alleged error");
+            List<Flight> tempFlightList = parsedEdges.get(currentKey);
+//            for(int j=0; j<parsedEdges.get(currentKey).size(); j++){
+//                tempFlightList.add(parsedEdges.get(currentKey).get(j));
+//            }
+//            tempFlightList.addAll(parsedEdges.get(currentKey));
+//            for(int i=0; i<tempFlightList.size(); i++){
+//                addEdge(tempFlightList.get(i));
+//            }
             for(Flight currentFlight : tempFlightList){
                 addEdge(currentFlight);
             }
