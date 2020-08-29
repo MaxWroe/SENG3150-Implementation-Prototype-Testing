@@ -142,9 +142,17 @@ public class FlightController{
             }
         }
 
-        System.out.println("number of flight plans Departing: " + flightPlans.getFlightPlansDeparting().size());
+
         flightPlans.setAllPrices(em);
 
+        System.out.println("number of flight plans Departing: " + flightPlans.getFlightPlansDepartingSize());
+        System.out.println("space 1");
+
+        for(int i=0; i<flightPlans.getFlightPlansDepartingSize(); i++){
+            System.out.println("Flight plan departing number " + i + " :");
+            System.out.println(flightPlans.getFlightPlansDeparting().get(i).toString());
+        }
+        System.out.println("space 2");
         //sets the flightholder beans as objects of view
         view.addObject("flights", flightPlans);
         return view;
