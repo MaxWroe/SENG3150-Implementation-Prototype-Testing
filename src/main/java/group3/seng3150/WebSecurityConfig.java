@@ -65,11 +65,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.authorizeRequests()
                 .antMatchers("/css/**", "/img/**", "/js/**", "/errorPage", "/faqs", "/reviews", "/login", "/search", "/register", "/home", "/").permitAll()
-                .anyRequest().hasAnyRole("1", "2", "3", "4")
+                .anyRequest().hasAnyRole("ROLE_CUSTOMER", "ROLE_AGENT")
                 .and()
                 .formLogin()
                 .and()
-                .logout().permitAll().logoutSuccessUrl("/home");
+                .logout().permitAll().logoutSuccessUrl("/home")
+                .and()
+                .exceptionHandling()
+                .accessDeniedPage("/accessDenied");
         http.csrf().disable();
     }
 }

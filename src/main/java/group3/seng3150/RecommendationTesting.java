@@ -16,7 +16,7 @@ public class RecommendationTesting {
     @GetMapping("/RecTesting")
     public ModelAndView Index() {
 
-        RecommendationGenerator rg = new RecommendationGenerator(this.em);
+        //RecommendationGenerator rg = new RecommendationGenerator(this.em);
         //rg.generatePersonal("LAX");
         ModelAndView view = new ModelAndView("recTesting");
         return view;

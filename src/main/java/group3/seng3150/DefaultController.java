@@ -24,6 +24,13 @@ public class DefaultController {
         return view;
     }
 
+    @GetMapping("/accessDenied")
+    public ModelAndView displayAccessDenied() {
+        ModelAndView view = new ModelAndView("accessDenied");
+        return view;
+    }
+
+
     /*
     @GetMapping("/bookingtemp")
     public ModelAndView displayBooking() {

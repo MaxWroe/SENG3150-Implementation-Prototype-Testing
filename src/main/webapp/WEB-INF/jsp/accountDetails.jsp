@@ -1,4 +1,4 @@
-<%--
+<%@ page import="org.springframework.web.servlet.ModelAndView" %><%--
   JSP for viewing account details and editing.
   SENG3150 Group 3
   Date: 26/05/2020
@@ -31,17 +31,17 @@
         <!-- user's details -->
         <div class ="my-account">
             <div class="user-details">
-                <h4>First Name: </h4> <p><%= session.getAttribute("firstName")%> </p><br>
-                <h4>Last Name:  </h4>  <p><%= session.getAttribute("lastName")%></p><br>
-                <h4>Email: </h4>  <p> <%= session.getAttribute("email")%> </p><br>
-                <h4>User type: </h4>  <p><%= session.getAttribute("userType")%> </p><br>
-                <h4>Date of Birth: </h4>  <p><%= session.getAttribute("dateOfBirth")%></p><br>
-                <h4>Gender: </h4>  <p> <%= session.getAttribute("gender")%></p><br>
-                <h4>Citizenship: </h4>  <p> <%= session.getAttribute("citizenship")%></p><br>
-                <h4>Phone Number: </h4> <p><%= session.getAttribute("phone")%></p><br>
-                <h4>Family Members: </h4> <p><%= session.getAttribute("familyMembers")%></p><br>
-                <h4>Emergency Contacts:</h4> <p><%= session.getAttribute("emergencyContacts")%></p><br>
-                <h4>Address: </h4> <p><%= session.getAttribute("address")%></p><br>
+                <h4>First Name: </h4> <p><%= request.getAttribute("firstName")%> </p><br>
+                <h4>Last Name:  </h4>  <p><%= request.getAttribute("lastName")%></p><br>
+                <h4>Email: </h4>  <p> <%= request.getAttribute("email")%> </p><br>
+                <h4>User type: </h4>  <p><%= request.getAttribute("userType")%> </p><br>
+                <h4>Date of Birth: </h4>  <p><%= request.getAttribute("dateOfBirth")%></p><br>
+                <h4>Gender: </h4>  <p> <%= request.getAttribute("gender")%></p><br>
+                <h4>Citizenship: </h4>  <p> <%= request.getAttribute("citizenship")%></p><br>
+                <h4>Phone Number: </h4> <p><%= request.getAttribute("phone")%></p><br>
+                <h4>Family Members: </h4> <p><%= request.getAttribute("familyMembers")%></p><br>
+                <h4>Emergency Contacts:</h4> <p><%= request.getAttribute("emergencyContacts")%></p><br>
+                <h4>Address: </h4> <p><%= request.getAttribute("address")%></p><br>
             </div>
 
           <button id="editAccount" type="submit" onclick="displayForm('accountForm')"> Edit Account </button>
