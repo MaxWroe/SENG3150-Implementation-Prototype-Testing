@@ -64,15 +64,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 defaultSuccessUrl("/home");
 
         http.authorizeRequests()
-                .antMatchers("/css/**", "/img/**", "/js/**", "/errorPage", "/faqs", "/reviews", "/login", "/search", "/register", "/home", "/").permitAll()
-                .anyRequest().hasAnyRole("ROLE_CUSTOMER", "ROLE_AGENT")
+                .antMatchers("/css/**", "/img/**", "/js/**", "/errorPage", "/faqs", "/reviews", "/login", "/search", "/register", "/home", "/", "RecTesting").permitAll()
+                .anyRequest().hasAnyRole("CUSTOMER", "AGENT")
                 .and()
                 .formLogin()
                 .and()
-                .logout().permitAll().logoutSuccessUrl("/home")
-                .and()
-                .exceptionHandling()
-                .accessDeniedPage("/accessDenied");
+                .logout().permitAll().logoutSuccessUrl("/home");
         http.csrf().disable();
     }
 }

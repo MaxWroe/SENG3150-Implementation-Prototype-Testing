@@ -286,11 +286,10 @@ CREATE TABLE `HolidayPackages`(
                                   `Destination` char(3) NOT NULL,
                                   `countryCode3` varchar(80) NOT NULL,
                                   `countryName` varchar(80) NOT NULL DEFAULT '',
-                                  `AirlineCode` char(2) NOT NULL,
+                                  `type` int NOT NULL,
                                   PRIMARY KEY (`PackageID`),
                                   FOREIGN KEY (`Destination`) REFERENCES `Destinations` (`DestinationCode`),
-                                  FOREIGN KEY (`countryCode3`) REFERENCES `Country` (`countryCode3`),
-                                  FOREIGN KEY (`AirlineCode`) REFERENCES `Airlines` (`AirlineCode`)
+                                  FOREIGN KEY (`countryCode3`) REFERENCES `Country` (`countryCode3`)
 
 )ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
