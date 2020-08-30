@@ -17,10 +17,9 @@ public class FlightPlanSearch {
 
     public FlightPlanSearch(){
         airports = new ArrayList<>();
-        setAirports();
     }
 
-    public FlightPlanSearch(LinkedList<String> parsedAirports){
+    public FlightPlanSearch(List<String> parsedAirports){
         airports = new ArrayList<>();
         setAirports(parsedAirports);
     }
@@ -45,19 +44,19 @@ public class FlightPlanSearch {
 
         if(filteredFlights.size()>0){
             for(int i=0; i<numberOfCycles; i++) {
-                System.out.println("running iteration of search" + i + ", starting time: " + inputTime.toString());
-                System.out.println("number of flights in the current iteration: " + filteredFlights.size());
+//                System.out.println("running iteration of search" + i + ", starting time: " + inputTime.toString());
+//                System.out.println("number of flights in the current iteration: " + filteredFlights.size());
 
                 DijkstraGraph graph = buildGraph(filteredFlights);
                 flightPlans.addAll(getKShortestPaths(graph, departureLocation, destination, inputTime, 10));
-                System.out.println("number of flights after yenns in current iteration: " + filteredFlights.size());
+//                System.out.println("number of flights after yenns in current iteration: " + filteredFlights.size());
 
 //                for(int j=0; j<filteredFlights.size(); j++){
 //                    System.out.println("flight: " + filteredFlights.get(j).toString());
 //                }
 
                 inputTime = new Timestamp(startingTime.getTime()+((endingTime.getTime() - startingTime.getTime())/numberOfCycles)*(i+1));
-                System.out.println("date for removal: " + inputTime);
+//                System.out.println("date for removal: " + inputTime);
                 for(int j=0; j<filteredFlights.size(); j++){
                     if(filteredFlights.get(j).getDepartureDate().before(inputTime)){
 //                        System.out.println("removing flight: " + filteredFlights.get(j).toString());
@@ -70,9 +69,9 @@ public class FlightPlanSearch {
         }
         System.out.println("number of flight plans produced by Yenns: " + flightPlans.size());
 
-        for(int j=0; j<flightPlans.size(); j++){
-            System.out.println("flight: " + flightPlans.get(j).toString());
-        }
+//        for(int j=0; j<flightPlans.size(); j++){
+//            System.out.println("flight: " + flightPlans.get(j).toString());
+//        }
 
         //sets availabilities
         if(flightPlans.size()>0) {
@@ -180,8 +179,9 @@ public class FlightPlanSearch {
             {
                 DijkstraNode adjacentNode = adjacencyPair.getKey();
                 Timestamp currentTime;
-                if(adjacentNode.getShortestPathFlights().size()>0){
-                    currentTime = adjacentNode.getShortestPathFlights().getLast().getArrivalDate();
+                int tempSPFSize = adjacentNode.getShortestPathFlights().size();
+                if(tempSPFSize>0){
+                    currentTime = adjacentNode.getShortestPathFlights().get(tempSPFSize-1).getArrivalDate();
                 }
                 else{
                     currentTime = startingTime;
@@ -216,11 +216,11 @@ public class FlightPlanSearch {
         long sourceDistance = sourceNode.getDistance();
         if (sourceDistance + edgeWeight < evaluationNode.getDistance()) {
             evaluationNode.setDistance(sourceDistance + edgeWeight);
-            LinkedList<DijkstraNode> shortestPath = new LinkedList<>(sourceNode.getShortestPath());
+            List<DijkstraNode> shortestPath = new LinkedList<>(sourceNode.getShortestPath());
             shortestPath.add(sourceNode);
             evaluationNode.setShortestPath(shortestPath);
 
-            LinkedList<Flight> shortestPathFlights = new LinkedList<>(sourceNode.getShortestPathFlights());
+            List<Flight> shortestPathFlights = new LinkedList<>(sourceNode.getShortestPathFlights());
             shortestPathFlights.add(currentEdge);
 //            if(sourceNode.getAdjacentNodesFlightShortest().get(evaluationNode) != null && sourceNode.getAdjacentNodesFlightShortest().get(evaluationNode).getDepartureDate().after(startingTime)) {
 //                shortestPathFlights.add(sourceNode.getAdjacentNodesFlightShortest().get(evaluationNode));
@@ -232,6 +232,7 @@ public class FlightPlanSearch {
     public List<FlightPlan> getKShortestPaths(DijkstraGraph graph, String departureLocation, String arrivalLocation,Timestamp startingTime , int k){
         ArrayList<FlightPlan> kShortestPaths = new ArrayList<FlightPlan>();
         PriorityQueue<FlightPlan> candidates = new PriorityQueue<>();
+        List<String> currentEdgeDepartures;
 
         try{
 
@@ -248,10 +249,11 @@ public class FlightPlanSearch {
                     kShortestPaths.remove(i-1);
                     break;
                 }
-                System.out.println(previousPath.toString());
+//                System.out.println(previousPath.toString());
 
                 for(int j = 0; j<previousPath.getNumberOfFlights(); j++) {
 
+                    //the string is the mapping of flights where the string is the departure location of the flights
                     Map<String, List<Flight>> removedEdges = new HashMap<>();
 
                     String spurNode = previousPath.getFlights().get(j).getDepartureCode();
@@ -266,16 +268,32 @@ public class FlightPlanSearch {
                             rootEdge.add(p.getFlights().get(j));
                             List<Flight> currentList = graph.removeEdge(rootEdge.get(0).getDepartureCode(), rootEdge.get(0).getDestination());
 
-                            if(currentList!=null && removedEdges.containsKey(rootEdge.get(0))) {
-                                rootEdge.remove(0);
-                                List<Flight> tempList = new LinkedList<Flight>();
-                                tempList.addAll(currentList);
-                                tempList.addAll(removedEdges.get(rootEdge.get(0).getDepartureCode()));
-                                removedEdges.put(rootEdge.get(0).getDepartureCode(), tempList);
+                            if(currentList!=null){
+                                if(removedEdges.containsKey(rootEdge.get(0).getDepartureCode())) {
+                                    List<Flight> tempList = new LinkedList<Flight>();
+                                    tempList.addAll(currentList);
+                                    tempList.addAll(removedEdges.get(rootEdge.get(0).getDepartureCode()));
+                                    removedEdges.put(rootEdge.get(0).getDepartureCode(), tempList);
+                                    rootEdge.remove(0);
+                                }
+                                else{
+                                    removedEdges.put(rootEdge.get(0).getDepartureCode(), currentList);
+                                    rootEdge.remove(0);
+                                    }
                             }
                             else{
                                 removedEdges.put(rootEdge.get(0).getDepartureCode(), rootEdge);
+                                rootEdge.remove(0);
                             }
+                            //add to removed edges here
+//                            currentEdgeDepartures = new LinkedList<>(removedEdges.keySet());
+//                            for (String currentKey : currentEdgeDepartures){
+//                                for(Flight currentFlight : removedEdges.get(currentKey)){
+//                                    System.out.println("this class is a flight at line 293");
+//                                }
+//                            }
+
+
                         }
                     }
 
@@ -283,23 +301,39 @@ public class FlightPlanSearch {
                     for (Flight rootEdgePath : rootPath.getFlights()) {
                         String rootNode = rootEdgePath.getDepartureCode();
                         if (!rootNode.equals(spurNode)) {
-                            Map<String, List<Flight>> edgesToAndFromNode = new HashMap<>();
-                            edgesToAndFromNode.putAll(graph.removeNode(rootNode));
+                            Map<String, List<Flight>> edgesToAndFromNode; // = new HashMap<String, List<Flight>>();
+                            edgesToAndFromNode = graph.removeNode(rootNode);
                             List<String> keys = new LinkedList<>(edgesToAndFromNode.keySet());
                             for(String currentKey : keys){
 
                                 if(removedEdges.containsKey(currentKey)){
                                     List<Flight> tempList = new LinkedList<Flight>();
                                     tempList.addAll(edgesToAndFromNode.get(currentKey));
-                                    tempList.addAll(removedEdges.get(edgesToAndFromNode.get(currentKey).get(0).getDepartureCode()));
-                                    removedEdges.put(edgesToAndFromNode.get(currentKey).get(0).getDepartureCode(), tempList);
+                                    tempList.addAll(removedEdges.get(currentKey));
+                                    removedEdges.put(currentKey, tempList);
+//                                    for(Flight currentFlight : removedEdges.get(currentKey)){
+//                                        System.out.println("this class is a flight at line 316");
+//                                    }
                                 }
                                 else{
                                     removedEdges.put(currentKey, edgesToAndFromNode.get(currentKey));
+//                                    for(Flight currentFlight : removedEdges.get(currentKey)){
+//                                        System.out.println("this class is a flight at line 322");
+//                                    }
                                 }
-                            }
 
+
+
+                            }
                         }
+                            //add to removed edges here
+//                            currentEdgeDepartures = new LinkedList<>(removedEdges.keySet());
+//                            for (String currentKey : currentEdgeDepartures){
+//                                for(Flight currentFlight : removedEdges.get(currentKey)){
+//                                    System.out.println("this class is a flight");
+//                                }
+//                            }
+
                     }
 
                     graph.resetShortestPaths();
@@ -352,7 +386,7 @@ public class FlightPlanSearch {
 
     private List<FlightPlan> removeDuplicateFlightPlans(List<FlightPlan> parsedFlightPlans){
 //        System.out.println("running removeDuplicateFlightPlans");
-        LinkedList<FlightPlan> uniqueFlightPlans = new LinkedList<FlightPlan>();
+        List<FlightPlan> uniqueFlightPlans = new LinkedList<FlightPlan>();
         boolean existsIn;
         for(int i=0; i<parsedFlightPlans.size(); i++){
 //            System.out.println("running loop iteration of parsedFlightPlans: " + i);
@@ -367,58 +401,19 @@ public class FlightPlanSearch {
             }
             if(existsIn==false){
                 uniqueFlightPlans.add(parsedFlightPlans.get(i));
-                System.out.println("new flight plan added to list: " + uniqueFlightPlans.getLast().toString());
+//                System.out.println("new flight plan added to list: " + uniqueFlightPlans.get(uniqueFlightPlans.size()-1).toString());
             }
         }
         return  uniqueFlightPlans;
     }
 
-    private void setAirports(LinkedList<String> parsedAirports){
+    private void setAirports(List<String> parsedAirports){
         for (int i=0; i<parsedAirports.size(); i++){
          airports.add(parsedAirports.get(i));
         }
     }
 
     //sets list of airports to this static list
-    private void setAirports(){
-        airports.add("ADL");
-        airports.add("AMS");
-        airports.add("ATL");
-        airports.add("BKK");
-        airports.add("BNE");
-        airports.add("CBR");
-        airports.add("CDG");
-        airports.add("CNS");
-        airports.add("DOH");
-        airports.add("DRW");
-        airports.add("DXB");
-        airports.add("FCO");
-        airports.add("GIG");
-        airports.add("HBA");
-        airports.add("HEL");
-        airports.add("HKG");
-        airports.add("HNL");
-        airports.add("JFK");
-        airports.add("JNB");
-        airports.add("KUL");
-        airports.add("LAX");
-        airports.add("LGA");
-        airports.add("LGW");
-        airports.add("LHR");
-        airports.add("MAD");
-        airports.add("MEL");
-        airports.add("MIA");
-        airports.add("MUC");
-        airports.add("NRT");
-        airports.add("OOL");
-        airports.add("ORD");
-        airports.add("ORY");
-        airports.add("PER");
-        airports.add("SFO");
-        airports.add("SIN");
-        airports.add("SYD");
-        airports.add("VIE");
-        airports.add("YYZ");
-    }
+
 
 }

@@ -53,47 +53,39 @@ public class DijkstraGraph {
         return null;
     }
 
-    public Map<String, List<Flight>> removeNode(String location) {
+    public Map<String, List<Flight>> removeNode(String locationToRemove) {
         Map<String, List<Flight>> removedEdges = new HashMap<>();
-        if (nodes.containsKey(location)) {
-            DijkstraNode node = nodes.remove(location);
-            removedEdges.put(location, new LinkedList(node.getAdjacentNodesFlights().values()));
-            removedEdges.putAll(removeEdgesToNode(location));
-        }
+        if (nodes.containsKey(locationToRemove)) {
+            DijkstraNode node = nodes.remove(locationToRemove);
+            removedEdges.put(locationToRemove, node.getAllFlightsFromNode());
 
-        return removedEdges;
-    }
-
-    public Map<String, List<Flight>> removeEdgesToNode(String location) {
-        Map<String, List<Flight>> removedEdges = new HashMap<>();
-        for (DijkstraNode node : nodes.values()) {
-            if (node.getAdjacentNodesFlights().containsKey(location)) {
-                removedEdges.put(node.getName(), node.removeEdge(location));
+            for(DijkstraNode currentNode : nodes.values()){
+                removedEdges.put(currentNode.getName(), currentNode.removeEdge(locationToRemove));
             }
         }
+
         return removedEdges;
     }
 
-    public void addEdge(Flight parsedFlight) {
-        nodes.get(parsedFlight.getDepartureCode()).addDestination(nodes.get(parsedFlight.getDestination()), parsedFlight);
+
+    public void addEdge(Flight parsedFlight, String departureLocation) {
+        if(!nodes.containsKey(departureLocation)){
+            nodes.put(departureLocation, new DijkstraNode(departureLocation));
+        }
+        nodes.get(departureLocation).addDestination(nodes.get(parsedFlight.getDestination()), parsedFlight);
+
     }
 
+    //string is the departure location of a flight
     public void addEdges(Map<String, List<Flight>> parsedEdges) {
-        System.out.println("creating class");
+//        System.out.println("creating class 2");
         List<String> keys = new LinkedList<>(parsedEdges.keySet());
         for (String currentKey : keys){
-            System.out.println("current key: " + currentKey);
-            System.out.println("Line with alleged error");
+
             List<Flight> tempFlightList = parsedEdges.get(currentKey);
-//            for(int j=0; j<parsedEdges.get(currentKey).size(); j++){
-//                tempFlightList.add(parsedEdges.get(currentKey).get(j));
-//            }
-//            tempFlightList.addAll(parsedEdges.get(currentKey));
-//            for(int i=0; i<tempFlightList.size(); i++){
-//                addEdge(tempFlightList.get(i));
-//            }
+
             for(Flight currentFlight : tempFlightList){
-                addEdge(currentFlight);
+                addEdge(currentFlight, currentKey);
             }
 
         }

@@ -14,9 +14,10 @@ and has actions to return and set information for htose edges
 public class DijkstraNode {
     private String name;
     private long distance = Long.MAX_VALUE;
+    //the hash map links destinations to the flights coming from this node to the destination
     private Map<DijkstraNode, List<Flight>> adjacentNodesFlights = new HashMap<>();
-    private LinkedList<Flight> shortestPathFlights = new LinkedList<>();
-    private LinkedList<DijkstraNode> shortestPath = new LinkedList<>();
+    private List<Flight> shortestPathFlights = new LinkedList<>();
+    private List<DijkstraNode> shortestPath = new LinkedList<>();
 //    private Map<DijkstraNode, Flight> adjacentNodesFlightShortest = new HashMap<>();
 
     public DijkstraNode(String Name){
@@ -31,7 +32,7 @@ public class DijkstraNode {
     //adds sent in flight to connect to sent in node
     public void addDestination(DijkstraNode destination, Flight flight){
         if(!adjacentNodesFlights.containsKey(destination)){
-            ArrayList<Flight> tempList = new ArrayList<>();
+            List<Flight> tempList = new LinkedList<>();
             tempList.add(flight);
             adjacentNodesFlights.put(destination, tempList);
         }
@@ -146,19 +147,19 @@ public class DijkstraNode {
         this.adjacentNodesFlights = adjacentNodesFlights;
     }
 
-    public LinkedList<DijkstraNode> getShortestPath() {
+    public List<DijkstraNode> getShortestPath() {
         return shortestPath;
     }
 
-    public void setShortestPath(LinkedList<DijkstraNode> shortestPath) {
+    public void setShortestPath(List<DijkstraNode> shortestPath) {
         this.shortestPath = shortestPath;
     }
 
-    public LinkedList<Flight> getShortestPathFlights() {
+    public List<Flight> getShortestPathFlights() {
         return shortestPathFlights;
     }
 
-    public void setShortestPathFlights(LinkedList<Flight> shortestPathFlights) {
+    public void setShortestPathFlights(List<Flight> shortestPathFlights) {
         this.shortestPathFlights = shortestPathFlights;
     }
 
@@ -182,6 +183,16 @@ public class DijkstraNode {
 
     public void setDistance(long distance) {
         this.distance = distance;
+    }
+
+    public List<Flight> getAllFlightsFromNode(){
+        List<Flight> flights = new LinkedList<>();
+        for(List<Flight> adjacentFlightsList : adjacentNodesFlights.values()){
+            for (Flight currentFlight : adjacentFlightsList){
+                flights.add(currentFlight);
+            }
+        }
+        return flights;
     }
 
 }
