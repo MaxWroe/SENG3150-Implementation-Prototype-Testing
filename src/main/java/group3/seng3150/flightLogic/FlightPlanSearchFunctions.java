@@ -4,7 +4,9 @@ import group3.seng3150.FlightPlan;
 import group3.seng3150.entities.Airport;
 import group3.seng3150.entities.Availability;
 import group3.seng3150.entities.Flight;
+import group3.seng3150.entities.Price;
 
+import javax.persistence.EntityManager;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -79,16 +81,27 @@ public class FlightPlanSearchFunctions {
         return  uniqueFlightPlans;
     }
 
-    public List<FlightPlan> SetFlightPlansAvailabilities(List<FlightPlan> flightPlans, List<Availability> availabilities){
+    public List<FlightPlan> setFlightPlansAvailabilities(List<FlightPlan> flightPlans, List<Availability> availabilities){
         List<FlightPlan> flightPlanList = flightPlans;
         if(availabilities.size()>0) {
             for (int i = 0; i < flightPlanList.size(); i++) {
-
                 flightPlanList.get(i).setAvailabilitiesFiltered(availabilities);
-//                System.out.println("Ran loop of setFlightPlanAvailabilities: " + i);
             }
         }
         return flightPlanList;
+    }
+
+    public List<FlightPlan> setPrices(List<FlightPlan> flightPlans, EntityManager em){
+        List<Price> currentPrices;
+        FlightPlanSearchSQL sqlSearcher = new FlightPlanSearchSQL();
+        for(int i=0; i<flightPlans.size(); i++){
+            currentPrices = new LinkedList<>();
+            for(int j=0; j<flightPlans.get(i).getAvailabilities().size(); j++){
+                currentPrices.add(sqlSearcher.retrievePrice(flightPlans.get(i).getAvailabilities().get(j), em));
+            }
+            flightPlans.get(i).setPrices(currentPrices);
+        }
+        return flightPlans;
     }
 
     public String getFlightNumbersSQLField(List<Flight> flights){

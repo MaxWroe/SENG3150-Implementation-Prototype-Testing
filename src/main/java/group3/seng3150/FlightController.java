@@ -65,9 +65,7 @@ public class FlightController{
 
         }
 
-        flightPlans.setAllPrices(em);
         System.out.println("number of flight plans Departing: " + flightPlans.getFlightPlansDepartingSize());
-
         for(int i=0; i<flightPlans.getFlightPlansDepartingSize(); i++){
             System.out.println(flightPlans.getFlightPlansDeparting().get(i).toString());
         }

@@ -1,13 +1,10 @@
 package group3.seng3150;
 
-import group3.seng3150.flightLogic.PriceFinder;
 import group3.seng3150.entities.Availability;
 import group3.seng3150.entities.Flight;
 import group3.seng3150.entities.Price;
 
-import javax.persistence.EntityManager;
 import java.sql.Timestamp;
-import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -58,7 +55,7 @@ public class FlightPlan implements Comparable<FlightPlan>, Cloneable{
     public void setAvailabilitiesFiltered(List<Availability> parsedAvailabilities){
         for(int i=0; i<flights.size(); i++){
             for(int j=0; j<parsedAvailabilities.size();j++) {
-                if(flights.get(i).getFlightNumber().equals(parsedAvailabilities.get(j).getFlightNumber())){
+                if(flights.get(i).getFlightNumber().equals(parsedAvailabilities.get(j).getFlightNumber()) && flights.get(i).getDepartureDate().equals(parsedAvailabilities.get(j).getDepartureDate()) && flights.get(i).getAirlineCode().equals(parsedAvailabilities.get(j).getAirlineCode()) ){
                     availabilities.add(parsedAvailabilities.get(j));
                 }
             }
@@ -66,21 +63,10 @@ public class FlightPlan implements Comparable<FlightPlan>, Cloneable{
 //        System.out.println(availabilities.size());
     }
 
-    //sets prices to those corresponding to stored availabilities
-    public void setPrices(EntityManager em){
-        PriceFinder priceFinder = new PriceFinder(em);
-        for(int i=0; i<availabilities.size(); i++){
-            List<Price> tempList = priceFinder.getPrice(0,availabilities.get(i));
-            for (int j=0; j<tempList.size(); j++){
-                prices.add(tempList.get(j));
-            }
-        }
-    }
-
     //returns a price based on a specific availability
     public double getPriceFromAvailability(Availability availability){
         for(int i=0; i<prices.size(); i++){
-            if (prices.get(i).getFlightNumber().equals(availability.getFlightNumber())  && prices.get(i).getClassCode().equals(availability.getClassCode())){
+            if (prices.get(i).getFlightNumber().equals(availability.getFlightNumber()) && prices.get(i).getClassCode().equals(availability.getClassCode()) && flights.get(i).getDepartureDate().after(availabilities.get(i).getDepartureDate())){
                 return prices.get(i).getPrice();
             }
         }
@@ -97,8 +83,9 @@ public class FlightPlan implements Comparable<FlightPlan>, Cloneable{
         for(int i=0; i<flights.size(); i++){
             tempInt = availabilities.size()-1;
             for(int j=0; j<availabilities.size();j++) {
-                if(flights.get(i).getFlightNumber().equals(availabilities.get(j).getFlightNumber()) && j<tempInt) {
+                if(flights.get(i).getFlightNumber().equals(availabilities.get(j).getFlightNumber()) && flights.get(i).getAirlineCode().equals(availabilities.get(j).getAirlineCode()) && flights.get(i).getDepartureDate().after(availabilities.get(j).getDepartureDate())) {
                     tempInt = j;
+                    break;
                 }
             }
             out += getPriceFromAvailability(availabilities.get(tempInt));
@@ -187,6 +174,14 @@ public class FlightPlan implements Comparable<FlightPlan>, Cloneable{
 
     public int getNumberOfFlights(){
         return flights.size();
+    }
+
+    public List<Price> getPrices() {
+        return prices;
+    }
+
+    public void setPrices(List<Price> prices) {
+        this.prices = prices;
     }
 
     public FlightPlan clone(){

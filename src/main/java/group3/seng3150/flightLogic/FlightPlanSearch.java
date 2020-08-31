@@ -32,12 +32,14 @@ public class FlightPlanSearch {
     private FlightPlanSearchFunctions searchFunctions;
     private DijkstraAlgorithmFPS dijkstraSearch;
     private YensAlgorithmFPS yensSearch;
+    private FlightPlanSearchSQL sqlSearch;
 
     public FlightPlanSearch(){
         airports = new ArrayList<>();
         searchFunctions = new FlightPlanSearchFunctions();
         dijkstraSearch = new DijkstraAlgorithmFPS();
         yensSearch = new YensAlgorithmFPS();
+        sqlSearch = new FlightPlanSearchSQL();
     }
 
     public FlightPlanSearch(EntityManager em){
@@ -46,6 +48,7 @@ public class FlightPlanSearch {
         searchFunctions = new FlightPlanSearchFunctions();
         dijkstraSearch = new DijkstraAlgorithmFPS();
         yensSearch = new YensAlgorithmFPS();
+        sqlSearch = new FlightPlanSearchSQL();
     }
 
     //finds and returns a list of flight plans from sent in flights that match the criteria
@@ -60,19 +63,52 @@ public class FlightPlanSearch {
             timeEnd.setTime(timeEnd.getTime() + (24*60*60*1000)*departureDateRange);
         }
 
-        List<Flight> flights = retrieveFlights(timeStart,timeEnd,em);
+        List<Flight> flights = sqlSearch.retrieveFlights(timeStart, timeEnd, em);
         String flightNumbersString = searchFunctions.getFlightNumbersSQLField(flights);
 
-        List<Availability> availabilities = retrieveAvailabilities(timeStart, timeEnd, numberOfPeople, classCode,flightNumbersString ,em);
-        flights = searchFunctions.filterByAvailabilities(flights, availabilities);
+        List<Availability> availabilities = sqlSearch.retrieveAvailabilities(timeStart, timeEnd, numberOfPeople, classCode, flightNumbersString, em);
+        if(availabilities.size()>0) {
+            flights = searchFunctions.filterByAvailabilities(flights, availabilities);
 
-        flightPlans = buildFlightPlansYens(flights, departureLocation, destination, timeStart, timeEnd);
-        flightPlans = searchFunctions.SetFlightPlansAvailabilities(flightPlans, availabilities);
+            flightPlans = buildFlightPlansYens(flights, departureLocation, destination, timeStart, timeEnd);
+            flightPlans = searchFunctions.setFlightPlansAvailabilities(flightPlans, availabilities);
+            flightPlans = searchFunctions.setPrices(flightPlans, em);
+        }
 
         return flightPlans;
     }
 
+    public FlightPlan getSingleFlightPlan(String departureLocation, String destination, String departureDate, String classCode, int departureDateRange,  int numberOfPeople, EntityManager em){
+        FlightPlan flightPlan = null;
 
+        String timeStartString = departureDate + " 00:00:01";
+        String timeEndString = departureDate + " 23:59:59";
+        Timestamp timeStart = Timestamp.valueOf(timeStartString);
+        Timestamp timeEnd = Timestamp.valueOf(timeEndString);
+
+        if(departureDateRange > 0){
+            timeEnd.setTime(timeEnd.getTime() + (24*60*60*1000)*departureDateRange);
+        }
+
+        List<Flight> flights = sqlSearch.retrieveFlights(timeStart, timeEnd, em);
+        String flightNumbersString = searchFunctions.getFlightNumbersSQLField(flights);
+
+        List<Availability> availabilities = sqlSearch.retrieveAvailabilities(timeStart, timeEnd, numberOfPeople, classCode, flightNumbersString, em);
+        if(availabilities.size()>0) {
+            flights = searchFunctions.filterByAvailabilities(flights, availabilities);
+
+            flightPlan = dijkstraSearch.getShortestPathDuration(searchFunctions.buildGraph(flights, airports), departureLocation, destination, timeStart);
+            flightPlan.setAvailabilitiesFiltered(availabilities);
+
+            List<Price> currentPrices = new LinkedList<>();
+            for(int j=0; j<flightPlan.getAvailabilities().size(); j++){
+                currentPrices.add(sqlSearch.retrievePrice(flightPlan.getAvailabilities().get(j), em));
+            }
+            flightPlan.setPrices(currentPrices);
+        }
+
+        return flightPlan;
+    }
 
     private List<FlightPlan> buildFlightPlansYens(List<Flight> flights, String departureLocation, String destination, Timestamp startingTime, Timestamp endingTime) {
         List<FlightPlan> flightPlans = new LinkedList<>();
@@ -105,33 +141,17 @@ public class FlightPlanSearch {
         return flightPlans;
     }
 
-    private List<Flight> retrieveFlights(Timestamp StartTime, Timestamp endTime, EntityManager em){
-        List<Flight> flights = new LinkedList<>();
-        flights = em.createQuery( "SELECT f FROM Flight f WHERE f.departureDate>='" + StartTime + "'" +
-                " AND f.departureDate<='" + endTime + "'", Flight.class).getResultList();
-        return flights;
-    }
-
-    private List<Availability> retrieveAvailabilities(Timestamp StartTime, Timestamp endTime, int numberOfPeople, String classCode, String flightNumbers, EntityManager em){
-        List<Availability> availabilities = new LinkedList<>();
-        availabilities = em.createQuery("SELECT a FROM Availability a WHERE a.flightNumber IN " + flightNumbers +
-                " AND a.departureDate>='" + StartTime + "'" +
-                " AND a.departureDate<='" + endTime + "'" +
-                " AND a.numberAvailableSeatsLeg1>=" + numberOfPeople +
-                " AND (a.numberAvailableSeatsLeg2>=" + numberOfPeople + " OR a.numberAvailableSeatsLeg2='null')" +
-                " AND a.classCode='" + classCode + "'", Availability.class).getResultList();
-        return availabilities;
-    }
-
-    private void setAirports(EntityManager em){
-        List<Airport> airportsRetrieved = em.createQuery("SELECT a FROM Airport a", Airport.class).getResultList();
-        for(int i=0; i<airports.size(); i++){
+    private void setAirports(EntityManager em) {
+        List<Airport> airportsRetrieved = sqlSearch.retrieveAirports(em);
+        for (int i = 0; i < airports.size(); i++) {
             airports.add(airportsRetrieved.get(i).getDestinationCode());
         }
-
     }
 
-    //method that sets availabilities of a sent in flight plans
+
+
+
+
 
 
 

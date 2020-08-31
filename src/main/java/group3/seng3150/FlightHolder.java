@@ -17,7 +17,6 @@ public class FlightHolder {
     private FlightsSort sorter;
     private List<FlightPlan> flightPlansDeparting;
     private List<FlightPlan> flightPlansReturning;
-    private List<Availability> availabilities;
 
     public FlightHolder(){
         sorter = new FlightsSort();
@@ -77,19 +76,7 @@ public class FlightHolder {
         }
     }
 
-    //gives flight plans the entity manager and sets prices for those flight plans based on their availabilities
-    public void setAllPrices(EntityManager em){
-        for(int i=0; i<flightPlansDeparting.size(); i++){
-            if(flightPlansDeparting.get(i)!=null) {
-                flightPlansDeparting.get(i).setPrices(em);
-            }
-        }
-        for(int i=0; i<flightPlansReturning.size(); i++){
-            if(flightPlansReturning.get(i)!=null) {
-                flightPlansReturning.get(i).setPrices(em);
-            }
-        }
-    }
+
 
     public int getFlightPlansDepartingSize(){
         return flightPlansDeparting.size();
