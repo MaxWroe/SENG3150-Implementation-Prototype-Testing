@@ -28,7 +28,7 @@ private void setAirports(List<String> parsedAirports)
  */
 
 public class FlightPlanSearch {
-    private ArrayList<String> airports;
+    private ArrayList<Airport> airports;
     private FlightPlanSearchFunctions searchFunctions;
     private DijkstraAlgorithmFPS dijkstraSearch;
     private YensAlgorithmFPS yensSearch;
@@ -43,12 +43,12 @@ public class FlightPlanSearch {
     }
 
     public FlightPlanSearch(EntityManager em){
-        airports = new ArrayList<>();
-        setAirports(em);
         searchFunctions = new FlightPlanSearchFunctions();
         dijkstraSearch = new DijkstraAlgorithmFPS();
         yensSearch = new YensAlgorithmFPS();
         sqlSearch = new FlightPlanSearchSQL();
+        airports = new ArrayList<>();
+        setAirports(em);
     }
 
     //finds and returns a list of flight plans from sent in flights that match the criteria
@@ -77,6 +77,7 @@ public class FlightPlanSearch {
 
         return flightPlans;
     }
+
 
     public FlightPlan getSingleFlightPlan(String departureLocation, String destination, String departureDate, String classCode, int departureDateRange,  int numberOfPeople, EntityManager em){
         FlightPlan flightPlan = null;
@@ -142,18 +143,9 @@ public class FlightPlanSearch {
     }
 
     private void setAirports(EntityManager em) {
-        List<Airport> airportsRetrieved = sqlSearch.retrieveAirports(em);
-        for (int i = 0; i < airports.size(); i++) {
-            airports.add(airportsRetrieved.get(i).getDestinationCode());
+        List<Airport> retrievedAirports = sqlSearch.retrieveAirports(em);
+        if(retrievedAirports!= null && retrievedAirports.size()>0){
+            airports.addAll(retrievedAirports);
         }
     }
-
-
-
-
-
-
-
-
-
 }

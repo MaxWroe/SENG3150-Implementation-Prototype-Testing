@@ -36,14 +36,16 @@ public class FlightPlanSearchFunctions {
         return filteredFlights;
     }
 
-    public DijkstraGraph buildGraph(List<Flight> flights, List<String> airports){
+    public DijkstraGraph buildGraph(List<Flight> flights, List<Airport> airports){
         ArrayList<DijkstraNode> airportFlightNodes = new ArrayList<>();
+        ArrayList<String> airportsString = new ArrayList<>();
         DijkstraGraph flightsGraph = new DijkstraGraph();
         for(int i=0; i<airports.size(); i++){
-            airportFlightNodes.add(new DijkstraNode(airports.get(i)));
+            airportFlightNodes.add(new DijkstraNode(airports.get(i).getDestinationCode()));
+            airportsString.add(airports.get(i).getDestinationCode());
         }
         for(int i=0; i<flights.size(); i++){
-            airportFlightNodes.get(airports.indexOf(flights.get(i).getDepartureCode())).addDestination(airportFlightNodes.get(airports.indexOf(flights.get(i).getDestination())), flights.get(i));
+            airportFlightNodes.get(airportsString.indexOf(flights.get(i).getDepartureCode())).addDestination(airportFlightNodes.get(airportsString.indexOf(flights.get(i).getDestination())), flights.get(i));
         }
 
         for(int i=0; i<airportFlightNodes.size(); i++){
@@ -51,12 +53,6 @@ public class FlightPlanSearchFunctions {
         }
         return flightsGraph;
     }
-
-
-    //returns a flight plan that matches sent in criteria, if non exist returns an empty flight plan
-
-
-
 
     public List<FlightPlan> removeDuplicateFlightPlans(List<FlightPlan> parsedFlightPlans){
 //        System.out.println("running removeDuplicateFlightPlans");

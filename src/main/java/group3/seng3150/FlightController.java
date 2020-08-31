@@ -46,6 +46,7 @@ public class FlightController{
         //dates need to be strictly of '2015-09-24 09:50:00' format
         ModelAndView view = new ModelAndView("search");
 
+
         FlightPlanSearch searcher = new FlightPlanSearch(em);
         int numberPeople = adults + children;
 
@@ -62,7 +63,6 @@ public class FlightController{
             List<FlightPlan> returnFlightPlans = searcher.searchFlightPlans(arrivalLocation, departureLocation, departureDate, classCode, returnDateRange, numberPeople, em);
             flightPlans.setFlightPlansReturning(returnFlightPlans);
             flightPlans.sortFlightPlansReturning("timeascending");
-
         }
 
         System.out.println("number of flight plans Departing: " + flightPlans.getFlightPlansDepartingSize());
