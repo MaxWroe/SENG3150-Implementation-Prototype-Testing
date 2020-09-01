@@ -86,7 +86,7 @@
             <label for="departure-range">Search within date range for departure</label>
             <div id="departure-range-div" style="display:none">
                 <p style="display: inline">Get departing flights from </p>
-                <input type="number" id="departureDateRange" name="departureDateRange" min="1" max="7" disabled>
+                <input type="number" id="departureDateRange" name="departureDateRange" min="1" max="7">
                 <p style="display: inline">days ahead</p>
             </div>
 
@@ -94,7 +94,7 @@
             <label for="return-range">Search within date range for return</label>
             <div id="return-range-div" style="display:none">
                 <p style="display: inline">Get departing flights </p>
-                <input type="number" id="returnDateRange" name="returnDateRange" min="1" max="7" disabled>
+                <input type="number" id="returnDateRange" name="returnDateRange" min="1" max="7">
                 <p style="display: inline">days ahead</p>
             </div>
         </div>
@@ -112,19 +112,23 @@
                 var Difference_In_Time = returnDate.getTime() - departureDate.getTime();
                 var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
 
+                $dateRangeInput = $("#departureDateRange");
                 if(Difference_In_Days < 7)
                 {
+                    // if so reset departure date range
+                    $dateRangeInput.val("");
                     if (Difference_In_Days === 1)
                     {
-                        $("#departureDateRange").attr("min", 0);
-                        $("#departureDateRange").attr("max", 0);
+                        $dateRangeInput.prop("disabled", true);
                     }
                     else {
-                        $("#departureDateRange").attr("max", Difference_In_Days);
+                        $dateRangeInput.attr("max", (Difference_In_Days-1));
+                        $dateRangeInput.prop("disabled", false);
                     }
                 }
                 else {
-                    $("#departureDateRange").attr("max", 7);
+                    $dateRangeInput.attr("max", 7);
+                    $dateRangeInput.prop("disabled", false);
                 }
             }
 
@@ -132,11 +136,6 @@
                 $dateRangeInput = $("#departureDateRange");
                 // restrict selectable dates for range, make date range input required
                 restrict_departure_range();
-                // only if initial departure date selected enable range date
-                if ($("#departureDate").val() !== "")
-                {
-                    $dateRangeInput.prop( "disabled", false );
-                }
                 // change visibility of departure date range div
                 $("#departure-range-div").toggle(this.checked);
                 // make departure date range input required if option selected
@@ -154,20 +153,12 @@
                 if($('#departure-range').prop("checked"))
                 {
                     $dateRangeInput = $("#departureDateRange");
-                    // if so reset departure date range
-                    $dateRangeInput.val("");
-                    $dateRangeInput.prop( "disabled", false );
                     restrict_departure_range();
                 }
             });
 
             $('#return-range').click(function() {
                 $dateRangeInput = $("#returnDateRange");
-                // only if initial departure date selected enable range date
-                if ($("#returnDate").val() !== "")
-                {
-                    $dateRangeInput.prop( "disabled", false );
-                }
                 // change visibility of departure date range div
                 $("#return-range-div").toggle(this.checked);
                 // make departure date range input required if option selected
@@ -182,19 +173,6 @@
             // if return date is selected or changed
             $('#returnDate').change(function () {
                 if($('#departure-range').prop("checked")) {
-                    $dateRangeInput = $("#departureDateRange");
-                    // if so reset departure date range
-                    $dateRangeInput.val("");
-                    $dateRangeInput.prop( "disabled", false );
-                    restrict_departure_range();
-                }
-                // check if departure range option is selected
-                if($('#return-range').prop("checked"))
-                {
-                    $dateRangeInput = $("#returnDateRange");
-                    // if so reset departure date range
-                    $dateRangeInput.val("");
-                    $dateRangeInput.prop( "disabled", false );
                     restrict_departure_range();
                 }
             });

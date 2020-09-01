@@ -148,9 +148,77 @@
             <label for="stop2">2</label>
             <input type="checkbox" id="stop2" name="stopsFilter" value="2">
             <p>Airlines</p>
-            <label for="airline">Airline x</label>
-            <input type="checkbox" id="airline" name="airlineFilter" value="test">
+            <div id="airlineFilterDiv">
+            </div>
         </div>
+        <script>
+            // array of airlines and their id
+            let airlines = [
+                ['AA','American Airlines'],
+                ['AC','Air Canada'],
+                ['AF','Air France'],
+                ['AI','Air India'],
+                ['AM','Air Mexico'],
+                ['AR','Aerolineas Argentinas'],
+                ['AY','Finnair'],
+                ['BA','British Airways'],
+                ['CA','Air China'],
+                ['CI','China Airlines'],
+                ['CO','Continental Airlines'],
+                ['CX','Cathay Pacific Airways'],
+                ['DJ','Virgin Blue'],
+                ['DL','Delta Air Lines'],
+                ['EI','Aer Lingus'],
+                ['EK','Qatar Airways'],
+                ['IB','Iberia'],
+                ['JL','Japan Airlines'],
+                ['JQ','Jetstar Airlines'],
+                ['KE','Korean Airlines'],
+                ['KL','KLM-Royal Dutch Airlines'],
+                ['LH','Lufthansa'],
+                ['LY','El Al Israel Airlines'],
+                ['MH','Malaysia Airlines'],
+                ['MS','Egyptair'],
+                ['MX','Mexicana de Aviacion'],
+                ['NA','North American Airlines'],
+                ['NW','Northwest Airlines'],
+                ['NZ','Air New Zealand'],
+                ['OS','Austrian Airlines'],
+                ['PR','Philippine Airlines'],
+                ['QF','Qantas Airways'],
+                ['QR','Emirates Airlines'],
+                ['RJ','Royal Jordanian'],
+                ['SA','South African'],
+                ['SK','SAS-Scandinavian Airlines'],
+                ['SQ','Singapore Airlines'],
+                ['SU','Aeroflot'],
+                ['TG','Thai Airways'],
+                ['TK','Turkish Airlines'],
+                ['TW','Trans World Airlines'],
+                ['UA','United Airlines'],
+                ['VH','Aeropostal Alas de Venezuela'],
+                ['VS','Virgin Atlantic Airways']
+            ];
+            // array of all airlines returned from search
+            let returnedAirlines = $(".flight-list li").map(function() {
+                return $(this).data("airline");
+            }).get();
+            // don't display airlines not in search in side filters
+            for (let i = airlines.length - 1; i >= 0; i--) {
+                if(!returnedAirlines.includes(airlines[i][0]))
+                {
+                    airlines.splice(i, 1);
+                    console.log(airlines);
+                }
+            }
+            // create airline filter inputs
+            for (let i = 0; i < airlines.length; i++) {
+                let label = "<label for=\""+airlines[i][0]+"\">"+airlines[i][1]+"</label>";
+                let input = "<input type=\"checkbox\" id=\""+airlines[i][0]+"\" value=\""+airlines[i][0]+"\" name=\"airlineFilter\">";
+                $("#airlineFilterDiv").append(label);
+                $("#airlineFilterDiv").append(input);
+            }
+        </script>
         <script>
             var $select = $("#search-sidebar input:checkbox");
             $select.change(function () {
