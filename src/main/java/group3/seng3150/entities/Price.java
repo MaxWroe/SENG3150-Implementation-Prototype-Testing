@@ -11,6 +11,7 @@ import java.sql.Date;
 import java.sql.Timestamp;
 
 @Entity
+@IdClass(PriceID.class)
 @Table(name = "Price")
 public class Price {
 

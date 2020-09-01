@@ -9,6 +9,7 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
+@IdClass(AvailabilityID.class)
 @Table(name = "Availability")
 public class Availability {
 
