@@ -6,19 +6,19 @@ import java.util.Objects;
 
 public class AvailabilityID implements Serializable {
 
-    private String flightNumber;
     private String airlineCode;
-    private Timestamp departureDate;
-    private String departureCode;
+    private String flightNumber;
+    private Timestamp classCode;
+    private String ticketCode;
 
     public AvailabilityID() {
     }
 
-    public AvailabilityID(String flightNumber, String airlineCode, Timestamp departureDate, String departureCode) {
-        this.flightNumber = flightNumber;
+    public AvailabilityID(String airlineCode, String flightNumber, Timestamp classCode, String ticketCode) {
         this.airlineCode = airlineCode;
-        this.departureDate = departureDate;
-        this.departureCode = departureCode;
+        this.flightNumber = flightNumber;
+        this.classCode = classCode;
+        this.ticketCode = ticketCode;
     }
 
     @Override
@@ -26,14 +26,14 @@ public class AvailabilityID implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         AvailabilityID that = (AvailabilityID) o;
-        return Objects.equals(flightNumber, that.flightNumber) &&
-                Objects.equals(airlineCode, that.airlineCode) &&
-                Objects.equals(departureDate, that.departureDate) &&
-                Objects.equals(departureCode, that.departureCode);
+        return Objects.equals(airlineCode, that.airlineCode) &&
+                Objects.equals(flightNumber, that.flightNumber) &&
+                Objects.equals(classCode, that.classCode) &&
+                Objects.equals(ticketCode, that.ticketCode);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(flightNumber, airlineCode, departureDate, departureCode);
+        return Objects.hash(airlineCode, flightNumber, classCode, ticketCode);
     }
 }
