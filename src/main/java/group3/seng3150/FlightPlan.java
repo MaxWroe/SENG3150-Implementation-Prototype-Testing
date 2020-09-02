@@ -66,7 +66,7 @@ public class FlightPlan implements Comparable<FlightPlan>, Cloneable{
     //returns a price based on a specific availability
     public double getPriceFromAvailability(Availability availability){
         for(int i=0; i<prices.size(); i++){
-            if (prices.get(i).getFlightNumber().equals(availability.getFlightNumber()) && prices.get(i).getClassCode().equals(availability.getClassCode()) && flights.get(i).getDepartureDate().after(availabilities.get(i).getDepartureDate())){
+            if (prices.get(i).getFlightNumber().equals(availability.getFlightNumber()) && prices.get(i).getClassCode().equals(availability.getClassCode()) && prices.get(i).getEndDate().after(availability.getDepartureDate()) && prices.get(i).getStartDate().before(availability.getDepartureDate()) ){
                 return prices.get(i).getPrice();
             }
         }
@@ -83,7 +83,7 @@ public class FlightPlan implements Comparable<FlightPlan>, Cloneable{
         for(int i=0; i<flights.size(); i++){
             tempInt = availabilities.size()-1;
             for(int j=0; j<availabilities.size();j++) {
-                if(flights.get(i).getFlightNumber().equals(availabilities.get(j).getFlightNumber()) && flights.get(i).getAirlineCode().equals(availabilities.get(j).getAirlineCode()) && flights.get(i).getDepartureDate().after(availabilities.get(j).getDepartureDate())) {
+                if(flights.get(i).getFlightNumber().equals(availabilities.get(j).getFlightNumber()) && flights.get(i).getAirlineCode().equals(availabilities.get(j).getAirlineCode()) && flights.get(i).getDepartureDate().equals(availabilities.get(j).getDepartureDate())) {
                     tempInt = j;
                     break;
                 }
