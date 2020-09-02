@@ -53,7 +53,7 @@ public class RecommendationGenerator {
         c.add(Calendar.DAY_OF_MONTH, dayRange);
         String departureDate = sdf.format(c.getTime());
 
-
+        ap = "AMS";
 
 
         for (int i = 0; i < hp.size(); i++) {
@@ -65,10 +65,10 @@ public class RecommendationGenerator {
                 FlightPlan flight = fps.getSingleFlightPlan(ap, hp.get(i).getDestination(), departureDate, cc, dayRange, numPeople, em);
                 rec = new RecommendationPackage(hp.get(i), flight);
             } else rec = new RecommendationPackage(hp.get(i), null);
-
+            rp.add(rec);
         }
         System.out.println("");
-        return null;
+        return rp;
     }
 
     public List<Booking> getBookings(UserAccount user){

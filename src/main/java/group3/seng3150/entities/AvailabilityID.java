@@ -8,13 +8,13 @@ public class AvailabilityID implements Serializable {
 
     private String airlineCode;
     private String flightNumber;
-    private Timestamp classCode;
+    private String classCode;
     private String ticketCode;
 
     public AvailabilityID() {
     }
 
-    public AvailabilityID(String airlineCode, String flightNumber, Timestamp classCode, String ticketCode) {
+    public AvailabilityID(String airlineCode, String flightNumber, String classCode, String ticketCode) {
         this.airlineCode = airlineCode;
         this.flightNumber = flightNumber;
         this.classCode = classCode;

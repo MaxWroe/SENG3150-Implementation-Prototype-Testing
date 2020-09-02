@@ -11,14 +11,14 @@ public class PriceID implements Serializable {
 
     private String airlineCode;
     private String flightNumber;
-    private Timestamp classCode;
+    private String classCode;
     private String ticketCode;
 
 
     public PriceID() {
     }
 
-    public PriceID(String airlineCode, String flightNumber, Timestamp classCode, String ticketCode) {
+    public PriceID(String airlineCode, String flightNumber, String classCode, String ticketCode) {
         this.airlineCode = airlineCode;
         this.flightNumber = flightNumber;
         this.classCode = classCode;
