@@ -99,15 +99,16 @@ public class FlightPlanSearch {
             flights = searchFunctions.filterByAvailabilities(flights, availabilities);
 
             flightPlan = dijkstraSearch.getShortestPathDuration(searchFunctions.buildGraph(flights, airports), departureLocation, destination, timeStart);
-            flightPlan.setAvailabilitiesFiltered(availabilities);
+            if(flightPlan != null) {
+                flightPlan.setAvailabilitiesFiltered(availabilities);
 
-            List<Price> currentPrices = new LinkedList<>();
-            for(int j=0; j<flightPlan.getAvailabilities().size(); j++){
-                currentPrices.add(sqlSearch.retrievePrice(flightPlan.getAvailabilities().get(j), em));
+                List<Price> currentPrices = new LinkedList<>();
+                for (int j = 0; j < flightPlan.getAvailabilities().size(); j++) {
+                    currentPrices.add(sqlSearch.retrievePrice(flightPlan.getAvailabilities().get(j), em));
+                }
+                flightPlan.setPrices(currentPrices);
             }
-            flightPlan.setPrices(currentPrices);
         }
-
         return flightPlan;
     }
 
