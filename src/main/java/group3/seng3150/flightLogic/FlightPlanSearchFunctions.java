@@ -89,11 +89,15 @@ public class FlightPlanSearchFunctions {
 
     public List<FlightPlan> setPrices(List<FlightPlan> flightPlans, EntityManager em){
         List<Price> currentPrices;
+        Price currentPrice = new Price();
         FlightPlanSearchSQL sqlSearcher = new FlightPlanSearchSQL();
         for(int i=0; i<flightPlans.size(); i++){
             currentPrices = new LinkedList<>();
             for(int j=0; j<flightPlans.get(i).getAvailabilities().size(); j++){
-                currentPrices.add(sqlSearcher.retrievePrice(flightPlans.get(i).getAvailabilities().get(j), em));
+                currentPrice = sqlSearcher.retrievePrice(flightPlans.get(i).getAvailabilities().get(j), em);
+                if(currentPrice != null){
+                    currentPrices.add(currentPrice);
+                }
             }
             flightPlans.get(i).setPrices(currentPrices);
         }

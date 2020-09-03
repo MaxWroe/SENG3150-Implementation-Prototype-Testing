@@ -38,13 +38,16 @@ public class FlightPlanSearchSQL {
         String tc = av.getTicketCode();
         String dd = av.getDepartureDate().toString();
 
-        Price price = em.createQuery(
+        List<Price> price = em.createQuery(
                 "SELECT p FROM Price p WHERE p.airlineCode = '" + ac + "' " +
                         "AND p.flightNumber = '" + fn + "' " +
                         "AND p.classCode = '" + cc + "' " +
                         "AND p.ticketCode = '" + tc + "' " +
-                        "AND p.startDate <'" + dd + "' AND p.endDate>'" + dd + "'", Price.class).getSingleResult();
-        return price;
+                        "AND p.startDate <'" + dd + "' AND p.endDate>'" + dd + "'", Price.class).getResultList();
+        if(price.size()>0 && price.get(0) != null){
+            return price.get(0);
+        }
+        return null;
     }
 
     public List<Airport> retrieveAirports(EntityManager em){

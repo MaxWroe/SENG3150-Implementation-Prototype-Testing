@@ -77,6 +77,7 @@ public class FlightPlan implements Comparable<FlightPlan>, Cloneable{
 
     //returns sum of prices from all flights in the flight plans
     public int getPrice(){
+//        System.out.println("get price method has started");
         int out = 0;
         if(availabilities.size()==0){
             return 0;
@@ -93,6 +94,7 @@ public class FlightPlan implements Comparable<FlightPlan>, Cloneable{
             out += getPriceFromAvailability(availabilities.get(tempInt));
 
         }
+//        System.out.println("get price method has completed");
         return  out;
     }
 
