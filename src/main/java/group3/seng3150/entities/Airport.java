@@ -23,10 +23,10 @@ public class Airport {
     private String country;
 
     @Column(name = "ShutdownStartDate", table = "Destinations")
-    private Date shutdownStartDate;
+    private Timestamp shutdownStartDate;
 
     @Column(name = "ShutdownEndDate", table = "Destinations")
-    private Date shutdownEndDate;
+    private Timestamp shutdownEndDate;
 
     //Constructor
     public Airport() {
