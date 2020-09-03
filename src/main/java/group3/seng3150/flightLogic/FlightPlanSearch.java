@@ -59,22 +59,29 @@ public class FlightPlanSearch {
         String timeEndString = departureDate + " 23:59:59";
         Timestamp timeStart = Timestamp.valueOf(timeStartString);
         Timestamp timeEnd = Timestamp.valueOf(timeEndString);
-        if(departureDateRange > 0){
-            timeEnd.setTime(timeEnd.getTime() + (24*60*60*1000)*departureDateRange);
+
+        timeEnd.setTime(timeEnd.getTime() + (24*60*60*1000)*departureDateRange);
+
+        for(int i=0; i<2; i++) {
+            List<Flight> flights = sqlSearch.retrieveFlights(timeStart, timeEnd, em);
+            flights = searchFunctions.filterFlightsCOVID(flights, airports);
+            String flightNumbersString = searchFunctions.getFlightNumbersSQLField(flights);
+            List<Availability> availabilities = sqlSearch.retrieveAvailabilities(timeStart, timeEnd, numberOfPeople, classCode, flightNumbersString, em);
+            if (availabilities.size() > 0) {
+                flights = searchFunctions.filterByAvailabilities(flights, availabilities);
+
+
+                flightPlans = buildFlightPlansYens(flights, departureLocation, destination, timeStart, timeEnd);
+                flightPlans = searchFunctions.setFlightPlansAvailabilities(flightPlans, availabilities);
+                flightPlans = searchFunctions.setPrices(flightPlans, em);
+            }
+            if(flightPlans.size()>0){
+                return flightPlans;
+            }
+            else{
+                timeEnd.setTime(timeEnd.getTime() + (24*60*60*1000));
+            }
         }
-
-        List<Flight> flights = sqlSearch.retrieveFlights(timeStart, timeEnd, em);
-        String flightNumbersString = searchFunctions.getFlightNumbersSQLField(flights);
-
-        List<Availability> availabilities = sqlSearch.retrieveAvailabilities(timeStart, timeEnd, numberOfPeople, classCode, flightNumbersString, em);
-        if(availabilities.size()>0) {
-            flights = searchFunctions.filterByAvailabilities(flights, availabilities);
-
-            flightPlans = buildFlightPlansYens(flights, departureLocation, destination, timeStart, timeEnd);
-            flightPlans = searchFunctions.setFlightPlansAvailabilities(flightPlans, availabilities);
-            flightPlans = searchFunctions.setPrices(flightPlans, em);
-        }
-
         return flightPlans;
     }
 
@@ -92,6 +99,7 @@ public class FlightPlanSearch {
         }
 
         List<Flight> flights = sqlSearch.retrieveFlights(timeStart, timeEnd, em);
+        flights = searchFunctions.filterFlightsCOVID(flights, airports);
         String flightNumbersString = searchFunctions.getFlightNumbersSQLField(flights);
 
         List<Availability> availabilities = sqlSearch.retrieveAvailabilities(timeStart, timeEnd, numberOfPeople, classCode, flightNumbersString, em);
