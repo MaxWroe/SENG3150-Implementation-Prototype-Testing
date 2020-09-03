@@ -276,7 +276,7 @@
 
             <!-- For each flight returned display -->
             <ul class="flight-list">
-                <c:forEach items="${flights.flightPlansDeparting}" var="flightPlan">
+                <c:forEach items="${flights.flightPlansDeparting}" var="flightPlan" varStatus="loop">
                     <li data-price="${flightPlan.price}" data-duration="${flightPlan.durationTotal}" data-stopovers="${flightPlan.numberStopOvers}"
                         <c:forEach items="${flightPlan.airlines}" var="airline">data-airline="${airline}"</c:forEach>>
 
@@ -314,8 +314,8 @@
                                     <input type="hidden" id="onewayAdultsBooking" name="onewayAdultsBooking" value="${param.adults}">
                                     <input type="hidden" id="onewayChildrenBooking" name="onewayChildrenBooking" value="${param.children}">
                                     <input type="hidden" id="onewayClassBooking" name="onewayClassBooking" value="${param.classCode}">
-                                    <!-- Position of the specific flight plan within the FlightHolder FlightPlans list -->
-                                    <input type="hidden" id="onewayFlightPlan${flightPlan.position}" name="flightPlan" value="${flightPlan.position}">
+                                    <!-- Position of the specific flight plan within the FlightHolder flightPlansDeparting list -->
+                                    <input type="hidden" id="onewayFlightPlan${[loop.count]}" name="flightPlan" value="${flightPlan.position}">
                                     <button type="submit">$${flightPlan.price}</button>
                                 </form>
                             </div>
