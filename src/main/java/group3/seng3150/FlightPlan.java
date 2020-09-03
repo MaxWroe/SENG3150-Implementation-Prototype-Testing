@@ -43,10 +43,12 @@ public class FlightPlan implements Comparable<FlightPlan>, Cloneable{
     }
 
     //returns airline names of the flights
-    public String getAirlines(){
-        String airlines = "";
+    public List<String> getAirlines(){
+        List<String> airlines = new LinkedList<String>();
+        //String airlines = "";
         for (Flight flight : flights) {
-            airlines += flight.getAirlineCode();
+            //airlines += flight.getAirlineCode();
+            airlines.add(flight.getAirlineCode());
         }
         return airlines;
     }
