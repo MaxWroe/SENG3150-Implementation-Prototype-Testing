@@ -1,8 +1,10 @@
-package group3.seng3150;
+package group3.seng3150.recommendationLogic;
 
 
 
+import group3.seng3150.FlightPlan;
 import group3.seng3150.entities.*;
+import group3.seng3150.flightLogic.FlightPlanSearch;
 
 import javax.persistence.EntityManager;
 import java.text.SimpleDateFormat;
@@ -18,9 +20,11 @@ public class RecommendationGenerator {
         this.em =em;
     }
 
-    public List<FlightPlan> getRecommendations(UserAccount user){
-        List<FlightPlan> fp = new LinkedList<>();
+    public List<RecommendationPackage> getRecommendations(UserAccount user){
+        FlightPlanSearch fps = new FlightPlanSearch(em);
+        List<RecommendationPackage> rp = new LinkedList<>();
         String cc; //class code
+        int numPeople; //number of people
         if(user.getUserType()==2){
 
             //do business stuff
@@ -33,29 +37,38 @@ public class RecommendationGenerator {
         String ap; //airport
         if(user.getClosestAirport()!=null){
             ap = user.getClosestAirport();
-        } else if(userBookings.get(userBookings.size())!=null){
+        } else if(userBookings.size()!=0){
             ap = userBookings.get(userBookings.size()).getDeparture();
         } else ap = null;
 
-        if(userBookings.get(userBookings.size())!=null){
+        if(userBookings.size()!=0){
             cc= userBookings.get(userBookings.size()).getClassCode();
-        } else cc = "ECO";
+            numPeople = userBookings.get(userBookings.size()).getGroupSize();
+        } else cc = "ECO"; numPeople = 1;
 
 
         List<HolidayPackages> hp =  em.createQuery("SELECT h FROM HolidayPackages h").getResultList();
-
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Calendar c = Calendar.getInstance();
         c.add(Calendar.DAY_OF_MONTH, dayRange);
-        String newDate = sdf.format(c.getTime());
+        String departureDate = sdf.format(c.getTime());
+
+        ap = "AMS";
+
 
         for (int i = 0; i < hp.size(); i++) {
-            //departure, arrival, departuredate, cc
-            Flight flight = null; //getFlight()
-            //fp.add(searched flightplan);
-        }
 
-        return null;
+            String debugdemo = hp.get(i).getDestination();
+            RecommendationPackage rec;
+            if(ap!=null){
+
+                FlightPlan flight = fps.getSingleFlightPlan(ap, hp.get(i).getDestination(), departureDate, cc, dayRange, numPeople, em);
+                rec = new RecommendationPackage(hp.get(i), flight);
+            } else rec = new RecommendationPackage(hp.get(i), null);
+            rp.add(rec);
+        }
+        System.out.println("");
+        return rp;
     }
 
     public List<Booking> getBookings(UserAccount user){

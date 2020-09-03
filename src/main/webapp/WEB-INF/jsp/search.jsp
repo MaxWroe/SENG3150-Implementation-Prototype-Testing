@@ -67,7 +67,7 @@
                     $("#departureDateRange").val("${param.departureDateRange}");
 
                     // check if departure range option is selected
-                    if($('departureDateRange').val() !== "")
+                    if($('#departureDateRange').val() !== "")
                     {
                         $("#depart-range").prop( "checked", true );
                         $("#departureDateRange").prop( "disabled", false );
@@ -75,12 +75,8 @@
                         $(this).toggleClass("up");
                         $('.extra-search-fields').toggle();
 
-                        range_restrict();
-                        // if first departure date selected enable range date
-                        if ( $('#departureDateRange').val() !== "")
-                        {
-                            $('#departureDateRange').prop( "disabled", false );
-                        }
+                        restrict_departure_range();
+
                         // change visibility of departure date range div
                         $("#depart-range-div").toggle(this.checked);
                         // make departure date range input required if option selected
@@ -143,17 +139,99 @@
         <div id="search-sidebar">
             <p>Side filters</p>
             <p>Stop Overs</p>
-            <label for="stop1">1</label>
-            <input type="checkbox" id="stop1" name="stopsFilter" value="1">
-            <label for="stop2">2</label>
-            <input type="checkbox" id="stop2" name="stopsFilter" value="2">
+            <label for="stopsFilter"></label>
+            <input type="range" min="0" max="7" class="vHorizon" name="stopsFilter" id="stopsFilter">
+            <p id="stops-filter-display"></p>
             <p>Airlines</p>
-            <label for="airline">Airline x</label>
-            <input type="checkbox" id="airline" name="airlineFilter" value="test">
+            <div id="airlineFilterDiv">
+            </div>
         </div>
         <script>
-            var $select = $("#search-sidebar input:checkbox");
+            // on load occupy search filters
+            $(document).ready(function() {
+                // array of airlines and their id
+                let airlines = [
+                    ['AA', 'American Airlines'],
+                    ['AC', 'Air Canada'],
+                    ['AF', 'Air France'],
+                    ['AI', 'Air India'],
+                    ['AM', 'Air Mexico'],
+                    ['AR', 'Aerolineas Argentinas'],
+                    ['AY', 'Finnair'],
+                    ['BA', 'British Airways'],
+                    ['CA', 'Air China'],
+                    ['CI', 'China Airlines'],
+                    ['CO', 'Continental Airlines'],
+                    ['CX', 'Cathay Pacific Airways'],
+                    ['DJ', 'Virgin Blue'],
+                    ['DL', 'Delta Air Lines'],
+                    ['EI', 'Aer Lingus'],
+                    ['EK', 'Qatar Airways'],
+                    ['IB', 'Iberia'],
+                    ['JL', 'Japan Airlines'],
+                    ['JQ', 'Jetstar Airlines'],
+                    ['KE', 'Korean Airlines'],
+                    ['KL', 'KLM-Royal Dutch Airlines'],
+                    ['LH', 'Lufthansa'],
+                    ['LY', 'El Al Israel Airlines'],
+                    ['MH', 'Malaysia Airlines'],
+                    ['MS', 'Egyptair'],
+                    ['MX', 'Mexicana de Aviacion'],
+                    ['NA', 'North American Airlines'],
+                    ['NW', 'Northwest Airlines'],
+                    ['NZ', 'Air New Zealand'],
+                    ['OS', 'Austrian Airlines'],
+                    ['PR', 'Philippine Airlines'],
+                    ['QF', 'Qantas Airways'],
+                    ['QR', 'Emirates Airlines'],
+                    ['RJ', 'Royal Jordanian'],
+                    ['SA', 'South African'],
+                    ['SK', 'SAS-Scandinavian Airlines'],
+                    ['SQ', 'Singapore Airlines'],
+                    ['SU', 'Aeroflot'],
+                    ['TG', 'Thai Airways'],
+                    ['TK', 'Turkish Airlines'],
+                    ['TW', 'Trans World Airlines'],
+                    ['UA', 'United Airlines'],
+                    ['VH', 'Aeropostal Alas de Venezuela'],
+                    ['VS', 'Virgin Atlantic Airways']
+                ];
+                // array of all airlines returned from search
+                let returnedAirlines = $(".flight-list li").map(function () {
+                    return $(this).data("airline");
+                }).get();
+                // don't display airlines not in search in side filters
+                for (let i = airlines.length - 1; i >= 0; i--) {
+                    if (!returnedAirlines.includes(airlines[i][0])) {
+                        airlines.splice(i, 1);
+                        console.log(airlines);
+                    }
+                }
+                // create airline filter inputs
+                for (let i = 0; i < airlines.length; i++) {
+                    let label = "<label for=\"" + airlines[i][0] + "\">" + airlines[i][1] + " </label>";
+                    let input = "<input type=\"checkbox\" id=\"" + airlines[i][0] + "\" value=\"" + airlines[i][0] + "\" name=\"airlineFilter\">";
+                    $("#airlineFilterDiv").append(label);
+                    $("#airlineFilterDiv").append(input);
+                }
+
+                // array of every stopover amount returned from search
+                let returnedStopovers = $(".flight-list li").map(function () {
+                    return $(this).data("stopovers");
+                }).get();
+                // set max amount on stops filter
+                $("#stopsFilter").attr("max", Math.max(returnedStopovers));
+                $("label[for='stopsFilter']").text(Math.max(returnedStopovers));
+            });
+        </script>
+        <script>
+            $(document).on('input change', '#stopsFilter', function() {
+                $("label[for='stopsFilter']").text($(this).val());
+            });
+
+            var $select = $("#search-sidebar input");
             $select.change(function () {
+            //$select.on('input', function () {
                 var include = "";
 
                 $select.each(function () {
@@ -165,10 +243,12 @@
                             case "airlineFilter":
                                 include += "[data-airline='" + val + "']";
                                 break;
-                            case "stopsFilter":
-                                include += "[data-stops='" + val + "']";
-                                break;
                         }
+                    }
+                    if ($(this).attr("name") === "stopsFilter")
+                    {
+                        var val = $(this).val();
+                        include += "[data-stopovers='" + val + "']";
                     }
                 });
                 if (include === "")
@@ -196,53 +276,52 @@
 
             <!-- For each flight returned display -->
             <ul class="flight-list">
-            <c:forEach items="${flights.flightPlansDeparting}" var="flightPlan">
-                <li data-price="${flightPlan.price}" data-duration="${flightPlan.durationTotal}" data-stopovers="${flightPlan.numberStopOvers}"
-                    data-airline="test" data-stops="${flightPlan.numberStopOvers}">
+                <c:forEach items="${flights.flightPlansDeparting}" var="flightPlan" varStatus="loop">
+                    <li data-price="${flightPlan.price}" data-duration="${flightPlan.durationTotal}" data-stopovers="${flightPlan.numberStopOvers}"
+                        <c:forEach items="${flightPlan.airlines}" var="airline">data-airline="${airline}"</c:forEach>>
 
-                <div class="flight-result-oneway">
-                    <div class="flight-result-depart-time">
-                        <fmt:parseDate pattern="yyyy-MM-dd hh:mm:ss" value="${flightPlan.departureDate}" var="parsedDate" />
+                        <div class="flight-result-oneway">
+                            <div class="flight-result-depart-time">
+                                <fmt:parseDate pattern="yyyy-MM-dd hh:mm:ss" value="${flightPlan.departureDate}" var="parsedDate" />
 
-                        <h4><fmt:formatDate type = "time" dateStyle = "short" timeStyle = "short" value = "${parsedDate}" /></h4>
-                        <p><fmt:formatDate type = "date" value = "${parsedDate}" /></p>
-                    </div>
-                    <div class="flight-result-stopovers">
-                        <p>Stop overs: ${flightPlan.numberStopOvers}</p>
-                        <table>
-                            <tr>
-                                <td>${param.departureLocation} --></td>
-                            <c:forEach items="${flightPlan.flights}" var="flightPlanFlights">
-                                <td>${flightPlanFlights.stopOverCode}</td>
-                            </c:forEach>
-                                <td>--> ${param.arrivalLocation}</td>
-                            </tr>
-                        </table>
-                        <p>Total duration: ${flightPlan.durationTotal} hours</p>
-                    </div>
-                    <div class="flight-result-arrival-time">
-                        <fmt:parseDate pattern="yyyy-MM-dd hh:mm:ss" value="${flightPlan.arrivalDate}" var="parsedDate" />
+                                <h4><fmt:formatDate type = "time" dateStyle = "short" timeStyle = "short" value = "${parsedDate}" /></h4>
+                                <p><fmt:formatDate type = "date" value = "${parsedDate}" /></p>
+                            </div>
+                            <div class="flight-result-stopovers">
+                                <p>Stop overs: ${flightPlan.numberStopOvers}</p>
+                                <table>
+                                    <tr>
+                                        <td>${param.departureLocation} --></td>
+                                        <c:forEach items="${flightPlan.flights}" var="flightPlanFlights">
+                                            <td>${flightPlanFlights.stopOverCode}</td>
+                                        </c:forEach>
+                                        <td>--> ${param.arrivalLocation}</td>
+                                    </tr>
+                                </table>
+                                <p>Total duration: ${flightPlan.durationTotal} hours</p>
+                            </div>
+                            <div class="flight-result-arrival-time">
+                                <fmt:parseDate pattern="yyyy-MM-dd hh:mm:ss" value="${flightPlan.arrivalDate}" var="parsedDate" />
 
-                        <h4><fmt:formatDate type = "time" dateStyle = "short" timeStyle = "short" value = "${parsedDate}" /></h4>
-                        <p><fmt:formatDate type = "date" value = "${parsedDate}" /></p>
-                    </div>
-                    <div class="flight-result-cost">
-                        <p>Available seats: ${flightPlan.numberAvailableSeats}</p>
-                        <!-- Information to send to booking controller -->
-                        <form action="${pageContext.request.contextPath}/flightBookingOneway" method="post">
-                            <input type="hidden" id="onewayBooking" name="trip" value="oneway">
-                            <input type="hidden" id="onewayAdultsBooking" name="onewayAdultsBooking" value="${param.adults}">
-                            <input type="hidden" id="onewayChildrenBooking" name="onewayChildrenBooking" value="${param.children}">
-                            <input type="hidden" id="onewayClassBooking" name="onewayClassBooking" value="${param.classCode}">
-                            <!-- Position of the specific flight plan within the FlightHolder FlightPlans list -->
-                            <input type="hidden" id="onewayFlightPlan${flightPlan.position}" name="flightPlan" value="${flightPlan.position}">
-                            <button type="submit">$${flightPlan.price}</button>
-                        </form>
-                    </div>
-                </div>
-
-                </li>
-            </c:forEach>
+                                <h4><fmt:formatDate type = "time" dateStyle = "short" timeStyle = "short" value = "${parsedDate}" /></h4>
+                                <p><fmt:formatDate type = "date" value = "${parsedDate}" /></p>
+                            </div>
+                            <div class="flight-result-cost">
+                                <p>Available seats: ${flightPlan.numberAvailableSeats}</p>
+                                <!-- Information to send to booking controller -->
+                                <form action="${pageContext.request.contextPath}/flightBookingOneway" method="post">
+                                    <input type="hidden" id="onewayBooking" name="trip" value="oneway">
+                                    <input type="hidden" id="onewayAdultsBooking" name="onewayAdultsBooking" value="${param.adults}">
+                                    <input type="hidden" id="onewayChildrenBooking" name="onewayChildrenBooking" value="${param.children}">
+                                    <input type="hidden" id="onewayClassBooking" name="onewayClassBooking" value="${param.classCode}">
+                                    <!-- Position of the specific flight plan within the FlightHolder flightPlansDeparting list -->
+                                    <input type="hidden" id="onewayFlightPlan${[loop.count]}" name="flightPlan" value="${flightPlan.position}">
+                                    <button type="submit">$${flightPlan.price}</button>
+                                </form>
+                            </div>
+                        </div>
+                    </li>
+                </c:forEach>
             </ul>
         </c:if>
 
