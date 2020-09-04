@@ -322,7 +322,7 @@
                                     <input type="hidden" id="onewayChildrenBooking" name="onewayChildrenBooking" value="${param.children}">
                                     <input type="hidden" id="onewayClassBooking" name="onewayClassBooking" value="${param.classCode}">
                                     <!-- Position of the specific flight plan within the FlightHolder flightPlansDeparting list -->
-                                    <input type="hidden" id="onewayFlightPlan${loop.count}" name="flightPlan" value="${loop.count}">
+                                    <input type="hidden" id="onewayFlightPlan${loop.count}" name="flightPlanPosition" value="${loop.count}">
                                     <button type="submit">$${flightPlan.price}</button>
                                 </form>
                             </div>
