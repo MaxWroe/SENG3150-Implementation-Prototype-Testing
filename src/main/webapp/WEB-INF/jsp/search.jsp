@@ -278,11 +278,12 @@
             <ul class="flight-list">
                 <c:forEach items="${flights.flightPlansDeparting}" var="flightPlan" varStatus="loop">
                     <li data-price="${flightPlan.price}" data-duration="${flightPlan.durationTotal}" data-stopovers="${flightPlan.numberStopOvers}"
+                        data-capacity="${flightPlan.numberAvailableSeats}"
                         <c:forEach items="${flightPlan.airlines}" var="airline">data-airline="${airline}"</c:forEach>>
 
                         <div class="flight-result-oneway">
                             <div class="flight-result-depart-time">
-                                <fmt:parseDate pattern="yyyy-MM-dd hh:mm:ss" value="${flightPlan.departureDate}" var="parsedDate" />
+                                <fmt:parseDate pattern="yyyy-MM-dd HH:mm:ss" value="${flightPlan.departureDate}" var="parsedDate" />
 
                                 <h4><fmt:formatDate type = "time" dateStyle = "short" timeStyle = "short" value = "${parsedDate}" /></h4>
                                 <p><fmt:formatDate type = "date" value = "${parsedDate}" /></p>
@@ -301,7 +302,7 @@
                                 <p>Total duration: ${flightPlan.durationTotal} hours</p>
                             </div>
                             <div class="flight-result-arrival-time">
-                                <fmt:parseDate pattern="yyyy-MM-dd hh:mm:ss" value="${flightPlan.arrivalDate}" var="parsedDate" />
+                                <fmt:parseDate pattern="yyyy-MM-dd HH:mm:ss" value="${flightPlan.arrivalDate}" var="parsedDate" />
 
                                 <h4><fmt:formatDate type = "time" dateStyle = "short" timeStyle = "short" value = "${parsedDate}" /></h4>
                                 <p><fmt:formatDate type = "date" value = "${parsedDate}" /></p>
