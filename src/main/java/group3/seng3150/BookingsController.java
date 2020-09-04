@@ -69,7 +69,7 @@ public class BookingsController {
     //get method manage bookings
     @GetMapping("/manageBooking")
     public ModelAndView manageBooking(HttpSession session) {
-        ModelAndView view = new ModelAndView("manageBooking");
+        ModelAndView view = new ModelAndView("Users/manageBooking");
         String UserID = (String)session.getAttribute("userId");
         String message = new String();
         try{

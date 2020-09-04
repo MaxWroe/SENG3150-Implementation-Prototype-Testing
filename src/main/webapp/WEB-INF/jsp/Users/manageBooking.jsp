@@ -21,7 +21,7 @@
 <%-- <jsp:include page="sessionHandlerUser.jsp"/> --%>
 
 <!-- Site header -->
-<jsp:include page="header.jsp"/>
+<jsp:include page="../header.jsp"/>
 
 <main class="main-content">
     <div class="card-body">
