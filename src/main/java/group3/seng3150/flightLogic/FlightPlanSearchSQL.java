@@ -1,9 +1,6 @@
 package group3.seng3150.flightLogic;
 
-import group3.seng3150.entities.Airport;
-import group3.seng3150.entities.Availability;
-import group3.seng3150.entities.Flight;
-import group3.seng3150.entities.Price;
+import group3.seng3150.entities.*;
 
 import javax.persistence.EntityManager;
 import java.sql.Timestamp;
@@ -38,12 +35,11 @@ public class FlightPlanSearchSQL {
         String tc = av.getTicketCode();
         String dd = av.getDepartureDate().toString();
 
-        List<Price> price = em.createQuery(
-                "SELECT p FROM Price p WHERE p.airlineCode = '" + ac + "' " +
-                        "AND p.flightNumber = '" + fn + "' " +
-                        "AND p.classCode = '" + cc + "' " +
-                        "AND p.ticketCode = '" + tc + "' " +
-                        "AND p.startDate <'" + dd + "' AND p.endDate>'" + dd + "'", Price.class).getResultList();
+        List<Price> price = em.createQuery("SELECT p FROM Price p WHERE p.airlineCode='" + ac + "' " +
+                        "AND p.flightNumber='" + fn + "' " +
+                        "AND p.classCode='" + cc + "' " +
+                        "AND p.ticketCode='" + tc + "' " +
+                        "AND p.startDate<'" + dd + "' AND p.endDate>'" + dd + "'", Price.class).getResultList();
         if(price.size()>0 && price.get(0) != null){
             return price.get(0);
         }
@@ -52,6 +48,19 @@ public class FlightPlanSearchSQL {
 
     public List<Airport> retrieveAirports(EntityManager em){
         return em.createQuery("SELECT a FROM Airport a", Airport.class).getResultList();
+    }
+
+    public List<Airline> retrieveAirlines(EntityManager em){
+        return em.createQuery("SELECT a FROM Airline a", Airline.class).getResultList();
+    }
+
+    public Airline retrieveAirline(Flight flight, EntityManager em){
+        String airlineCode = flight.getAirlineCode();
+        List<Airline> airline = em.createQuery("SELECT a FROM Airline a WHERE a.airlineCode='" + airlineCode + "'", Airline.class).getResultList();
+        if(airline.size()>0 && airline.get(0) != null){
+            return airline.get(0);
+        }
+        return null;
     }
 
 
