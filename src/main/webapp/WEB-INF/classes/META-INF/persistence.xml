@@ -20,6 +20,7 @@
         <class>group3.seng3150.entities.HolidayPackages</class>
         <class>group3.seng3150.entities.PriceID</class>
         <class>group3.seng3150.entities.AvailabilityID</class>
+        <class>group3.seng3150.entities.Airline</class>
 
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
 
