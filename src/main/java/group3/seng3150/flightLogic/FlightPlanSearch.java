@@ -74,7 +74,7 @@ public class FlightPlanSearch {
                 flightPlans = buildFlightPlansYens(flights, departureLocation, destination, timeStart, timeEnd);
                 flightPlans = searchFunctions.setFlightPlansAvailabilities(flightPlans, availabilities);
                 flightPlans = searchFunctions.setPrices(flightPlans, em);
-                flightPlans = searchFunctions.setSponsoredAirlines(flightPlans, em);
+//                flightPlans = searchFunctions.setSponsoredAirlines(flightPlans, em);
             }
             if(flightPlans.size()>0){
                 return flightPlans;
@@ -113,7 +113,7 @@ public class FlightPlanSearch {
                 flightPlans.add(flightPlan);
                 flightPlans = searchFunctions.setFlightPlansAvailabilities(flightPlans, availabilities);
                 flightPlans = searchFunctions.setPrices(flightPlans, em);
-                flightPlans = searchFunctions.setSponsoredAirlines(flightPlans, em);
+//                flightPlans = searchFunctions.setSponsoredAirlines(flightPlans, em);
                 flightPlan = flightPlans.get(0);
             }
         }
