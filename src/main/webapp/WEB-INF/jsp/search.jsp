@@ -271,7 +271,7 @@
                 <h4>No flights can be found that match the criteria!</h4>
             </c:if>
 
-            <!-- Set flights returned (FlightHolder) to session scope -->
+            <!-- Set flights returned (FlightPlan list) to session scope -->
             <c:set var = "departureFlights" scope = "session" value = "${flights.flightPlansDeparting}"/>
 
             <!-- For each flight returned display -->
@@ -292,14 +292,20 @@
                                 <p>Stop overs: ${flightPlan.numberStopOvers}</p>
                                 <table>
                                     <tr>
-                                        <td>${param.departureLocation} --></td>
                                         <c:forEach items="${flightPlan.flights}" var="flightPlanFlights">
+                                            <td>${flightPlanFlights.departureCode}</td>
+                                            <td>--></td>
+                                            <c:if test = "${flightPlanFlights.stopOverCode != ''}">
                                             <td>${flightPlanFlights.stopOverCode}</td>
+                                            <td>--></td>
+                                            </c:if>
+                                            <td>${flightPlanFlights.destination}</td>
                                         </c:forEach>
-                                        <td>--> ${param.arrivalLocation}</td>
                                     </tr>
                                 </table>
-                                <p>Total duration: ${flightPlan.durationTotal} hours</p>
+                                <c:set var="hours" scope="session" value="${flightPlan.durationTotal / 60}"/>
+                                <c:set var="minutes" scope="session" value="${flightPlan.durationTotal % 60}"/>
+                                <p>Total duration: ${hours} hours ${minutes} minutes</p>
                             </div>
                             <div class="flight-result-arrival-time">
                                 <fmt:parseDate pattern="yyyy-MM-dd HH:mm:ss" value="${flightPlan.arrivalDate}" var="parsedDate" />
@@ -316,7 +322,7 @@
                                     <input type="hidden" id="onewayChildrenBooking" name="onewayChildrenBooking" value="${param.children}">
                                     <input type="hidden" id="onewayClassBooking" name="onewayClassBooking" value="${param.classCode}">
                                     <!-- Position of the specific flight plan within the FlightHolder flightPlansDeparting list -->
-                                    <input type="hidden" id="onewayFlightPlan${[loop.count]}" name="flightPlan" value="${[loop.count]}">
+                                    <input type="hidden" id="onewayFlightPlan${loop.count}" name="flightPlan" value="${loop.count}">
                                     <button type="submit">$${flightPlan.price}</button>
                                 </form>
                             </div>
