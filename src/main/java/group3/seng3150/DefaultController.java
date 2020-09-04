@@ -76,7 +76,7 @@ public class DefaultController {
 
     @GetMapping("/logout")
     public ModelAndView executeLogout() {
-        ModelAndView view = new ModelAndView("logout");
+        ModelAndView view = new ModelAndView("Users/logout");
         return view;
     }
 
@@ -88,13 +88,13 @@ public class DefaultController {
 
     @GetMapping("/faqs")
     public ModelAndView displayFaqs() {
-        ModelAndView view = new ModelAndView("faqs");
+        ModelAndView view = new ModelAndView("General/faqs");
         return view;
     }
 
     @GetMapping("/reviews")
     public ModelAndView displayReview() {
-        ModelAndView view = new ModelAndView("reviews");
+        ModelAndView view = new ModelAndView("General/reviews");
         return view;
     }
 

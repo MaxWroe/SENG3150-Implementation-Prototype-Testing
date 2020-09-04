@@ -18,10 +18,10 @@
 
     //checks if user is logged in
     if(userID == null) {
-        %> <jsp:forward page="errorPage.jsp"></jsp:forward> <%
+        %> <jsp:forward page="../errorPage.jsp"></jsp:forward> <%
     }else{
         session.invalidate();
-        %> <jsp:forward page="home.jsp"></jsp:forward> <%
+        %> <jsp:forward page="../home.jsp"></jsp:forward> <%
    }%>
 
 
