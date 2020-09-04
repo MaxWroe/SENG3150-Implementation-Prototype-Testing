@@ -18,7 +18,7 @@
 <%--<jsp:include page="sessionHandlerRegister.jsp"/>--%>
 
 <!-- Site header -->
-<jsp:include page="header.jsp"/>
+<jsp:include page="../header.jsp"/>
 
     <main class="main-content">
         <div class="card-body">
@@ -29,7 +29,7 @@
                 <!-- registration form-->
                 <form id="registerForm" method="post" action="/register" onsubmit="return validateRegister()">
 
-                    <jsp:include page="form.jsp"/>
+                    <jsp:include page="../form.jsp"/>
 
 
                     <input type="submit" value="Register"/><input type="reset" value="Reset"/>

@@ -24,13 +24,13 @@ public class AuthenticationController {
     //get method login
     @GetMapping("/login")
     public ModelAndView displayLogin() {
-        ModelAndView view = new ModelAndView("login");
+        ModelAndView view = new ModelAndView("General/login");
         return view;
     }
 
     //get after successful register
     public ModelAndView displayLogin(@RequestParam("message") String message) {
-        ModelAndView view = new ModelAndView("login");
+        ModelAndView view = new ModelAndView("General/login");
         view.addObject("message", message);
         return view;
     }
@@ -108,7 +108,7 @@ public class AuthenticationController {
     //get method register
     @GetMapping("/register")
     public ModelAndView displayRegister() {
-        ModelAndView view = new ModelAndView("register");
+        ModelAndView view = new ModelAndView("General/register");
         return view;
     }
 
@@ -124,7 +124,7 @@ public class AuthenticationController {
                                         @RequestParam(name="userType") String userType
 
     ){
-    ModelAndView view = new ModelAndView("register");
+    ModelAndView view = new ModelAndView("General/register");
     String message = "Registration successful! ";
     String citizenship = "'Default'";
     String tempEmail = "'" + email + "'";
@@ -156,12 +156,12 @@ public class AuthenticationController {
                 newUser.setUserType(userNum); //This is for if when it is fixed it has an int value input
                 em.merge(newUser);
                 em.getTransaction().commit();
-                view = new ModelAndView("login");
+                view = new ModelAndView("General/login");
                 message += firstName;
 
             } else {
                 message = "Registration unsuccessful. An Account using " + email + " already exists, please use a unique email address or login to the existing account.";
-                view = new ModelAndView("register");
+                view = new ModelAndView("General/register");
 
             }
         }
