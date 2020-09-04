@@ -49,6 +49,22 @@ public class Airport {
         this.country = country;
     }
 
+    public Timestamp getShutdownStartDate() {
+        return shutdownStartDate;
+    }
+
+    public void setShutdownStartDate(Timestamp shutdownStartDate) {
+        this.shutdownStartDate = shutdownStartDate;
+    }
+
+    public Timestamp getShutdownEndDate() {
+        return shutdownEndDate;
+    }
+
+    public void setShutdownEndDate(Timestamp shutdownEndDate) {
+        this.shutdownEndDate = shutdownEndDate;
+    }
+
     //Override Methods
     @Override
     public int hashCode() {
@@ -65,6 +81,8 @@ public class Airport {
         return "Airport{" +
                 "destinationCode='" + destinationCode + '\'' +
                 ", country='" + country + '\'' +
+                ", shutdownStartDate='" + shutdownStartDate + '\'' +
+                ", shutdownEndDate='" + shutdownEndDate + '\'' +
                 '}';
     }
 }
