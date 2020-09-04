@@ -316,7 +316,7 @@
                             <div class="flight-result-cost">
                                 <p>Available seats: ${flightPlan.numberAvailableSeats}</p>
                                 <!-- Information to send to booking controller -->
-                                <form action="${pageContext.request.contextPath}/flightBookingOneway" method="post">
+                                <form action="${pageContext.request.contextPath}/bookFlight" method="post">
                                     <input type="hidden" id="onewayBooking" name="trip" value="oneway">
                                     <input type="hidden" id="onewayAdultsBooking" name="onewayAdultsBooking" value="${param.adults}">
                                     <input type="hidden" id="onewayChildrenBooking" name="onewayChildrenBooking" value="${param.children}">
@@ -348,7 +348,7 @@
                 <c:set var = "returnFlights" scope = "session" value = "${flights.flightPlansReturning}"/>
 
                 <!-- Information to send to booking controller -->
-                <form method="post" action="${pageContext.request.contextPath}/flightBookingReturn" onsubmit="return validateFlightSelection()"
+                <form method="post" action="${pageContext.request.contextPath}/bookFlight" onsubmit="return validateFlightSelection()"
                       style="display:contents">
                     <input type="hidden" id="returnBooking" name="trip" value="return">
                     <input type="hidden" id="returnAdultsBooking" name="returnAdultsBooking" value="${param.adults}">
