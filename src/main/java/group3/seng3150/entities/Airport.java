@@ -6,6 +6,8 @@
 package group3.seng3150.entities;
 
 import javax.persistence.*;
+import java.sql.Date;
+import java.sql.Timestamp;
 
 @Entity
 @Table(name = "Destinations")
@@ -19,6 +21,12 @@ public class Airport {
 
     @Column(name = "CountryCode3", table = "Destinations")
     private String country;
+
+    @Column(name = "ShutdownStartDate", table = "Destinations")
+    private Timestamp shutdownStartDate;
+
+    @Column(name = "ShutdownEndDate", table = "Destinations")
+    private Timestamp shutdownEndDate;
 
     //Constructor
     public Airport() {
@@ -41,6 +49,22 @@ public class Airport {
         this.country = country;
     }
 
+    public Timestamp getShutdownStartDate() {
+        return shutdownStartDate;
+    }
+
+    public void setShutdownStartDate(Timestamp shutdownStartDate) {
+        this.shutdownStartDate = shutdownStartDate;
+    }
+
+    public Timestamp getShutdownEndDate() {
+        return shutdownEndDate;
+    }
+
+    public void setShutdownEndDate(Timestamp shutdownEndDate) {
+        this.shutdownEndDate = shutdownEndDate;
+    }
+
     //Override Methods
     @Override
     public int hashCode() {
@@ -57,6 +81,8 @@ public class Airport {
         return "Airport{" +
                 "destinationCode='" + destinationCode + '\'' +
                 ", country='" + country + '\'' +
+                ", shutdownStartDate='" + shutdownStartDate + '\'' +
+                ", shutdownEndDate='" + shutdownEndDate + '\'' +
                 '}';
     }
 }

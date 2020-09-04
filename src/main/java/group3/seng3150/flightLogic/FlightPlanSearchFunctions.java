@@ -89,11 +89,15 @@ public class FlightPlanSearchFunctions {
 
     public List<FlightPlan> setPrices(List<FlightPlan> flightPlans, EntityManager em){
         List<Price> currentPrices;
+        Price currentPrice = new Price();
         FlightPlanSearchSQL sqlSearcher = new FlightPlanSearchSQL();
         for(int i=0; i<flightPlans.size(); i++){
             currentPrices = new LinkedList<>();
             for(int j=0; j<flightPlans.get(i).getAvailabilities().size(); j++){
-                currentPrices.add(sqlSearcher.retrievePrice(flightPlans.get(i).getAvailabilities().get(j), em));
+                currentPrice = sqlSearcher.retrievePrice(flightPlans.get(i).getAvailabilities().get(j), em);
+                if(currentPrice != null){
+                    currentPrices.add(currentPrice);
+                }
             }
             flightPlans.get(i).setPrices(currentPrices);
         }
@@ -108,5 +112,42 @@ public class FlightPlanSearchFunctions {
         flightNumberString += ")";
         return flightNumberString;
     }
+
+    public List<Flight> filterFlightsCOVID(List<Flight> parsedFlights, List<Airport> parsedAirports) {
+        for (int i = 0; i < parsedAirports.size(); i++) {
+            if (parsedAirports.get(i).getShutdownStartDate() != null && parsedAirports.get(i).getShutdownEndDate()!=null) {
+                for (int j = 0; j < parsedFlights.size(); j++) {
+                    if (parsedAirports.get(i).getDestinationCode().equals(parsedFlights.get(j).getDepartureCode())) {
+                        if (parsedAirports.get(i).getShutdownStartDate().before(parsedFlights.get(j).getDepartureDate()) && parsedAirports.get(i).getShutdownEndDate().after(parsedFlights.get(j).getDepartureDate())) {
+                            parsedFlights.remove(j);
+                            j--;
+                        }
+                    }
+                    else if (parsedAirports.get(i).getDestinationCode().equals(parsedFlights.get(j).getDestination())) {
+                        if (parsedAirports.get(i).getShutdownStartDate().before(parsedFlights.get(j).getArrivalDate()) && parsedAirports.get(i).getShutdownEndDate().after(parsedFlights.get(j).getArrivalDate())) {
+                            parsedFlights.remove(j);
+                            j--;
+                        }
+                    }
+                    else if (parsedAirports.get(i).getDestinationCode().equals(parsedFlights.get(j).getStopOverCode())) {
+                        if (parsedAirports.get(i).getShutdownStartDate().before(parsedFlights.get(j).getDepartureTimeStopOver()) && parsedAirports.get(i).getShutdownEndDate().after(parsedFlights.get(j).getDepartureTimeStopOver())) {
+                            parsedFlights.remove(j);
+                            j--;
+                        } else if (parsedAirports.get(i).getShutdownStartDate().before(parsedFlights.get(j).getArrivalStopOverTime()) && parsedAirports.get(i).getShutdownEndDate().after(parsedFlights.get(j).getArrivalStopOverTime())) {
+                            parsedFlights.remove(j);
+                            j--;
+                        }
+                    }
+
+                }
+            }
+
+        }
+        if (parsedFlights.size() == 0) {
+            return null;
+        }
+        return parsedFlights;
+    }
+
 
 }

@@ -17,6 +17,7 @@ CREATE TABLE `Airlines` (
                             `AirlineCode` char(2) NOT NULL,
                             `AirlineName` varchar(30) NOT NULL,
                             `CountryCode3` char(3) NOT NULL,
+                            `Sponsored` int,
                             PRIMARY KEY (`AirlineCode`),
                             KEY `AirlinesCountryCode3_FK` (`CountryCode3`),
                             CONSTRAINT `AirlinesCountryCode3_FK` FOREIGN KEY (`CountryCode3`) REFERENCES `Country` (`countryCode3`)
@@ -36,6 +37,8 @@ CREATE TABLE `Destinations` (
                                 `DestinationCode` char(3) NOT NULL,
                                 `Airport` varchar(30) NOT NULL,
                                 `CountryCode3` char(3) NOT NULL,
+                                `ShutdownStartDate` datetime,
+                                `ShutdownEndDate` datetime,
                                 PRIMARY KEY (`DestinationCode`),
                                 KEY `DestinationCountryCode_FK` (`CountryCode3`),
                                 CONSTRAINT `DestinationCountryCode_FK` FOREIGN KEY (`CountryCode3`) REFERENCES `Country` (`countryCode3`)
