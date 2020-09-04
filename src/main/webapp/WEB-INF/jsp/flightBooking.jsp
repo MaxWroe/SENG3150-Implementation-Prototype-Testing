@@ -113,11 +113,11 @@
         <%}else{%>
         <div class="booking-details">
             <p>You're not logged in!</p>
-            <form id="loginForm" method="post" action="/login">
-                <!-- Email address -->
-                <label for="email">Email address</label>
-                <input id="email" type="email" name ="email" required/> <br>
-                <!-- Password -->
+            <form id="loginForm" method="post" action="appLogin">
+                <!-- email address -->
+                <label for="username">Email address</label>
+                <input id="username" type="text" name ="username" required/> <br>
+                <!-- password -->
                 <label for="password">Password</label>
                 <input type ="password" id="password" name ="password" required/> <br>
                 <input type="submit" value="Login"/>
