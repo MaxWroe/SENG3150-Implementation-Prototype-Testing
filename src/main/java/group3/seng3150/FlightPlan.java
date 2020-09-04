@@ -20,18 +20,20 @@ public class FlightPlan implements Comparable<FlightPlan>, Cloneable{
     private List<Availability> availabilities;
     private int position;
     private List<Price> prices;
-
+    private List<Boolean> flightSponsored;
 
     public FlightPlan(){
         flights = new LinkedList<>();
         availabilities = new LinkedList<>();
         prices = new LinkedList<>();
+        flightSponsored = new LinkedList<>();
     }
 
     public FlightPlan(List<Flight> parsedFlights){
         flights = parsedFlights;
         availabilities = new LinkedList<>();
         prices = new LinkedList<>();
+        flightSponsored = new LinkedList<>();
     }
 
     public Timestamp getDepartureDate(){
@@ -166,7 +168,15 @@ public class FlightPlan implements Comparable<FlightPlan>, Cloneable{
         this.availabilities = availabilities;
     }
 
-    public void setPosition(int position)
+    public List<Boolean> getFlightSponsored() {
+        return flightSponsored;
+    }
+
+    public void setFlightSponsored(List<Boolean> flightSponsored) {
+        this.flightSponsored = flightSponsored;
+    }
+
+        public void setPosition(int position)
     {
         this.position = position;
     }
@@ -230,4 +240,5 @@ public class FlightPlan implements Comparable<FlightPlan>, Cloneable{
         }
         return 0;
     }
+
 }

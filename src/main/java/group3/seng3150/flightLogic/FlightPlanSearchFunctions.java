@@ -1,10 +1,8 @@
 package group3.seng3150.flightLogic;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import group3.seng3150.FlightPlan;
-import group3.seng3150.entities.Airport;
-import group3.seng3150.entities.Availability;
-import group3.seng3150.entities.Flight;
-import group3.seng3150.entities.Price;
+import group3.seng3150.entities.*;
 
 import javax.persistence.EntityManager;
 import java.util.ArrayList;
@@ -147,6 +145,49 @@ public class FlightPlanSearchFunctions {
             return null;
         }
         return parsedFlights;
+    }
+
+    public List<FlightPlan> setSponsoredAirlines(List<FlightPlan> parsedFlightPlans, List<Airline> airlines){
+        List<Boolean> flightsSponsored;
+        for(int i=0; i<parsedFlightPlans.size(); i++){
+            flightsSponsored = new LinkedList<>();
+            for(int j=0; j<parsedFlightPlans.get(i).getFlights().size(); j++){
+                flightsSponsored.add(new Boolean(false));
+                for(int k=0; k<airlines.size(); k++) {
+                    if (parsedFlightPlans.get(i).getFlights().get(j).getAirlineCode().equals(airlines.get(k).getAirlineCode())) {
+                        if(airlines.get(k).getSponsored() == 1){
+                            flightsSponsored.set(j, new Boolean(true));
+                        }
+                    }
+                }
+            }
+            parsedFlightPlans.get(i).setFlightSponsored(flightsSponsored);
+        }
+
+        return parsedFlightPlans;
+    }
+
+    public List<FlightPlan> setSponsoredAirlines(List<FlightPlan> parsedFlightPlans, EntityManager em){
+        List<Boolean> flightsSponsored;
+        Airline currentAirline;
+        FlightPlanSearchSQL sqlSearcher = new FlightPlanSearchSQL();
+        for(int i=0; i<parsedFlightPlans.size(); i++){
+            flightsSponsored = new LinkedList<>();
+            for(int j=0; j<parsedFlightPlans.get(i).getFlights().size(); j++){
+                flightsSponsored.add(new Boolean(false));
+                currentAirline = sqlSearcher.retrieveAirline(parsedFlightPlans.get(i).getFlights().get(j), em);
+                if(currentAirline.getSponsored() == 1){
+                    flightsSponsored.set(j, new Boolean(true));
+                }
+                else{
+
+                }
+
+
+            }
+            parsedFlightPlans.get(i).setFlightSponsored(flightsSponsored);
+        }
+        return parsedFlightPlans;
     }
 
 

@@ -74,6 +74,7 @@ public class FlightPlanSearch {
                 flightPlans = buildFlightPlansYens(flights, departureLocation, destination, timeStart, timeEnd);
                 flightPlans = searchFunctions.setFlightPlansAvailabilities(flightPlans, availabilities);
                 flightPlans = searchFunctions.setPrices(flightPlans, em);
+                flightPlans = searchFunctions.setSponsoredAirlines(flightPlans, em);
             }
             if(flightPlans.size()>0){
                 return flightPlans;
@@ -108,13 +109,12 @@ public class FlightPlanSearch {
 
             flightPlan = dijkstraSearch.getShortestPathDuration(searchFunctions.buildGraph(flights, airports), departureLocation, destination, timeStart);
             if(flightPlan != null) {
-                flightPlan.setAvailabilitiesFiltered(availabilities);
-
-                List<Price> currentPrices = new LinkedList<>();
-                for (int j = 0; j < flightPlan.getAvailabilities().size(); j++) {
-                    currentPrices.add(sqlSearch.retrievePrice(flightPlan.getAvailabilities().get(j), em));
-                }
-                flightPlan.setPrices(currentPrices);
+                List<FlightPlan> flightPlans = new LinkedList<>();
+                flightPlans.add(flightPlan);
+                flightPlans = searchFunctions.setFlightPlansAvailabilities(flightPlans, availabilities);
+                flightPlans = searchFunctions.setPrices(flightPlans, em);
+                flightPlans = searchFunctions.setSponsoredAirlines(flightPlans, em);
+                flightPlan = flightPlans.get(0);
             }
         }
         return flightPlan;
