@@ -176,7 +176,7 @@ public class FlightPlanSearchFunctions {
             for(int j=0; j<parsedFlightPlans.get(i).getFlights().size(); j++){
                 flightsSponsored.add(new Boolean(false));
                 currentAirline = sqlSearcher.retrieveAirline(parsedFlightPlans.get(i).getFlights().get(j), em);
-                if(currentAirline.getSponsored() == 1){
+                if(currentAirline != null && currentAirline.getSponsored() == 1){
                     flightsSponsored.set(j, new Boolean(true));
                 }
                 else{
