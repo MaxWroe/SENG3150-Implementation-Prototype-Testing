@@ -12,15 +12,11 @@
 </head>
 <body>
 !-- Site header -->
-<jsp:include page="header.jsp"/>
+<jsp:include page="../header.jsp"/>
 
 <main class="main-content">
     <div class="card-body">
     <h1>Travel Agent</h1>
-
-
-
-
 
 
     </div>
