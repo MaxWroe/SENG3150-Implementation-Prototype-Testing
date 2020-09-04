@@ -51,7 +51,7 @@ public class DefaultController {
 
     @GetMapping("/customerSupport")
     public ModelAndView displayCustomerSupport() {
-        ModelAndView view = new ModelAndView("customerSupport");
+        ModelAndView view = new ModelAndView("Users/customerSupport");
         return view;
     }
     /*
@@ -82,7 +82,7 @@ public class DefaultController {
 
     @GetMapping("/submitReview")
     public ModelAndView displaySubmitReview() {
-        ModelAndView view = new ModelAndView("submitReview");
+        ModelAndView view = new ModelAndView("Users/submitReview");
         return view;
     }
 
@@ -97,4 +97,5 @@ public class DefaultController {
         ModelAndView view = new ModelAndView("reviews");
         return view;
     }
+
 }

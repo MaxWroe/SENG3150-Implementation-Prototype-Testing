@@ -14,14 +14,14 @@
 
     <link rel="stylesheet" type="text/css" href="/css/main.css">
 
-   <%-- <script src="/js/dynamicLink.js"></script> --%>
+   <script src="/js/dynamicLink.js"></script>
 </head>
 <body>
 <!-- session handler -->
     <%--<jsp:include page="sessionHandlerUser.jsp"/> --%>
 
 <!-- Site header -->
-<jsp:include page="header.jsp"/>
+<jsp:include page="../header.jsp"/>
 
 
 <main class="main-content">
@@ -52,7 +52,7 @@
 
             <form id="accountForm" method="post" action="/accountDetails/edit" onsubmit="return validateRegister()" style="display: none">
 
-                <jsp:include page="form.jsp"/>
+                <jsp:include page="../form.jsp"/>
 
                 <!-- citizenship -->
                 <label for="citizenship">Citizenship: </label>

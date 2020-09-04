@@ -27,7 +27,7 @@ public class AccountController {
     @GetMapping("/accountDetails")
     public ModelAndView displayAccountDetails(HttpSession session,
                                               Authentication auth) {
-        ModelAndView view = new ModelAndView("accountDetails");
+        ModelAndView view = new ModelAndView("Users/accountDetails");
 
         String emailSearch = "'" + auth.getName() + "'";
         String standard = "default";
@@ -119,7 +119,7 @@ public class AccountController {
         em.getTransaction().commit();
 
         //Send the new information back to the view
-        ModelAndView view = new ModelAndView("accountDetails");
+        ModelAndView view = new ModelAndView("Users/accountDetails");
         view.addObject("firstName", user.getFirstName());
         view.addObject("lastName", user.getLastName());
         view.addObject("email", user.getEmail());
