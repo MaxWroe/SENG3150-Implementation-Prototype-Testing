@@ -11,7 +11,7 @@ public class PriceID implements Serializable {
 
     private String airlineCode;
     private String flightNumber;
-    private Timestamp departureDate;
+    private Timestamp startDate;
     private String classCode;
     private String ticketCode;
 
@@ -22,7 +22,7 @@ public class PriceID implements Serializable {
     public PriceID(String airlineCode, String flightNumber, Timestamp departureDate, String classCode, String ticketCode) {
         this.airlineCode = airlineCode;
         this.flightNumber = flightNumber;
-        this.departureDate = departureDate;
+        this.startDate = departureDate;
         this.classCode = classCode;
         this.ticketCode = ticketCode;
     }
@@ -34,13 +34,13 @@ public class PriceID implements Serializable {
         PriceID priceID = (PriceID) o;
         return Objects.equals(airlineCode, priceID.airlineCode) &&
                 Objects.equals(flightNumber, priceID.flightNumber) &&
-                Objects.equals(departureDate, priceID.departureDate) &&
+                Objects.equals(startDate, priceID.startDate) &&
                 Objects.equals(classCode, priceID.classCode) &&
                 Objects.equals(ticketCode, priceID.ticketCode);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(airlineCode, flightNumber, departureDate, classCode, ticketCode);
+        return Objects.hash(airlineCode, flightNumber, startDate, classCode, ticketCode);
     }
 }
