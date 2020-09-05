@@ -166,4 +166,10 @@ public class DefaultController {
         return view;
     }
 
+    //wishlist test
+    @GetMapping("/wishList")
+    public ModelAndView displayWishList() {
+        ModelAndView view = new ModelAndView("Users/wishList");
+        return view;
+    }
 }
