@@ -64,17 +64,24 @@ public class FlightPlanSearch {
 
         for(int i=0; i<2; i++) {
             List<Flight> flights = sqlSearch.retrieveFlights(timeStart, timeEnd, em);
-            flights = searchFunctions.filterFlightsCOVID(flights, airports);
-            String flightNumbersString = searchFunctions.getFlightNumbersSQLField(flights);
-            List<Availability> availabilities = sqlSearch.retrieveAvailabilities(timeStart, timeEnd, numberOfPeople, classCode, flightNumbersString, em);
-            if (availabilities.size() > 0) {
-                flights = searchFunctions.filterByAvailabilities(flights, availabilities);
+            if(flights.size()>0){
+                flights = searchFunctions.filterFlightsCOVID(flights, airports);
+//                String flightNumbersString = searchFunctions.getFlightNumbersSQLField(flights);
+                List<Availability> availabilities = sqlSearch.retrieveAvailabilities(timeStart, timeEnd, numberOfPeople, classCode, em);
+                if (availabilities.size() > 0) {
+                    System.out.println("availabilities matching criteria");
+                    for (int j = 0; i < availabilities.size(); i++) {
+                        System.out.println(availabilities.get(j).toString());
+                    }
 
+                    flights = searchFunctions.filterByAvailabilities(flights, availabilities);
 
-                flightPlans = buildFlightPlansYens(flights, departureLocation, destination, timeStart, timeEnd);
-                flightPlans = searchFunctions.setFlightPlansAvailabilities(flightPlans, availabilities);
-                flightPlans = searchFunctions.setPrices(flightPlans, em);
-//                flightPlans = searchFunctions.setSponsoredAirlines(flightPlans, em);
+                    flightPlans = buildFlightPlansYens(flights, departureLocation, destination, timeStart, timeEnd);
+
+                    flightPlans = searchFunctions.setFlightPlansAvailabilities(flightPlans, availabilities);
+                    flightPlans = searchFunctions.setPrices(flightPlans, em);
+    //                flightPlans = searchFunctions.setSponsoredAirlines(flightPlans, em);
+                }
             }
             if(flightPlans.size()>0){
                 return flightPlans;
@@ -101,12 +108,11 @@ public class FlightPlanSearch {
 
         List<Flight> flights = sqlSearch.retrieveFlights(timeStart, timeEnd, em);
         flights = searchFunctions.filterFlightsCOVID(flights, airports);
-        String flightNumbersString = searchFunctions.getFlightNumbersSQLField(flights);
+//        String flightNumbersString = searchFunctions.getFlightNumbersSQLField(flights);
 
-        List<Availability> availabilities = sqlSearch.retrieveAvailabilities(timeStart, timeEnd, numberOfPeople, classCode, flightNumbersString, em);
+        List<Availability> availabilities = sqlSearch.retrieveAvailabilities(timeStart, timeEnd, numberOfPeople, classCode, em);
         if(availabilities.size()>0) {
             flights = searchFunctions.filterByAvailabilities(flights, availabilities);
-
             flightPlan = dijkstraSearch.getShortestPathDuration(searchFunctions.buildGraph(flights, airports), departureLocation, destination, timeStart);
             if(flightPlan != null) {
                 List<FlightPlan> flightPlans = new LinkedList<>();
@@ -141,13 +147,13 @@ public class FlightPlanSearch {
 
             }
         }
-        System.out.println("number of flight plans produced by Yenns: " + flightPlans.size());
+        System.out.println("number of flight plans produced by Yenns with duplicates: " + flightPlans.size());
 
         //sets availabilities and removes duplicates
         if(flightPlans.size()>0) {
             flightPlans = searchFunctions.removeDuplicateFlightPlans(flightPlans);
         }
-        System.out.println("flight plan search complete");
+        System.out.println("number of flight plans after removing dulicates: " + flightPlans.size());
         return flightPlans;
     }
 

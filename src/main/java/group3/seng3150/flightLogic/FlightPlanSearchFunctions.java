@@ -101,15 +101,21 @@ public class FlightPlanSearchFunctions {
         }
         return flightPlans;
     }
-
-    public String getFlightNumbersSQLField(List<Flight> flights){
-        String flightNumberString = "('" + flights.get(0).getFlightNumber() + "'";
-        for(int i=1; i<flights.size(); i++){
-            flightNumberString += ", '" + flights.get(i).getFlightNumber() + "'";
-        }
-        flightNumberString += ")";
-        return flightNumberString;
-    }
+//
+//    public String getFlightNumbersSQLField(List<Flight> flights){
+//        List<String> flightNumbers = new LinkedList<>();
+//        for(int i=0; i<flights.size(); i++){
+//            if(!flightNumbers.contains(flights.get(i).getFlightNumber())){
+//                flightNumbers.add(flights.get(i).getFlightNumber());
+//            }
+//        }
+//        String flightNumberString = "('" + flightNumbers.get(0) + "'";
+//        for(int i=1; i<flightNumbers.size(); i++){
+//            flightNumberString += ", '" + flightNumbers.get(i) + "'";
+//        }
+//        flightNumberString += ")";
+//        return flightNumberString;
+//    }
 
     public List<Flight> filterFlightsCOVID(List<Flight> parsedFlights, List<Airport> parsedAirports) {
         for (int i = 0; i < parsedAirports.size(); i++) {

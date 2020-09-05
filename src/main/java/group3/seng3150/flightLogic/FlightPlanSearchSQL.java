@@ -17,15 +17,21 @@ public class FlightPlanSearchSQL {
         return flights;
     }
 
-    public List<Availability> retrieveAvailabilities(Timestamp StartTime, Timestamp endTime, int numberOfPeople, String classCode, String flightNumbers, EntityManager em){
+    public List<Availability> retrieveAvailabilities(Timestamp StartTime, Timestamp endTime, int numberOfPeople, String classCode, EntityManager em){
         List<Availability> availabilities = new LinkedList<>();
-        availabilities = em.createQuery("SELECT a FROM Availability a WHERE a.flightNumber IN " + flightNumbers +
-                " AND a.departureDate>='" + StartTime + "'" +
+        System.out.println("availabilities query: " + "SELECT a FROM Availability a WHERE a.departureDate>='" + StartTime + "'" +
                 " AND a.departureDate<='" + endTime + "'" +
                 " AND a.numberAvailableSeatsLeg1>=" + numberOfPeople +
-                " AND (a.numberAvailableSeatsLeg2>=" + numberOfPeople + " OR a.numberAvailableSeatsLeg2='null')" +
-                " AND a.classCode='" + classCode + "'", Availability.class).getResultList();
+                " AND a.classCode='" + classCode + "'" +
+                " AND (a.numberAvailableSeatsLeg2>=" + numberOfPeople + " OR a.numberAvailableSeatsLeg2='null')");
+        availabilities = em.createQuery("SELECT a FROM Availability a WHERE a.departureDate>='" + StartTime + "'" +
+                " AND a.departureDate<='" + endTime + "'" +
+                " AND a.numberAvailableSeatsLeg1>=" + numberOfPeople +
+                " AND a.classCode='" + classCode + "'" +
+                " AND (a.numberAvailableSeatsLeg2>=" + numberOfPeople + " OR a.numberAvailableSeatsLeg2=null)", Availability.class).getResultList();
+
         return availabilities;
+//        "a.flightNumber IN " + flightNumbers + AND a.departureDate>='" + StartTime + "'" +
     }
 
     public Price retrievePrice(Availability av, EntityManager em) {
