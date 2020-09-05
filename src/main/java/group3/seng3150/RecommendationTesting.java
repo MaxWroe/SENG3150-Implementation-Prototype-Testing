@@ -1,5 +1,6 @@
 package group3.seng3150;
 
+import group3.seng3150.entities.Availability;
 import group3.seng3150.entities.UserAccount;
 import group3.seng3150.recommendationLogic.RecommendationGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,7 @@ public class RecommendationTesting {
     @GetMapping("/RecTesting")
     public ModelAndView Index() {
         List<UserAccount> user = em.createQuery("SELECT u FROM UserAccount u").getResultList();
+        List<Availability> testing = em.createQuery("SELECT a FROM Availability a WHERE a.departureDate>='2020-12-13 00:00:01.0' AND a.departureDate<='2020-12-13 23:59:59.0' AND a.numberAvailableSeatsLeg1>=1 AND a.classCode='ECO'").getResultList();
         RecommendationGenerator rg = new RecommendationGenerator(this.em);
         rg.getRecommendations(user.get(0));
         //rg.generatePersonal("LAX");

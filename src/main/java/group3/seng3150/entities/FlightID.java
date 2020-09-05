@@ -9,7 +9,6 @@ public class FlightID implements Serializable {
         private String flightNumber;
         private String airlineCode;
         private Timestamp departureDate;
-        private String departureCode;
 
     public FlightID() {
     }
@@ -18,7 +17,6 @@ public class FlightID implements Serializable {
         this.flightNumber = flightNumber;
         this.airlineCode = airlineCode;
         this.departureDate = departureDate;
-        this.departureCode = departureCode;
     }
 
 
@@ -29,13 +27,12 @@ public class FlightID implements Serializable {
         FlightID flightID = (FlightID) o;
         return Objects.equals(flightNumber, flightID.flightNumber) &&
                 Objects.equals(airlineCode, flightID.airlineCode) &&
-                Objects.equals(departureDate, flightID.departureDate) &&
-                Objects.equals(departureCode, flightID.departureCode);
+                Objects.equals(departureDate, flightID.departureDate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(flightNumber, airlineCode, departureDate, departureCode);
+        return Objects.hash(flightNumber, airlineCode, departureDate);
     }
 }
 

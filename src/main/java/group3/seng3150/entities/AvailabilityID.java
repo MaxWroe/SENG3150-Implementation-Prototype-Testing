@@ -8,15 +8,17 @@ public class AvailabilityID implements Serializable {
 
     private String airlineCode;
     private String flightNumber;
+    private Timestamp departureDate ;
     private String classCode;
     private String ticketCode;
 
     public AvailabilityID() {
     }
 
-    public AvailabilityID(String airlineCode, String flightNumber, String classCode, String ticketCode) {
+    public AvailabilityID(String airlineCode, String flightNumber, Timestamp departureTime, String classCode, String ticketCode) {
         this.airlineCode = airlineCode;
         this.flightNumber = flightNumber;
+        this.departureDate = departureTime;
         this.classCode = classCode;
         this.ticketCode = ticketCode;
     }
@@ -28,12 +30,13 @@ public class AvailabilityID implements Serializable {
         AvailabilityID that = (AvailabilityID) o;
         return Objects.equals(airlineCode, that.airlineCode) &&
                 Objects.equals(flightNumber, that.flightNumber) &&
+                Objects.equals(departureDate, that.departureDate) &&
                 Objects.equals(classCode, that.classCode) &&
                 Objects.equals(ticketCode, that.ticketCode);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(airlineCode, flightNumber, classCode, ticketCode);
+        return Objects.hash(airlineCode, flightNumber, departureDate, classCode, ticketCode);
     }
 }

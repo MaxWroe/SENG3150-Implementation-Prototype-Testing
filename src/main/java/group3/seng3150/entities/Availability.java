@@ -16,7 +16,6 @@ public class Availability {
     @Id
     @Column(name = "FlightNumber", table = "Availability")
     @Basic(optional = false)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String flightNumber;
 
     @Id

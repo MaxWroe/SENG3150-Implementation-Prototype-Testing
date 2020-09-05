@@ -20,18 +20,22 @@ public class Price {
     @Basic(optional = false)
     private String airlineCode;
 
+    @Id
     @Column(name = "FlightNumber")
     @Basic(optional = false)
     private String flightNumber;
 
+    @Id
     @Column(name = "ClassCode")
     @Basic(optional = false)
     private String classCode;
 
+    @Id
     @Column(name = "TicketCode")
     @Basic(optional = false)
     private String ticketCode;
 
+    @Id
     @Column(name = "StartDate")
     @Basic(optional = false)
     private Timestamp startDate;
