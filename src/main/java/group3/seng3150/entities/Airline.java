@@ -59,11 +59,11 @@ public class Airline {
         this.countryCode3 = countryCode3;
     }
 
-    public int getSponsored() {
+    public Integer getSponsored() {
         return sponsored;
     }
 
-    public void setSponsored(int sponsored) {
+    public void setSponsored(Integer sponsored) {
         this.sponsored = sponsored;
     }
 

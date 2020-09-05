@@ -59,7 +59,8 @@ public class FlightController{
 
 
         //only runs if a return list is desired
-        if (returnDate!="") {
+        if (!returnDate.equals("")) {
+            System.out.println("running return");
             List<FlightPlan> returnFlightPlans = searcher.searchFlightPlans(arrivalLocation, departureLocation, departureDate, classCode, returnDateRange, numberPeople, em);
             flightPlans.setFlightPlansReturning(returnFlightPlans);
             flightPlans.sortFlightPlansReturning("timeascending");

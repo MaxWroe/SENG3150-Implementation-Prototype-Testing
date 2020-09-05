@@ -229,9 +229,13 @@ public class FlightPlan implements Comparable<FlightPlan>, Cloneable{
     public String toString(){
         String out = "";
         for(Flight currentFlight : flights){
-            out += "Flight: " + currentFlight.getDepartureCode() + " " + currentFlight.getDepartureDate() ;
-            out += " to " + currentFlight.getDestination() + " " + currentFlight.getArrivalDate();
-            out += ", ";
+            out += currentFlight.toString() + "\n";
+        }
+        for(Availability currentAvailability : availabilities){
+            out += currentAvailability.toString() + "\n";
+        }
+        for(Price currentPrice : prices){
+            out += currentPrice.toString() + "\n";
         }
         return out;
     }

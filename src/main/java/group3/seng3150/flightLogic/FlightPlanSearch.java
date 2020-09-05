@@ -54,6 +54,7 @@ public class FlightPlanSearch {
     //finds and returns a list of flight plans from sent in flights that match the criteria
     public List<FlightPlan> searchFlightPlans(String departureLocation, String destination, String departureDate, String classCode, int departureDateRange, int numberOfPeople, EntityManager em){
         List<FlightPlan> flightPlans = new LinkedList<>();
+        System.out.println("starting flight plan search with date: " + departureDate);
 
         String timeStartString = departureDate + " 00:00:01";
         String timeEndString = departureDate + " 23:59:59";
@@ -64,32 +65,46 @@ public class FlightPlanSearch {
 
         for(int i=0; i<2; i++) {
             List<Flight> flights = sqlSearch.retrieveFlights(timeStart, timeEnd, em);
+
+//            for (int j = 0; j < flights.size(); j++) {
+//                System.out.println(flights.get(j).toString());
+//            }
+
             if(flights.size()>0){
                 flights = searchFunctions.filterFlightsCOVID(flights, airports);
 //                String flightNumbersString = searchFunctions.getFlightNumbersSQLField(flights);
                 List<Availability> availabilities = sqlSearch.retrieveAvailabilities(timeStart, timeEnd, numberOfPeople, classCode, em);
                 if (availabilities.size() > 0) {
-                    System.out.println("availabilities matching criteria");
-                    for (int j = 0; i < availabilities.size(); i++) {
-                        System.out.println(availabilities.get(j).toString());
-                    }
+//                    System.out.println("availabilities matching criteria");
+//                    for (int j = 0; j < availabilities.size(); j++) {
+//                        System.out.println(availabilities.get(j).toString());
+//                    }
 
                     flights = searchFunctions.filterByAvailabilities(flights, availabilities);
+
+//                    for (int j = 0; j < flights.size(); j++) {
+//                        System.out.println(flights.get(j).toString());
+//                    }
 
                     flightPlans = buildFlightPlansYens(flights, departureLocation, destination, timeStart, timeEnd);
 
                     flightPlans = searchFunctions.setFlightPlansAvailabilities(flightPlans, availabilities);
                     flightPlans = searchFunctions.setPrices(flightPlans, em);
-    //                flightPlans = searchFunctions.setSponsoredAirlines(flightPlans, em);
+                    flightPlans = searchFunctions.setSponsoredAirlines(flightPlans, em);
+
                 }
             }
+            System.out.println("flight plans left after variable setting: " + flightPlans.size());
+
             if(flightPlans.size()>0){
-                return flightPlans;
+
+                break;
             }
             else{
                 timeEnd.setTime(timeEnd.getTime() + (24*60*60*1000));
             }
         }
+        System.out.println("returning flight plans");
         return flightPlans;
     }
 
@@ -119,7 +134,7 @@ public class FlightPlanSearch {
                 flightPlans.add(flightPlan);
                 flightPlans = searchFunctions.setFlightPlansAvailabilities(flightPlans, availabilities);
                 flightPlans = searchFunctions.setPrices(flightPlans, em);
-//                flightPlans = searchFunctions.setSponsoredAirlines(flightPlans, em);
+                flightPlans = searchFunctions.setSponsoredAirlines(flightPlans, em);
                 flightPlan = flightPlans.get(0);
             }
         }
@@ -153,7 +168,7 @@ public class FlightPlanSearch {
         if(flightPlans.size()>0) {
             flightPlans = searchFunctions.removeDuplicateFlightPlans(flightPlans);
         }
-        System.out.println("number of flight plans after removing dulicates: " + flightPlans.size());
+        System.out.println("number of flight plans after removing duplicates: " + flightPlans.size());
         return flightPlans;
     }
 
