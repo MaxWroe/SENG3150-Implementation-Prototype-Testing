@@ -21,7 +21,16 @@ SET ArrivalTimeStopOver=DATE_ADD(ArrivalTimeStopOver, INTERVAL 5 YEAR),
 	DepartureTimeStopOver=DATE_ADD(DepartureTimeStopOver, INTERVAL 5 YEAR)
 WHERE ArrivalTimeStopOver IS NOT NULL;
 
+UPDATE Price
+SET
+	EndDate=DATE_ADD(EndDate, INTERVAL 23 HOUR),
+    EndDate=DATE_ADD(EndDate, INTERVAL 59 MINUTE),
+    EndDate=DATE_ADD(EndDate, INTERVAL 59 SECOND)
+WHERE TRUE;
+
 SET SQL_SAFE_UPDATES = 1;
+
+
 
 SELECT *
 FROM Availability
