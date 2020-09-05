@@ -16,7 +16,6 @@ public class Flight implements Cloneable{
     @Id
     @Column(name = "FlightNumber", table = "Flights")
     @Basic(optional = false)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String flightNumber;
 
     @Id

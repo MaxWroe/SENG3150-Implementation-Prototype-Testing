@@ -19,18 +19,22 @@ public class Availability {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String flightNumber;
 
+    @Id
     @Column(name = "AirlineCode", table = "Availability")
     @Basic(optional = false)
     private String airlineCode;
 
+    @Id
     @Column(name = "DepartureTime", table = "Availability")
     @Basic(optional = false)
     private Timestamp departureDate;
 
+    @Id
     @Column(name = "TicketCode", table = "Availability")
     @Basic(optional = false)
     private String ticketCode;
 
+    @Id
     @Column(name = "ClassCode", table = "Availability")
     @Basic(optional = false)
     private String classCode;
