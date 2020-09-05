@@ -9,6 +9,8 @@
 <html>
 <head>
     <title>Travel Agent</title>
+
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
 </head>
 <body>
 !-- Site header -->
