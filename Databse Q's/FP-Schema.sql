@@ -142,14 +142,14 @@ CREATE TABLE `UserAccount`  (
                                 `UserID` int(11) NOT NULL AUTO_INCREMENT,
                                 `FirstName` varchar(20) NOT NULL,
                                 `MiddleNames` varchar(60),
-                                `LastName` varchar(25) NOT NULL,
+                                `LastName` varchar(20) NOT NULL,
                                 `Email` varchar(60) NOT NULL,
                                 `Phone` int(20),
                                 `Gender` int(2) NOT NULL,
                                 `Citizenship` varchar(60) NOT NULL,
                                 `DateOfBirth` date NOT NULL,
                                 `UserType` int(2) NOT NULL,
-                                `Password` varchar(200) NOT NULL,
+                                `Password` varchar(14) NOT NULL,
                                 `FamilyMembers` varchar(120),
                                 `EmergencyContact` varchar(60),
                                 `Address` varchar(120),
@@ -161,10 +161,6 @@ CREATE TABLE `UserAccount`  (
                                 FOREIGN KEY (`ROLEID`) REFERENCES `Roles` (`ROLEID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 ALTER TABLE UserAccount AUTO_INCREMENT=1;
-
-
-
-
 
 CREATE TABLE `Booking` (
                            `BookingID` int NOT NULL AUTO_INCREMENT,
@@ -297,5 +293,17 @@ CREATE TABLE `HolidayPackages`(
 )ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 ALTER TABLE Enquiry AUTO_INCREMENT=1;
+
+CREATE TABLE `WishListEntry`(
+                                `WishlistEntryID` int NOT NULL AUTO_INCREMENT,
+                                `UserID` int(11) NOT NULL,
+                                `countryCode3` varchar(80) NOT NULL,
+                                `countryName` varchar(80),
+                                PRIMARY KEY (`WishlistEntryID`),
+                                FOREIGN KEY (`UserID`) REFERENCES `UserAccount` (`UserID`),
+                                FOREIGN KEY (`countryCode3`) REFERENCES `Country` (`countryCode3`)
+
+)ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 
 
