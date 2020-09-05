@@ -74,7 +74,7 @@ public class FlightPlan implements Comparable<FlightPlan>, Cloneable{
                 return prices.get(i).getPrice();
             }
         }
-        return 0;
+        return Integer.MAX_VALUE;
     }
 
     //returns sum of prices from all flights in the flight plans
@@ -101,8 +101,8 @@ public class FlightPlan implements Comparable<FlightPlan>, Cloneable{
     }
 
     //returns the number of seats as the lowest number of seats for an individual flights
-    public double getNumberAvailableSeats(){
-        double out = Double.MAX_VALUE;
+    public int getNumberAvailableSeats(){
+        int out = Integer.MAX_VALUE;
         for(int i=0; i<flights.size();i++){
             for(int j=0; j<availabilities.size(); j++) {
                 if (flights.get(i).getFlightNumber().equals(availabilities.get(j).getFlightNumber())) {
@@ -133,14 +133,20 @@ public class FlightPlan implements Comparable<FlightPlan>, Cloneable{
         return  out;
     }
 
+    //returns duration from departure of first flight to arrival of last flight in minutes
     public int getDurationTotal(){
+        int out;
+        long tempLong = 0;
         if(flights.size()==0){
             return Integer.MAX_VALUE;
         }
-        long tempLong = 0;
-        tempLong = flights.get(flights.size()-1).getArrivalDate().getTime();
-        tempLong = tempLong - flights.get(0).getDepartureDate().getTime();
-        int out = (int)tempLong/(1000*60);
+
+        out = flights.get(0).getDuration();
+        for(int i=1; i<flights.size(); i++){
+            tempLong += (flights.get(i).getDepartureDate().getTime() - flights.get(i-1).getArrivalDate().getTime());
+            out += flights.get(i).getDuration();
+        }
+        out += (int)tempLong/(1000*60);
         return out;
     }
 
