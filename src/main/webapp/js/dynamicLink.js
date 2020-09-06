@@ -33,3 +33,14 @@ function displayForm(id){
         form.style.display="none";
     }
 }
+
+function setHolidayPackage(){
+    var destination;
+    destination = document.getElementById("destination").value;
+
+    if(destination === "ADL"){
+        document.getElementById("countryCode").value = "USA";
+        document.getElementById("countryName").Value = "United States of America";
+
+    }
+}
