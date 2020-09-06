@@ -2,6 +2,7 @@ package group3.seng3150.WishListLogic;
 
 import group3.seng3150.entities.Booking;
 import group3.seng3150.entities.WishListEntry;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.EntityManager;
 import java.util.*;
@@ -13,6 +14,7 @@ public class WishListStatistics {
     private EntityManager em;
     private List<CountryStat> stats;
 
+    @Autowired
     public WishListStatistics(EntityManager em) {
         this.em = em;
     }
