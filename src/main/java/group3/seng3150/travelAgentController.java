@@ -17,7 +17,7 @@ public class travelAgentController {
     public travelAgentController(EntityManager em){this.em =em;}
 
     @GetMapping("TravelAgent/travelAgentPage")
-    public ModelAndView Index() {
+    public ModelAndView travelAgentPage() {
         ModelAndView view = new ModelAndView("TravelAgent/travelAgentPage");
 
 

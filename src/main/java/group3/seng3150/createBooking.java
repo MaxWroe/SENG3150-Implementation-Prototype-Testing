@@ -31,8 +31,8 @@ public class createBooking {
                                             String returnClassBooking){
 
 
-        List<Booking> bookingsDeparture = new LinkedList<Booking>();
-        List<Booking> bookingsReturn = new LinkedList<Booking>();
+        LinkedList<Booking> bookingsDeparture = new LinkedList<Booking>();
+        LinkedList<Booking> bookingsReturn = new LinkedList<Booking>();
 
         int adultsBooking = Integer.parseInt(adultsBookingS);
         int childrenBookingS = Integer.parseInt(childrenBooking);
@@ -99,12 +99,13 @@ public class createBooking {
 
         FlightHolder searchReturn = (FlightHolder) session.getAttribute("returnFlights");
         searchReturn.setFlightPlanPositions();
+        int positionReturn = Integer.parseInt(positionReturnS);
         FlightPlan flightPlanR = searchReturn.getFlightPlansReturning().get(positionReturn);
         flightPlan.getDepartureDate();
 
-        for (int i = 0; i < returnAdultsBooking + returnChildrenBooking; i++) {
+        for (int i = 0; i < adultsBooking + childrenBookingS; i++) {
             Booking newBooking = new Booking();
-            newBooking.setGroupSize(returnAdultsBooking + returnChildrenBooking);
+            newBooking.setGroupSize(adultsBooking + childrenBookingS);
             newBooking.setReturnTrip(1);
             //Works based on a flightPlan having no more than 4 flights, as per assumptions for bookings
             for (int j = 0; j < flightPlanR.getFlights().size(); j++) {
