@@ -330,11 +330,6 @@
                 <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
                 <item name="Tomcat Server" type="7427dc5b:ServiceModel$ServiceGroupNode" />
               </path>
-              <path>
-                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-                <item name="Tomcat Server" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="Finished" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              </path>
             </expand>
             <select />
           </treeState>
@@ -404,13 +399,7 @@
       <workItem from="1599186052530" duration="1579000" />
       <workItem from="1599264534835" duration="7238000" />
       <workItem from="1599287264966" duration="4359000" />
-    </task>
-    <task id="LOCAL-00021" summary="fixed session attributes">
-      <created>1591073562578</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1591073562578</updated>
+      <workItem from="1599354769602" duration="693000" />
     </task>
     <task id="LOCAL-00022" summary="Changes to price finder">
       <created>1591223228608</created>
@@ -748,7 +737,14 @@
       <option name="project" value="LOCAL" />
       <updated>1599352273321</updated>
     </task>
-    <option name="localTasksCounter" value="70" />
+    <task id="LOCAL-00070" summary="changed password length to 42">
+      <created>1599354879983</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1599354879984</updated>
+    </task>
+    <option name="localTasksCounter" value="71" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -794,7 +790,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="added review type scheme" />
     <MESSAGE value="added roles and recommendation generator class" />
     <MESSAGE value="Custom login page" />
     <MESSAGE value="Fixed login system with spring security" />
@@ -819,7 +814,8 @@
     <MESSAGE value="finalised RecommendationGenerator" />
     <MESSAGE value="price fix" />
     <MESSAGE value="finalised wishlist logic, and added dummy sponsored data to airline" />
-    <option name="LAST_COMMIT_MESSAGE" value="finalised wishlist logic, and added dummy sponsored data to airline" />
+    <MESSAGE value="changed password length to 42" />
+    <option name="LAST_COMMIT_MESSAGE" value="changed password length to 42" />
   </component>
   <component name="WindowStateProjectService">
     <state x="859" y="416" key="#Assign_Data_Sources" timestamp="1591037474563">
@@ -878,13 +874,13 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="270" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/1920.-77.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1591360479763" />
-    <state x="391" y="85" width="1204" height="811" key="CommitChangelistDialog2" timestamp="1599352272473">
+    <state x="391" y="85" width="1204" height="811" key="CommitChangelistDialog2" timestamp="1599354879176">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="263" y="107" key="CommitChangelistDialog2/0.0.1504.1003@0.0.1504.1003" timestamp="1598594689078" />
     <state x="334" y="14" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1599010910426" />
     <state x="417" y="114" key="CommitChangelistDialog2/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1597368271542" />
-    <state x="391" y="85" width="1204" height="811" key="CommitChangelistDialog2/1920.-77.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1599352272473" />
+    <state x="391" y="85" width="1204" height="811" key="CommitChangelistDialog2/1920.-77.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1599354879176" />
     <state x="2254" y="14" key="CommitChangelistDialog2/1920.-77.1536.832/0.0.1920.1040@1920.-77.1536.832" timestamp="1590922094945" />
     <state width="1598" height="440" key="DebuggerActiveHint" timestamp="1591354037752">
       <screen x="0" y="0" width="1600" height="860" />
@@ -1070,13 +1066,13 @@
     <state x="335" y="175" key="SettingsEditor/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1597625521983" />
     <state x="335" y="177" key="SettingsEditor/0.0.1920.1050/1920.0.1920.1050@0.0.1920.1050" timestamp="1591338271565" />
     <state x="335" y="175" key="SettingsEditor/1920.-77.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1598661645353" />
-    <state x="521" y="175" key="Vcs.Push.Dialog.v2" timestamp="1599352275190">
+    <state x="521" y="175" key="Vcs.Push.Dialog.v2" timestamp="1599354882475">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="442" y="200" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1599010915919" />
     <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1597368276234" />
     <state x="552" y="255" key="Vcs.Push.Dialog.v2/0.0.1920.1050/1920.0.1920.1050@0.0.1920.1050" timestamp="1591364615086" />
-    <state x="521" y="175" key="Vcs.Push.Dialog.v2/1920.-77.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1599352275190" />
+    <state x="521" y="175" key="Vcs.Push.Dialog.v2/1920.-77.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1599354882475" />
     <state x="2362" y="125" key="Vcs.Push.Dialog.v2/1920.-77.1536.832/0.0.1920.1040@1920.-77.1536.832" timestamp="1590922098399" />
     <state width="968" height="528" key="XDebugger.FullValuePopup" timestamp="1599286771375">
       <screen x="0" y="0" width="1920" height="1040" />
@@ -1089,14 +1085,14 @@
     <state x="455" y="285" key="com.intellij.ide.util.TipDialog/0.0.1504.1003@0.0.1504.1003" timestamp="1591319835959" />
     <state x="484" y="244" key="com.intellij.ide.util.TipDialog/0.0.1600.860/-1360.114.1360.728@0.0.1600.860" timestamp="1591345228018" />
     <state x="2385" y="159" key="com.intellij.ide.util.TipDialog/1920.-77.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1599354778339" />
-    <state x="769" y="437" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1599354857352">
+    <state x="769" y="437" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1599355520509">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="603" y="421" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1504.1003@0.0.1504.1003" timestamp="1598590853269" />
     <state x="616" y="346" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1599010141082" />
     <state x="770" y="437" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1597641026949" />
     <state x="770" y="441" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1050/1920.0.1920.1050@0.0.1920.1050" timestamp="1598585210416" />
-    <state x="769" y="437" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/1920.-77.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1599354857352" />
+    <state x="769" y="437" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/1920.-77.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1599355520509" />
     <state x="342" y="140" key="new project wizard" timestamp="1597835229506">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
