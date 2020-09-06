@@ -58,7 +58,7 @@ public class Booking {
 
     @Column(name = "OverallPrice")
     @Basic(optional = false)
-    private int overallPrice;
+    private Double overallPrice;
 
     //If there was more time we would put booked flights into their own table to keep booking from being this big.
     //flight 1 - data is all foreign keys
@@ -88,7 +88,7 @@ public class Booking {
     private Timestamp arrivalTime;
     @Column(name = "Price")
     @Basic(optional = false)
-    private int price;
+    private Double price;
 
     //flight 2
     @Column(name = "AirlineCode2")
@@ -108,7 +108,7 @@ public class Booking {
     @Column(name = "ArrivalTime2")
     private Timestamp arrivalTime2;
     @Column(name = "Price2")
-    private Integer price2;
+    private Double price2;
 
     //flight 3
     @Column(name = "AirlineCode3")
@@ -128,7 +128,7 @@ public class Booking {
     @Column(name = "ArrivalTime3")
     private Timestamp arrivalTime3;
     @Column(name = "Price3")
-    private Integer price3;
+    private Double price3;
 
     //flight 4
     @Column(name = "AirlineCode4")
@@ -148,7 +148,7 @@ public class Booking {
     @Column(name = "ArrivalTime4")
     private Timestamp arrivalTime4;
     @Column(name = "Price4")
-    private Integer price4;
+    private Double price4;
 
 
 
@@ -396,35 +396,35 @@ public class Booking {
         this.ticketCode4 = ticketCode4;
     }
 
-    public int getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
-    public int getPrice2() {
+    public Double getPrice2() {
         return price2;
     }
 
-    public void setPrice2(int price2) {
+    public void setPrice2(Double price2) {
         this.price2 = price2;
     }
 
-    public int getPrice3() {
+    public Double getPrice3() {
         return price3;
     }
 
-    public void setPrice3(int price3) {
+    public void setPrice3(Double price3) {
         this.price3 = price3;
     }
 
-    public int getPrice4() {
+    public Double getPrice4() {
         return price4;
     }
 
-    public void setPrice4(int price4) {
+    public void setPrice4(Double price4) {
         this.price4 = price4;
     }
 

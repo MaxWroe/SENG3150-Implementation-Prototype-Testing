@@ -358,7 +358,7 @@ button
     margin: 0 auto;
     padding: 20px;
     background: #fff;
-    box-shadow: 0 4px 8px 0 rgba(255, 87, 49, 0.81), 0 6px 20px 0 rgba(255, 87, 49, 0.81);
+    box-shadow: 0 4px 8px 0 rgba(236, 240, 241, 1), 0 6px 20px 0 rgba(255, 87, 49, 0.4);
 }
 
 .flight-result-depart-time
@@ -442,7 +442,7 @@ button
 
     padding: 20px;
     background: #fff;
-    box-shadow: 0 4px 8px 0 rgba(255, 87, 49, 0.81), 0 6px 20px 0 rgba(255, 87, 49, 0.81);
+    box-shadow: 0 4px 8px 0 rgba(236, 240, 241, 1), 0 6px 20px 0 rgba(255, 87, 49, 0.4);
 }
 
 #flight-result-return-book

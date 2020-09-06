@@ -281,7 +281,7 @@
                         data-capacity="${flightPlan.numberAvailableSeats}"
                         <c:forEach items="${flightPlan.airlines}" var="airline">data-airline="${airline}"</c:forEach>>
 
-                        <div class="<c:choose><c:when test="${flightPlan.containsSponsored}">flight-result-oneway-sponsored</c:when><c:otherwise>flight-result-oneway</c:otherwise></c:choose>">
+                        <div class="<c:choose><c:when test="${flightPlan.containsSponsored()}">flight-result-oneway-sponsored</c:when><c:otherwise>flight-result-oneway</c:otherwise></c:choose>">
                             <div class="flight-result-depart-time">
                                 <fmt:parseDate pattern="yyyy-MM-dd HH:mm:ss" value="${flightPlan.departureDate}" var="parsedDate" />
 
@@ -303,8 +303,9 @@
                                         </c:forEach>
                                     </tr>
                                 </table>
-                                <c:set var="hours" scope="session" value="${flightPlan.durationTotal / 60}"/>
-                                <c:set var="minutes" scope="session" value="${flightPlan.durationTotal % 60}"/>
+                                <c:set var="hours" scope="page" value="${flightPlan.durationTotal / 60}"/>
+                                <fmt:parseNumber var="hours" integerOnly="true" type="number" value="${hours}" />
+                                <c:set var="minutes" scope="page" value="${flightPlan.durationTotal % 60}"/>
                                 <p>Total duration: ${hours} hours ${minutes} minutes</p>
                             </div>
                             <div class="flight-result-arrival-time">
@@ -325,6 +326,10 @@
                                     <input type="hidden" id="flightPlan${loop.count}" name="flightPlanPosition" value="${loop.count}">
                                     <button type="submit">$${flightPlan.price}</button>
                                 </form>
+                                <c:if test="${flightPlan.containsSponsored()}">
+                                    <br>
+                                    <i>Sponsored</i>
+                                </c:if>
                             </div>
                         </div>
                     </li>
@@ -372,7 +377,7 @@
                                     data-capacity="${flightPlan.numberAvailableSeats}"
                                     <c:forEach items="${flightPlan.airlines}" var="airline">data-airline="${airline}"</c:forEach>>
 
-                                    <div class="<c:choose><c:when test="${flightPlan.containsSponsored}">flight-result-return-trip-flight-sponsored</c:when><c:otherwise>flight-result-return-trip-flight</c:otherwise></c:choose>">
+                                    <div class="<c:choose><c:when test="${flightPlan.containsSponsored()}">flight-result-return-trip-flight-sponsored</c:when><c:otherwise>flight-result-return-trip-flight</c:otherwise></c:choose>">
                                         <div class="flight-result-depart-time">
                                             <fmt:parseDate pattern="yyyy-MM-dd HH:mm:ss" value="${flightPlan.departureDate}" var="parsedDate" />
 
@@ -411,6 +416,10 @@
                                             <label for="returnDepartureFlightPlan${loop.count}">Select: </label>
                                             <input type="radio" id="returnDepartureFlightPlan${loop.count}"
                                                    name="departureFlightPLan" value="${loop.count}" onchange="updateCost('departure', '${flightPlan.price}')">
+                                            <c:if test="${flightPlan.containsSponsored()}">
+                                                <br>
+                                                <i>Sponsored</i>
+                                            </c:if>
                                         </div>
                                     </div>
                                 </li>
@@ -433,7 +442,7 @@
                                     data-capacity="${flightPlan.numberAvailableSeats}"
                                     <c:forEach items="${flightPlan.airlines}" var="airline">data-airline="${airline}"</c:forEach>>
 
-                                    <div class="<c:choose><c:when test="${flightPlan.containsSponsored}">flight-result-return-trip-flight-sponsored</c:when><c:otherwise>flight-result-return-trip-flight</c:otherwise></c:choose>">
+                                    <div class="<c:choose><c:when test="${flightPlan.containsSponsored()}">flight-result-return-trip-flight-sponsored</c:when><c:otherwise>flight-result-return-trip-flight</c:otherwise></c:choose>">
                                         <div class="flight-result-depart-time">
                                             <fmt:parseDate pattern="yyyy-MM-dd HH:mm:ss" value="${flightPlan.departureDate}" var="parsedDate" />
 
@@ -471,6 +480,10 @@
                                             <!-- Position of the specific flight plan within the FlightHolder flightPlansDeparting list -->
                                             <label for="returnReturnFlightPlan${loop.count}">Select: </label>
                                             <input type="radio" id="returnReturnFlightPlan${loop.count}" name="return" value="${loop.count}" onchange="updateCost('return', '${flightPlan.price}')">
+                                            <c:if test="${flightPlan.containsSponsored()}">
+                                                <br>
+                                                <i>Sponsored</i>
+                                            </c:if>
                                         </div>
                                     </div>
                                 </li>
