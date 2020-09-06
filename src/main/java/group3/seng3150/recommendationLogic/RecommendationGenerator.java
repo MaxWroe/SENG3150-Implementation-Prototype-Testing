@@ -61,9 +61,9 @@ public class RecommendationGenerator {
             RecommendationPackage rec;
             if(ap!=null){
                 flight = fps.getSingleFlightPlan(ap, hp.get(i).getDestination(), departureDate, cc, dayRange, numPeople, em);
-                rec = new RecommendationPackage(hp.get(i), flight);
+                rec = new RecommendationPackage(hp.get(i), flight, cc, numPeople);
 
-            } else rec = new RecommendationPackage(hp.get(i), null);
+            } else rec = new RecommendationPackage(hp.get(i), null, cc, numPeople);
             rp.add(rec);
         }
         System.out.println("");
