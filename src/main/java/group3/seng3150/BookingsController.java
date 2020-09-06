@@ -1,26 +1,18 @@
 package group3.seng3150;
 
 import group3.seng3150.entities.Booking;
-import group3.seng3150.entities.UserAccount;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import javax.persistence.EntityManager;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import javax.servlet.http.HttpSessionAttributeListener;
 import java.sql.Date;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.*;
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 import java.util.Random;
 
 @Controller
@@ -33,7 +25,7 @@ public class BookingsController {
     //get method show bookings
     @GetMapping("/flightBooking")
     public ModelAndView showBooking(HttpSession session){
-        ModelAndView view = new ModelAndView("flightBooking");
+        ModelAndView view = new ModelAndView("bookingPage");
         return view;
     }
 
@@ -180,7 +172,7 @@ public class BookingsController {
         int positionReturn = Integer.parseInt(positionReturnS);
         //create a List of new bookings with the flight details selected, and add it to the session for the actual booking page to receive payment
         //and persist it
-        ModelAndView view = new ModelAndView("flightBooking");
+        ModelAndView view = new ModelAndView("bookingPage");
 
         List<Booking> bookingsDeparture = new LinkedList<Booking>();
         List<Booking> bookingsReturn = new LinkedList<Booking>();
@@ -336,7 +328,7 @@ public class BookingsController {
 
         //create a List of new bookings with the flight details selected, and add it to the session for the actual booking page to receive payment
         //and persist it
-        ModelAndView view = new ModelAndView("flightBooking");
+        ModelAndView view = new ModelAndView("bookingPage");
         List<Booking> bookingsDeparture = new LinkedList<Booking>();
 
         FlightHolder searchDeparture = (FlightHolder) session.getAttribute("departureFlights");

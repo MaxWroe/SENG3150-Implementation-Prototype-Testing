@@ -347,6 +347,20 @@ button
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
+.flight-result-oneway-sponsored
+{
+    grid-column: 2;
+    grid-row: 3;
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    background: #fff;
+    box-shadow: 0 4px 8px 0 rgba(255, 87, 49, 0.81), 0 6px 20px 0 rgba(255, 87, 49, 0.81);
+}
+
 .flight-result-depart-time
 {
     grid-column: 1;
@@ -419,6 +433,16 @@ button
     padding: 20px;
     background: #fff;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.flight-result-return-trip-flight-sponsored
+{
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+
+    padding: 20px;
+    background: #fff;
+    box-shadow: 0 4px 8px 0 rgba(255, 87, 49, 0.81), 0 6px 20px 0 rgba(255, 87, 49, 0.81);
 }
 
 #flight-result-return-book
