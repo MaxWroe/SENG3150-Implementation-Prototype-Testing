@@ -44,11 +44,11 @@ public class FlightPlanSearchSQL {
         String tc = av.getTicketCode();
         String dd = av.getDepartureDate().toString();
 
-        System.out.println("price query: " + "SELECT p FROM Price p WHERE p.airlineCode='" + ac + "' " +
-                "AND p.flightNumber='" + fn + "' " +
-                "AND p.classCode='" + cc + "' " +
-                "AND p.ticketCode='" + tc + "' " +
-                "AND p.startDate<'" + dd + "' AND p.endDate>'" + dd + "'");
+//        System.out.println("price query: " + "SELECT p FROM Price p WHERE p.airlineCode='" + ac + "' " +
+//                "AND p.flightNumber='" + fn + "' " +
+//                "AND p.classCode='" + cc + "' " +
+//                "AND p.ticketCode='" + tc + "' " +
+//                "AND p.startDate<'" + dd + "' AND p.endDate>'" + dd + "'");
 
         List<Price> price = em.createQuery("SELECT p FROM Price p WHERE p.airlineCode='" + ac + "' " +
                         "AND p.flightNumber='" + fn + "' " +

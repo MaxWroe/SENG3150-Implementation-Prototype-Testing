@@ -179,6 +179,7 @@ public class Flight implements Cloneable{
                 ", destination='" + destination + '\'' +
                 ", arrivalDate=" + arrivalDate +
                 ", duration=" + duration +
+                ", durationSecondLeg=" + durationSecondLeg +
                 '}';
     }
 

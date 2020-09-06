@@ -13,20 +13,25 @@ and has actions to return and set information for htose edges
 
 public class DijkstraNode {
     private String name;
-    private long distance = Long.MAX_VALUE;
+    private long distance;
     //the hash map links destinations to the flights coming from this node to the destination
-    private Map<DijkstraNode, List<Flight>> adjacentNodesFlights = new HashMap<>();
-    private List<Flight> shortestPathFlights = new LinkedList<>();
-    private List<DijkstraNode> shortestPath = new LinkedList<>();
+    private Map<DijkstraNode, List<Flight>> adjacentNodesFlights;
+    private List<Flight> shortestPathFlights;
+    private List<DijkstraNode> shortestPath;
 //    private Map<DijkstraNode, Flight> adjacentNodesFlightShortest = new HashMap<>();
 
     public DijkstraNode(String Name){
         this.name = Name;
+        distance = Long.MAX_VALUE;
+        adjacentNodesFlights = new HashMap<>();
+        shortestPathFlights = new LinkedList<>();
+        shortestPath = new LinkedList<>();
     }
 
     public void resetShortestVariables(){
 //        adjacentNodesFlightShortest = new HashMap<>();
         shortestPathFlights = new LinkedList<>();
+        shortestPath = new LinkedList<>();
     }
 
     //adds sent in flight to connect to sent in node
@@ -94,18 +99,18 @@ public class DijkstraNode {
 //    }
 
     //returns shortest duration of this node to sent in node
-    public long getShortestDurationToNode(DijkstraNode destination, Timestamp startingTime){
-        long currentWeight = Long.MAX_VALUE;
-        if(adjacentNodesFlights.get(destination) != null) {
-            for (Flight currentFlight : adjacentNodesFlights.get(destination)) {
-                if (currentFlight.getDepartureDate().after(startingTime) && currentFlight.getArrivalDate().getTime() - startingTime.getTime() < currentWeight) {
-                    currentWeight = (currentFlight.getArrivalDate().getTime() - startingTime.getTime());
-                }
-
-            }
-        }
-        return currentWeight;
-    }
+//    public long getShortestDurationToNode(DijkstraNode destination, Timestamp startingTime){
+//        long currentWeight = Long.MAX_VALUE;
+//        if(adjacentNodesFlights.get(destination) != null) {
+//            for (Flight currentFlight : adjacentNodesFlights.get(destination)) {
+//                if (currentFlight.getDepartureDate().after(startingTime) && currentFlight.getArrivalDate().getTime() < currentWeight) {
+//                    currentWeight = (currentFlight.getArrivalDate().getTime() - startingTime.getTime());
+//                }
+//
+//            }
+//        }
+//        return currentWeight;
+//    }
 
     public Flight getEarliestFlightToNode(DijkstraNode destination, Timestamp parsedTime){
         Flight currentFlight = adjacentNodesFlights.get(destination).get(adjacentNodesFlights.get(destination).size()-1);

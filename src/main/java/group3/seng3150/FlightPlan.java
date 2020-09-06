@@ -142,9 +142,15 @@ public class FlightPlan implements Comparable<FlightPlan>, Cloneable{
         }
 
         out = flights.get(0).getDuration();
+        if(flights.get(0).getDurationSecondLeg()!=null){
+            out += flights.get(0).getDurationSecondLeg();
+        }
         for(int i=1; i<flights.size(); i++){
             tempLong += (flights.get(i).getDepartureDate().getTime() - flights.get(i-1).getArrivalDate().getTime());
             out += flights.get(i).getDuration();
+            if(flights.get(i).getDurationSecondLeg()!=null){
+                out += flights.get(i).getDurationSecondLeg();
+            }
         }
         out += (int)tempLong/(1000*60);
         return out;
@@ -237,6 +243,7 @@ public class FlightPlan implements Comparable<FlightPlan>, Cloneable{
         for(Price currentPrice : prices){
             out += currentPrice.toString() + "\n";
         }
+        out += flightSponsored.toString() + "\n";
         return out;
     }
 
@@ -251,4 +258,12 @@ public class FlightPlan implements Comparable<FlightPlan>, Cloneable{
         return 0;
     }
 
+    public boolean containsSponsored(){
+        for(int i=0; i<flightSponsored.size(); i++){
+            if(flightSponsored.get(i).booleanValue()){
+                return true;
+            }
+        }
+        return false;
+    }
 }

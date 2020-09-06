@@ -191,5 +191,15 @@ public class FlightPlanSearchFunctions {
         return parsedFlightPlans;
     }
 
+    public List<FlightPlan> filterNumberFlightsMaxSize(List<FlightPlan> parsedFlightPlans, int n){
+        for (int i=0; i<parsedFlightPlans.size(); i++){
+            if(parsedFlightPlans.get(i).getFlights().size()>n){
+                parsedFlightPlans.remove(i);
+                i--;
+            }
+        }
+        return parsedFlightPlans;
+    }
+
 
 }

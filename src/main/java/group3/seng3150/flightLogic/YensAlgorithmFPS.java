@@ -21,9 +21,10 @@ public class YensAlgorithmFPS {
         try{
 
             FlightPlan kthPath = dijkstraSearch.getShortestPathDuration(graph, departureLocation, arrivalLocation, startingTime);
+           if(kthPath!=null) {
+               System.out.println("dijkstra flight plan: " + kthPath.toString());
+           }
             kShortestPaths.add(kthPath);
-
-
 
             for(int i=1; i<k; i++){
 
@@ -121,10 +122,18 @@ public class YensAlgorithmFPS {
                     }
 
                     graph.resetShortestPaths();
-                    FlightPlan spurPath = dijkstraSearch.getShortestPathDuration(graph, spurNode, arrivalLocation, startingTime);
-
+                    Timestamp spurTime;
+                    if(rootPath.getFlights().size()>0) {
+                        spurTime = rootPath.getFlights().get(rootPath.getFlights().size()-1).getArrivalDate();
+                    }
+                    else {
+                        spurTime = startingTime;
+                    }
+                    FlightPlan spurPath = dijkstraSearch.getShortestPathDuration(graph, spurNode, arrivalLocation, spurTime);
 
                     if (spurPath != null) {
+                        System.out.println("root path: " + rootPath.toString());
+                        System.out.println("spur path: " + spurPath.toString());
                         FlightPlan totalPath = new FlightPlan(rootPath.getFlights());
                         totalPath.addFlights(spurPath);
                         System.out.println("Candidate option: " + totalPath.toString());
