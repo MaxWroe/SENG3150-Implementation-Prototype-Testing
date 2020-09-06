@@ -281,7 +281,7 @@
                         data-capacity="${flightPlan.numberAvailableSeats}"
                         <c:forEach items="${flightPlan.airlines}" var="airline">data-airline="${airline}"</c:forEach>>
 
-                        <div class="<c:choose><c:when test="${flightPlan.hasSponsored}">flight-result-oneway-sponsored</c:when><c:otherwise>flight-result-oneway</c:otherwise></c:choose>">
+                        <div class="<c:choose><c:when test="${flightPlan.containsSponsored}">flight-result-oneway-sponsored</c:when><c:otherwise>flight-result-oneway</c:otherwise></c:choose>">
                             <div class="flight-result-depart-time">
                                 <fmt:parseDate pattern="yyyy-MM-dd HH:mm:ss" value="${flightPlan.departureDate}" var="parsedDate" />
 
@@ -372,7 +372,7 @@
                                     data-capacity="${flightPlan.numberAvailableSeats}"
                                     <c:forEach items="${flightPlan.airlines}" var="airline">data-airline="${airline}"</c:forEach>>
 
-                                    <div class="<c:choose><c:when test="${flightPlan.hasSponsored}">flight-result-return-trip-flight-sponsored</c:when><c:otherwise>flight-result-return-trip-flight</c:otherwise></c:choose>">
+                                    <div class="<c:choose><c:when test="${flightPlan.containsSponsored}">flight-result-return-trip-flight-sponsored</c:when><c:otherwise>flight-result-return-trip-flight</c:otherwise></c:choose>">
                                         <div class="flight-result-depart-time">
                                             <fmt:parseDate pattern="yyyy-MM-dd HH:mm:ss" value="${flightPlan.departureDate}" var="parsedDate" />
 
@@ -433,7 +433,7 @@
                                     data-capacity="${flightPlan.numberAvailableSeats}"
                                     <c:forEach items="${flightPlan.airlines}" var="airline">data-airline="${airline}"</c:forEach>>
 
-                                    <div class="<c:choose><c:when test="${flightPlan.hasSponsored}">flight-result-return-trip-flight-sponsored</c:when><c:otherwise>flight-result-return-trip-flight</c:otherwise></c:choose>">
+                                    <div class="<c:choose><c:when test="${flightPlan.containsSponsored}">flight-result-return-trip-flight-sponsored</c:when><c:otherwise>flight-result-return-trip-flight</c:otherwise></c:choose>">
                                         <div class="flight-result-depart-time">
                                             <fmt:parseDate pattern="yyyy-MM-dd HH:mm:ss" value="${flightPlan.departureDate}" var="parsedDate" />
 

@@ -31,7 +31,7 @@ public class DefaultController {
 //        return view;
 //    }
 
-    @GetMapping("/recommendations")
+    @GetMapping("/travelRecommendations")
     public ModelAndView displayRecomendations() {
         ModelAndView view = new ModelAndView("travelRecommendations");
         return view;

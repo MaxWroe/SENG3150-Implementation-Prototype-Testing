@@ -44,13 +44,13 @@
             <!-- Starting airport -->
             <div class="form-group-departure-local">
                 <label for="departureLocation">From:</label>
-                <input list="destinations" name="departureLocation" id="departureLocation" required>
+                <input list="destinations" id="departureLocation" name="departureLocation" required>
             </div>
 
             <!-- Destination airport -->
             <div class="form-group-arrival-local">
                 <label for="arrivalLocation">To:</label>
-                <input list="destinations" name="arrivalLocation" id="arrivalLocation" required>
+                <input list="destinations" id="arrivalLocation" name="arrivalLocation" required>
             </div>
 
             <!-- Depart date -->
