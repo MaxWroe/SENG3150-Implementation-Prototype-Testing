@@ -84,7 +84,7 @@
                     <a><security:authentication property="name"/></a>
 
                     <div class="dropdown-content">
-                        <a href="/travelAgentPage">Travel Agent</a>
+                        <a href="/travelAgentPage">Holiday Packages</a>
                         <a href="/logout">Logout</a>
                     </div>
 
