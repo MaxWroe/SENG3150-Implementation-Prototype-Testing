@@ -56,6 +56,10 @@ public class Booking {
     @Basic(optional = false)
     private int returnTrip;
 
+    @Column(name = "OverallPrice")
+    @Basic(optional = false)
+    private int overallPrice;
+
     //If there was more time we would put booked flights into their own table to keep booking from being this big.
     //flight 1 - data is all foreign keys
     @Column(name = "AirlineCode")
@@ -104,7 +108,7 @@ public class Booking {
     @Column(name = "ArrivalTime2")
     private Timestamp arrivalTime2;
     @Column(name = "Price2")
-    private int price2;
+    private Integer price2;
 
     //flight 3
     @Column(name = "AirlineCode3")
@@ -124,7 +128,7 @@ public class Booking {
     @Column(name = "ArrivalTime3")
     private Timestamp arrivalTime3;
     @Column(name = "Price3")
-    private int price3;
+    private Integer price3;
 
     //flight 4
     @Column(name = "AirlineCode4")
@@ -144,7 +148,7 @@ public class Booking {
     @Column(name = "ArrivalTime4")
     private Timestamp arrivalTime4;
     @Column(name = "Price4")
-    private int price4;
+    private Integer price4;
 
 
 

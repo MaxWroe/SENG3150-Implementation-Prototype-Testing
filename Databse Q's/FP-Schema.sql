@@ -164,7 +164,6 @@ ALTER TABLE UserAccount AUTO_INCREMENT=1;
 
 CREATE TABLE `Booking` (
                            `BookingID` int NOT NULL AUTO_INCREMENT,
-
                            `UserID` int(11) NOT NULL,
                            `BookingType` int NOT NULL,
                            `FirstName` varchar(20) NOT NULL,
@@ -174,6 +173,7 @@ CREATE TABLE `Booking` (
                            `BookingDate` datetime NOT NULL,
                            `GroupSize` int NOT NULL,
                            `returnTrip` int NOT NULL,
+                           `OverallPrice` int NOT NULL,
 
 
                            `AirlineCode` char(2) NOT NULL,

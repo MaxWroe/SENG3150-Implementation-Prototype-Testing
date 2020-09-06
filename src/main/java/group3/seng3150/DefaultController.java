@@ -3,11 +3,12 @@ package group3.seng3150;
 import group3.seng3150.entities.Airline;
 import group3.seng3150.entities.Airport;
 import group3.seng3150.entities.Booking;
+import group3.seng3150.recommendationLogic.RecommendationGenerator;
+import group3.seng3150.recommendationLogic.RecommendationPackage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
 import javax.persistence.EntityManager;
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -34,6 +35,8 @@ public class DefaultController {
     @GetMapping("/travelRecommendations")
     public ModelAndView displayRecomendations() {
         ModelAndView view = new ModelAndView("travelRecommendations");
+        RecommendationGenerator genPackages = new RecommendationGenerator();
+        view.addObject("recommendationPackages",genPackages.getRecommendations());
         return view;
     }
 
