@@ -21,6 +21,7 @@
         <class>group3.seng3150.entities.PriceID</class>
         <class>group3.seng3150.entities.AvailabilityID</class>
         <class>group3.seng3150.entities.Airline</class>
+        <class>group3.seng3150.entities.WishListEntry</class>
 
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
 

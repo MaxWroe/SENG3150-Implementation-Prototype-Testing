@@ -21,4 +21,9 @@ INSERT INTO `UserAccount`(`UserID`,`FirstName`,`MiddleNames`,`LastName`,`Email`,
 VALUES
 	(''3'', ''reece'', ''James'', ''Doe'', ''reece@gmail.com'', ''0487876543'', ''0'', ''Australian'', ''0'', ''1990-03-31'', ''reece'', ''CUSTOMER'', ''GIG'');
 
-		
+
+UPDATE Airlines
+SET
+    Sponsored = ''1''
+WHERE
+    AirlineCode = ''AA'';

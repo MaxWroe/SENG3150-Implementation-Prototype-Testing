@@ -60,6 +60,8 @@ public class Flight implements Cloneable{
     private Integer durationSecondLeg;
 
 
+
+
     //Constructor
     public Flight() {
     }

@@ -12,7 +12,7 @@ import java.sql.Timestamp;
 import java.util.Objects;
 
 @Entity
-@Table(name = "Enquiry")
+@Table(name = "WishListEntry")
 public class WishListEntry {
 
     @Id
