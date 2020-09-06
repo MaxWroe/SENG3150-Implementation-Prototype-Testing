@@ -137,7 +137,7 @@
             </script>
         </div>
         <div id="search-sidebar">
-            <p>Side filters</p>
+            <h4>Side filters</h4>
             <p>Stop Overs</p>
             <label for="stopsFilter"></label>
             <input type="range" min="0" max="7" class="vHorizon" name="stopsFilter" id="stopsFilter">
@@ -292,12 +292,12 @@
                                 <p>Stop overs: ${flightPlan.numberStopOvers}</p>
                                 <table>
                                     <tr>
+                                        <td>${param.departureLocation}</td>
                                         <c:forEach items="${flightPlan.flights}" var="flightPlanFlights">
-                                            <td>${flightPlanFlights.departureCode}</td>
-                                            <td>--></td>
+                                            <td>&#8594</td>
                                             <c:if test = "${flightPlanFlights.stopOverCode != ''}">
                                             <td>${flightPlanFlights.stopOverCode}</td>
-                                            <td>--></td>
+                                            <td>&#8594</td>
                                             </c:if>
                                             <td>${flightPlanFlights.destination}</td>
                                         </c:forEach>
