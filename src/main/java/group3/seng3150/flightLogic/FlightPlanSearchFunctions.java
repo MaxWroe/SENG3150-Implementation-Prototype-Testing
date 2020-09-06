@@ -5,6 +5,7 @@ import group3.seng3150.FlightPlan;
 import group3.seng3150.entities.*;
 
 import javax.persistence.EntityManager;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -194,6 +195,16 @@ public class FlightPlanSearchFunctions {
     public List<FlightPlan> filterNumberFlightsMaxSize(List<FlightPlan> parsedFlightPlans, int n){
         for (int i=0; i<parsedFlightPlans.size(); i++){
             if(parsedFlightPlans.get(i).getFlights().size()>n){
+                parsedFlightPlans.remove(i);
+                i--;
+            }
+        }
+        return parsedFlightPlans;
+    }
+
+    public List<FlightPlan> filterFlightsDepartureDate(List<FlightPlan> parsedFlightPlans, Timestamp endTime){
+        for(int i=0; i<parsedFlightPlans.size(); i++) {
+            if(parsedFlightPlans.get(i).getDepartureDate().after(endTime)){
                 parsedFlightPlans.remove(i);
                 i--;
             }

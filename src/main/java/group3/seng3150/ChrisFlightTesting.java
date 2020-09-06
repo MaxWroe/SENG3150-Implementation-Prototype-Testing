@@ -48,7 +48,7 @@ public class ChrisFlightTesting {
         availability2.setClassCode("ECO");
 //        availability2.setNumberAvailableSeatsLeg1("10");
 
-        FlightPlanSearch searcher = new FlightPlanSearch();
+//        FlightPlanSearch searcher = new FlightPlanSearch();
         List<Flight> flightsList = new LinkedList<>();
         flightsList.add(flight1);
         flightsList.add(flight2);

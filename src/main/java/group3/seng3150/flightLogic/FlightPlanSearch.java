@@ -34,13 +34,13 @@ public class FlightPlanSearch {
     private YensAlgorithmFPS yensSearch;
     private FlightPlanSearchSQL sqlSearch;
 
-    public FlightPlanSearch(){
-        airports = new ArrayList<>();
-        searchFunctions = new FlightPlanSearchFunctions();
-        dijkstraSearch = new DijkstraAlgorithmFPS();
-        yensSearch = new YensAlgorithmFPS();
-        sqlSearch = new FlightPlanSearchSQL();
-    }
+//    public FlightPlanSearch(){
+//        airports = new ArrayList<>();
+//        searchFunctions = new FlightPlanSearchFunctions();
+//        dijkstraSearch = new DijkstraAlgorithmFPS();
+//        yensSearch = new YensAlgorithmFPS();
+//        sqlSearch = new FlightPlanSearchSQL();
+//    }
 
     public FlightPlanSearch(EntityManager em){
         searchFunctions = new FlightPlanSearchFunctions();
@@ -63,7 +63,7 @@ public class FlightPlanSearch {
 
         timeEnd.setTime(timeEnd.getTime() + (24*60*60*1000)*departureDateRange);
 
-        for(int i=0; i<3; i++) {
+        for(int i=0; i<5; i++) {
             List<Flight> flights = sqlSearch.retrieveFlights(timeStart, timeEnd, em);
 
 //            for (int j = 0; j < flights.size(); j++) {
@@ -89,9 +89,11 @@ public class FlightPlanSearch {
                     flightPlans = buildFlightPlansYens(flights, departureLocation, destination, timeStart, timeEnd);
 
                     flightPlans = searchFunctions.filterNumberFlightsMaxSize(flightPlans, 4);
+                    flightPlans = searchFunctions.filterFlightsDepartureDate(flightPlans, timeEnd);
                     flightPlans = searchFunctions.setFlightPlansAvailabilities(flightPlans, availabilities);
                     flightPlans = searchFunctions.setPrices(flightPlans, em);
                     flightPlans = searchFunctions.setSponsoredAirlines(flightPlans, em);
+
 
                 }
             }
@@ -119,7 +121,7 @@ public class FlightPlanSearch {
         Timestamp timeEnd = Timestamp.valueOf(timeEndString);
 
         if(departureDateRange > 0){
-            timeEnd.setTime(timeEnd.getTime() + (24*60*60*1000)*departureDateRange);
+            timeEnd.setTime(timeEnd.getTime() + (24*60*60*1000)*(departureDateRange+5));
         }
 
         List<Flight> flights = sqlSearch.retrieveFlights(timeStart, timeEnd, em);
@@ -134,6 +136,7 @@ public class FlightPlanSearch {
                 List<FlightPlan> flightPlans = new LinkedList<>();
                 flightPlans.add(flightPlan);
                 flightPlans = searchFunctions.filterNumberFlightsMaxSize(flightPlans, 4);
+                flightPlans = searchFunctions.filterFlightsDepartureDate(flightPlans, timeEnd);
                 flightPlans = searchFunctions.setFlightPlansAvailabilities(flightPlans, availabilities);
                 flightPlans = searchFunctions.setPrices(flightPlans, em);
                 flightPlans = searchFunctions.setSponsoredAirlines(flightPlans, em);
@@ -180,4 +183,6 @@ public class FlightPlanSearch {
             airports.addAll(retrievedAirports);
         }
     }
+
+
 }

@@ -67,7 +67,7 @@ public class DijkstraAlgorithmFPS {
 
                             edgeWeight += currentEdge.getDepartureDate().getTime() - currentTime.getTime();
 
-                            System.out.println("current edge weight" + edgeWeight);
+//                            System.out.println("current edge weight" + edgeWeight);
                             if (!settledNodes.contains(adjacentNode)) {
                                 calculateMinimumDistance(adjacentNode, edgeWeight, currentEdge, currentNode);
                                 unsettledNodes.add(adjacentNode);
