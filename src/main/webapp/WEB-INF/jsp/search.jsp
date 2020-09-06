@@ -317,12 +317,12 @@
                                 <p>Available seats: ${flightPlan.numberAvailableSeats}</p>
                                 <!-- Information to send to booking controller -->
                                 <form action="${pageContext.request.contextPath}/bookFlight" method="post">
-                                    <input type="hidden" id="onewayBooking" name="trip" value="oneway">
-                                    <input type="hidden" id="onewayAdultsBooking" name="onewayAdultsBooking" value="${param.adults}">
-                                    <input type="hidden" id="onewayChildrenBooking" name="onewayChildrenBooking" value="${param.children}">
-                                    <input type="hidden" id="onewayClassBooking" name="onewayClassBooking" value="${param.classCode}">
+                                    <input type="hidden" id="booking" name="trip" value="oneway">
+                                    <input type="hidden" id="adultsBooking" name="adultsBooking" value="${param.adults}">
+                                    <input type="hidden" id="childrenBooking" name="childrenBooking" value="${param.children}">
+                                    <input type="hidden" id="classBooking" name="classBooking" value="${param.classCode}">
                                     <!-- Position of the specific flight plan within the FlightHolder flightPlansDeparting list -->
-                                    <input type="hidden" id="onewayFlightPlan${loop.count}" name="flightPlanPosition" value="${loop.count}">
+                                    <input type="hidden" id="flightPlan${loop.count}" name="flightPlanPosition" value="${loop.count}">
                                     <button type="submit">$${flightPlan.price}</button>
                                 </form>
                             </div>
