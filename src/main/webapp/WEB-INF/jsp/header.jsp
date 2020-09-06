@@ -64,8 +64,8 @@
                     </div>
                 </security:authorize>
 
-                <%-- for ADMIN --%>
-                <security:authorize access="hasRole('ADMIN')">
+                <%-- for FLIGHTPUB --%>
+                <security:authorize access="hasRole('FLIGHTPUB')">
                 <div class="dropdown" id="dropdown2">
                     <a><security:authentication property="name"/></a>
 

@@ -23,6 +23,20 @@
     <h1>Travel Agent</h1>
     <h4>Holiday Packages</h4>
 
+        <div class="hot-locations">
+        <h4>Hot Locations</h4>
+            <c:forEach items="${countryStat}" var ="countryStat">
+                <c:if test="${empty countryStat}">
+                    <h4>No Hot Locations</h4>
+                </c:if>
+
+                <c:out value= "${countryStat.countryCode}"></c:out>
+                <c:out value= "${countryStat.popularity}"></c:out></br>
+
+            </c:forEach>
+        </div>
+
+        <h4>Create Holiday Packages </h4>
         <div class="manage-holiday-packages">
             <form id="holidayPackages" method="post" action="${pageContext.request.contextPath}/travelAgentPage/create">
 
@@ -36,11 +50,7 @@
 
                 <!-- Country code -->
                 <label for="countryCode">Country Code: </label>
-                <input id="countryCode" name ="countryCode" value="" required/> <br>
-
-                <!-- Country name -->
-                <label for="countryName">Country Name: </label>
-                <input id="countryName" name ="countryName" value="" required/> <br>
+                <input list="countryCode3" id="countryCode" name ="countryCode" value="" required/> <br>
 
                 <!-- User type -->
                 <label>Package Type: </label>
@@ -96,6 +106,14 @@
                     <option value="SYD">Sydney - SYD</option>
                     <option value="VIE">Vienna - VIE</option>
                     <option value="YYZ">Toronto - YYZ</option>
+                </datalist>
+
+                <!-- country code List -->
+                <datalist id ="countryCode3">
+                    <c:forEach items="${airline}" var ="airline">
+                        <option value="${airline.countryCode3}" ></option>
+                    </c:forEach>
+
                 </datalist>
             </form>
         </div>

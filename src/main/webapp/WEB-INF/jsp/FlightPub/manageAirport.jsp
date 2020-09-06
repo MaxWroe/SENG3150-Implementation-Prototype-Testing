@@ -36,11 +36,9 @@
             </c:forEach>
 
             <%-- preferred parsing --%>
-            <c:set var = "i" value = "${0}"/>
-            <c:set var = "j" value = "${i}"/>
                 <div class="manage-airports">
                     <c:forEach items="${airports}" var ="airports">
-                        <c:set var = "j" value = "${j+1}"/>
+
 
                         <p><c:out value= "${airports.destinationCode}"></c:out></p>
                         <p><c:out value= "${airports.country}"></c:out></p>
@@ -58,7 +56,7 @@
 
             <div class="restrict-airline-test">
                 <form id="restrictAirlineTest" method="post" action="${pageContext.request.contextPath}/manageAirport/restrict" style="display:none;">
-                    <input type ="hidden" id="airportCode" name="airlineName2" value="${airport}"/>
+                    <input type ="hidden" id="airportCode" name="airlineName2" value="${airports.destinationCode}"/>
 
                     <label for="departureDate">Restrict Start Date</label>
                     <jsp:useBean id="now" class="java.util.Date"/>
