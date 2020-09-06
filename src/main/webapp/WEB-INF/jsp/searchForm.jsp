@@ -6,8 +6,8 @@
   Date: 14/08/2020
   Time: 11:05 am
 --%>
-<script src="${pageContext.request.contextPath}/js/searchFormAssistor.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/searchFormAssistor.js"></script>
 <!-- Flight search fields -->
 <form name="searchFlight" method="get" id="searchFlight" action="${pageContext.request.contextPath}/search" onsubmit="return validateForm()">
     <div class="search-form">
@@ -98,95 +98,7 @@
                 <p style="display: inline">days ahead</p>
             </div>
         </div>
-        <script>
-            // departure date range ids: departureDate (date input), departureDateRange (number input), departureRange (checkbox input),
-            // departure-range-div (div), start-departure-date-range (p)
-            // return date ids: returnDate (date input), returnDateRange (number input), returnRange (checkbox input),
-            // return-range-div (div), start-return-date-range (p)
 
-            function restrict_departure_range()
-            {
-                var departureDate = new Date($("#departureDate").val());
-                var returnDate =  new Date($("#returnDate").val());
-
-                var Difference_In_Time = returnDate.getTime() - departureDate.getTime();
-                var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
-
-                $dateRangeInput = $("#departureDateRange");
-                if(Difference_In_Days < 7)
-                {
-                    // if so reset departure date range
-                    $dateRangeInput.val("");
-                    if (Difference_In_Days === 1)
-                    {
-                        $dateRangeInput.prop("disabled", true);
-                    }
-                    else {
-                        $dateRangeInput.attr("max", (Difference_In_Days-1));
-                        $dateRangeInput.prop("disabled", false);
-                    }
-                }
-                else {
-                    $dateRangeInput.attr("max", 7);
-                    $dateRangeInput.prop("disabled", false);
-                }
-            }
-
-            $('#departure-range').click(function() {
-                $dateRangeInput = $("#departureDateRange");
-                // restrict selectable dates for range, make date range input required
-                restrict_departure_range();
-                // change visibility of departure date range div
-                $("#departure-range-div").toggle(this.checked);
-                // make departure date range input required if option selected
-                if ($('#departure-range').is(':checked')) {
-                    $dateRangeInput.prop( "required", true );
-                }
-                else {
-                    $dateRangeInput.prop( "required", false );
-                }
-            });
-
-            // if departure date is selected or changed
-            $('#departureDate').change(function () {
-                // check if departure range option is selected
-                if($('#departure-range').prop("checked"))
-                {
-                    $dateRangeInput = $("#departureDateRange");
-                    restrict_departure_range();
-                }
-            });
-
-            $('#return-range').click(function() {
-                $dateRangeInput = $("#returnDateRange");
-                // change visibility of departure date range div
-                $("#return-range-div").toggle(this.checked);
-                // make departure date range input required if option selected
-                if ($('#return-range').is(':checked')) {
-                    $dateRangeInput.prop( "required", true );
-                }
-                else {
-                    $dateRangeInput.prop( "required", false );
-                }
-            });
-
-            // if return date is selected or changed
-            $('#returnDate').change(function () {
-                if($('#departure-range').prop("checked")) {
-                    restrict_departure_range();
-                }
-            });
-
-            $('#type').change(function () {
-                if($(this).children("option:selected").val() === "return")
-                {
-                    $("#return-range").prop("disabled", false);
-                }
-                else {
-                    $("#return-range").prop("disabled", true);
-                }
-            });
-        </script>
         <!-- Search button -->
         <div class="search-button">
             <button class="btn btn-lg btn-outline-success text-uppercase" type="submit">Search</button>

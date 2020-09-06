@@ -332,6 +332,28 @@ button
 {
     padding: 10px;
 }
+
+/* Universal results page styling */
+.flight-plan-display
+{
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    margin: 0 auto;
+    padding: 20px;
+    background: #fff;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.flight-plan-display-sponsored
+{
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    margin: 0 auto;
+    padding: 20px;
+    background: #fff;
+    box-shadow: 0 4px 8px 0 rgba(236, 240, 241, 1), 0 6px 20px 0 rgba(255, 87, 49, 0.4);
+}
+
 /* Oneway results */
 .flight-result-oneway
 {
@@ -478,21 +500,45 @@ button
     grid-column: 2;
 }
 
+/* Travel recommendations page */
 .recommendation
  {
-     background: #fff;
-     padding: 20px;
-     border-radius: 25px;
+
  }
 
 .recommendation-display-window
 {
+    width: 100%;
     display: grid;
-    grid-template-rows: 250px;
-    grid-template-columns: auto auto auto auto;
-    overflow: scroll;
-    overflow-y: hidden;
-    grid-column-gap: 25px;
+    grid-template-columns: 60% 40%;
+    background: #fff;
+    margin-bottom: 15px;
+}
+
+.recommendation-destination-image
+{
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    grid-column: 1;
+}
+
+.recommendation-destination-image-caption
+{
+    text-align: left;
+    padding-left: 20px;
+    padding-top: 20px;
+    color: white;
+    backdrop-filter: blur(2px);
+    height: 100%;
+}
+
+.recommendation-description
+{
+    width: 100%;
+    height: 500px;
+
+    grid-column: 2;
 }
 
 .filled-search

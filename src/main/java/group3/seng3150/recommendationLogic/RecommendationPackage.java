@@ -6,12 +6,14 @@ import group3.seng3150.entities.HolidayPackages;
 public class RecommendationPackage {
     private HolidayPackages hp;
     private FlightPlan fp;
+    private String departureLocation;
     private String cc;
     private int groupSize;
 
-    public RecommendationPackage(HolidayPackages hp, FlightPlan fp, String cc, int groupSize) {
+    public RecommendationPackage(HolidayPackages hp, FlightPlan fp, String departureLocation, String cc, int groupSize) {
         this.hp = hp;
         this.fp = fp;
+        this.departureLocation = departureLocation;
         this.cc = cc;
         this.groupSize = groupSize;
     }
@@ -30,6 +32,14 @@ public class RecommendationPackage {
 
     public void setFp(FlightPlan fp) {
         this.fp = fp;
+    }
+
+    public String getDepartureLocation() {
+        return departureLocation;
+    }
+
+    public void setDepartureLocation(String departureLocation) {
+        this.departureLocation = departureLocation;
     }
 
     public String getCc() {

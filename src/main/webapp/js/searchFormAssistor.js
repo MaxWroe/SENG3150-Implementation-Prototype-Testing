@@ -6,10 +6,10 @@ function showDiv(divId, changedId, element)
     document.getElementById(divId).style.display = element.value === "return" ? 'inline' : 'none';
     document.getElementById(changedId).required = element.value === "return";
     // Check if date already selected for departure
-    if (document.getElementById("departureDate").value !== "")
+    if ($("#departureDate").val() !== "")
     {
         document.getElementById("returnDate").min = document.getElementById("departureDate").value;
-        document.getElementById("returnDate").disabled = false;
+        $("#returnDate").prop("disabled", false);
     }
 }
 
@@ -18,9 +18,9 @@ function restrictDepart()
 {
     document.getElementById("returnDate").min = document.getElementById("departureDate").value;
     // Disable return date until depart is selected
-    document.getElementById("returnDate").disabled = false;
+    $("#returnDate").prop("disabled", false);
     // Clear depart value
-    document.getElementById("returnDate").value = "";
+    $("#returnDate").val("");
 }
 
 // Function to validate input from search flight form
@@ -31,26 +31,26 @@ function validateForm()
     var result = false;
 
     for(var i = 0; i < options.length; i++) {
-        if(document.getElementById("departureLocation").value === options[i].value) {
+        if($("#departureLocation").val() === options[i].value) {
             result = true;
         }
     }
     if(!result)
     {
-        document.getElementById("departureLocation").value = '';
+        $("#departureLocation").val('');
         alert("Please select a valid departure airport from the list.");
         return false;
     }
 
     result = false;
     for(var i = 0; i < options.length; i++) {
-        if(document.getElementById("arrivalLocation").value === options[i].value) {
+        if($("#arrivalLocation").val() === options[i].value) {
             result = true;
         }
     }
     if(!result)
     {
-        document.getElementById("arrivalLocation").value = '';
+        $("#arrivalLocation").value = '';
         alert("Please select a valid destination airport from the list.");
         return false;
     }
@@ -61,26 +61,106 @@ function validateForm()
 
     if(location === destination)
     {
-        document.getElementById("arrivalLocation").value = '';
+        $("#arrivalLocation").val('');
         alert("Destination airport cannot be the same as departure airport.");
         return false;
     }
 }
 
-window.onload = function() {
-    // Work around for 'null' airports showing when selecting search page
-    clearFields();
-};
-
+// deprecated function
 function clearFields()
 {
-    var check = document.getElementById("departureLocation").value;
+    var check = $("#departureLocation").val();
 
     if(check === 'null')
     {
-        document.getElementById("departureLocation").value = '';
-        document.getElementById("arrivalLocation").value = '';
-        document.getElementById("adults").value = 1;
-        document.getElementById("children").value = 0;
+        $("#departureLocation").val('');
+        $("#arrivalLocation").val('');
+        $("#adults").val('1');
+        $("#children").val('0');
     }
 }
+
+// restrict departure range input so user cannot search for a range that goes into return date if return trip type selected
+function restrict_departure_range()
+{
+    var departureDate = new Date($("#departureDate").val());
+    var returnDate =  new Date($("#returnDate").val());
+
+    var timeDifference = returnDate.getTime() - departureDate.getTime();
+    var dayDifference = timeDifference / (1000 * 3600 * 24);
+
+    $dateRangeInput = $("#departureDateRange");
+    if(dayDifference < 7)
+    {
+        // if so reset departure date range
+        $dateRangeInput.val("");
+        if (dayDifference === 1)
+        {
+            $dateRangeInput.prop("disabled", true);
+        }
+        else {
+            $dateRangeInput.attr("max", (dayDifference-1));
+            $dateRangeInput.prop("disabled", false);
+        }
+    }
+    else {
+        $dateRangeInput.attr("max", 7);
+        $dateRangeInput.prop("disabled", false);
+    }
+}
+
+$('#departure-range').click(function() {
+    $dateRangeInput = $("#departureDateRange");
+    // restrict selectable dates for range, make date range input required
+    restrict_departure_range();
+    // change visibility of departure date range div
+    $("#departure-range-div").toggle(this.checked);
+    // make departure date range input required if option selected
+    if ($('#departure-range').is(':checked')) {
+        $dateRangeInput.prop( "required", true );
+    }
+    else {
+        $dateRangeInput.prop( "required", false );
+    }
+});
+
+// if departure date is selected or changed
+$('#departureDate').change(function () {
+    // check if departure range option is selected
+    if($('#departure-range').prop("checked"))
+    {
+        $dateRangeInput = $("#departureDateRange");
+        restrict_departure_range();
+    }
+});
+
+$('#return-range').click(function() {
+    $dateRangeInput = $("#returnDateRange");
+    // change visibility of departure date range div
+    $("#return-range-div").toggle(this.checked);
+    // make departure date range input required if option selected
+    if ($('#return-range').is(':checked')) {
+        $dateRangeInput.prop( "required", true );
+    }
+    else {
+        $dateRangeInput.prop( "required", false );
+    }
+});
+
+// if return date is selected or changed
+$('#returnDate').change(function () {
+    if($('#departure-range').prop("checked")) {
+        restrict_departure_range();
+    }
+});
+
+$('#type').change(function () {
+    if($(this).children("option:selected").val() === "return")
+    {
+        $("#return-range").prop("disabled", false);
+    }
+    else {
+        $("#return-range").prop("disabled", true);
+    }
+});
