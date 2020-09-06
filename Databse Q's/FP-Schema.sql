@@ -149,7 +149,7 @@ CREATE TABLE `UserAccount`  (
                                 `Citizenship` varchar(60) NOT NULL,
                                 `DateOfBirth` date NOT NULL,
                                 `UserType` int(2) NOT NULL,
-                                `Password` varchar(14) NOT NULL,
+                                `Password` varchar(42) NOT NULL,
                                 `FamilyMembers` varchar(120),
                                 `EmergencyContact` varchar(60),
                                 `Address` varchar(120),
