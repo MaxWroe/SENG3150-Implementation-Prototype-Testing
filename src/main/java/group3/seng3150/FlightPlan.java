@@ -268,4 +268,26 @@ public class FlightPlan implements Comparable<FlightPlan>, Cloneable{
         System.out.println("end");
         return false;
     }
+
+    public double getFlightIPrice(int i){
+        if(i<flights.size()){
+            for(int j=0; j<prices.size(); j++){
+                if(prices.get(j).getAirlineCode().equals(flights.get(i).getAirlineCode()) && prices.get(j).getFlightNumber().equals(flights.get(i).getFlightNumber())){
+                    return prices.get(j).getPrice();
+                }
+            }
+        }
+        return 0;
+    }
+
+    public char getFlightITicketCode(int i){
+        if(i<flights.size()){
+            for(int j=0; j<availabilities.size(); j++){
+                if(availabilities.get(j).getAirlineCode().equals(flights.get(i).getAirlineCode()) && availabilities.get(j).getFlightNumber().equals(flights.get(i).getFlightNumber()) && availabilities.get(j).getDepartureDate().equals(flights.get(i).getDepartureDate())){
+                    return availabilities.get(j).getTicketCode().charAt(0);
+                }
+            }
+        }
+        return 'A';
+    }
 }
