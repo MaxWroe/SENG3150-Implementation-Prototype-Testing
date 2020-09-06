@@ -5,6 +5,7 @@ package group3.seng3150.recommendationLogic;
 import group3.seng3150.FlightPlan;
 import group3.seng3150.entities.*;
 import group3.seng3150.flightLogic.FlightPlanSearch;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.EntityManager;
 import java.text.SimpleDateFormat;
@@ -16,6 +17,7 @@ public class RecommendationGenerator {
 
     private EntityManager em;
     private int dayRange = 7;
+    @Autowired
     public RecommendationGenerator(EntityManager em) {
         this.em =em;
     }
