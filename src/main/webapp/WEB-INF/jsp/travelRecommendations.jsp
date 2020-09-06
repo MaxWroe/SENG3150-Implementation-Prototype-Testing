@@ -37,10 +37,10 @@
 
                 <form name="searchFlight" method="get" id="searchFlight" action="${pageContext.request.contextPath}/search" onsubmit="return validateForm()">
                     <input type="hidden" id="type" name="type" value="oneway">
-                    <input type="hidden" id="classCode" name="classCode" value="">
-                    <input type="hidden" id="adults" name="adults" value="">
+                    <input type="hidden" id="classCode" name="classCode" value="${recommendationPackage.cc}">
+                    <input type="hidden" id="adults" name="adults" value="${recommendationPackage.groupSize}">
                     <input type="hidden" id="departureLocation" name="departureLocation" value="">
-                    <input type="hidden" id="arrivalLocation" name="arrivalLocation" value="">
+                    <input type="hidden" id="arrivalLocation" name="arrivalLocation" value="${holidayPackage.destination}">
                     <input type="hidden" id="departureDate" name="departureDate" value="${flightPlan.departureDate}">
                 </form>
                 </c:if>
