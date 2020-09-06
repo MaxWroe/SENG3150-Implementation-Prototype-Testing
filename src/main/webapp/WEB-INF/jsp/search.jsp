@@ -137,7 +137,7 @@
             </script>
         </div>
         <div id="search-sidebar">
-            <p>Side filters</p>
+            <h4>Side filters</h4>
             <p>Stop Overs</p>
             <label for="stopsFilter"></label>
             <input type="range" min="0" max="7" class="vHorizon" name="stopsFilter" id="stopsFilter">
@@ -281,7 +281,7 @@
                         data-capacity="${flightPlan.numberAvailableSeats}"
                         <c:forEach items="${flightPlan.airlines}" var="airline">data-airline="${airline}"</c:forEach>>
 
-                        <div class="flight-result-oneway">
+                        <div class="<c:choose><c:when test="${flightPlan.containsSponsored}">flight-result-oneway-sponsored</c:when><c:otherwise>flight-result-oneway</c:otherwise></c:choose>">
                             <div class="flight-result-depart-time">
                                 <fmt:parseDate pattern="yyyy-MM-dd HH:mm:ss" value="${flightPlan.departureDate}" var="parsedDate" />
 
@@ -292,12 +292,12 @@
                                 <p>Stop overs: ${flightPlan.numberStopOvers}</p>
                                 <table>
                                     <tr>
+                                        <td>${param.departureLocation}</td>
                                         <c:forEach items="${flightPlan.flights}" var="flightPlanFlights">
-                                            <td>${flightPlanFlights.departureCode}</td>
-                                            <td>--></td>
+                                            <td>&#8594</td>
                                             <c:if test = "${flightPlanFlights.stopOverCode != ''}">
                                             <td>${flightPlanFlights.stopOverCode}</td>
-                                            <td>--></td>
+                                            <td>&#8594</td>
                                             </c:if>
                                             <td>${flightPlanFlights.destination}</td>
                                         </c:forEach>
@@ -316,13 +316,13 @@
                             <div class="flight-result-cost">
                                 <p>Available seats: ${flightPlan.numberAvailableSeats}</p>
                                 <!-- Information to send to booking controller -->
-                                <form action="${pageContext.request.contextPath}/bookFlight" method="post">
-                                    <input type="hidden" id="onewayBooking" name="trip" value="oneway">
-                                    <input type="hidden" id="onewayAdultsBooking" name="onewayAdultsBooking" value="${param.adults}">
-                                    <input type="hidden" id="onewayChildrenBooking" name="onewayChildrenBooking" value="${param.children}">
-                                    <input type="hidden" id="onewayClassBooking" name="onewayClassBooking" value="${param.classCode}">
+                                <form action="${pageContext.request.contextPath}/bookingPage" method="post">
+                                    <input type="hidden" id="onewayBooking" name="tripType" value="oneway">
+                                    <input type="hidden" id="onewayAdultsBooking" name="adultsBooking" value="${param.adults}">
+                                    <input type="hidden" id="onewayChildrenBooking" name="childrenBooking" value="${param.children}">
+                                    <input type="hidden" id="onewayClassBooking" name="classBooking" value="${param.classCode}">
                                     <!-- Position of the specific flight plan within the FlightHolder flightPlansDeparting list -->
-                                    <input type="hidden" id="onewayFlightPlan${loop.count}" name="flightPlanPosition" value="${loop.count}">
+                                    <input type="hidden" id="flightPlan${loop.count}" name="flightPlanPosition" value="${loop.count}">
                                     <button type="submit">$${flightPlan.price}</button>
                                 </form>
                             </div>
@@ -348,12 +348,12 @@
                 <c:set var = "returnFlights" scope = "session" value = "${flights.flightPlansReturning}"/>
 
                 <!-- Information to send to booking controller -->
-                <form method="post" action="${pageContext.request.contextPath}/bookFlight" onsubmit="return validateFlightSelection()"
+                <form method="post" action="${pageContext.request.contextPath}/bookingPage" onsubmit="return validateFlightSelection()"
                       style="display:contents">
-                    <input type="hidden" id="returnBooking" name="trip" value="return">
-                    <input type="hidden" id="returnAdultsBooking" name="returnAdultsBooking" value="${param.adults}">
-                    <input type="hidden" id="returnChildrenBooking" name="returnChildrenBooking" value="${param.children}">
-                    <input type="hidden" id="returnClassBooking" name="returnClassBooking" value="${param.classCode}">
+                    <input type="hidden" id="returnBooking" name="tripType" value="return">
+                    <input type="hidden" id="returnAdultsBooking" name="adultsBooking" value="${param.adults}">
+                    <input type="hidden" id="returnChildrenBooking" name="childrenBooking" value="${param.children}">
+                    <input type="hidden" id="returnClassBooking" name="classBooking" value="${param.classCode}">
 
                     <!-- Parse all returned flights -->
 
@@ -367,45 +367,54 @@
                     <!-- For each departure flight returned display -->
                     <div class="flight-result-departure-window">
                         <ul class="flight-list">
-                        <c:forEach items="${flights.flightPlansDeparting}" var="flightPlan">
-                            <li data-price="${flightPlan.price}" data-duration="${flightPlan.durationTotal}" data-stopovers="${flightPlan.numberStopOvers}"
-                                data-airline="test" data-stops="${flightPlan.numberStopOvers}">
-                                <div class="flight-result-return-trip-flight">
-                                    <div class="flight-result-depart-time">
-                                        <fmt:parseDate pattern="yyyy-MM-dd hh:mm:ss" value="${flightPlan.departureDate}" var="parsedDate" />
+                            <c:forEach items="${flights.flightPlansDeparting}" var="flightPlan" varStatus="loop">
+                                <li data-price="${flightPlan.price}" data-duration="${flightPlan.durationTotal}" data-stopovers="${flightPlan.numberStopOvers}"
+                                    data-capacity="${flightPlan.numberAvailableSeats}"
+                                    <c:forEach items="${flightPlan.airlines}" var="airline">data-airline="${airline}"</c:forEach>>
 
-                                        <h4><fmt:formatDate type = "time" dateStyle = "short" timeStyle = "short" value = "${parsedDate}" /></h4>
-                                        <p><fmt:formatDate type = "date" value = "${parsedDate}" /></p>
-                                    </div>
-                                    <div class="flight-result-stopovers">
-                                        <p>Stop overs: ${flightPlan.numberStopOvers}</p>
-                                        <table>
-                                            <tr>
-                                                <td>${param.departureLocation} --></td>
-                                                <c:forEach items="${flightPlan.flights}" var="flightPlanFlights">
-                                                    <td>${flightPlanFlights.stopOverCode}</td>
-                                                </c:forEach>
-                                                <td>--> ${param.arrivalLocation}</td>
-                                            </tr>
-                                        </table>
-                                        <p>Total duration: ${flightPlan.durationTotal} hours</p>
-                                    </div>
-                                    <div class="flight-result-arrival-time">
-                                        <fmt:parseDate pattern="yyyy-MM-dd hh:mm:ss" value="${flightPlan.arrivalDate}" var="parsedDate" />
+                                    <div class="<c:choose><c:when test="${flightPlan.containsSponsored}">flight-result-return-trip-flight-sponsored</c:when><c:otherwise>flight-result-return-trip-flight</c:otherwise></c:choose>">
+                                        <div class="flight-result-depart-time">
+                                            <fmt:parseDate pattern="yyyy-MM-dd HH:mm:ss" value="${flightPlan.departureDate}" var="parsedDate" />
 
-                                        <h4><fmt:formatDate type = "time" dateStyle = "short" timeStyle = "short" value = "${parsedDate}" /></h4>
-                                        <p><fmt:formatDate type = "date" value = "${parsedDate}" /></p>
+                                            <h4><fmt:formatDate type = "time" dateStyle = "short" timeStyle = "short" value = "${parsedDate}" /></h4>
+                                            <p><fmt:formatDate type = "date" value = "${parsedDate}" /></p>
+                                        </div>
+                                        <div class="flight-result-stopovers">
+                                            <p>Stop overs: ${flightPlan.numberStopOvers}</p>
+                                            <table>
+                                                <tr>
+                                                    <td>${param.departureLocation}</td>
+                                                    <c:forEach items="${flightPlan.flights}" var="flightPlanFlights">
+                                                        <td>&#8594</td>
+                                                        <c:if test = "${flightPlanFlights.stopOverCode != ''}">
+                                                            <td>${flightPlanFlights.stopOverCode}</td>
+                                                            <td>&#8594</td>
+                                                        </c:if>
+                                                        <td>${flightPlanFlights.destination}</td>
+                                                    </c:forEach>
+                                                </tr>
+                                            </table>
+                                            <c:set var="hours" scope="session" value="${flightPlan.durationTotal / 60}"/>
+                                            <c:set var="minutes" scope="session" value="${flightPlan.durationTotal % 60}"/>
+                                            <p>Total duration: ${hours} hours ${minutes} minutes</p>
+                                        </div>
+                                        <div class="flight-result-arrival-time">
+                                            <fmt:parseDate pattern="yyyy-MM-dd HH:mm:ss" value="${flightPlan.arrivalDate}" var="parsedDate" />
+
+                                            <h4><fmt:formatDate type = "time" dateStyle = "short" timeStyle = "short" value = "${parsedDate}" /></h4>
+                                            <p><fmt:formatDate type = "date" value = "${parsedDate}" /></p>
+                                        </div>
+                                        <div class="flight-result-cost">
+                                            <p>Available seats: ${flightPlan.numberAvailableSeats}</p>
+                                            <!-- Information to send to booking controller -->
+                                            <!-- Position of the specific flight plan within the FlightHolder flightPlansDeparting list -->
+                                            <label for="returnDepartureFlightPlan${loop.count}">Select: </label>
+                                            <input type="radio" id="returnDepartureFlightPlan${loop.count}"
+                                                   name="departureFlightPLan" value="${loop.count}" onchange="updateCost('departure', '${flightPlan.price}')">
+                                        </div>
                                     </div>
-                                    <div class="flight-result-cost">
-                                        <p>Available seats: ${flightPlan.numberAvailableSeats}</p>
-                                        <!-- Information to send to booking controller -->
-                                        <label for="returnDepartureFlightPlan${flightPlan.position}">Select: </label>
-                                        <input type="radio" id="returnDepartureFlightPlan${flightPlan.position}"
-                                               name="departure" value="${flightPlan.position}" onchange="updateCost('departure', '${flightPlan.price}')">
-                                    </div>
-                                </div>
-                            </li>
-                        </c:forEach>
+                                </li>
+                            </c:forEach>
                         </ul>
                     </div>
 
@@ -419,44 +428,53 @@
                     <!-- For each return flight returned display -->
                     <div class="flight-result-return-window">
                         <ul class="flight-list">
-                        <c:forEach items="${flights.flightPlansReturning}" var="flightPlan">
-                            <li data-price="${flightPlan.price}" data-duration="${flightPlan.durationTotal}" data-stopovers="${flightPlan.numberStopOvers}"
-                                data-airline="test" data-stops="${flightPlan.numberStopOvers}">
-                                <div class="flight-result-return-trip-flight">
-                                    <div class="flight-result-depart-time">
-                                        <fmt:parseDate pattern="yyyy-MM-dd hh:mm:ss" value="${flightPlan.departureDate}" var="parsedDate" />
+                            <c:forEach items="${flights.flightPlansDeparting}" var="flightPlan" varStatus="loop">
+                                <li data-price="${flightPlan.price}" data-duration="${flightPlan.durationTotal}" data-stopovers="${flightPlan.numberStopOvers}"
+                                    data-capacity="${flightPlan.numberAvailableSeats}"
+                                    <c:forEach items="${flightPlan.airlines}" var="airline">data-airline="${airline}"</c:forEach>>
 
-                                        <h4><fmt:formatDate type = "time" dateStyle = "short" timeStyle = "short" value = "${parsedDate}" /></h4>
-                                        <p><fmt:formatDate type = "date" value = "${parsedDate}" /></p>
-                                    </div>
-                                    <div class="flight-result-stopovers">
-                                        <p>Stop overs: ${flightPlan.numberStopOvers}</p>
-                                        <table>
-                                            <tr>
-                                                <td>${param.departureLocation} --></td>
-                                                <c:forEach items="${flightPlan.flights}" var="flightPlanFlights">
-                                                    <td>${flightPlanFlights.stopOverCode}</td>
-                                                </c:forEach>
-                                                <td>--> ${param.arrivalLocation}</td>
-                                            </tr>
-                                        </table>
-                                        <p>Total duration: ${flightPlan.durationTotal} hours</p>
-                                    </div>
-                                    <div class="flight-result-arrival-time">
-                                        <fmt:parseDate pattern="yyyy-MM-dd hh:mm:ss" value="${flightPlan.arrivalDate}" var="parsedDate" />
+                                    <div class="<c:choose><c:when test="${flightPlan.containsSponsored}">flight-result-return-trip-flight-sponsored</c:when><c:otherwise>flight-result-return-trip-flight</c:otherwise></c:choose>">
+                                        <div class="flight-result-depart-time">
+                                            <fmt:parseDate pattern="yyyy-MM-dd HH:mm:ss" value="${flightPlan.departureDate}" var="parsedDate" />
 
-                                        <h4><fmt:formatDate type = "time" dateStyle = "short" timeStyle = "short" value = "${parsedDate}" /></h4>
-                                        <p><fmt:formatDate type = "date" value = "${parsedDate}" /></p>
+                                            <h4><fmt:formatDate type = "time" dateStyle = "short" timeStyle = "short" value = "${parsedDate}" /></h4>
+                                            <p><fmt:formatDate type = "date" value = "${parsedDate}" /></p>
+                                        </div>
+                                        <div class="flight-result-stopovers">
+                                            <p>Stop overs: ${flightPlan.numberStopOvers}</p>
+                                            <table>
+                                                <tr>
+                                                    <td>${param.departureLocation}</td>
+                                                    <c:forEach items="${flightPlan.flights}" var="flightPlanFlights">
+                                                        <td>&#8594</td>
+                                                        <c:if test = "${flightPlanFlights.stopOverCode != ''}">
+                                                            <td>${flightPlanFlights.stopOverCode}</td>
+                                                            <td>&#8594</td>
+                                                        </c:if>
+                                                        <td>${flightPlanFlights.destination}</td>
+                                                    </c:forEach>
+                                                </tr>
+                                            </table>
+                                            <c:set var="hours" scope="session" value="${flightPlan.durationTotal / 60}"/>
+                                            <c:set var="minutes" scope="session" value="${flightPlan.durationTotal % 60}"/>
+                                            <p>Total duration: ${hours} hours ${minutes} minutes</p>
+                                        </div>
+                                        <div class="flight-result-arrival-time">
+                                            <fmt:parseDate pattern="yyyy-MM-dd HH:mm:ss" value="${flightPlan.arrivalDate}" var="parsedDate" />
+
+                                            <h4><fmt:formatDate type = "time" dateStyle = "short" timeStyle = "short" value = "${parsedDate}" /></h4>
+                                            <p><fmt:formatDate type = "date" value = "${parsedDate}" /></p>
+                                        </div>
+                                        <div class="flight-result-cost">
+                                            <p>Available seats: ${flightPlan.numberAvailableSeats}</p>
+                                            <!-- Information to send to booking controller -->
+                                            <!-- Position of the specific flight plan within the FlightHolder flightPlansDeparting list -->
+                                            <label for="returnReturnFlightPlan${loop.count}">Select: </label>
+                                            <input type="radio" id="returnReturnFlightPlan${loop.count}" name="return" value="${loop.count}" onchange="updateCost('return', '${flightPlan.price}')">
+                                        </div>
                                     </div>
-                                    <div class="flight-result-cost">
-                                        <p>Available seats: ${flightPlan.numberAvailableSeats}</p>
-                                        <!-- Position of the specific flight plan within the FlightHolder FlightPlans list -->
-                                        <label for="returnReturnFlightPlan${flightPlan.position}">Select: </label>
-                                        <input type="radio" id="returnReturnFlightPlan${flightPlan.position}" name="return" value="${flightPlan.position}" onchange="updateCost('return', '${flightPlan.price}')">
-                                    </div>
-                                </div>
-                            </li>
-                        </c:forEach>
+                                </li>
+                            </c:forEach>
                         </ul>
                     </div>
 

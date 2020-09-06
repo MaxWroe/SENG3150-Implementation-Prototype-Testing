@@ -3,11 +3,14 @@ package group3.seng3150;
 import group3.seng3150.entities.Airline;
 import group3.seng3150.entities.Airport;
 import group3.seng3150.entities.Booking;
+import group3.seng3150.entities.UserAccount;
+import group3.seng3150.recommendationLogic.RecommendationGenerator;
+import group3.seng3150.recommendationLogic.RecommendationPackage;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
 import javax.persistence.EntityManager;
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -31,11 +34,17 @@ public class DefaultController {
 //        return view;
 //    }
 
-    @GetMapping("/recommendations")
-    public ModelAndView displayRecomendations() {
+    @GetMapping("/travelRecommendations")
+    public ModelAndView displayRecomendations(Authentication auth) {
         ModelAndView view = new ModelAndView("travelRecommendations");
+        RecommendationGenerator genPackages = new RecommendationGenerator(em);
+        String emailSearch = "'" + auth.getName() + "'";
+        //Retrieve the user's information
+        UserAccount user = (UserAccount) em.createQuery("SELECT u FROM UserAccount u WHERE u.email=" + emailSearch).getSingleResult();
+        view.addObject("recommendationPackages",genPackages.getRecommendations(user));
         return view;
     }
+
 
     @GetMapping("/accessDenied")
     public ModelAndView displayAccessDenied() {
@@ -170,6 +179,13 @@ public class DefaultController {
     @GetMapping("/wishList")
     public ModelAndView displayWishList() {
         ModelAndView view = new ModelAndView("Users/wishList");
+        return view;
+    }
+
+    //wishlist test
+    @GetMapping("/travelAgentPage")
+    public ModelAndView displayHolidayPackage() {
+        ModelAndView view = new ModelAndView("TravelAgent/travelAgentPage");
         return view;
     }
 }

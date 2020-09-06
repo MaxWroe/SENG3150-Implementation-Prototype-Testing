@@ -1,15 +1,12 @@
 <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 
 <%--
-  Created by IntelliJ IDEA.
-  User: jfpr2
+  JSP for universal site header.
+  SENG3150 Group 3
   Date: 19/05/2020
   Time: 3:02 pm
-  To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
-
 
 <!-- Navigation bar -->
 <header class="navbar">
@@ -21,8 +18,9 @@
             <li class="nav-link">
                 <a href="/home">Flight Search</a>
             </li>
+
             <li class="nav-link">
-                <a href="/recommendations">Travel Recommendations</a>
+                <a href="/travelRecommendations">Travel Recommendations</a>
             </li>
 
             <li class="nav-link">
@@ -66,8 +64,8 @@
                     </div>
                 </security:authorize>
 
-                <%-- for ADMIN --%>
-                <security:authorize access="hasRole('ADMIN')">
+                <%-- for FLIGHTPUB --%>
+                <security:authorize access="hasRole('FLIGHTPUB')">
                 <div class="dropdown" id="dropdown2">
                     <a><security:authentication property="name"/></a>
 
@@ -86,7 +84,7 @@
                     <a><security:authentication property="name"/></a>
 
                     <div class="dropdown-content">
-                        <a href="/travelAgentPage">Travel Agent</a>
+                        <a href="/travelAgentPage">Holiday Packages</a>
                         <a href="/logout">Logout</a>
                     </div>
 
