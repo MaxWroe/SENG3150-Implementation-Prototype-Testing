@@ -19,7 +19,7 @@ VALUES  ('1', 'USA',  'United States'),
 
 INSERT INTO `UserAccount`(`UserID`,`FirstName`,`MiddleNames`,`LastName`,`Email`,`Phone`, `Gender`, `Citizenship`, `UserType`,`DateOfBirth` ,`Password`, `ROLEID`, `closestAirport`)
 VALUES
-	('3', 'reece', 'James', 'Doe', 'reece@gmail.com', '0487876543', '0', 'Australian', '0', '1990-03-31', 'reece', 'CUSTOMER', 'GIG');
+	('6', 'reece', 'James', 'Doe', 'reece@gmail.com', '0487876543', '0', 'Australian', '0', '1990-03-31', 'reece', 'CUSTOMER', 'GIG');
 
 
 UPDATE Airlines
