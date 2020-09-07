@@ -59,12 +59,17 @@ public class FlightController{
         //only runs if a return list is desired
         if (!returnDate.equals("")) {
             System.out.println("running return");
-            List<FlightPlan> returnFlightPlans = searcher.searchFlightPlans(arrivalLocation, departureLocation, departureDate, classCode, returnDateRange, numberPeople, em);
+            List<FlightPlan> returnFlightPlans = searcher.searchFlightPlans(arrivalLocation, departureLocation, returnDate, classCode, returnDateRange, numberPeople, em);
             flightPlans.setFlightPlansReturning(returnFlightPlans);
             flightPlans.sortFlightPlansReturning("timeascending");
         }
 
         System.out.println("number of flight plans Departing: " + flightPlans.getFlightPlansDepartingSize());
+        for(int i=0; i<flightPlans.getFlightPlansDepartingSize(); i++){
+            System.out.println(flightPlans.getFlightPlansDeparting().get(i).toString());
+        }
+
+        System.out.println("number of flight plans Returning: " + flightPlans.getFlightPlansReturningSize());
         for(int i=0; i<flightPlans.getFlightPlansDepartingSize(); i++){
             System.out.println(flightPlans.getFlightPlansDeparting().get(i).toString());
         }

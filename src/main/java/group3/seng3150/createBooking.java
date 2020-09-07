@@ -43,7 +43,7 @@ public class createBooking {
         }
 
         FlightHolder searchDeparture = (FlightHolder) session.getAttribute("departureFlights");
-        searchDeparture.setFlightPlanPositions();
+//        searchDeparture.setFlightPlanPositions();
         FlightPlan flightPlan = searchDeparture.getFlightPlansDeparting().get(position);
         flightPlan.getDepartureDate();
 
@@ -98,7 +98,7 @@ public class createBooking {
 
 
         FlightHolder searchReturn = (FlightHolder) session.getAttribute("returnFlights");
-        searchReturn.setFlightPlanPositions();
+//        searchReturn.setFlightPlanPositions();
         int positionReturn = Integer.parseInt(positionReturnS);
         FlightPlan flightPlanR = searchReturn.getFlightPlansReturning().get(positionReturn);
         flightPlan.getDepartureDate();

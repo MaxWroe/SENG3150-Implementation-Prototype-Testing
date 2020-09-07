@@ -36,7 +36,6 @@ public class FlightHolder {
     }
 
     public List<FlightPlan> getFlightPlansDeparting() {
-//        setFlightPlanPositions();
         return flightPlansDeparting;
     }
 
@@ -59,26 +58,13 @@ public class FlightHolder {
 
     public void setSorter(FlightsSort sorter) {
         this.sorter = sorter;
-//        setFlightPlanPositions();
     }
-
-    public void setFlightPlanPositions()
-    {
-        for (int i=0; i<flightPlansDeparting.size(); i++){
-            if(flightPlansDeparting.get(i)!=null) {
-                flightPlansDeparting.get(i).setPosition(i);
-            }
-        }
-        for (int i=0; i<flightPlansReturning.size(); i++){
-            if(flightPlansReturning.get(i)!=null) {
-                flightPlansReturning.get(i).setPosition(i);
-            }
-        }
-    }
-
-
 
     public int getFlightPlansDepartingSize(){
         return flightPlansDeparting.size();
+    }
+
+    public int getFlightPlansReturningSize(){
+        return flightPlansReturning.size();
     }
 }

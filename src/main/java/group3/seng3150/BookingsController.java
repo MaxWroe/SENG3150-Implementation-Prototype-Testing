@@ -265,7 +265,7 @@ public class BookingsController {
         }
 
         FlightHolder searchDeparture = (FlightHolder) session.getAttribute("departureFlights");
-        searchDeparture.setFlightPlanPositions();
+//        searchDeparture.setFlightPlanPositions();
         FlightPlan flightPlan = searchDeparture.getFlightPlansDeparting().get(positionDeparture);
         flightPlan.getDepartureDate();
 
@@ -320,7 +320,7 @@ public class BookingsController {
 
 
         FlightHolder searchReturn = (FlightHolder) session.getAttribute("returnFlights");
-        searchReturn.setFlightPlanPositions();
+//        searchReturn.setFlightPlanPositions();
         FlightPlan flightPlanR = searchReturn.getFlightPlansReturning().get(positionReturn);
         flightPlan.getDepartureDate();
 
@@ -414,7 +414,7 @@ public class BookingsController {
         LinkedList<Booking> bookingsDeparture = new LinkedList<Booking>();
 
         FlightHolder searchDeparture = (FlightHolder) session.getAttribute("departureFlights");
-        searchDeparture.setFlightPlanPositions();
+//        searchDeparture.setFlightPlanPositions();
         FlightPlan flightPlan = searchDeparture.getFlightPlansDeparting().get(positionDeparture);
         flightPlan.getDepartureDate();
 

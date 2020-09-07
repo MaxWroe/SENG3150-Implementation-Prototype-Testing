@@ -18,7 +18,6 @@ and contains methods to get information on the flight plan
 public class FlightPlan implements Comparable<FlightPlan>, Cloneable{
     private List<Flight> flights;
     private List<Availability> availabilities;
-    private int position;
     private List<Price> prices;
     private List<Boolean> flightSponsored;
 
@@ -186,16 +185,6 @@ public class FlightPlan implements Comparable<FlightPlan>, Cloneable{
 
     public void setFlightSponsored(List<Boolean> flightSponsored) {
         this.flightSponsored = flightSponsored;
-    }
-
-        public void setPosition(int position)
-    {
-        this.position = position;
-    }
-
-    public int getPosition()
-    {
-        return position;
     }
 
     public int getNumberOfFlights(){
