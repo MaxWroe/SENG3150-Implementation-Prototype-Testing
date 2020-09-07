@@ -36,7 +36,7 @@ public class FlightController{
             @RequestParam(name="returnDate", defaultValue="") String returnDate,
             @RequestParam(name="classCode", defaultValue="") String classCode,
             @RequestParam(name="departureDateRange", defaultValue= "0") int departureDateRange,
-            @RequestParam(name="arrivalDateRange", defaultValue= "0") int returnDateRange,
+            @RequestParam(name="returnDateRange", defaultValue= "0") int returnDateRange,
             @RequestParam(name="adults", defaultValue = "0") int adults,
             @RequestParam(name="children", defaultValue = "0") int children,
     HttpSession session)
@@ -57,7 +57,6 @@ public class FlightController{
 
         //only runs if a return list is desired
         if (!returnDate.equals("")) {
-            System.out.println("running return");
             List<FlightPlan> returnFlightPlans = searcher.searchFlightPlans(arrivalLocation, departureLocation, returnDate, classCode, returnDateRange, numberPeople, em);
             flightPlans.setFlightPlansReturning(returnFlightPlans);
             flightPlans.sortFlightPlansReturning("timeascending");
