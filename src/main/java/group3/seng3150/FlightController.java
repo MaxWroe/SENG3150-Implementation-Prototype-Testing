@@ -55,8 +55,6 @@ public class FlightController{
         //sets variables in the flight holder bean
         flightPlans.setFlightPlansDeparting(departureFlightPlans);
         flightPlans.sortFlightPlansDeparting("timeascending");
-        //System.out.println("sort of flight plans complete");
-
 
         //only runs if a return list is desired
         if (!returnDate.equals("")) {

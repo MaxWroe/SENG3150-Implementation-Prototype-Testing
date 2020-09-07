@@ -12,20 +12,8 @@ public class DijkstraAlgorithmFPS {
 
     public FlightPlan getShortestPathDuration(DijkstraGraph parsedGraph, String departureLocation, String arrivalLocation, Timestamp startingTime){
         FlightPlan flightPlan = new FlightPlan();
-
-        DijkstraGraph flightsGraph = calculateShortestPathFromSource(parsedGraph, parsedGraph.getNodes().get(departureLocation), startingTime);
-
+        calculateShortestPathFromSource(parsedGraph, parsedGraph.getNodes().get(departureLocation), startingTime);
         DijkstraNode destinationNode = parsedGraph.getNodes().get(arrivalLocation);
-//        DijkstraNode currentNode = new DijkstraNode("blank");
-//        Set<DijkstraNode> processedNodes = flightsGraph.getNodesAsSet();
-//        Iterator<DijkstraNode> iterator = processedNodes.iterator();
-//        List<Flight> shortestPath = new LinkedList<>();
-//        while(iterator.hasNext()){
-//            currentNode = iterator.next();
-//            if(currentNode.getName().equals(destinationNode.getName())){
-//                shortestPath = currentNode.getShortestPathFlights();
-//            }
-//        }
         List<Flight> shortestPath = destinationNode.getShortestPathFlights();
 
         flightPlan.setFlights(shortestPath);
@@ -66,8 +54,6 @@ public class DijkstraAlgorithmFPS {
                             }
 
                             edgeWeight += currentEdge.getDepartureDate().getTime() - currentTime.getTime();
-
-//                            System.out.println("current edge weight" + edgeWeight);
                             if (!settledNodes.contains(adjacentNode)) {
                                 calculateMinimumDistance(adjacentNode, edgeWeight, currentEdge, currentNode);
                                 unsettledNodes.add(adjacentNode);
@@ -85,7 +71,6 @@ public class DijkstraAlgorithmFPS {
         DijkstraNode lowestDistanceNode = null;
         long lowestDistance = Long.MAX_VALUE;
         for (DijkstraNode node: unsettledNodes) {
-//            node.setShortestDurations(startingTime);
             long nodeDistance = node.getDistance();
             if (nodeDistance <= lowestDistance) {
                 lowestDistance = nodeDistance;
@@ -105,9 +90,6 @@ public class DijkstraAlgorithmFPS {
 
             List<Flight> shortestPathFlights = new LinkedList<>(sourceNode.getShortestPathFlights());
             shortestPathFlights.add(currentEdge);
-//            if(sourceNode.getAdjacentNodesFlightShortest().get(evaluationNode) != null && sourceNode.getAdjacentNodesFlightShortest().get(evaluationNode).getDepartureDate().after(startingTime)) {
-//                shortestPathFlights.add(sourceNode.getAdjacentNodesFlightShortest().get(evaluationNode));
-//            }
             evaluationNode.setShortestPathFlights(shortestPathFlights);
         }
     }

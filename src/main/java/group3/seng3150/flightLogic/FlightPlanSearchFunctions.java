@@ -154,26 +154,6 @@ public class FlightPlanSearchFunctions {
         return parsedFlights;
     }
 
-//    public List<FlightPlan> setSponsoredAirlines(List<FlightPlan> parsedFlightPlans, List<Airline> airlines){
-//        List<Boolean> flightsSponsored;
-//        for(int i=0; i<parsedFlightPlans.size(); i++){
-//            flightsSponsored = new LinkedList<>();
-//            for(int j=0; j<parsedFlightPlans.get(i).getFlights().size(); j++){
-//                flightsSponsored.add(new Boolean(false));
-//                for(int k=0; k<airlines.size(); k++) {
-//                    if (parsedFlightPlans.get(i).getFlights().get(j).getAirlineCode().equals(airlines.get(k).getAirlineCode())) {
-//                        if(airlines.get(k).getSponsored() == 1){
-//                            flightsSponsored.set(j, new Boolean(true));
-//                        }
-//                    }
-//                }
-//            }
-//            parsedFlightPlans.get(i).setFlightSponsored(flightsSponsored);
-//        }
-//
-//        return parsedFlightPlans;
-//    }
-
     public List<FlightPlan> setSponsoredAirlines(List<FlightPlan> parsedFlightPlans, EntityManager em){
         List<Boolean> flightsSponsored;
         Airline currentAirline;
@@ -211,6 +191,5 @@ public class FlightPlanSearchFunctions {
         }
         return parsedFlightPlans;
     }
-
 
 }

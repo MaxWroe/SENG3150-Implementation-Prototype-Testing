@@ -54,60 +54,36 @@ public class FlightPlanSearch {
     //finds and returns a list of flight plans from sent in flights that match the criteria
     public List<FlightPlan> searchFlightPlans(String departureLocation, String destination, String departureDate, String classCode, int departureDateRange, int numberOfPeople, EntityManager em){
         List<FlightPlan> flightPlans = new LinkedList<>();
+        List<FlightPlan> totalFlightPlans = new LinkedList<>();
         System.out.println("starting flight plan search with date: " + departureDate);
 
         String timeStartString = departureDate + " 00:00:01";
         String timeEndString = departureDate + " 23:59:59";
         Timestamp timeStart = Timestamp.valueOf(timeStartString);
-        Timestamp timeEnd = Timestamp.valueOf(timeEndString);
-        timeEnd.setTime(timeEnd.getTime() + (24*60*60*1000)*departureDateRange);
         Timestamp timeRange = Timestamp.valueOf(timeEndString);
-        timeRange.setTime(timeEnd.getTime() + (24*60*60*1000)*departureDateRange);
-
-        for(int i=0; i<5; i++) {
+        timeRange.setTime(timeRange.getTime() + (24*60*60*1000)*departureDateRange);
+        Timestamp timeEnd = new Timestamp(0);
+        for(int i=5; i<6; i++) {
+            timeEnd.setTime(timeRange.getTime() + (24*60*60*1000)*(i));
             List<Flight> flights = sqlSearch.retrieveFlights(timeStart, timeEnd, em);
-
-//            for (int j = 0; j < flights.size(); j++) {
-//                System.out.println(flights.get(j).toString());
-//            }
 
             if(flights.size()>0){
                 flights = searchFunctions.filterFlightsCOVID(flights, airports);
-//                String flightNumbersString = searchFunctions.getFlightNumbersSQLField(flights);
                 List<Availability> availabilities = sqlSearch.retrieveAvailabilities(timeStart, timeEnd, numberOfPeople, classCode, em);
                 if (availabilities.size() > 0) {
-//                    System.out.println("availabilities matching criteria");
-//                    for (int j = 0; j < availabilities.size(); j++) {
-//                        System.out.println(availabilities.get(j).toString());
-//                    }
 
                     flights = searchFunctions.filterByAvailabilities(flights, availabilities);
-
-//                    for (int j = 0; j < flights.size(); j++) {
-//                        System.out.println(flights.get(j).toString());
-//                    }
-
-                    flightPlans = buildFlightPlansYens(flights, departureLocation, destination, timeStart, timeEnd);
-
+                    flightPlans = buildFlightPlansYens(flights, departureLocation, destination, timeStart, timeEnd, departureDateRange+i+1);
                     flightPlans = searchFunctions.filterNumberFlightsMaxSize(flightPlans, 4);
-                    flightPlans = searchFunctions.filterFlightsDepartureDate(flightPlans, timeRange);
                     flightPlans = searchFunctions.setFlightPlansAvailabilities(flightPlans, availabilities);
                     flightPlans = searchFunctions.setPrices(flightPlans, em);
                     flightPlans = searchFunctions.setSponsoredAirlines(flightPlans, em);
-
-
+                    totalFlightPlans.addAll(flightPlans);
                 }
             }
-            System.out.println("flight plans left after variable setting: " + flightPlans.size());
-
-            if(flightPlans.size()>0){
-
-                break;
-            }
-            else{
-                timeEnd.setTime(timeEnd.getTime() + (24*60*60*1000));
-            }
         }
+        flightPlans = searchFunctions.removeDuplicateFlightPlans(flightPlans);
+        flightPlans = searchFunctions.filterFlightsDepartureDate(flightPlans, timeRange);
         System.out.println("returning flight plans");
         return flightPlans;
     }
@@ -119,15 +95,12 @@ public class FlightPlanSearch {
         String timeStartString = departureDate + " 00:00:01";
         String timeEndString = departureDate + " 23:59:59";
         Timestamp timeStart = Timestamp.valueOf(timeStartString);
-        Timestamp timeEnd = Timestamp.valueOf(timeEndString);
-        timeEnd.setTime(timeEnd.getTime() + (24*60*60*1000*5));
-        timeEnd.setTime(timeEnd.getTime() + (24*60*60*1000)*(departureDateRange));
         Timestamp timeRange = Timestamp.valueOf(timeEndString);
-        timeRange.setTime(timeEnd.getTime() + (24*60*60*1000)*departureDateRange);
+        timeRange.setTime(timeRange.getTime() + (24*60*60*1000)*departureDateRange);
+        Timestamp timeEnd = new Timestamp(timeRange.getTime() + (24*60*60*1000)*(5));
 
         List<Flight> flights = sqlSearch.retrieveFlights(timeStart, timeEnd, em);
         flights = searchFunctions.filterFlightsCOVID(flights, airports);
-//        String flightNumbersString = searchFunctions.getFlightNumbersSQLField(flights);
 
         List<Availability> availabilities = sqlSearch.retrieveAvailabilities(timeStart, timeEnd, numberOfPeople, classCode, em);
         if(availabilities.size()>0) {
@@ -152,20 +125,18 @@ public class FlightPlanSearch {
         return flightPlan;
     }
 
-    private List<FlightPlan> buildFlightPlansYens(List<Flight> flights, String departureLocation, String destination, Timestamp startingTime, Timestamp endingTime) {
+    private List<FlightPlan> buildFlightPlansYens(List<Flight> flights, String departureLocation, String destination, Timestamp startingTime, Timestamp endingTime, int numberOfCycles) {
         List<FlightPlan> flightPlans = new LinkedList<>();
         Timestamp inputTime = startingTime;
-        int numberOfCycles = 7;
+
 
         if(flights.size()>0){
             for(int i=0; i<numberOfCycles; i++) {
                 DijkstraGraph graph = searchFunctions.buildGraph(flights, airports);
                 flightPlans.addAll(yensSearch.getKShortestPaths(graph, departureLocation, destination, inputTime, 10));
-                inputTime = new Timestamp(startingTime.getTime()+((endingTime.getTime() - startingTime.getTime())/numberOfCycles)*(i+1));
-//                System.out.println("date for removal: " + inputTime);
+                inputTime = new Timestamp(startingTime.getTime()+(((endingTime.getTime() - startingTime.getTime())/numberOfCycles)*(i)));
                 for(int j=0; j<flights.size(); j++){
                     if(flights.get(j).getDepartureDate().before(inputTime)){
-//                        System.out.println("removing flight: " + filteredFlights.get(j).toString());
                         flights.remove(j);
                         j--;
                     }
@@ -173,13 +144,10 @@ public class FlightPlanSearch {
 
             }
         }
-        System.out.println("number of flight plans produced by Yenns with duplicates: " + flightPlans.size());
-
         //sets availabilities and removes duplicates
         if(flightPlans.size()>0) {
             flightPlans = searchFunctions.removeDuplicateFlightPlans(flightPlans);
         }
-        System.out.println("number of flight plans after removing duplicates: " + flightPlans.size());
         return flightPlans;
     }
 

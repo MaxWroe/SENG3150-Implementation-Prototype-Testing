@@ -12,8 +12,6 @@ public class FlightPlanSearchSQL {
 
     public List<Flight> retrieveFlights(Timestamp StartTime, Timestamp endTime, EntityManager em){
         List<Flight> flights = new LinkedList<>();
-//        System.out.println("Flights query: " + "SELECT f FROM Flight f WHERE f.departureDate>='" + StartTime + "'" +
-//                " AND f.departureDate<='" + endTime + "'");
         flights = em.createQuery( "SELECT f FROM Flight f WHERE f.departureDate>='" + StartTime + "'" +
                 " AND f.departureDate<='" + endTime + "'", Flight.class).getResultList();
         return flights;
@@ -21,11 +19,6 @@ public class FlightPlanSearchSQL {
 
     public List<Availability> retrieveAvailabilities(Timestamp StartTime, Timestamp endTime, int numberOfPeople, String classCode, EntityManager em){
         List<Availability> availabilities = new LinkedList<>();
-//        System.out.println("availabilities query: " + "SELECT a FROM Availability a WHERE a.departureDate>='" + StartTime + "'" +
-//                " AND a.departureDate<='" + endTime + "'" +
-//                " AND a.numberAvailableSeatsLeg1>=" + numberOfPeople +
-//                " AND a.classCode='" + classCode + "'" +
-//                " AND (a.numberAvailableSeatsLeg2>=" + numberOfPeople + " OR a.numberAvailableSeatsLeg2 IS NULL)");
         availabilities = em.createQuery("SELECT a FROM Availability a WHERE a.departureDate>='" + StartTime + "'" +
                 " AND a.departureDate<='" + endTime + "'" +
                 " AND a.numberAvailableSeatsLeg1>=" + numberOfPeople +
@@ -34,7 +27,6 @@ public class FlightPlanSearchSQL {
                 , Availability.class).getResultList();
 
         return availabilities;
-//        "a.flightNumber IN " + flightNumbers + AND a.departureDate>='" + StartTime + "'" +
     }
 
     public Price retrievePrice(Availability av, EntityManager em) {
@@ -43,13 +35,6 @@ public class FlightPlanSearchSQL {
         String cc = av.getClassCode();
         String tc = av.getTicketCode();
         String dd = av.getDepartureDate().toString();
-
-//        System.out.println("price query: " + "SELECT p FROM Price p WHERE p.airlineCode='" + ac + "' " +
-//                "AND p.flightNumber='" + fn + "' " +
-//                "AND p.classCode='" + cc + "' " +
-//                "AND p.ticketCode='" + tc + "' " +
-//                "AND p.startDate<'" + dd + "' AND p.endDate>'" + dd + "'");
-
         List<Price> price = em.createQuery("SELECT p FROM Price p WHERE p.airlineCode='" + ac + "' " +
                         "AND p.flightNumber='" + fn + "' " +
                         "AND p.classCode='" + cc + "' " +

@@ -21,9 +21,6 @@ public class YensAlgorithmFPS {
         try{
 
             FlightPlan kthPath = dijkstraSearch.getShortestPathDuration(graph, departureLocation, arrivalLocation, startingTime);
-           if(kthPath!=null) {
-               System.out.println("dijkstra flight plan: " + kthPath.toString());
-           }
             kShortestPaths.add(kthPath);
 
             for(int i=1; i<k; i++){
@@ -34,7 +31,6 @@ public class YensAlgorithmFPS {
                     kShortestPaths.remove(i-1);
                     break;
                 }
-//                System.out.println(previousPath.toString());
 
                 for(int j = 0; j<previousPath.getNumberOfFlights(); j++) {
 
@@ -70,14 +66,6 @@ public class YensAlgorithmFPS {
                                 removedEdges.put(rootEdge.get(0).getDepartureCode(), rootEdge);
                                 rootEdge.remove(0);
                             }
-                            //add to removed edges here
-//                            currentEdgeDepartures = new LinkedList<>(removedEdges.keySet());
-//                            for (String currentKey : currentEdgeDepartures){
-//                                for(Flight currentFlight : removedEdges.get(currentKey)){
-//                                    System.out.println("this class is a flight at line 293");
-//                                }
-//                            }
-
 
                         }
                     }
@@ -86,7 +74,7 @@ public class YensAlgorithmFPS {
                     for (Flight rootEdgePath : rootPath.getFlights()) {
                         String rootNode = rootEdgePath.getDepartureCode();
                         if (!rootNode.equals(spurNode)) {
-                            Map<String, List<Flight>> edgesToAndFromNode; // = new HashMap<String, List<Flight>>();
+                            Map<String, List<Flight>> edgesToAndFromNode;
                             edgesToAndFromNode = graph.removeNode(rootNode);
                             List<String> keys = new LinkedList<>(edgesToAndFromNode.keySet());
                             for(String currentKey : keys){
@@ -96,29 +84,13 @@ public class YensAlgorithmFPS {
                                     tempList.addAll(edgesToAndFromNode.get(currentKey));
                                     tempList.addAll(removedEdges.get(currentKey));
                                     removedEdges.put(currentKey, tempList);
-//                                    for(Flight currentFlight : removedEdges.get(currentKey)){
-//                                        System.out.println("this class is a flight at line 316");
-//                                    }
                                 }
                                 else{
                                     removedEdges.put(currentKey, edgesToAndFromNode.get(currentKey));
-//                                    for(Flight currentFlight : removedEdges.get(currentKey)){
-//                                        System.out.println("this class is a flight at line 322");
-//                                    }
                                 }
-
-
 
                             }
                         }
-                        //add to removed edges here
-//                            currentEdgeDepartures = new LinkedList<>(removedEdges.keySet());
-//                            for (String currentKey : currentEdgeDepartures){
-//                                for(Flight currentFlight : removedEdges.get(currentKey)){
-//                                    System.out.println("this class is a flight");
-//                                }
-//                            }
-
                     }
 
                     graph.resetShortestPaths();
@@ -132,11 +104,8 @@ public class YensAlgorithmFPS {
                     FlightPlan spurPath = dijkstraSearch.getShortestPathDuration(graph, spurNode, arrivalLocation, spurTime);
 
                     if (spurPath != null) {
-                        System.out.println("root path: " + rootPath.toString());
-                        System.out.println("spur path: " + spurPath.toString());
                         FlightPlan totalPath = new FlightPlan(rootPath.getFlights());
                         totalPath.addFlights(spurPath);
-                        System.out.println("Candidate option: " + totalPath.toString());
                         if (!candidates.contains(totalPath)) {
                             candidates.add(totalPath);
                         }
@@ -152,9 +121,7 @@ public class YensAlgorithmFPS {
                     isNewPath = true;
                     if(kthPath != null){
                         for(FlightPlan p : kShortestPaths){
-                            System.out.println("two paths being compared: " + p.toString() + ", " + kthPath.toString());
                             if(p.getFlights().equals(kthPath.getFlights())){
-//                                System.out.println("not a new path");
                                 isNewPath = false;
                                 break;
                             }
