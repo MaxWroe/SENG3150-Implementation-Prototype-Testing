@@ -504,12 +504,14 @@ button
 /* Travel recommendations page */
 .recommendation
  {
-
+    display: grid;
+    grid-template-columns: 50% 50%;
  }
 
 .recommendation-display-window
 {
     width: 100%;
+    height: 300px;
     display: grid;
     grid-template-columns: 60% 40%;
     background: #fff;
@@ -520,7 +522,7 @@ button
 {
     background-repeat: no-repeat;
     background-size: cover;
-
+    height: inherit;
     grid-column: 1;
 }
 
@@ -532,6 +534,11 @@ button
     color: white;
     backdrop-filter: blur(2px);
     height: 100%;
+    text-shadow:
+            -1px -1px 0 #000,
+            1px -1px 0 #000,
+            -1px 1px 0 #000,
+            1px 1px 0 #000;
 }
 
 .recommendation-description

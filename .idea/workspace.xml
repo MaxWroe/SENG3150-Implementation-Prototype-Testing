@@ -27,8 +27,7 @@
   <component name="ChangeListManager">
     <list default="true" id="2fa4c939-f298-44e8-ba1d-7353dd1d77f5" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/flightPlansDisplay.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/flightPlansDisplay.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/search.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/search.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/css/main.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -410,7 +409,7 @@
       <workItem from="1599264534835" duration="7238000" />
       <workItem from="1599287264966" duration="4359000" />
       <workItem from="1599354769602" duration="10339000" />
-      <workItem from="1599443662315" duration="8645000" />
+      <workItem from="1599443662315" duration="9603000" />
     </task>
     <task id="LOCAL-00027" summary="updated managebooking and controller for manageBooking">
       <created>1591320719327</created>
