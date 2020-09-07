@@ -69,13 +69,11 @@ public class FlightPlanSearchSQL {
         return em.createQuery("SELECT a FROM Airport a", Airport.class).getResultList();
     }
 
-    public List<Airline> retrieveAirlines(EntityManager em){
-        return em.createQuery("SELECT a FROM Airline a", Airline.class).getResultList();
-    }
-
     public Airline retrieveAirline(Flight flight, EntityManager em){
         String airlineCode = flight.getAirlineCode();
-        List<Airline> airline = em.createQuery("SELECT a FROM Airline a WHERE a.airlineCode='" + airlineCode + "'", Airline.class).getResultList();
+        Query queryAirlines = em.createQuery("SELECT a FROM Airline a WHERE a.airlineCode = :airlineCode ");
+        queryAirlines.setParameter("airlineCode", airlineCode);
+        List<Airline> airline = queryAirlines.getResultList();
         if(airline.size()>0 && airline.get(0) != null){
             return airline.get(0);
         }
