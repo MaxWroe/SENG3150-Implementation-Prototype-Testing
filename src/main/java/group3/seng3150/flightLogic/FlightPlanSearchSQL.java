@@ -2,7 +2,9 @@ package group3.seng3150.flightLogic;
 
 import group3.seng3150.entities.*;
 
+
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import java.sql.Timestamp;
 import java.util.LinkedList;
 import java.util.List;
@@ -10,38 +12,55 @@ import java.util.List;
 public class FlightPlanSearchSQL {
     public FlightPlanSearchSQL(){}
 
-    public List<Flight> retrieveFlights(Timestamp StartTime, Timestamp endTime, EntityManager em){
+    public List<Flight> retrieveFlights(Timestamp startTime, Timestamp endTime, EntityManager em){
         List<Flight> flights = new LinkedList<>();
-        flights = em.createQuery( "SELECT f FROM Flight f WHERE f.departureDate>='" + StartTime + "'" +
-                " AND f.departureDate<='" + endTime + "'", Flight.class).getResultList();
+        Query queryFlights = em.createQuery("SELECT f FROM Flight f WHERE f.departureDate >= :startTime " +
+                " AND f.departureDate <= :endTime");
+        queryFlights.setParameter("startTime", startTime);
+        queryFlights.setParameter("endTime", endTime);
+        flights = queryFlights.getResultList();
+
         return flights;
     }
 
-    public List<Availability> retrieveAvailabilities(Timestamp StartTime, Timestamp endTime, int numberOfPeople, String classCode, EntityManager em){
+    public List<Availability> retrieveAvailabilities(Timestamp startTime, Timestamp endTime, int numberOfPeople, String classCode, EntityManager em){
         List<Availability> availabilities = new LinkedList<>();
-        availabilities = em.createQuery("SELECT a FROM Availability a WHERE a.departureDate>='" + StartTime + "'" +
-                " AND a.departureDate<='" + endTime + "'" +
-                " AND a.numberAvailableSeatsLeg1>=" + numberOfPeople +
-                " AND a.classCode='" + classCode + "'" +
-                " AND (a.numberAvailableSeatsLeg2>=" + numberOfPeople + " OR a.numberAvailableSeatsLeg2 IS NULL)"
-                , Availability.class).getResultList();
-
+        Query queryAvailabilities = em.createQuery("SELECT a FROM Availability a WHERE a.departureDate >= :startTime" +
+                " AND a.departureDate <= :endTime" +
+                " AND a.numberAvailableSeatsLeg1 >= :numberOfPeople"+
+                " AND a.classCode = :classCode" +
+                " AND (a.numberAvailableSeatsLeg2 >= :numberOfPeople" +
+                " OR a.numberAvailableSeatsLeg2 IS NULL)");
+        queryAvailabilities.setParameter("startTime", startTime);
+        queryAvailabilities.setParameter("endTime", endTime);
+        queryAvailabilities.setParameter("numberOfPeople", numberOfPeople);
+        queryAvailabilities.setParameter("classCode", classCode);
+        availabilities = queryAvailabilities.getResultList();
         return availabilities;
     }
 
     public Price retrievePrice(Availability av, EntityManager em) {
-        String ac = av.getAirlineCode();
-        String fn = av.getFlightNumber();
-        String cc = av.getClassCode();
-        String tc = av.getTicketCode();
-        String dd = av.getDepartureDate().toString();
-        List<Price> price = em.createQuery("SELECT p FROM Price p WHERE p.airlineCode='" + ac + "' " +
-                        "AND p.flightNumber='" + fn + "' " +
-                        "AND p.classCode='" + cc + "' " +
-                        "AND p.ticketCode='" + tc + "' " +
-                        "AND p.startDate<'" + dd + "' AND p.endDate>'" + dd + "'", Price.class).getResultList();
-        if(price.size()>0 && price.get(0) != null){
-            return price.get(0);
+        String airlineCode = av.getAirlineCode();
+        String flightNumber = av.getFlightNumber();
+        String classCode = av.getClassCode();
+        String ticketCode = av.getTicketCode();
+        Timestamp departureDate = av.getDepartureDate();
+        List<Price> prices = new LinkedList<>();
+
+        Query queryPrices = em.createQuery("SELECT p FROM Price p WHERE p.airlineCode = :airlineCode" +
+                " AND p.flightNumber = :flightNumber" +
+                " AND p.classCode = :classCode" +
+                " AND p.ticketCode = :ticketCode" +
+                " AND p.startDate < :departureDate" +
+                " AND p.endDate > :departureDate");
+        queryPrices.setParameter("airlineCode", airlineCode);
+        queryPrices.setParameter("flightNumber", flightNumber);
+        queryPrices.setParameter("classCode", classCode);
+        queryPrices.setParameter("ticketCode", ticketCode);
+        queryPrices.setParameter("departureDate", departureDate);
+        prices = queryPrices.getResultList();
+        if(prices.size()>0 && prices.get(0) != null){
+            return prices.get(0);
         }
         return null;
     }
