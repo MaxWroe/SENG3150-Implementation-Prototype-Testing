@@ -7,6 +7,7 @@ import group3.seng3150.entities.Availability;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -17,7 +18,6 @@ import java.util.LinkedList;
 import java.util.List;
 
 @Controller
-@RequestMapping("/search")
 public class FlightController{
     private FlightHolder flightPlans;
     private EntityManager em;
@@ -28,8 +28,7 @@ public class FlightController{
         this.em =em;
     }
 
-    @GetMapping
-    @RequestMapping("")
+    @PostMapping("/search")
     public ModelAndView search(
             @RequestParam(name="departureLocation", defaultValue="") String departureLocation,
             @RequestParam(name="arrivalLocation", defaultValue="") String arrivalLocation,
@@ -70,28 +69,12 @@ public class FlightController{
         }
 
         System.out.println("number of flight plans Returning: " + flightPlans.getFlightPlansReturningSize());
-        for(int i=0; i<flightPlans.getFlightPlansDepartingSize(); i++){
-            System.out.println(flightPlans.getFlightPlansDeparting().get(i).toString());
+        for(int i=0; i<flightPlans.getFlightPlansReturningSize(); i++){
+            System.out.println(flightPlans.getFlightPlansReturning().get(i).toString());
         }
 
         //sets the flightholder beans as objects of view
         view.addObject("flights", flightPlans);
-        return view;
-    }
-
-    @GetMapping
-    @RequestMapping("/sort")
-    public ModelAndView search(
-            @RequestParam(name="sortby", defaultValue="") String sortby,
-            @RequestParam(name="sortMethod", defaultValue="") String sortMethod,
-            HttpSession session
-    ){
-        ModelAndView view = new ModelAndView("sort");
-        //sorts flights in the flightHolder bean to desired sorting method
-        flightPlans.sortFlightPlansDeparting(sortby+sortMethod);
-        flightPlans.sortFlightPlansReturning(sortby+sortMethod);
-        view.addObject("flights", flightPlans);
-
         return view;
     }
 
