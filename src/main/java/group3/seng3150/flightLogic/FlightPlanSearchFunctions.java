@@ -27,7 +27,6 @@ public class FlightPlanSearchFunctions {
                 }
             }
             if(contains == true){
-//                System.out.println("adding flight: " + flights.get(i).toString());
                 filteredFlights.add(flights.remove(i));
                 i--;
             }
@@ -54,23 +53,18 @@ public class FlightPlanSearchFunctions {
     }
 
     public List<FlightPlan> removeDuplicateFlightPlans(List<FlightPlan> parsedFlightPlans){
-//        System.out.println("running removeDuplicateFlightPlans");
         List<FlightPlan> uniqueFlightPlans = new LinkedList<FlightPlan>();
         boolean existsIn;
         for(int i=0; i<parsedFlightPlans.size(); i++){
-//            System.out.println("running loop iteration of parsedFlightPlans: " + i);
             existsIn = false;
             for(int j=0; j<uniqueFlightPlans.size(); j++){
-//                System.out.println("flight plan 1: " + parsedFlightPlans.get(i).toString() + "flight plan 2: " + uniqueFlightPlans.get(j).toString());
                 if (parsedFlightPlans.get(i).getFlights().equals(uniqueFlightPlans.get(j).getFlights())){
-//                    System.out.println("running loop iteration of uniqueFlightPlans: " + j);
 
                     existsIn = true;
                 }
             }
             if(existsIn==false){
                 uniqueFlightPlans.add(parsedFlightPlans.get(i));
-//                System.out.println("new flight plan added to list: " + uniqueFlightPlans.get(uniqueFlightPlans.size()-1).toString());
             }
         }
         return  uniqueFlightPlans;
@@ -102,21 +96,6 @@ public class FlightPlanSearchFunctions {
         }
         return flightPlans;
     }
-//
-//    public String getFlightNumbersSQLField(List<Flight> flights){
-//        List<String> flightNumbers = new LinkedList<>();
-//        for(int i=0; i<flights.size(); i++){
-//            if(!flightNumbers.contains(flights.get(i).getFlightNumber())){
-//                flightNumbers.add(flights.get(i).getFlightNumber());
-//            }
-//        }
-//        String flightNumberString = "('" + flightNumbers.get(0) + "'";
-//        for(int i=1; i<flightNumbers.size(); i++){
-//            flightNumberString += ", '" + flightNumbers.get(i) + "'";
-//        }
-//        flightNumberString += ")";
-//        return flightNumberString;
-//    }
 
     public List<Flight> filterFlightsCOVID(List<Flight> parsedFlights, List<Airport> parsedAirports) {
         for (int i = 0; i < parsedAirports.size(); i++) {
@@ -161,10 +140,10 @@ public class FlightPlanSearchFunctions {
         for(int i=0; i<parsedFlightPlans.size(); i++){
             flightsSponsored = new LinkedList<>();
             for(int j=0; j<parsedFlightPlans.get(i).getFlights().size(); j++){
-                flightsSponsored.add(new Boolean(false));
+                flightsSponsored.add(false);
                 currentAirline = sqlSearcher.retrieveAirline(parsedFlightPlans.get(i).getFlights().get(j), em);
                 if(currentAirline != null && currentAirline.getSponsored() != null && currentAirline.getSponsored() == 1){
-                    flightsSponsored.set(j, new Boolean(true));
+                    flightsSponsored.set(j, true);
                 }
             }
             parsedFlightPlans.get(i).setFlightSponsored(flightsSponsored);
