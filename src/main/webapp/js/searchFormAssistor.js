@@ -133,8 +133,8 @@ $('#type').change(function () {
     if($(this).children("option:selected").val() === "return")
     {
         // if return trip selected show return date input and set as required
-        $("#departureDate").css("display","inline");
-        $("#departureDate").prop("required",true);
+        $("#form-group-return-date").css("display","inline");
+        $("#returnDate").prop("required",true);
         // check if date already selected for departure
         if ($("#departureDate").val() !== "")
         {
@@ -147,8 +147,8 @@ $('#type').change(function () {
     }
     else {
         // if oneway trip selected hide return date input and set as not required
-        $("#departureDate").hide();
-        $("#departureDate").prop( "required",false);
+        $("#form-group-return-date").hide();
+        $("#returneDate").prop( "required",false);
         // disable return range option
         $("#return-range").prop("disabled", true);
     }
