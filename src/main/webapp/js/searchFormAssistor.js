@@ -1,28 +1,5 @@
 // Manipulate and validate search form fields
 
-// Function to display return date input field if return flight
-function showDiv(divId, changedId, element)
-{
-    document.getElementById(divId).style.display = element.value === "return" ? 'inline' : 'none';
-    document.getElementById(changedId).required = element.value === "return";
-    // Check if date already selected for departure
-    if ($("#departureDate").val() !== "")
-    {
-        document.getElementById("returnDate").min = document.getElementById("departureDate").value;
-        $("#returnDate").prop("disabled", false);
-    }
-}
-
-// Function to restrict return date to not minimum than depart
-function restrictDepart()
-{
-    document.getElementById("returnDate").min = document.getElementById("departureDate").value;
-    // Disable return date until depart is selected
-    $("#returnDate").prop("disabled", false);
-    // Clear depart value
-    $("#returnDate").val("");
-}
-
 // Function to validate input from search flight form
 function validateForm()
 {
@@ -67,20 +44,6 @@ function validateForm()
     }
 }
 
-// deprecated function
-function clearFields()
-{
-    var check = $("#departureLocation").val();
-
-    if(check === 'null')
-    {
-        $("#departureLocation").val('');
-        $("#arrivalLocation").val('');
-        $("#adults").val('1');
-        $("#children").val('0');
-    }
-}
-
 // restrict departure range input so user cannot search for a range that goes into return date if return trip type selected
 function restrict_departure_range()
 {
@@ -90,7 +53,7 @@ function restrict_departure_range()
     var timeDifference = returnDate.getTime() - departureDate.getTime();
     var dayDifference = timeDifference / (1000 * 3600 * 24);
 
-    $dateRangeInput = $("#departureDateRange");
+    var $dateRangeInput = $("#departureDateRange");
     if(dayDifference < 7)
     {
         // if so reset departure date range
@@ -127,6 +90,17 @@ $('#departure-range').click(function() {
 
 // if departure date is selected or changed
 $('#departureDate').change(function () {
+    // if return trip
+    if($("#type").val() == "return")
+    {
+        // change min of return date to departure date
+        $("#returnDate").attr("min", $('#departureDate').val());
+        // enable return date until as depart is selected
+        $("#returnDate").prop("disabled", false);
+        // Clear depart value
+        $("#returnDate").val("");
+    }
+
     // check if departure range option is selected
     if($('#departure-range').prop("checked"))
     {
@@ -141,10 +115,10 @@ $('#return-range').click(function() {
     $("#return-range-div").toggle(this.checked);
     // make departure date range input required if option selected
     if ($('#return-range').is(':checked')) {
-        $dateRangeInput.prop( "required", true );
+        $dateRangeInput.prop( "required",true);
     }
     else {
-        $dateRangeInput.prop( "required", false );
+        $dateRangeInput.prop( "required",false);
     }
 });
 
@@ -158,9 +132,24 @@ $('#returnDate').change(function () {
 $('#type').change(function () {
     if($(this).children("option:selected").val() === "return")
     {
+        // if return trip selected show return date input and set as required
+        $("#departureDate").css("display","inline");
+        $("#departureDate").prop("required",true);
+        // check if date already selected for departure
+        if ($("#departureDate").val() !== "")
+        {
+            // if so set min of return date to departure and enable return input
+            $("#returnDate").attr("min", $("#departureDate").val());
+            $("#returnDate").prop("disabled", false);
+        }
+        // enable return range option
         $("#return-range").prop("disabled", false);
     }
     else {
+        // if oneway trip selected hide return date input and set as not required
+        $("#departureDate").hide();
+        $("#departureDate").prop( "required",false);
+        // disable return range option
         $("#return-range").prop("disabled", true);
     }
 });

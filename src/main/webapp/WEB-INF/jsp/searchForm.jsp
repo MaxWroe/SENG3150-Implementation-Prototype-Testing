@@ -7,7 +7,6 @@
   Time: 11:05 am
 --%>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="${pageContext.request.contextPath}/js/searchFormAssistor.js"></script>
 <!-- Flight search fields -->
 <form name="searchFlight" method="post" id="searchFlight" action="${pageContext.request.contextPath}/search" onsubmit="return validateForm()">
     <div class="search-form">
@@ -15,7 +14,7 @@
             <!-- Return or one-way trip -->
             <div class="form-group-trip">
                 <label for="type">Trip:</label>
-                <select id="type" name="type" onchange="showDiv('form-group-return-date', 'returnDate', this)">
+                <select id="type" name="type">
                     <option value="oneway">One-way</option>
                     <option value="return">Return</option>
                 </select>
@@ -57,8 +56,7 @@
             <div class="form-group-depart-date">
                 <label for="departureDate">Depart:</label>
                 <jsp:useBean id="now" class="java.util.Date"/>
-                <input type="date" id="departureDate" name="departureDate" min="<fmt:formatDate pattern="yyyy-MM-dd" value="${now}" />"
-                       onchange="restrictDepart()" required>
+                <input type="date" id="departureDate" name="departureDate" min="<fmt:formatDate pattern="yyyy-MM-dd" value="${now}" />" required>
             </div>
 
             <!-- Return date -->
@@ -145,4 +143,6 @@
         <option value="VIE">Vienna - VIE</option>
         <option value="YYZ">Toronto - YYZ</option>
     </datalist>
+    <!-- jQuery for search form -->
+    <script src="${pageContext.request.contextPath}/js/searchFormAssistor.js"></script>
 </form>

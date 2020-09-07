@@ -78,9 +78,25 @@
                         restrict_departure_range();
 
                         // change visibility of departure date range div
-                        $("#depart-range-div").toggle(this.checked);
+                        $("#departure-range-div").toggle(this.checked);
                         // make departure date range input required if option selected
-                        $('#departureDateRange').prop( "required", true );
+                        $('#departureDateRange').prop("required", true );
+                    }
+                    // check if return range option is selected
+                    if($('#returnDateRange').val() !== "")
+                    {
+                        $("#return-range").prop( "checked", true );
+                        $("#returnDateRange").prop( "disabled", false );
+
+                        $(this).toggleClass("up");
+                        $('.extra-search-fields').toggle();
+
+                        restrict_departure_range();
+
+                        // change visibility of departure date range div
+                        $("#return-range-div").toggle(this.checked);
+                        // make departure date range input required if option selected
+                        $('#returnDateRange').prop( "required", true );
                     }
 
                     if (trip === "oneway")
@@ -303,35 +319,38 @@
                     <input type="hidden" id="returnClassBooking" name="classBooking" value="${param.classCode}">
 
                     <!-- Parse all returned flights -->
-
-                    <!-- Check if any departure flights returned -->
-                    <c:if test="${empty flights.flightPlansDeparting}">
+                    <c:choose>
+                    <%-- Check if any departure flights returned --%>
+                    <c:when test="${empty flights.flightPlansDeparting}">
                         <div class="flight-result-departure-window">
                             <h4>No departure flights can be found that match the criteria!</h4>
                         </div>
-                    </c:if>
-
-                    <!-- For each departure flight returned display -->
+                    </c:when>
+                    <c:otherwise>
+                    <%-- For each departure flight returned display --%>
                     <div class="flight-result-departure-window">
-                        <!-- Display flight plans -->
+                        <%-- Display flight plans --%>
                         <c:set var="tripLeg" value="depart" scope="request"/>
                         <jsp:include page="flightPlansDisplay.jsp"/>
                     </div>
-
-                    <!-- Check if any return flights returned -->
-                    <c:if test="${empty flights.flightPlansReturning}">
+                    </c:otherwise>
+                    </c:choose>
+                    <c:choose>
+                    <%-- Check if any return flights returned --%>
+                    <c:when test="${empty flights.flightPlansReturning}">
                         <div class="flight-result-return-window">
                             <h4>No return flights can be found that match the criteria!</h4>
                         </div>
-                    </c:if>
-
-                    <!-- For each return flight returned display -->
+                    </c:when>
+                    <c:otherwise>
+                    <%-- For each return flight returned display --%>
                     <div class="flight-result-return-window">
-                        <!-- Display flight plans -->
+                        <%-- Display flight plans --%>
                         <c:set var="tripLeg" value="return" scope="request"/>
                         <jsp:include page="flightPlansDisplay.jsp"/>
                     </div>
-
+                    </c:otherwise>
+                    </c:choose>
                     <br>
                     <div id="flight-result-return-book">
                         <h4 id="booking-cost">Total cost: </h4>
