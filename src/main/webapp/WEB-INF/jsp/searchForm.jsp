@@ -9,7 +9,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/searchFormAssistor.js"></script>
 <!-- Flight search fields -->
-<form name="searchFlight" method="get" id="searchFlight" action="${pageContext.request.contextPath}/search" onsubmit="return validateForm()">
+<form name="searchFlight" method="post" id="searchFlight" action="${pageContext.request.contextPath}/search" onsubmit="return validateForm()">
     <div class="search-form">
         <div class="main-search-fields">
             <!-- Return or one-way trip -->
