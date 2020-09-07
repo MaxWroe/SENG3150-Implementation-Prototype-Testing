@@ -45,7 +45,12 @@
                     <td>${param.type}, ${param.classCode}</td>
                     <td>${param.adults} Adult/s, ${param.children} Children</td>
                     <td>${param.departureLocation} to ${param.arrivalLocation}</td>
-                    <td>Depart ${param.departureDate}</td>
+                    <fmt:parseDate pattern="yyyy-MM-dd" value="${param.departureDate}" var="parsedDate" />
+                    <td>Depart - <fmt:formatDate type="date" value="${parsedDate}" /></td>
+                    <c:if test="${param.type eq 'return'}">
+                        <fmt:parseDate pattern="yyyy-MM-dd" value="${param.returnDate}" var="parsedDate" />
+                        <td>Return - <fmt:formatDate type="date" value="${parsedDate}" /></td>
+                    </c:if>
                 </tr>
             </table>
 

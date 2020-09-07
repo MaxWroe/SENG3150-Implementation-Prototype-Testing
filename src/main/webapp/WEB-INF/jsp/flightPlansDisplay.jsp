@@ -34,10 +34,12 @@
                 <p>Stop overs: ${flightPlan.numberStopOvers}</p>
                 <table>
                     <tr>
-                        <td>${param.departureLocation}</td>
-                        <c:forEach items="${flightPlan.flights}" var="flightPlanFlights">
+                        <c:forEach items="${flightPlan.flights}" var="flightPlanFlights" varStatus="flightsLoop">
+                            <c:if test="${flightsLoop.count eq 1}">
+                                <td>${flightPlanFlights.departureCode}</td>
+                            </c:if>
                             <td>&#8594</td>
-                            <c:if test = "${! flightPlanFlights.stopOverCode eq ''}">
+                            <c:if test = "${not empty flightPlanFlights.stopOverCode}">
                                 <td>${flightPlanFlights.stopOverCode}</td>
                                 <td>&#8594</td>
                             </c:if>
