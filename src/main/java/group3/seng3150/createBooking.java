@@ -68,8 +68,10 @@ public class createBooking {
                     newBooking.setDestination(departure.getFlights().get(j).getDestination());
                     newBooking.setDeparture(departure.getFlights().get(j).getDepartureCode());
                     newBooking.setArrivalTime(departure.getFlights().get(j).getArrivalDate());
-                    newBooking.setTicketCode("D");
+                    newBooking.setTicketCode(String.valueOf(departure.getFlightITicketCode(j)));
                     newBooking.setClassCode(returnClassBooking);
+                    newBooking.setOverallPrice((double) departure.getPrice());
+                    newBooking.setPrice(departure.getPrices().get(j).getPrice());
                 } else if (j == 1) {
                     newBooking.setAirlineCode2(departure.getFlights().get(j).getAirlineCode());
                     newBooking.setDepartureTime2(departure.getFlights().get(j).getDepartureDate());
@@ -77,8 +79,9 @@ public class createBooking {
                     newBooking.setDestination2(departure.getFlights().get(j).getDestination());
                     newBooking.setDeparture2(departure.getFlights().get(j).getDepartureCode());
                     newBooking.setArrivalTime2(departure.getFlights().get(j).getArrivalDate());
-                    newBooking.setTicketCode2("D");
+                    newBooking.setTicketCode2(String.valueOf(departure.getFlightITicketCode(j)));
                     newBooking.setClassCode2(returnClassBooking);
+                    newBooking.setPrice(departure.getPrices().get(j).getPrice());
                 } else if (j == 2) {
                     newBooking.setAirlineCode3(departure.getFlights().get(j).getAirlineCode());
                     newBooking.setDepartureTime3(departure.getFlights().get(j).getDepartureDate());
@@ -86,8 +89,9 @@ public class createBooking {
                     newBooking.setDestination3(departure.getFlights().get(j).getDestination());
                     newBooking.setDeparture3(departure.getFlights().get(j).getDepartureCode());
                     newBooking.setArrivalTime3(departure.getFlights().get(j).getArrivalDate());
-                    newBooking.setTicketCode3("D");
+                    newBooking.setTicketCode3(String.valueOf(departure.getFlightITicketCode(j)));
                     newBooking.setClassCode3(returnClassBooking);
+                    newBooking.setPrice(departure.getPrices().get(j).getPrice());
                 } else if (j == 3) {
                     newBooking.setAirlineCode4(departure.getFlights().get(j).getAirlineCode());
                     newBooking.setDepartureTime4(departure.getFlights().get(j).getDepartureDate());
@@ -95,8 +99,9 @@ public class createBooking {
                     newBooking.setDestination4(departure.getFlights().get(j).getDestination());
                     newBooking.setDeparture4(departure.getFlights().get(j).getDepartureCode());
                     newBooking.setArrivalTime4(departure.getFlights().get(j).getArrivalDate());
-                    newBooking.setTicketCode4("D");
+                    newBooking.setTicketCode4(String.valueOf(departure.getFlightITicketCode(j)));
                     newBooking.setClassCode4(returnClassBooking);
+                    newBooking.setPrice(departure.getPrices().get(j).getPrice());
                 }
             }
             bookingsDeparture.add(newBooking);
@@ -121,8 +126,10 @@ public class createBooking {
                     newBooking.setDestination(returns.getFlights().get(j).getDestination());
                     newBooking.setDeparture(returns.getFlights().get(j).getDepartureCode());
                     newBooking.setArrivalTime(returns.getFlights().get(j).getArrivalDate());
-                    newBooking.setTicketCode("D");
+                    newBooking.setTicketCode(String.valueOf(returns.getFlightITicketCode(j)));
                     newBooking.setClassCode(returnClassBooking);
+                    newBooking.setOverallPrice((double) returns.getPrice());
+                    newBooking.setPrice(returns.getPrices().get(j).getPrice());
                 } else if (j == 1) {
                     newBooking.setAirlineCode2(returns.getFlights().get(j).getAirlineCode());
                     newBooking.setDepartureTime2(returns.getFlights().get(j).getDepartureDate());
@@ -130,8 +137,9 @@ public class createBooking {
                     newBooking.setDestination2(returns.getFlights().get(j).getDestination());
                     newBooking.setDeparture2(returns.getFlights().get(j).getDepartureCode());
                     newBooking.setArrivalTime2(returns.getFlights().get(j).getArrivalDate());
-                    newBooking.setTicketCode2("D");
+                    newBooking.setTicketCode2(String.valueOf(returns.getFlightITicketCode(j)));
                     newBooking.setClassCode2(returnClassBooking);
+                    newBooking.setPrice(returns.getPrices().get(j).getPrice());
                 } else if (j == 2) {
                     newBooking.setAirlineCode3(returns.getFlights().get(j).getAirlineCode());
                     newBooking.setDepartureTime3(returns.getFlights().get(j).getDepartureDate());
@@ -139,8 +147,9 @@ public class createBooking {
                     newBooking.setDestination3(returns.getFlights().get(j).getDestination());
                     newBooking.setDeparture3(returns.getFlights().get(j).getDepartureCode());
                     newBooking.setArrivalTime3(returns.getFlights().get(j).getArrivalDate());
-                    newBooking.setTicketCode3("D");
+                    newBooking.setTicketCode3(String.valueOf(returns.getFlightITicketCode(j)));
                     newBooking.setClassCode3(returnClassBooking);
+                    newBooking.setPrice(returns.getPrices().get(j).getPrice());
                 } else if (j == 3) {
                     newBooking.setAirlineCode4(returns.getFlights().get(j).getAirlineCode());
                     newBooking.setDepartureTime4(returns.getFlights().get(j).getDepartureDate());
@@ -148,8 +157,9 @@ public class createBooking {
                     newBooking.setDestination4(returns.getFlights().get(j).getDestination());
                     newBooking.setDeparture4(returns.getFlights().get(j).getDepartureCode());
                     newBooking.setArrivalTime4(returns.getFlights().get(j).getArrivalDate());
-                    newBooking.setTicketCode4("D");
+                    newBooking.setTicketCode4(String.valueOf(returns.getFlightITicketCode(j)));
                     newBooking.setClassCode4(returnClassBooking);
+                    newBooking.setPrice(returns.getPrices().get(j).getPrice());
                 }
             }
             bookingsReturn.add(newBooking);
@@ -193,7 +203,7 @@ public class createBooking {
             if(j==0) {
                 for (int i = 0; i < adultsBooking + childrenBookingS; i++) {
                     if (i < adultsBooking) {
-                        bookingsDeparture.get(i).setUserID(auth.getName());
+                        bookingsDeparture.get(i).setUserID(user.getUserID());
                         if (i == 0) {
                             bookingsDeparture.get(i).setFirstName(user.getFirstName());
                             bookingsDeparture.get(i).setLastName(user.getLastName());
@@ -226,7 +236,7 @@ public class createBooking {
             }else if(returnTrip && j==1){
                 for (int i = 0; i < adultsBooking + childrenBookingS; i++) {
                     if (i < adultsBooking) {
-                        bookingsReturn.get(i).setUserID(auth.getName());
+                        bookingsReturn.get(i).setUserID(user.getUserID());
                         if (i == 0) {
                             bookingsReturn.get(i).setFirstName(user.getFirstName());
                             bookingsReturn.get(i).setLastName(user.getLastName());
@@ -255,9 +265,25 @@ public class createBooking {
                         currentPosition = i;
                         //departureBooking.add(newBooking);
                     }
+
                 }
             }
+
         }
+
+        for(int i =0; i<bookingsDeparture.size();i++) {
+            em.getTransaction().begin();
+            em.merge(bookingsDeparture.get(i));
+            em.getTransaction().commit();
+        }
+        if(returnTrip) {
+            for (int i = 0; i < bookingsReturn.size(); i++) {
+                em.getTransaction().begin();
+                em.merge(bookingsReturn.get(i));
+                em.getTransaction().commit();
+            }
+        }
+
 
     }
 

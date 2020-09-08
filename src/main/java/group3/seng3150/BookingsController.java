@@ -71,12 +71,14 @@ public class BookingsController {
 
     //get method manage bookings
     @GetMapping("/manageBooking")
-    public ModelAndView manageBooking(HttpSession session) {
-        ModelAndView view = new ModelAndView("Users/manageBooking");
-        String UserID = (String)session.getAttribute("userId");
+    public ModelAndView manageBooking(HttpSession session,
+                                      Authentication auth) {
+        ModelAndView view = new ModelAndView("/manageBooking");
+        String userEmail = "'" +auth.getName()+"'";
         String message = new String();
         try{
-            List<Booking> booking = em.createQuery("SELECT b FROM Booking b WHERE b.userID=" + UserID).getResultList();
+            UserAccount user = (UserAccount) em.createQuery("SELECT u FROM UserAccount u WHERE u.email=" + userEmail).getSingleResult();
+            List<Booking> booking = em.createQuery("SELECT b FROM Booking b WHERE b.userID=" + user.getUserID()).getResultList();
             view.addObject("booking", booking);
 
             //checks if booking is empty
@@ -104,132 +106,10 @@ public class BookingsController {
                                    Authentication auth
     ){
 
-        ModelAndView view = new ModelAndView("Users/manageBooking");
+        ModelAndView view = new ModelAndView("/manageBooking");
         createBooking bookingMaker = new createBooking(em);
         bookingMaker.makeBooking(session, request, auth, (String) session.getAttribute("adultsBooked"), (String) session.getAttribute("childrenBooked"), (String) session.getAttribute("trip"));
-        /*
-        List<FlightPlan> searchResults = (List<FlightPlan>) session.getAttribute("departureFlights");
-        FlightPlan departure = searchResults.get(position);
-        LinkedList<Booking> departureBooking = new LinkedList<Booking>();
-        int adultsBooking = Integer.parseInt(adultsBookingS);
-        int childrenBookingS = Integer.parseInt(childrenBooking);
-        String tempName = new String();
-        UserAccount user = (UserAccount) em.createQuery("SELECT u FROM UserAccount u WHERE u.email=" + auth.getName()).getSingleResult();
-        int currentPosition = 1;
 
-        for(int i=1; i<=adultsBooking;i++) {
-            Booking tempBooking = new Booking();
-            tempBooking.setUserID(auth.getName());
-            if(i==1){
-                tempBooking.setFirstName(user.getFirstName());
-                tempBooking.setLastName(user.getLastName());
-                tempBooking.setDateOfBirth(user.getDateOfBirth());
-            }else{
-                tempName = "adultFirstName" + Integer.toString(i);
-                tempBooking.setFirstName(request.getParameter(tempName));
-                tempName = "adultLastName" + Integer.toString(i);
-                tempBooking.setLastName(request.getParameter(tempName));
-                tempName = "adultDOB" + Integer.toString(i);
-                String temp = request.getParameter(tempName);
-                Date tempDate1 = Date.valueOf(temp);
-                tempBooking.setDateOfBirth(tempDate1);
-                currentPosition = i;
-            }
-            departureBooking.add(tempBooking);
-        }
-
-        for(int j=1; j<=childrenBookingS;j++) {
-            Booking tempBooking = new Booking();
-
-            tempName = "childFirstName" + Integer.toString(j);
-            tempBooking.setFirstName(request.getParameter(tempName));
-            tempName = "childLastName" + Integer.toString(j);
-            tempBooking.setLastName(request.getParameter(tempName));
-            tempName = "childDOB" + Integer.toString(j);
-            String temp = request.getParameter(tempName);
-            Date tempDate1 = Date.valueOf(temp);
-            tempBooking.setDateOfBirth(tempDate1);
-            currentPosition = j;
-            departureBooking.add(tempBooking);
-        }
-        for(int i =0; i<departureBooking.size();i++) {
-            em.getTransaction().begin();
-            em.merge(departureBooking.get(i));
-            em.getTransaction().commit();
-        }
-        /*
-        for(int i =0; i<returnBooking.size();i++) {
-            em.getTransaction().begin();
-            em.merge(returnBooking.get(i));
-            em.getTransaction().commit();
-        }
-*/
-        /*
-        int adultsBooking = Integer.parseInt(adultsBookingS);
-        int childrenBookingS = Integer.parseInt(childrenBooking);
-        String UserID = (String)session.getAttribute("userId");
-        String firstName = (String)session.getAttribute("firstName");
-        String lastName = (String)session.getAttribute("lastName");
-        Date dob = (Date)session.getAttribute("dateOfBirth");
-        List<Booking> departureBooking = (List<Booking>)session.getAttribute("departureBookings");
-        <Booking> returnBooking = (List<Booking>)session.getAttribute("returnBookings");
-        //request.getParameter("");
-        ModelAndView view = new ModelAndView("home");
-        String tempName = new String();
-        int currentPosition = 1;
-        for(int i=1; i<=adultsBooking;i++) {
-            departureBooking.get(i-1).setUserID(UserID);
-            returnBooking.get(i-1).setUserID(UserID);
-            if(i==1){
-                departureBooking.get(i-1).setFirstName(firstName);
-                returnBooking.get(i-1).setFirstName(firstName);
-                departureBooking.get(i-1).setLastName(lastName);
-                returnBooking.get(i-1).setLastName(lastName);
-                departureBooking.get(i-1).setDateOfBirth(dob);
-                returnBooking.get(i-1).setDateOfBirth(dob);
-            }else{
-                tempName = "adultFirstName" + Integer.toString(i);
-                departureBooking.get(i-1).setFirstName(request.getParameter(tempName));
-                returnBooking.get(i-1).setFirstName(request.getParameter(tempName));
-                tempName = "adultLastName" + Integer.toString(i);
-                departureBooking.get(i-1).setLastName(request.getParameter(tempName));
-                returnBooking.get(i-1).setLastName(request.getParameter(tempName));
-                tempName = "adultDOB" + Integer.toString(i);
-                String temp = request.getParameter(tempName);
-                Date tempDate1 = Date.valueOf(temp);
-                departureBooking.get(i-1).setDateOfBirth(tempDate1);
-                returnBooking.get(i-1).setDateOfBirth(tempDate1);
-                currentPosition = i;
-            }
-        }
-
-        for(int j=1; j<=childrenBookingS;j++) {
-            departureBooking.get(currentPosition).setUserID(UserID);
-            returnBooking.get(currentPosition).setUserID(UserID);
-            tempName = "childFirstName" + Integer.toString(j);
-            departureBooking.get(currentPosition).setFirstName(request.getParameter(tempName));
-            returnBooking.get(currentPosition).setFirstName(request.getParameter(tempName));
-            tempName = "childLastName" + Integer.toString(j);
-            departureBooking.get(currentPosition).setLastName(request.getParameter(tempName));
-            returnBooking.get(currentPosition).setLastName(request.getParameter(tempName));
-            tempName = "childDOB" + Integer.toString(j);
-            String temp = request.getParameter(tempName);
-            Date tempDate1 = Date.valueOf(temp);
-            departureBooking.get(currentPosition).setDateOfBirth(tempDate1);
-            returnBooking.get(currentPosition).setDateOfBirth(tempDate1);
-            currentPosition++;
-        }
-        for(int i =0; i<departureBooking.size();i++) {
-            em.getTransaction().begin();
-            em.merge(departureBooking.get(i));
-            em.getTransaction().commit();
-        }
-        for(int i =0; i<returnBooking.size();i++) {
-            em.getTransaction().begin();
-            em.merge(returnBooking.get(i));
-            em.getTransaction().commit();
-        }
-         */
         return view;
     }
 

@@ -404,6 +404,14 @@ public class Booking {
         this.price = price;
     }
 
+    public Double getOverallPrice() {
+        return overallPrice;
+    }
+
+    public void setOverallPrice(Double overallPrice) {
+        this.overallPrice = overallPrice;
+    }
+
     public Double getPrice2() {
         return price2;
     }

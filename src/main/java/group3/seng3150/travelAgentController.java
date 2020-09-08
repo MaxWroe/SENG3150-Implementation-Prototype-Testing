@@ -28,7 +28,7 @@ public class travelAgentController {
         return view;
     }
 
-    @PostMapping("TravelAgent/travelAgentPage/create")
+    @PostMapping("travelAgentPage/create")
     public ModelAndView travelAgentCreation(@RequestParam (name="comment", defaultValue = "")String description,
                                             @RequestParam (name="destination", defaultValue = "")String destination,
                                             @RequestParam (name="userType", defaultValue = "")String userType,
