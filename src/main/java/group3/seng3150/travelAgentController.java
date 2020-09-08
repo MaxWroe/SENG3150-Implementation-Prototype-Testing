@@ -10,6 +10,7 @@ import javax.persistence.EntityManager;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 import group3.seng3150.entities.HolidayPackages;
+import group3.seng3150.WishListLogic.WishListStatistics;
 
 public class travelAgentController {
 
@@ -20,7 +21,7 @@ public class travelAgentController {
     @GetMapping("TravelAgent/travelAgentPage")
     public ModelAndView travelAgentPage() {
         ModelAndView view = new ModelAndView("TravelAgent/travelAgentPage");
-
+        WishListStatistics createWishlist = new WishListStatistics(em);
 
 
         return view;

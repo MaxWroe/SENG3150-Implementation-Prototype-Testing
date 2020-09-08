@@ -250,6 +250,10 @@ public class BookingsController {
         List<FlightPlan> searchResults = (List<FlightPlan>) session.getAttribute("departureFlights");
         int positionReturn = Integer.parseInt(positionReturnS);
         int positionDeparture = Integer.parseInt(positionDepartureS);
+        UserAccount user = (UserAccount) em.createQuery("SELECT u FROM UserAccount u WHERE u.email=\'" + auth.getName() +"\'").getSingleResult();
+        view.addObject("fName", user.getFirstName());
+        view.addObject("lName", user.getLastName());
+        view.addObject("dob", user.getDateOfBirth());
         view.addObject("trip", trip);
         view.addObject("adultsBooked", adultsBookingS);
         view.addObject("childrenBooked", childrenBooking);
