@@ -247,9 +247,14 @@ public class BookingsController {
         ModelAndView view = new ModelAndView("bookingPage");
         createBooking bookingMaker = new createBooking(em);
         bookingMaker.startBooking(trip, session, positionDepartureS, adultsBookingS, childrenBooking, positionReturnS, returnClassBooking);
+        List<FlightPlan> searchResults = (List<FlightPlan>) session.getAttribute("departureFlights");
+        int positionReturn = Integer.parseInt(positionReturnS);
+        int positionDeparture = Integer.parseInt(positionDepartureS);
         view.addObject("trip", trip);
         view.addObject("adultsBooked", adultsBookingS);
         view.addObject("childrenBooked", childrenBooking);
+        view.addObject("departureFLightPlan", searchResults.get(positionDeparture - 1));
+        view.addObject("returnFLightPlan", searchResults.get(positionReturn - 1));
         session.setAttribute("childrenBooked", childrenBooking);
         session.setAttribute("adultsBooked", adultsBookingS);
         session.setAttribute("trip", trip);
