@@ -14,6 +14,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 
+
 public class createBooking {
 
     private EntityManager em;
@@ -29,8 +30,8 @@ public class createBooking {
                         String returnClassBooking) {
 
 
-        LinkedList<Booking> bookingsDeparture = new LinkedList<Booking>();
-        LinkedList<Booking> bookingsReturn = new LinkedList<Booking>();
+        LinkedList<Booking> bookingsDeparture = new LinkedList<>();
+        LinkedList<Booking> bookingsReturn = new LinkedList<>();
 
 
         Boolean returnTrip = false;
@@ -159,6 +160,7 @@ public class createBooking {
         //returnBookings is a List<Booking> that holds the bookings created with the selected flight plan detail put in, but without the user data yet if the search had a return booking included
         session.setAttribute("returnBookings", bookingsReturn);
         session.setAttribute("returnTrip", trip);
+
     }
 
     public void makeBooking (HttpSession session,
