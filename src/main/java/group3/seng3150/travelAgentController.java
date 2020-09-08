@@ -1,4 +1,5 @@
 package group3.seng3150;
+import group3.seng3150.WishListLogic.CountryStat;
 import group3.seng3150.entities.Booking;
 import group3.seng3150.entities.UserAccount;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +23,8 @@ public class travelAgentController {
     public ModelAndView travelAgentPage() {
         ModelAndView view = new ModelAndView("TravelAgent/travelAgentPage");
         WishListStatistics createWishlist = new WishListStatistics(em);
-
-
+        List<CountryStat> wishlistStats = createWishlist.getStats();
+        view.addObject("countryStat", wishlistStats);
         return view;
     }
 
