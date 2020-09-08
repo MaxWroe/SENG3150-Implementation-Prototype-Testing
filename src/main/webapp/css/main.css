@@ -246,7 +246,8 @@ button
 {
     display: grid;
     grid-template-columns: 20% 80%;
-    grid-template-rows: auto auto auto;
+    grid-template-rows: 8% 8% 84%;
+    height: calc(100vh - 51px);
 }
 #search-grid .search-form
 {
@@ -428,24 +429,33 @@ button
     grid-template-columns: 50% 50%;
     grid-column-gap: 15px;
 }
+
 #flight-result-departure-header
 {
     grid-column: 1;
+    grid-row: 1;
+
     padding: 10px;
 }
 #flight-result-return-header
 {
     grid-column: 2;
+    grid-row: 1;
     padding: 10px;
 }
 
 .flight-result-departure-window
 {
     grid-column: 1;
+    grid-row: 2;
+    overflow-y: scroll;
 }
+
 .flight-result-return-window
 {
     grid-column: 2;
+    grid-row: 2;
+    overflow-y: scroll;
 }
 
 .flight-result-return-trip-flight
