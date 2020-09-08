@@ -36,76 +36,6 @@ public class AuthenticationController {
         return view;
     }
 
-/*
-    //post method login
-   @PostMapping("/login")
-    public ModelAndView executeLogin(@RequestParam(name="email") String email,
-                                     @RequestParam(name="password") String password
-   ){
-        String message = "";
-
-
-        try{
-            String newEmail = "'" + email + "'";
-            String newPassword = "'" + password + "'";
-            UserAccount user = (UserAccount) em.createQuery("SELECT u FROM UserAccount u WHERE u.email=" + newEmail + " AND u.password=" + newPassword).getSingleResult();
-            String standard = "default";
-            String userTypeWords = "Personal";
-            if(user.getUserType()==2) {
-                userTypeWords = "Family";
-            } else if(user.getUserType()==1){
-                userTypeWords = "Business";
-            }
-
-            //************************This is to test the get values************************************
-
-            String userID = user.getUserID();
-            String firstName = user.getFirstName();
-            String lastName = user.getLastName();
-            String email2 = user.getEmail();
-            Date dateOfBirth = user.getDateOfBirth();
-            String citizenship = user.getCitizenship();
-            String gender = "";
-            if(user.getGender()==0) {
-                gender = "Male";
-            } else if(user.getGender()==1){
-                gender = "Female";
-            }
-            //For after the model includes these three
-            //String address = user.getAddress();
-            //String emergencyContact = user.getEmergencyContact();
-            //String familyMembers = user.getFamilyMembers();
-
-
-            //******************************************************************************************
-            ModelAndView view = new ModelAndView("home");
-
-            view.addObject("user", user);
-            view.addObject("userID", userID);
-            view.addObject("firstName", firstName);
-            view.addObject("lastName", lastName);
-            view.addObject("email", email2);
-            view.addObject("userType", userTypeWords);
-            view.addObject("dateOfBirth", dateOfBirth);
-            view.addObject("citizenship", citizenship);
-            view.addObject("gender", gender);
-            view.addObject("address", standard);
-            view.addObject("emergencyContact", standard);
-            view.addObject("familyMembers", standard);
-            return view;
-        }
-        catch(Exception e)
-        {
-            message = "Email address " + email + " or Password do not match any records, please check your details and try again, or create an account by registering.";
-            ModelAndView view = new ModelAndView("login");
-            view.addObject("message", message);
-            e.printStackTrace();
-            return view;
-            //
-        }
-
-    }
-*/
     //get method register
     @GetMapping("/register")
     public ModelAndView displayRegister() {
@@ -115,14 +45,14 @@ public class AuthenticationController {
 
     //post method register
     @PostMapping("/register")
-    public ModelAndView executeRegister(@RequestParam("firstName") String firstName,
+    public ModelAndView executeRegister(@RequestParam(value = "firstName", defaultValue = "") String firstName,
                                         @RequestParam(name="lastName", defaultValue="") String lastName,
                                         @RequestParam(name="gender", defaultValue="") String gender,
                                         @RequestParam(name="password", defaultValue="") String password,
                                         @RequestParam(name="email", defaultValue="") String email,
-                                        @RequestParam(name="phone", defaultValue="") String phone,
+                                        @RequestParam(name="phone", defaultValue="0") int phone,
                                         @RequestParam(name="dateOfBirth") Date dateOfBirth,
-                                        @RequestParam(name="userType") String userType
+                                        @RequestParam(name="userType", defaultValue = "") String userType
 
     ){
     ModelAndView view = new ModelAndView("General/register");
@@ -139,7 +69,7 @@ public class AuthenticationController {
     }else{
         userNum = 2;
     }
-    int phoneNum = Integer.getInteger(phone);
+    //int phoneNum = Integer.getInteger(phone);
         try{
             List<UserAccount> user = em.createQuery("SELECT u FROM UserAccount u WHERE u.email=" + tempEmail).getResultList();
             if(user.isEmpty()){
@@ -148,7 +78,7 @@ public class AuthenticationController {
                 newUser.setFirstName(firstName);
                 newUser.setLastName(lastName);
                 newUser.setEmail(email);
-                newUser.setPhone(phoneNum);
+                newUser.setPhone(phone);
                 newUser.setDateOfBirth(dateOfBirth);
                 newUser.setPassword(password);
                 newUser.setCitizenship(citizenship);
@@ -156,6 +86,7 @@ public class AuthenticationController {
                 //ANGUS CHANGED STUFF
                 //newUser.setUserType(0);
                 newUser.setUserType(userNum); //This is for if when it is fixed it has an int value input
+                newUser.setROLEDID("CUSTOMER");
                 em.merge(newUser);
                 em.getTransaction().commit();
                 view = new ModelAndView("General/login");

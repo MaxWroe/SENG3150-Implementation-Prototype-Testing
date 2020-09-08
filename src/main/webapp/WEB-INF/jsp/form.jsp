@@ -118,7 +118,7 @@
 
 <!-- phone no -->
 <label for="phone">Phone No:</label>
-<input type ="tel" id="phone" name ="phone" required/> <br>
+<input type ="tel" id="phone" name ="phone" pattern="[0-9].{8,}" required/> <br>
 
 <!-- date of birth -->
 <label for="dateOfBirth">Date of birth: </label>
