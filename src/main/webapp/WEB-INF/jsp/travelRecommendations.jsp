@@ -48,7 +48,7 @@
                     </div>
                     <c:if test="${not empty flightPlan}">
                     <div class="recommendation-description-flightplan">
-                        <p>Found flight plan for this package using details from your account!</p>
+                        <p>Found flight plan using details from your account!</p>
                         <form name="searchFlight" method="post" id="searchFlight" action="${pageContext.request.contextPath}/search"
                               style="display:contents">
                             <input type="hidden" id="type" name="type" value="oneway">

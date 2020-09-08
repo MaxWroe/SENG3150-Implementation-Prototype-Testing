@@ -6,10 +6,10 @@ VALUES ('Bus','There a busses available to and from the airport', 'LAX'),
 
 INSERT INTO `HolidayPackages` (`Description`, `Destination`, `countryCode3`, `countryName`, `type`)
 VALUES 	('Known for its Mediterranean climate, ethnic diversity, Hollywood entertainment industry, and its sprawling metropolis.', 'LAX', 'USA', 'United States', '0'),
-		('A coastal metropolis whose five million residents make it the largest city in Australia', 'SYD', 'AUS','Australia', '0'),
-		('London is famous for more than its magnificent ancient buildings, the Palace of Westminster, Trafalgar Square, Tower of London, London Eye, Art Galleries, and Big Ben.', 'LHR', 'GBR', 'United Kingdom', '0'),
-        ('The city is known for its many laneways, its cultural diversity, excellent dining options for all budgets, and amazing street art. It''s also known for being the coffee capital of the world, and for being regularly voted as the world''s most livable city.', 'MEL', 'AUS','Australia', '0'),
-        ('Rio de Janeiro is one of the most visited cities in the Southern Hemisphere and is known for its natural settings, Carnival, samba, bossa nova, and balneario beaches such as Barra da Tijuca, Copacabana, Ipanema, and Leblon.', 'GIG', 'BRA','Rio De Janeiro', '0');
+		('A coastal metropolis whose five million residents make it the largest city in Australia.', 'SYD', 'AUS','Australia', '0'),
+		('London is famous for more than its magnificent ancient buildings, Trafalgar Square, London Eye, and Big Ben.', 'LHR', 'GBR', 'United Kingdom', '0'),
+        ('The city is known for its many laneways, its cultural diversity, excellent dining options for all budgets, and amazing street art. ', 'MEL', 'AUS','Australia', '0'),
+        ('Known for its natural settings, Carnival, samba, bossa nova, and balneario beaches.', 'GIG', 'BRA','Rio De Janeiro', '0');
 
 INSERT INTO `WishListEntry` (`UserID`, `countryCode3`, `countryName`)
 VALUES  ('1', 'USA',  'United States'),

@@ -14,7 +14,7 @@
 
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css">
 
-    <script src="${pageContext.request.contextPath}/js/flightSelectAssistor.js"></script>
+    <%--<script src="${pageContext.request.contextPath}/js/flightSelectAssistor.js"></script>--%>
     <script src="${pageContext.request.contextPath}/js/dynamicLink.js"></script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -240,10 +240,9 @@
                 let returnedStopovers = $(".flight-list li").map(function () {
                     return $(this).data("stopovers");
                 }).get();
-                alert(returnedStopovers + " largest: " + Math.max(returnedStopovers));
                 // set max amount on stops filter
-                $("#stopsFilter").attr("max", Math.max(returnedStopovers));
-                $("label[for='stopsFilter']").text(Math.max(returnedStopovers));
+                $("#stopsFilter").attr("max", Math.max.apply(null, returnedStopovers));
+                $("label[for='stopsFilter']").text(Math.max.apply(null, returnedStopovers));
             });
         </script>
         <script>
@@ -363,6 +362,37 @@
                         <button type="submit" id="return-flight-book">Book</button>
                     </div>
                 </form>
+                <script>
+                    function validateFlightSelection()
+                    {
+
+                        var checkDepart = document.querySelector('input[name="departureFlightPlanPosition"]:checked');
+                        var checkReturn = document.querySelector('input[name="returnFlightPlanPosition"]:checked');
+
+                        if (checkDepart == null || checkReturn == null)
+                        {
+                            alert("Please select a departure flight AND a return flight.");
+                            return false;
+                        }
+                    }
+
+                    var departureCost = 0;
+                    var returnCost = 0;
+
+                    function updateCost(travel, amount)
+                    {
+                        if (travel === "departure")
+                        {
+                            departureCost = amount;
+                        }
+                        if (travel === "return")
+                        {
+                            returnCost = amount;
+                        }
+
+                        document.getElementById("booking-cost").innerText = "Total cost: $" + (Number(departureCost) + Number(returnCost));
+                    }
+                </script>
             </div>
         </c:if>
     </div>
