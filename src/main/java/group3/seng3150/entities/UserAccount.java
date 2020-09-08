@@ -41,7 +41,7 @@ public class UserAccount {
 
     @Column(name = "Phone")
     @Basic(optional = false)
-    private Integer phone;
+    private int phone;
 
     @Column(name = "DateOfBirth")
     @Basic(optional = false)

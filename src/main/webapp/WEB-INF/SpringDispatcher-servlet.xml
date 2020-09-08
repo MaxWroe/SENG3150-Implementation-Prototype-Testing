@@ -34,6 +34,7 @@
     </bean>
 
     <bean class="group3.seng3150.FlightHolder" scope="singleton"/>
+    <bean class="group3.seng3150.createBooking" scope="singleton"/>
 
     <mvc:resources mapping="/img/**" location="/img/"/>
 </beans>
