@@ -47,13 +47,12 @@
             </c:if>
         </div>
 
-        <!-- Check if user is logged in -->
         <%
         String userID = (String)session.getAttribute("userId");
         Date dateOfBirth = (Date)session.getAttribute("dateOfBirth");
         session.setAttribute("userID", userID);
         session.setAttribute("dateOfBirth", dateOfBirth);
-        if(userID != null){%>
+        %>
         <div class="booking-details">
             <form method="post" action="/bookFlight">
                 <input type="hidden" id="adultsBooking" name="adultsBooking" value="${adultsBooked}">
@@ -108,22 +107,6 @@
                 <button type="submit" style="width: 50%;">Book</button>
             </form>
         </div>
-
-        <!-- If user is not logged in display log in form -->
-        <%}else{%>
-        <div class="booking-details">
-            <p>You're not logged in!</p>
-            <form id="loginForm" method="post" action="appLogin">
-                <!-- email address -->
-                <label for="username">Email address</label>
-                <input id="username" type="text" name ="username" required/> <br>
-                <!-- password -->
-                <label for="password">Password</label>
-                <input type ="password" id="password" name ="password" required/> <br>
-                <input type="submit" value="Login"/>
-            </form>
-        </div>
-        <%}%>
 
         <div class="booking-details">
             <%--
