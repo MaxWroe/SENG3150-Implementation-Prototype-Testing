@@ -101,20 +101,12 @@ public class BookingsController {
     @PostMapping("/bookFlight")
     public ModelAndView bookFlight(HttpSession session,
                                    HttpServletRequest request,
-                                   Authentication auth,
-                                   @RequestParam("flightPlanPosition") int position,
-                                   @RequestParam("adultsBooking") String adultsBookingS,
-                                   //@RequestParam(name="departure") String positionDepartureS,
-                                   @RequestParam(name="return") String positionReturnS,
-                                   @RequestParam(name="trip") String trip,
-                                   //@RequestParam(name="returnAdultsBooking") int returnAdultsBooking,
-                                   //@RequestParam(name="returnChildrenBooking") int returnChildrenBooking,
-                                   @RequestParam(name="returnClassBooking") String returnClassBooking,
-                                   @RequestParam("childrenBooking") String childrenBooking
+                                   Authentication auth
     ){
+
         ModelAndView view = new ModelAndView("Users/manageBooking");
         createBooking bookingMaker = new createBooking(em);
-        bookingMaker.makeBooking(session, request, auth, position, adultsBookingS, childrenBooking, positionReturnS, trip, returnClassBooking);
+        bookingMaker.makeBooking(session, request, auth, (String) session.getAttribute("adultsBooked"), (String) session.getAttribute("childrenBooked"), (String) session.getAttribute("trip"));
         /*
         List<FlightPlan> searchResults = (List<FlightPlan>) session.getAttribute("departureFlights");
         FlightPlan departure = searchResults.get(position);
@@ -258,6 +250,9 @@ public class BookingsController {
         view.addObject("trip", trip);
         view.addObject("adultsBooked", adultsBookingS);
         view.addObject("childrenBooked", childrenBooking);
+        session.setAttribute("childrenBooked", childrenBooking);
+        session.setAttribute("adultsBooked", adultsBookingS);
+        session.setAttribute("trip", trip);
 
         return view;
     }
