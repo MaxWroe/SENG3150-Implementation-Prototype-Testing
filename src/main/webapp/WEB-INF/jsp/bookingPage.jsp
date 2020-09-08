@@ -6,6 +6,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 <html>
 <head>
     <title>Flight Booking Page</title>
@@ -23,27 +24,30 @@
 <!-- Page content -->
 <main class="main-content">
     <h1>Flight Booking Details</h1>
+    <!-- chosen flight plans -->
+    <c:set var="departureFlightPlan" scope="page" value="${departureFlightPlan}"/>
+    <c:set var="returnFlightPlan" scope="page" value="${returnFlightPlan}"/>
     <div class="flight-booking">
         <div id="side-bar">
             <h4>Departure Flight</h4>
             <p>Price</p>
-            <h4>${departurePrice}</h4>
+            <h4>${departureFlightPlan.price}</h4>
             <p>Date/Time</p>
-            <h4>${departureFlight.departureDate}</h4>
+            <h4><fmt:formatDate value='${departureFlightPlan.departureDate}' type='date'/></h4>
             <p>Seat Class</p>
-            <h4>${departureClass}</h4>
+            <h4>${param.classBooking}</h4>
             <p>Seats Remaining</p>
-            <h4>${departureSeatsLeft}</h4>
+            <h4>${departureFlightPlan.numberAvailableSeats}</h4>
             <c:if test = "${param.trip eq 'return'}">
             <h4>Return Flight</h4>
             <p>Price</p>
-            <h4>${returnPrice}</h4>
+            <h4>${returnFlightPlan.price}</h4>
             <p>Date/Time</p>
-            <h4>${returnFlight.departureDate}</h4>
+            <h4><fmt:formatDate value='${returnFlightPlan.departureDate}' type='date'/></h4>
             <p>Seat Class</p>
-            <h4>${returnClass}</h4>
+            <h4>${param.classBooking}</h4>
             <p>Seats Remaining</p>
-            <h4>${seatsLeft}</h4>
+            <h4>${returnFlightPlan.numberAvailableSeats}</h4>
             </c:if>
         </div>
 
@@ -88,6 +92,41 @@
                     <input type="date" id="childDOB<c:out value = "${i}"/>" name="childDOB<c:out value = "${i}"/>" required>
                     <br>
                 </c:forEach>
+
+                <h4>Flight Details</h4>
+                <table>
+                    <tr>
+                        <th>Departure Leg</th>
+                    </tr>
+                    <tr>
+                        <th>Departure Location & Time</th>
+                        <th>Stop Overs Location & Time</th>
+                        <th>Destination Location & Time</th>
+                    </tr>
+                <c:forEach items="${departureFlightPlan.flights}" var="flightPlanFlights" varStatus="flightsLoop">
+                    <tr>
+                        <td>${flightPlanFlights.departureCode}, ${flightPlanFlights.departureDate}</td>
+                        <c:if test = "${not empty flightPlanFlights.stopOverCode}">
+                        <td>${flightPlanFlights.stopOverCode}, ${flightPlanFlights.arrivalStopOverTime}</td>
+                        </c:if>
+                        <td>${flightPlanFlights.destination}, ${flightPlanFlights.arrivalDate}</td>
+                    </tr>
+                </c:forEach>
+                <c:if test = "${param.trip eq 'return'}">
+                    <tr>
+                        <th>Return Leg</th>
+                    </tr>
+                <c:forEach items="${returnFlightPlan.flights}" var="flightPlanFlights" varStatus="flightsLoop">
+                    <tr>
+                        <td>${flightPlanFlights.departureCode}, ${flightPlanFlights.departureDate}</td>
+                        <c:if test = "${not empty flightPlanFlights.stopOverCode}">
+                            <td>${flightPlanFlights.stopOverCode}, ${flightPlanFlights.arrivalStopOverTime}</td>
+                        </c:if>
+                        <td>${flightPlanFlights.destination}, ${flightPlanFlights.arrivalDate}</td>
+                    </tr>
+                </c:forEach>
+                </c:if>
+                </table>
 
                 <h4>Payment Details</h4>
                 <br>

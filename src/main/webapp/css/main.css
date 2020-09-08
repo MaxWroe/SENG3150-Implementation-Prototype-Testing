@@ -14,8 +14,8 @@ body
 
 .main-content
 {
-    overflow: hidden;
     text-align: center;
+    overflow-x: hidden;
 }
 
 .card-body
@@ -487,15 +487,17 @@ button
     border-radius: 25px;
 }
 
+/* Flight booking page */
 .flight-booking
 {
     width: 80%;
     margin: 0 auto;
     background: #fff;
     padding: 20px;
-    border-radius: 25px;
     display: grid;
     grid-template-columns: 100px auto;
+
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 #side-bar
@@ -516,7 +518,7 @@ button
 
 .recommendation-slideshow
  {
-    max-width: 1000px;
+    max-width: 1200px;
     position: relative;
     margin: auto;
  }
@@ -524,7 +526,7 @@ button
 .recommendation-display-window
 {
     display: none;
-
+    height: 522px;
     grid-template-columns: 60% 40%;
     background: #f9f1dd;;
     padding: 10px;
@@ -536,6 +538,7 @@ button
     height: 400px;
     object-fit: cover;
     grid-column: 1;
+    align-self: center;
 }
 
 .recommendation-description
