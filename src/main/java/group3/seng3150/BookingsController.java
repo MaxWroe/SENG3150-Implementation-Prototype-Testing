@@ -237,8 +237,8 @@ public class BookingsController {
     public ModelAndView displayBooking(HttpSession session,
                                        HttpServletRequest request,
                                        Authentication auth,
-                                       @RequestParam(name="flightPlanPosition", defaultValue="0") String positionDepartureS,
-                                       @RequestParam(name="returnFlightPlanPosition", defaultValue="0") String positionReturnS,
+                                       @RequestParam(name="flightPlanPosition", defaultValue="1") String positionDepartureS,
+                                       @RequestParam(name="returnFlightPlanPosition", defaultValue="1") String positionReturnS,
                                        @RequestParam(name="tripType", defaultValue="") String trip,
                                        @RequestParam(name="adultsBooking", defaultValue="0") String adultsBookingS,
                                        @RequestParam(name="childrenBooking", defaultValue="0") String childrenBooking,
@@ -254,7 +254,9 @@ public class BookingsController {
         view.addObject("adultsBooked", adultsBookingS);
         view.addObject("childrenBooked", childrenBooking);
         view.addObject("departureFLightPlan", searchResults.get(positionDeparture - 1));
-        view.addObject("returnFLightPlan", searchResults.get(positionReturn - 1));
+        if(trip=="return") {
+            view.addObject("returnFLightPlan", searchResults.get(positionReturn - 1));
+        }
         session.setAttribute("childrenBooked", childrenBooking);
         session.setAttribute("adultsBooked", adultsBookingS);
         session.setAttribute("trip", trip);
