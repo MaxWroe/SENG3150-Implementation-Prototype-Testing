@@ -13,6 +13,7 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.lang.*;
 
 @Controller
 public class AuthenticationController {
@@ -119,7 +120,7 @@ public class AuthenticationController {
                                         @RequestParam(name="gender", defaultValue="") String gender,
                                         @RequestParam(name="password", defaultValue="") String password,
                                         @RequestParam(name="email", defaultValue="") String email,
-                                        @RequestParam(name="phone", defaultValue="") int phone,
+                                        @RequestParam(name="phone", defaultValue="") String phone,
                                         @RequestParam(name="dateOfBirth") Date dateOfBirth,
                                         @RequestParam(name="userType") String userType
 
@@ -138,6 +139,7 @@ public class AuthenticationController {
     }else{
         userNum = 2;
     }
+    int phoneNum = Integer.getInteger(phone);
         try{
             List<UserAccount> user = em.createQuery("SELECT u FROM UserAccount u WHERE u.email=" + tempEmail).getResultList();
             if(user.isEmpty()){
@@ -146,7 +148,7 @@ public class AuthenticationController {
                 newUser.setFirstName(firstName);
                 newUser.setLastName(lastName);
                 newUser.setEmail(email);
-                newUser.setPhone(phone);
+                newUser.setPhone(phoneNum);
                 newUser.setDateOfBirth(dateOfBirth);
                 newUser.setPassword(password);
                 newUser.setCitizenship(citizenship);
