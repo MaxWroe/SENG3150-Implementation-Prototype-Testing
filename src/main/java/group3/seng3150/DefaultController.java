@@ -41,7 +41,7 @@ public class DefaultController {
         String emailSearch = "'" + auth.getName() + "'";
         //Retrieve the user's information
         UserAccount user = (UserAccount) em.createQuery("SELECT u FROM UserAccount u WHERE u.email=" + emailSearch).getSingleResult();
-        view.addObject("recommendationPackages",genPackages.getRecommendations(user));
+        view.addObject("recommendationPackage",genPackages.getRecommendations(user));
         return view;
     }
 
