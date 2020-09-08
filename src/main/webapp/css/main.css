@@ -513,6 +513,20 @@ button
     grid-column: 2;
 }
 
+#flight-details-table
+{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#flight-details-table th, td
+{
+    text-align: left;
+    padding-bottom: 5px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
 /* Travel recommendations page */
 * {box-sizing:border-box}
 

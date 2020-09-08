@@ -1,12 +1,12 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page import="java.sql.Date" %><%--
   JSP for booking a specific flight plan.
   SENG3150 Group 3
   Date: 22/05/2020
   Time: 4:43 pm
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 <html>
 <head>
     <title>Flight Booking Page</title>
@@ -94,7 +94,7 @@
                 </c:forEach>
 
                 <h4>Flight Details</h4>
-                <table>
+                <table id="flight-details-table">
                     <tr>
                         <th>Departure Leg</th>
                     </tr>
