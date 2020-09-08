@@ -30,35 +30,29 @@
     <div class="flight-booking">
         <div id="side-bar">
             <h4>Departure Flight</h4>
-            <p>Price</p>
-            <h4>${departureFlightPlan.price}</h4>
-            <p>Date/Time</p>
-            <h4><fmt:formatDate value='${departureFlightPlan.departureDate}' type='date'/></h4>
-            <p>Seat Class</p>
-            <h4>${param.classBooking}</h4>
-            <p>Seats Remaining</p>
-            <h4>${departureFlightPlan.numberAvailableSeats}</h4>
-            <c:if test = "${param.trip eq 'return'}">
+            <h5>Price</h5>
+            <p>$${departureFlightPlan.price}</p>
+            <h5>Date/Time</h5>
+            <p><fmt:formatDate value='${departureFlightPlan.departureDate}' type='date'/></p>
+            <h5>Seat Class</h5>
+            <p>${param.classBooking}</p>
+            <h5>Seats Remaining</h5>
+            <p>${departureFlightPlan.numberAvailableSeats}</p>
+            <c:if test = "${param.tripType eq 'return'}">
             <h4>Return Flight</h4>
-            <p>Price</p>
-            <h4>${returnFlightPlan.price}</h4>
-            <p>Date/Time</p>
-            <h4><fmt:formatDate value='${returnFlightPlan.departureDate}' type='date'/></h4>
-            <p>Seat Class</p>
-            <h4>${param.classBooking}</h4>
-            <p>Seats Remaining</p>
-            <h4>${returnFlightPlan.numberAvailableSeats}</h4>
+            <h5>Price</h5>
+            <p>$${returnFlightPlan.price}</p>
+            <h5>Date/Time</h5>
+            <p><fmt:formatDate value='${returnFlightPlan.departureDate}' type='date'/></p>
+            <h5>Seat Class</h5>
+            <p>${param.classBooking}</p>
+            <h5>Seats Remaining</h5>
+            <p>${returnFlightPlan.numberAvailableSeats}</p>
             </c:if>
         </div>
 
-        <%
-        String userID = (String)session.getAttribute("userId");
-        Date dateOfBirth = (Date)session.getAttribute("dateOfBirth");
-        session.setAttribute("userID", userID);
-        session.setAttribute("dateOfBirth", dateOfBirth);
-        %>
         <div class="booking-details">
-            <form method="post" action="/bookFlight">
+            <form method="post" action="${pageContext.request.contextPath}/bookFlight">
                 <input type="hidden" id="adultsBooking" name="adultsBooking" value="${adultsBooked}">
                 <input type="hidden" id="childrenBooking" name="childrenBooking" value="${childrenBooked}">
 
@@ -66,10 +60,10 @@
                 <br>
                 <!-- Autofill first adult from logged in account -->
                 <label for="adultFirstName1">Booking Adult Name:</label>
-                <input type="text" id="adultFirstName1" name="adultFirstName1" value="${sessionScope.firstName}" readonly required>
-                <input type="text" id="adultLastName1" name="adultLastName1" value="${sessionScope.lastName}" readonly required>
+                <input type="text" id="adultFirstName1" name="adultFirstName1" value="${fName}" readonly required>
+                <input type="text" id="adultLastName1" name="adultLastName1" value="${lName}" readonly required>
                 <label for="adultDOB1">DOB:</label>
-                <input type="date" id="adultDOB1" name="adultDOB1" value="${sessionScope.dateOfBirth}" readonly required>
+                <input type="date" id="adultDOB1" name="adultDOB1" value="${dob}" readonly required>
                 <br>
                 <!-- Get details of all booking passengers -->
                 <c:forEach var = "i" begin = "2" end = "${adultsBooked}">
@@ -100,29 +94,45 @@
                     </tr>
                     <tr>
                         <th>Departure Location & Time</th>
-                        <th>Stop Overs Location & Time</th>
+                        <th>Stop Over Location & Time</th>
                         <th>Destination Location & Time</th>
                     </tr>
                 <c:forEach items="${departureFlightPlan.flights}" var="flightPlanFlights" varStatus="flightsLoop">
                     <tr>
-                        <td>${flightPlanFlights.departureCode}, ${flightPlanFlights.departureDate}</td>
-                        <c:if test = "${not empty flightPlanFlights.stopOverCode}">
-                        <td>${flightPlanFlights.stopOverCode}, ${flightPlanFlights.arrivalStopOverTime}</td>
-                        </c:if>
-                        <td>${flightPlanFlights.destination}, ${flightPlanFlights.arrivalDate}</td>
+                        <td>${flightPlanFlights.departureCode},
+                            <fmt:formatDate value='${flightPlanFlights.departureDate}' type='date' pattern='yyyy/MM/dd HH:mm'/></td>
+                        <c:choose>
+                            <c:when test="${not empty flightPlanFlights.stopOverCode}">
+                                <td>${flightPlanFlights.stopOverCode},
+                                    <fmt:formatDate value='${flightPlanFlights.arrivalStopOverTime}' type='date' pattern='yyyy/MM/dd HH:mm'/></td>
+                            </c:when>
+                            <c:otherwise>
+                                <td>No Stop Over</td>
+                            </c:otherwise>
+                        </c:choose>
+                        <td>${flightPlanFlights.destination},
+                            <fmt:formatDate value='${flightPlanFlights.arrivalDate}' type='date' pattern='yyyy/MM/dd HH:mm'/></td>
                     </tr>
                 </c:forEach>
-                <c:if test = "${param.trip eq 'return'}">
+                <c:if test = "${not empty returnFlightPlan}">
                     <tr>
                         <th>Return Leg</th>
                     </tr>
                 <c:forEach items="${returnFlightPlan.flights}" var="flightPlanFlights" varStatus="flightsLoop">
                     <tr>
-                        <td>${flightPlanFlights.departureCode}, ${flightPlanFlights.departureDate}</td>
-                        <c:if test = "${not empty flightPlanFlights.stopOverCode}">
-                            <td>${flightPlanFlights.stopOverCode}, ${flightPlanFlights.arrivalStopOverTime}</td>
-                        </c:if>
-                        <td>${flightPlanFlights.destination}, ${flightPlanFlights.arrivalDate}</td>
+                        <td>${flightPlanFlights.departureCode},
+                            <fmt:formatDate value='${flightPlanFlights.departureDate}' type='date' pattern='yyyy/MM/dd HH:mm'/></td>
+                        <c:choose>
+                            <c:when test="${not empty flightPlanFlights.stopOverCode}">
+                                <td>${flightPlanFlights.stopOverCode},
+                                    <fmt:formatDate value='${flightPlanFlights.arrivalStopOverTime}' type='date' pattern='yyyy/MM/dd HH:mm'/></td>
+                            </c:when>
+                            <c:otherwise>
+                                <td>No Stop Over</td>
+                            </c:otherwise>
+                        </c:choose>
+                        <td>${flightPlanFlights.destination},
+                            <fmt:formatDate value='${flightPlanFlights.arrivalDate}' type='date' pattern='yyyy/MM/dd HH:mm'/></td>
                     </tr>
                 </c:forEach>
                 </c:if>

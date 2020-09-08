@@ -23,7 +23,7 @@
 <jsp:include page="header.jsp"/>
 
 <!-- Page content -->
-<main class="main-content">
+<main class="main-content-h">
     <div id="home-card-body">
         <div id="home-search">
             <h1>Search for a flight</h1>

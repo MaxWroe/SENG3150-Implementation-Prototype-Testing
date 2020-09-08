@@ -51,7 +51,7 @@
                         <p>Found flight plan using details from your account!</p>
                         <form name="searchFlight" method="post" id="searchFlight" action="${pageContext.request.contextPath}/search"
                               style="display:contents">
-                            <input type="hidden" id="type" name="type" value="oneway">
+                            <input type="hidden" id="type" name="tripType" value="oneway">
                             <input type="hidden" id="classCode" name="classCode" value="${recommendationPackage.cc}">
                             <input type="hidden" id="adults" name="adults" value="${recommendationPackage.groupSize}">
                             <input type="hidden" id="departureLocation" name="departureLocation" value="${recommendationPackage.departureLocation}">
