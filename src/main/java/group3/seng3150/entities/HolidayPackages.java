@@ -37,7 +37,7 @@ public class HolidayPackages {
     @Basic(optional = false)
     private String countryName;
 
-    //0 for sponsored, 1 for "hot location" and 2 for self generated
+    //0 for sponsored personal, 1 for "hot location",  3 business personal , 4 for self generated
     @Column(name = "type")
     @Basic(optional = false)
     private int type;
