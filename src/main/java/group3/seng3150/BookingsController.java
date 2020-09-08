@@ -43,19 +43,23 @@ public class BookingsController {
     //get method manage bookings
     @PostMapping("/manageBooking/cancel")
     public ModelAndView manageBookingCancelling(HttpSession session,
+                                                Authentication auth,
                                                 @RequestParam("userID") String userID,
                                                 @RequestParam("bookingID") String bookingID) {
         ModelAndView view = new ModelAndView("home");
-        //String UserID = session.getAttribute(userId);
         String message = new String();
+        String userEmail = "'" +auth.getName()+"'";
         try{
-            List<Booking> booking = em.createQuery("SELECT b FROM Booking b WHERE b.userID=" + userID).getResultList();
-
-            em.getTransaction().begin();
-            em.remove(booking.get(Integer.parseInt(bookingID)));
-            em.getTransaction().commit();
-
-            booking.remove(bookingID);
+            UserAccount user = (UserAccount) em.createQuery("SELECT u FROM UserAccount u WHERE u.email=" + userEmail).getSingleResult();
+            List<Booking> booking = em.createQuery("SELECT b FROM Booking b WHERE b.userID=" + user.getUserID()).getResultList();
+            for(int i=0;i<booking.size();i++) {
+                if(booking.get(i).getBookingID()==bookingID) {
+                    em.getTransaction().begin();
+                    em.remove(booking.get(i));
+                    em.getTransaction().commit();
+                    booking.remove(i);
+                }
+            }
 
             view.addObject("booking", booking);
         }
