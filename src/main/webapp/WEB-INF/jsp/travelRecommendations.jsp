@@ -1,4 +1,6 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%--
   JSP for displaying travel recommendations.
   SENG3150 Group 3
@@ -31,9 +33,10 @@
                 <img src="/img/${holidayPackage.destination}-splash-pic.jpg" style="width:100%">
 
                 <div class="recommendation-description">
+                    <%--
                     <div class="recommendation-description-stamp">
                         <img src="/img/stamp-pic.jpg">
-                    </div>
+                    </div>--%>
                     <div class="recommendation-description-underline">
                         <span class="rc-span">
                         ${holidayPackage.countryName}
@@ -43,10 +46,9 @@
                         ${holidayPackage.description}
                         </span>
                     </div>
-
                     <c:if test="${not empty flightPlan}">
-                        <p>Found flight plan for this package</p>
-                        <%--
+                    <div class="recommendation-description-flightplan">
+                        <p>Found flight plan for this package using details from your account!</p>
                         <form name="searchFlight" method="post" id="searchFlight" action="${pageContext.request.contextPath}/search"
                               style="display:contents">
                             <input type="hidden" id="type" name="type" value="oneway">
@@ -54,43 +56,15 @@
                             <input type="hidden" id="adults" name="adults" value="${recommendationPackage.groupSize}">
                             <input type="hidden" id="departureLocation" name="departureLocation" value="${recommendationPackage.departureLocation}">
                             <input type="hidden" id="arrivalLocation" name="arrivalLocation" value="${holidayPackage.destination}">
-                            <input type="hidden" id="departureDate" name="departureDate" value="${flightPlan.departureDate}">
+                            <input type="hidden" id="departureDate" name="departureDate"
+                                   value="<fmt:formatDate value='${flightPlan.departureDate}' type='date' pattern='yyyy-MM-dd'/>">
                             <button type="submit">Get flight plan</button>
                         </form>
-                        --%>
+                    </div>
                     </c:if>
                 </div>
             </div>
-            <%--
-                <div class="recommendation-destination-image" style="background-image: url(&quot/img/${holidayPackage.destination}-splash-pic.jpg&quot)">
-                    <div class="recommendation-destination-image-caption">
-                        <h2 style="margin-top: 0;">${holidayPackage.countryName}</h2>
-                        <p>${holidayPackage.destination}</p>
-                    </div>
-                </div>
-                <div class="recommendation-description">
-                    <p>${holidayPackage.description}</p>
-
-                    <c:if test="${empty flightPlan}">
-                    <p>Found flight plan for this package</p>
-
-                    <form name="searchFlight" method="get" id="searchFlight" action="${pageContext.request.contextPath}/search" onsubmit="return validateForm()">
-                        <input type="hidden" id="type" name="type" value="oneway">
-                        <input type="hidden" id="classCode" name="classCode" value="${recommendationPackage.cc}">
-                        <input type="hidden" id="adults" name="adults" value="${recommendationPackage.groupSize}">
-                        <input type="hidden" id="departureLocation" name="departureLocation" value="${recommendationPackage}">
-                        <input type="hidden" id="arrivalLocation" name="arrivalLocation" value="${holidayPackage.destination}">
-                        <input type="hidden" id="departureDate" name="departureDate" value="${flightPlan.departureDate}">
-                        <button type="submit">Get flight plan</button>
-                    </form>
-                    </c:if>
-                </div>
-                --%>
         </c:forEach>
-    <%--
-    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-    <a class="next" onclick="plusSlides(1)">&#10095;</a>
-    --%>
     </div>
     <br>
 
@@ -145,9 +119,9 @@
             for (i = 0; i < dots.length; i++) {
                 dots[i].className = dots[i].className.replace(" active", "");
             }
-            slides[slideIndex-1].style.display = "block";
+            slides[slideIndex-1].style.display = "grid";
             dots[slideIndex-1].className += " active";
-            //setTimeout(autoShowSlides, 4000);
+            setTimeout(autoShowSlides, 20000);
         }
     </script>
 </main>

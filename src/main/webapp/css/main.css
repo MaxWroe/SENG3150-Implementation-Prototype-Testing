@@ -516,7 +516,7 @@ button
     display: none;
 
     grid-template-columns: 60% 40%;
-    background: #fff;
+    background: #f9f1dd;;
     padding: 10px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
@@ -534,6 +534,10 @@ button
     width: 100%;
     text-align: center;
     grid-column: 2;
+
+    background-image: url("/img/postcard-pic.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .recommendation-description img
@@ -546,6 +550,7 @@ button
 {
     text-align: center;
     font-family: cursive;
+    padding-top: 40%;
 }
 
 .rc-span
@@ -553,6 +558,13 @@ button
     padding-bottom: 10px;
     border-bottom: 3px dotted black;
     line-height: 48px;
+}
+
+.recommendation-description-flightplan
+{
+    text-align: center;
+    /* font-family: cursive; */
+    padding-left: 20px;
 }
 
 .dot {
