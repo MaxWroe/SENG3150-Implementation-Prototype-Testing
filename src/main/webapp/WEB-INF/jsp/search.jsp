@@ -36,6 +36,12 @@
         <script>
             function on() {
                 document.getElementById("search-overlay").style.display = "block";
+                var type = "${param.type}";
+                if(type === "return")
+                {
+                    $("#returnDate").prop("disabled", false);
+                    $("#return-range").prop("disabled", false);
+                }
             }
         </script>
         <div id="results-search">
@@ -74,8 +80,8 @@
                     // check if departure range option is selected
                     if($('#departureDateRange').val() !== "")
                     {
-                        $("#departure-range").prop( "checked", true );
-                        $("#departureDateRange").prop( "disabled", false );
+                        $("#departure-range").prop("checked", true);
+                        $("#departureDateRange").prop("disabled", false);
 
                         $(this).toggleClass("up");
                         $('.extra-search-fields').toggle();
@@ -240,9 +246,17 @@
                 let returnedStopovers = $(".flight-list li").map(function () {
                     return $(this).data("stopovers");
                 }).get();
-                // set max amount on stops filter
-                $("#stopsFilter").attr("max", Math.max.apply(null, returnedStopovers));
-                $("label[for='stopsFilter']").text(Math.max.apply(null, returnedStopovers));
+                // check if any flights returned
+                if (returnedStopovers && returnedStopovers.length) {
+                    // not empty
+                    // set max amount on stops filter
+                    $("#stopsFilter").attr("max", Math.max.apply(null, returnedStopovers));
+                    $("label[for='stopsFilter']").text(Math.max.apply(null, returnedStopovers));
+                } else {
+                    // empty
+                    $("#stopsFilter").attr("max", "0");
+                    $("label[for='stopsFilter']").text("0");
+                }
             });
         </script>
         <script>

@@ -258,7 +258,7 @@ public class BookingsController {
         view.addObject("adultsBooked", adultsBookingS);
         view.addObject("childrenBooked", childrenBooking);
         view.addObject("departureFlightPlan", searchResults.get(positionDeparture - 1));
-        if(trip=="return") {
+        if(trip.equals("return")) {
             view.addObject("returnFlightPlan", searchResults.get(positionReturn - 1));
         }
         session.setAttribute("childrenBooked", childrenBooking);
