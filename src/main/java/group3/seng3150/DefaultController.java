@@ -1,9 +1,6 @@
 package group3.seng3150;
 
-import group3.seng3150.entities.Airline;
-import group3.seng3150.entities.Airport;
-import group3.seng3150.entities.Booking;
-import group3.seng3150.entities.UserAccount;
+import group3.seng3150.entities.*;
 import group3.seng3150.recommendationLogic.RecommendationGenerator;
 import group3.seng3150.recommendationLogic.RecommendationPackage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +21,7 @@ public class DefaultController {
 
     @GetMapping("/home")
     public ModelAndView Index() {
-        ModelAndView view = new ModelAndView("home");
+        ModelAndView view = new ModelAndView("/home");
         return view;
     }
 
@@ -53,46 +50,21 @@ public class DefaultController {
     }
 
 
-    /*
-    @GetMapping("/bookingtemp")
-    public ModelAndView displayBooking() {
-        ModelAndView view = new ModelAndView("flightBooking");
-        return view;
-    }
-    */
-
-
-/*
-    @GetMapping("/accountDetails")
-    public ModelAndView displayAccountDetails() {
-        ModelAndView view = new ModelAndView("accountDetails");
-        return view;
-    }*/
-
-
-
     @GetMapping("/customerSupport")
     public ModelAndView displayCustomerSupport() {
         ModelAndView view = new ModelAndView("Users/customerSupport");
         return view;
     }
-    /*
-    @GetMapping("/manageBooking")
-    public ModelAndView displayManageBooking() {
-        ModelAndView view = new ModelAndView("manageBooking");
-        return view;
-    }
- */
 
-    /*
     // testing and dont want to register
     @PostMapping("/login")
-    public ModelAndView login(@RequestParam(name="email") String email) {
+    public ModelAndView login(@RequestParam(name="email") String email,
+                              HttpSession session) {
         ModelAndView view = new ModelAndView("home");
-        view.addObject("email", email);
-        view.addObject("userID", email);
+        session.setAttribute("email", email);
+        //session.setAttribute("userID", email);
         return view;
-    }*/
+    }
 
 
 
@@ -177,8 +149,13 @@ public class DefaultController {
 
     //wishlist test
     @GetMapping("/wishList")
-    public ModelAndView displayWishList() {
+    public ModelAndView displayWishList(Authentication auth) {
         ModelAndView view = new ModelAndView("Users/wishList");
+        String emailSearch = "'" + auth.getName() + "'";
+        //Retrieve the user's information
+        UserAccount user = (UserAccount) em.createQuery("SELECT u FROM UserAccount u WHERE u.email=" + emailSearch).getSingleResult();
+        List<WishListEntry> wishList = (List<WishListEntry>) em.createQuery("SELECT w FROM WishListEntry w WHERE w.userID=" + user.getUserID()).getResultList();
+        view.addObject("wishList", wishList);
         return view;
     }
 
