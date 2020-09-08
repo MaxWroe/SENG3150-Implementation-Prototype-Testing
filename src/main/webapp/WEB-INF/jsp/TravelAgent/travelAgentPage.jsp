@@ -55,14 +55,17 @@
                 <!-- User type -->
                 <label>Package Type: </label>
 
-                <input type="radio" id="personal" name="userType" value="Personal" checked/>
-                <label for="personal">Sponsored</label>
+                <input type="radio" id="sponsored" name="userType" value="Sponsored" checked/>
+                <label for="sponsored">Sponsored</label>
+
+                <input type="radio" id="Hot location" name="userType" value="Hot location" checked/>
+                <label for="Hot location">Hot location</label>
 
                 <input type="radio" id="business" name="userType" value="Business"/>
                 <label for="business">Hot Location</label>
 
-                <input type="radio" id="family" name="userType" value="Family"/>
-                <label for="family">Self Generated</label> <br>
+                <input type="radio" id="Other" name="userType" value="Other"/>
+                <label for="Other">Other</label> <br>
 
                 <button type="submit">Create</button>
 

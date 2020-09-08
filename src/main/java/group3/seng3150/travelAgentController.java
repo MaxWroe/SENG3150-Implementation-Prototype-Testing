@@ -34,20 +34,23 @@ public class travelAgentController {
                                             @RequestParam (name="countryCode", defaultValue = "")String countryCode
     ){
         ModelAndView view = new ModelAndView("TravelAgent/travelAgentPage");
+        //0 for sponsored personal, 1 for "hot location",  3 for business, 4 for self generated
+        int type = 4;
+        if (userType=="Sponsored"){
+            type = 0;
+        }else if(userType=="Hot location"){
+            type = 1;
+        }else if(userType=="Business"){
+            type = 2;
+        }else{
+            type = 3;
+        }
 
         HolidayPackages newPackage = new HolidayPackages();
         newPackage.setCountryCode(countryCode);
         newPackage.setDestination(destination);
         newPackage.setDescription(description);
-        int userNum = 0;
-        if(userType=="Personal") {
-            userNum = 0;
-        }else if(userType=="Business") {
-            userNum = 1;
-        }else {
-            userNum = 2;
-        }
-        newPackage.setType(userNum);
+        newPackage.setType(type);
 
         //newPackage.setCountryName(); Need to be able to retrieve the correct Country Name with Country code to set it
 
