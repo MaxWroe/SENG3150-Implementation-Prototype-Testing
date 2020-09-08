@@ -159,10 +159,12 @@ public class DefaultController {
         return view;
     }
 
-    //wishlist test
+/*
     @GetMapping("/travelAgentPage")
     public ModelAndView displayHolidayPackage() {
         ModelAndView view = new ModelAndView("TravelAgent/travelAgentPage");
         return view;
     }
+*/
 }
+
