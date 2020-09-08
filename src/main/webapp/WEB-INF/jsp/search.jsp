@@ -240,6 +240,7 @@
                 let returnedStopovers = $(".flight-list li").map(function () {
                     return $(this).data("stopovers");
                 }).get();
+                alert(returnedStopovers + " largest: " + Math.max(returnedStopovers));
                 // set max amount on stops filter
                 $("#stopsFilter").attr("max", Math.max(returnedStopovers));
                 $("label[for='stopsFilter']").text(Math.max(returnedStopovers));
