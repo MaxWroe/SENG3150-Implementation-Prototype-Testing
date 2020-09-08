@@ -27,9 +27,15 @@ public class RecommendationGenerator {
         List<RecommendationPackage> rp = new LinkedList<>();
         String cc; //class code
         int numPeople; //number of people
+
+        List<HolidayPackages> hp;
         if(user.getUserType()==2){
 
-            //do business stuff
+            //get business packages
+            hp =  em.createQuery("SELECT h FROM HolidayPackages h WHERE h.type=3").getResultList();
+        } else {
+            //get every other package type
+             hp =  em.createQuery("SELECT h FROM HolidayPackages h WHERE h.type!=3").getResultList();
         }
 
         //do personal stuff
@@ -49,7 +55,7 @@ public class RecommendationGenerator {
         } else cc = "ECO"; numPeople = 1;
 
 
-        List<HolidayPackages> hp =  em.createQuery("SELECT h FROM HolidayPackages h").getResultList();
+
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Calendar c = Calendar.getInstance();
         c.add(Calendar.DAY_OF_MONTH, dayRange);
