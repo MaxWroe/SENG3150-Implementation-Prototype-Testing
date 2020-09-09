@@ -22,17 +22,19 @@
         <h1>My Wish List</h1>
         <h4></h4>
 
-        <%-- if wish list is empty --%>
-        <c:if test="${empty wishList}">
-            <h4>Empty</h4>
-        </c:if>
+        <div class="wish-list">
+            <%-- if wish list is empty --%>
+            <c:if test="${empty wishList}">
+                <h4>Empty</h4>
+            </c:if>
 
-        <%-- parse all wish list --%>
-        <c:forEach items="${wishList}" var ="wishList">
-            <p><c:out value= "${wishList.countryCode3}"></c:out></p>
-            <p><c:out value= "${booking.countryName}"></c:out></p>
+            <%-- parse all wish list --%>
+            <c:forEach items="${wishList}" var ="wishList">
+                <p><c:out value= "${wishList.countryCode3}"></c:out></p>
+                <p><c:out value= "${wishList.countryName}"></c:out></p>
 
-        </c:forEach>
+            </c:forEach>
+        </div>
 
     </div>
 </main>
