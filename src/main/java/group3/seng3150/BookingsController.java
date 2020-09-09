@@ -77,7 +77,7 @@ public class BookingsController {
     @GetMapping("/manageBooking")
     public ModelAndView manageBooking(HttpSession session,
                                       Authentication auth) {
-        ModelAndView view = new ModelAndView("/manageBooking");
+        ModelAndView view = new ModelAndView("Users/manageBooking");
         String userEmail = "'" +auth.getName()+"'";
         String message = new String();
         try{

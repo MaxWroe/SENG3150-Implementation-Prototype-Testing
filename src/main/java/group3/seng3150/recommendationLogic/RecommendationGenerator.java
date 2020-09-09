@@ -46,12 +46,12 @@ public class RecommendationGenerator {
         if(user.getClosestAirport()!=null){
             ap = user.getClosestAirport();
         } else if(userBookings.size()!=0){
-            ap = userBookings.get(userBookings.size()).getDeparture();
+            ap = userBookings.get(userBookings.size()-1).getDeparture();
         } else ap = null;
 
         if(userBookings.size()!=0){
-            cc= userBookings.get(userBookings.size()).getClassCode();
-            numPeople = userBookings.get(userBookings.size()).getGroupSize();
+            cc= userBookings.get(userBookings.size()-1).getClassCode();
+            numPeople = userBookings.get(userBookings.size()-1).getGroupSize();
         } else cc = "ECO"; numPeople = 1;
 
 

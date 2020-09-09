@@ -62,7 +62,7 @@
                 <label for="Hot location">Hot location</label>
 
                 <input type="radio" id="business" name="userType" value="Business"/>
-                <label for="business">Hot Location</label>
+                <label for="business">Business</label>
 
                 <input type="radio" id="Other" name="userType" value="Other"/>
                 <label for="Other">Other</label> <br>
