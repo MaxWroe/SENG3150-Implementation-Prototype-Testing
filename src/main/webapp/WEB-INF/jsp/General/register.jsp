@@ -11,6 +11,7 @@
     <title>Register</title>
 
     <link rel="stylesheet" type="text/css" href="/css/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <%--><script src="/js/formValidations.js"></script> --%>
 </head>
 <body>
@@ -21,21 +22,31 @@
 <jsp:include page="../header.jsp"/>
 
     <main class="main-content">
-        <div class="card-body">
+
             <h1>Register</h1>
             <h2>${message}</h2>
             <h4>Fill in your information</h4>
 
-                <!-- registration form-->
-                <form id="registerForm" method="post" action="/register" onsubmit="return validateRegister()">
+            <div class="wrap-register">
+                <div class="register-form">
 
-                    <jsp:include page="../form.jsp"/>
+                    <!-- registration form-->
+                    <form id="registerForm" method="post" action="/register" onsubmit="return validateRegister()">
 
+                        <jsp:include page="../form.jsp"/>
 
-                    <input type="submit" value="Register"/><input type="reset" value="Reset"/>
+                        <div class="register-group">
+                            <div class="register-row1">
+                                <input class="input-submit" type="submit" value="Register"/>
+                            </div>
+                            <div class="register-row1">
+                                <input class="input-submit" type="reset" value="Reset"/>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
 
-                </form>
-        </div>
     </main>
 
 </body>

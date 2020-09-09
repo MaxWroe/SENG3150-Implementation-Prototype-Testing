@@ -11,6 +11,7 @@
     <title>Login</title>
 
     <link rel="stylesheet" type="text/css" href="/css/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <%--<script src="/js/dynamicLink.js"></script>--%>
 </head>
@@ -22,30 +23,47 @@
 <jsp:include page="../header.jsp"/>
 
 <main class="main-content">
-   <div class="card-body">
+
         <h1>Login</h1>
         <h2>${message}</h2>
         <h4>Enter your credentials</h4>
 
 
-                 <!-- login form -->
-            <form id="loginForm" method="post" action="appLogin">
+       <div class="wrap-login">
+                <div class="login-form">
+                    <div class="login-pic">
+                        <img src="/img/login-splash.png" alt="LOGIN">
+                    </div>
+                     <!-- login form -->
+                <form id="loginForm" method="post" action="appLogin">
 
-                <!-- email address -->
-                <label for="username">Email address</label>
-                <input id="username" type="text" name ="username" required/> <br>
+                    <!-- email address -->
+                    <div class="login-input">
+                        <!-- <label for="username">Email address</label> -->
+                        <input class="input" id="username" type="text" name ="username" placeholder="Email" required/> <br>
+                        <span class="symbol-input">
+							<i class="fa fa-envelope" aria-hidden="true"> </i>
+						</span>
+                    </div>
 
-                <!-- password -->
-                <label for="password">Password</label>
-                <input type ="password" id="password" name ="password" required/> <br>
+                    <!-- password -->
+                    <div class="login-input">
+                       <!-- <label for="password">Password</label> -->
+                        <input class="input" type ="password" id="password" name ="password" placeholder="Password" required/> <br>
+                        <span class="symbol-input">
+							<i class="fa fa-lock" aria-hidden="true"> </i>
+						</span>
+                    </div>
 
 
-                <input type="submit" value="Login"/>
+                    <input class="input-submit" type="submit" value="Login"/>
 
 
-            </form>
+                </form>
+                </div>
 
-        </div>
+       </div>
+
 
 
 </main>

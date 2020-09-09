@@ -10,34 +10,78 @@
 <!-- user form -->
 
 <!-- First Name -->
-<label for="firstName">First Name: </label>
-<input id="firstName" name ="firstName" required/> <br>
+<div class="register-group">
+    <!-- <div class="register-row"> -->
+        <div class="register-row1">
+            <input class="input" id="firstName" name ="firstName" placeholder="First Name" required/>
+            <span class="symbol-input">
+                <i class="fa fa-user-circle-o" aria-hidden="true"> </i>
+            </span>
+        </div>
+   <!-- </div> -->
 
-<!-- Last Name -->
-<label for="lastName">Last Name: </label>
-<input id="lastName" name ="lastName" required/> <br>
+    <!-- Last Name -->
+   <!-- <div class="register-row"> -->
+        <div class="register-row1">
+            <input class="input" id="lastName" name ="lastName" placeholder="Last Name" required/> <br>
+            <span class="symbol-input">
+                <i class="fa fa-user-circle-o" aria-hidden="true"> </i>
+            </span>
+        </div>
+   <!-- </div> -->
+</div>
 
 <!-- preferred airport -->
 
-<div class="preferred-airport">
-    <label for="preferredAirport">From: </label>
-    <input list="airports" name="preferredAirport" id="preferredAirport" required>
+<div class="register-row">
+    <input class="input" list="airports" name="preferredAirport" id="preferredAirport" placeholder="Nearest Airport" required>
+    <span class="symbol-input">
+        <i class="fa fa-plane" aria-hidden="true"> </i>
+    </span>
 </div>
 
-<!-- gender -->
-<label>Gender: </label>
+<div class="register-group">
+        <!-- gender -->
 
-<input type="radio" id="male" name="gender" value="Male" checked/>
-<label for="male">Male</label>
 
-<input type="radio" id="female" name="gender" value="Female"/>
-<label for="female">Female</label><br>
 
-<!-- password -->
-<label for="password">Password: </label>
-<input type ="password" id="password" name ="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-       title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required/> <br>
 
+                <!--<label class="gender">Gender: </label> -->
+               <div class="register-row1">
+                   <div class="register-gender" >
+                    <input type="radio" id="male" name="gender" value="Male" checked/>
+                    <label for="male">Male</label>
+                   </div>
+               </div>
+
+               <div class="register-row1">
+                   <div class="register-gender">
+                        <input type="radio" id="female" name="gender" value="Female"/>
+                        <label  for="female">Female</label><br>
+                   </div>
+               </div>
+
+
+</div>
+
+<div class="register-group">
+    <!-- password -->
+    <div class="register-row1">
+        <input class="input" placeholder="Password" type ="password" id="password" name ="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+               title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required/> <br>
+        <span class="symbol-input">
+            <i class="fa fa-lock" aria-hidden="true"> </i>
+        </span>
+    </div>
+
+    <!-- confirm password -->
+    <div class="register-row1">
+        <input class="input" placeholder="Confirm Password" type ="password" id="confirmPassword" name ="confirmPassword" required/> <br>
+        <span class="symbol-input">
+            <i class="fa fa-lock" aria-hidden="true"> </i>
+        </span>
+    </div>
+</div>
 <!-- message when making a password-->
 <div id="message" style="display: none">
     <h4>Password must contain the following:</h4>
@@ -108,34 +152,58 @@
     }
 </script>
 
-<!-- confirm password -->
-<label for="confirmPassword">Confirm Password: </label>
-<input type ="password" id="confirmPassword" name ="confirmPassword" required/> <br>
 
-<!-- email -->
-<label for="email">Email: </label>
-<input type ="email" id="email" name ="email" required/> <br>
+<div class="register-row">
+    <!-- email -->
+    <input class="input" placeholder="Email" type ="email" id="email" name ="email" required/> <br>
+    <span class="symbol-input">
+        <i class="fa fa-envelope" aria-hidden="true"> </i>
+    </span>
+</div>
 
-<!-- phone no -->
-<label for="phone">Phone No:</label>
-<input type ="tel" id="phone" name ="phone" pattern="[0-9].{8,}" required/> <br>
+<div class="register-row">
+    <!-- phone no -->
+    <input class="input" placeholder="Phone Number" type ="tel" id="phone" name ="phone" pattern="[0-9].{8,}" required/> <br>
+    <span class="symbol-input">
+        <i class="fa fa-phone" aria-hidden="true"> </i>
+    </span>
+</div>
 
-<!-- date of birth -->
-<label for="dateOfBirth">Date of birth: </label>
-<input type="date" id="dateOfBirth" name ="dateOfBirth" required/> <br>
+<div class="register-row">
+    <!-- date of birth -->
+
+    <input class="input" placeholder="Date of birth" type="date" id="dateOfBirth" name ="dateOfBirth" required/> <br>
+</div>
 
 
 <!-- user types -->
-<label>User type: </label>
+<div class="register-group">
 
-<input type="radio" id="personal" name="userType" value="Personal" checked/>
-<label for="personal">Personal</label>
 
-<input type="radio" id="business" name="userType" value="Business"/>
-<label for="business">Business</label>
 
-<input type="radio" id="family" name="userType" value="Family"/>
-<label for="family">Family</label> <br>
+        <div class="register-row1">
+            <div class="register-gender">
+                <input type="radio" id="personal" name="userType" value="Personal" checked/>
+                <label for="personal">Personal</label>
+            </div>
+        </div>
+
+        <div class="register-row1">
+            <div class="register-gender">
+                <input type="radio" id="business" name="userType" value="Business"/>
+                <label for="business">Business</label>
+            </div>
+        </div>
+
+        <div class="register-row1">
+            <div class="register-gender">
+                <input type="radio" id="family" name="userType" value="Family"/>
+                <label for="family">Family</label> <br>
+            </div>
+        </div>
+
+
+</div>
 
 
 <!-- Airport destinations -->
