@@ -36,7 +36,7 @@
         <script>
             function on() {
                 document.getElementById("search-overlay").style.display = "block";
-                var type = "${param.type}";
+                var type = "${param.tripType}";
                 if(type === "return")
                 {
                     $("#returnDate").prop("disabled", false);
@@ -48,7 +48,7 @@
             <table>
                 <tr>
                     <td>Search Criteria: <button onclick="on()">Change Search</button></td>
-                    <td>${param.type}, ${param.classCode}</td>
+                    <td>${param.tripType}, ${param.classCode}</td>
                     <td>${param.adults} Adult/s, ${param.children} Children</td>
                     <td>${param.departureLocation} to ${param.arrivalLocation}</td>
                     <fmt:parseDate pattern="yyyy-MM-dd" value="${param.departureDate}" var="parsedDate" />
@@ -62,7 +62,7 @@
 
             <script>
                 // Check if incoming search trip type, set type select field and return date div
-                var trip = "${param.type}";
+                var trip = "${param.tripType}";
 
                 // on load if search criteria being passed
                 $(document).ready(function() {
@@ -112,12 +112,12 @@
 
                     if (trip === "oneway")
                     {
-                        $("#type").val("oneway");
+                        $("#tripType").val("oneway");
                         $("#form-group-return-date").hide();
                     }
                     else if (trip === "return")
                     {
-                        $("#type").val("return");
+                        $("#tripType").val("return");
                         $("#form-group-return-date").style.display = 'inline';
                         $("#returnDate").prop("required", true);
                         $("#returnDate").prop("disabled", false);
@@ -237,7 +237,7 @@
                 // create airline filter inputs
                 for (let i = 0; i < airlines.length; i++) {
                     let label = "<label for=\"" + airlines[i][0] + "\">" + airlines[i][1] + " </label>";
-                    let input = "<input type=\"checkbox\" id=\"" + airlines[i][0] + "\" value=\"" + airlines[i][0] + "\" name=\"airlineFilter\">";
+                    let input = "<input type=\"checkbox\" id=\"" + airlines[i][0] + "\" value=\"" + airlines[i][0] + "\" name=\"airlineFilter\"><br>";
                     $("#airlineFilterDiv").append(label);
                     $("#airlineFilterDiv").append(input);
                 }
@@ -298,7 +298,7 @@
         </script>
 
         <!-- If searched trip is one-way -->
-        <c:if test = "${param.type eq 'oneway'}">
+        <c:if test = "${param.tripType eq 'oneway'}">
             <!-- Parse all returned flights -->
 
             <!-- Check if any flights returned -->
@@ -315,7 +315,7 @@
         </c:if>
 
         <!-- If searched trip is return -->
-        <c:if test = "${param.type eq 'return'}">
+        <c:if test = "${param.tripType eq 'return'}">
             <div id="flight-result-return-trip">
                 <div id="flight-result-departure-header">
                     <h4 style="margin: 0;">Select a departure flight</h4>

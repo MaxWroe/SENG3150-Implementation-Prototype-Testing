@@ -129,7 +129,7 @@ $('#returnDate').change(function () {
     }
 });
 
-$('#type').change(function () {
+$('#tripType').change(function () {
     if($(this).children("option:selected").val() === "return")
     {
         // if return trip selected show return date input and set as required

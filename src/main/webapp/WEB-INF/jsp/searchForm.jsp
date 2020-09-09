@@ -13,8 +13,8 @@
         <div class="main-search-fields">
             <!-- Return or one-way trip -->
             <div class="form-group-trip">
-                <label for="type">Trip:</label>
-                <select id="type" name="type">
+                <label for="tripType">Trip:</label>
+                <select id="tripType" name="tripType">
                     <option value="oneway">One-way</option>
                     <option value="return">Return</option>
                 </select>

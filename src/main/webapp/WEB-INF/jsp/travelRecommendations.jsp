@@ -31,12 +31,26 @@
             <c:set var="flightPlan" value="${recommendationPackage.fp}" scope="page"/>
             <div class="recommendation-display-window fade">
                 <img src="/img/${holidayPackage.destination}-splash-pic.jpg" style="width:100%">
-
+                <div class="recommendation-description-type">
+                    <c:set var="packageType" value="${holidayPackage.type}" scope="page" />
+                    <p>
+                    <c:choose>
+                        <c:when test="${packageType eq 0}">
+                            Personal sponsored recommendation.
+                        </c:when>
+                        <c:when test="${packageType eq 1}">
+                            Hot location recommendation.
+                        </c:when>
+                        <c:when test="${packageType eq 2}">
+                            Business recommendation.
+                        </c:when>
+                        <c:when test="${packageType eq 3}">
+                            Self-generated recommendation.
+                        </c:when>
+                    </c:choose>
+                    </p>
+                </div>
                 <div class="recommendation-description">
-                    <%--
-                    <div class="recommendation-description-stamp">
-                        <img src="/img/stamp-pic.jpg">
-                    </div>--%>
                     <div class="recommendation-description-underline">
                         <span class="rc-span">
                         ${holidayPackage.countryName}
@@ -51,9 +65,10 @@
                         <p>Found flight plan using details from your account!</p>
                         <form name="searchFlight" method="post" id="searchFlight" action="${pageContext.request.contextPath}/search"
                               style="display:contents">
-                            <input type="hidden" id="type" name="tripType" value="oneway">
+                            <input type="hidden" id="tripType" name="tripType" value="oneway">
                             <input type="hidden" id="classCode" name="classCode" value="${recommendationPackage.cc}">
                             <input type="hidden" id="adults" name="adults" value="${recommendationPackage.groupSize}">
+                            <input type="hidden" id="children" name="children" value="0">
                             <input type="hidden" id="departureLocation" name="departureLocation" value="${recommendationPackage.departureLocation}">
                             <input type="hidden" id="arrivalLocation" name="arrivalLocation" value="${holidayPackage.destination}">
                             <input type="hidden" id="departureDate" name="departureDate"
@@ -65,6 +80,9 @@
                 </div>
             </div>
         </c:forEach>
+        <c:if test="${empty recommendationPackages}">
+            <p>No recommendations for you at this time.</p>
+        </c:if>
     </div>
     <br>
 

@@ -6,7 +6,7 @@
   Date: 6/09/2020
   Time: 10:18 pm
 --%>
-<c:set var="tripType" scope="page" value="${param.type}"/>
+<c:set var="tripType" scope="page" value="${param.tripType}"/>
 <c:choose>
     <c:when test="${tripLeg eq 'depart'}">
         <c:set var = "flightList" scope = "page" value = "${flights.flightPlansDeparting}"/>

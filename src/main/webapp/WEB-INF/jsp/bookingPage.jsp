@@ -118,6 +118,11 @@
                     <tr>
                         <th>Return Leg</th>
                     </tr>
+                    <tr>
+                        <th>Departure Location & Time</th>
+                        <th>Stop Over Location & Time</th>
+                        <th>Destination Location & Time</th>
+                    </tr>
                 <c:forEach items="${returnFlightPlan.flights}" var="flightPlanFlights" varStatus="flightsLoop">
                     <tr>
                         <td>${flightPlanFlights.departureCode},

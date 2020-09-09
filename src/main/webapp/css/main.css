@@ -17,7 +17,7 @@ body
     text-align: center;
     overflow-x: hidden;
     overflow-y: auto;
-    height: calc(100% - 51 px);
+    height: calc(100% - 51px);
 }
 
 .main-content-h
@@ -581,6 +581,17 @@ button
 {
     height: 100px;
     margin-right: -250px;
+    /* if no specific image found for location */
+    background-image: url("/img/rec-backup-splash-pic.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.recommendation-description-type
+{
+    position: absolute;
+    font-size: larger;
+    top: 5px;
 }
 
 .recommendation-description-underline
