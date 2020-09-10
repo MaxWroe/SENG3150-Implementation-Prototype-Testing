@@ -19,7 +19,7 @@ public class travelAgentController {
     @Autowired
     public travelAgentController(EntityManager em){this.em =em;}
 
-    @GetMapping("TravelAgent/travelAgentPage")
+    @GetMapping("travelAgentPage")
     public ModelAndView travelAgentPage() {
         ModelAndView view = new ModelAndView("TravelAgent/travelAgentPage");
         WishListStatistics createWishlist = new WishListStatistics(em);
