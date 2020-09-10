@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.persistence.EntityManager;
 import javax.servlet.http.HttpSession;
 import java.util.List;
+import group3.seng3150.entities.Country;
 
 @Controller
 public class DefaultController {
@@ -155,6 +156,8 @@ public class DefaultController {
         //Retrieve the user's information
         UserAccount user = (UserAccount) em.createQuery("SELECT u FROM UserAccount u WHERE u.email=" + emailSearch).getSingleResult();
         List<WishListEntry> wishList = (List<WishListEntry>) em.createQuery("SELECT w FROM WishListEntry w WHERE w.userID=" + user.getUserID()).getResultList();
+        List<Country> countries = (List<Country>) em.createQuery("SELECT c FROM Country c").getResultList();
+        view.addObject("countries", countries);
         view.addObject("wishList", wishList);
         return view;
     }
