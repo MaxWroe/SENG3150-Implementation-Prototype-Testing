@@ -13,7 +13,6 @@
         <class>group3.seng3150.entities.Availability</class>
         <class>group3.seng3150.entities.Price</class>
         <class>group3.seng3150.entities.OtherTransport</class>
-        <class>group3.seng3150.entities.Reccomendation</class>
         <class>group3.seng3150.entities.Review</class>
         <class>group3.seng3150.entities.Enquiry</class>
         <class>group3.seng3150.entities.FlightID</class>
@@ -22,6 +21,8 @@
         <class>group3.seng3150.entities.AvailabilityID</class>
         <class>group3.seng3150.entities.Airline</class>
         <class>group3.seng3150.entities.WishListEntry</class>
+        <class>group3.seng3150.entities.Country</class>
+
 
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
 
