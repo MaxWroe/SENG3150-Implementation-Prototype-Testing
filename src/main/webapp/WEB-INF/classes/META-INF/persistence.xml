@@ -23,6 +23,7 @@
         <class>group3.seng3150.entities.WishListEntry</class>
         <class>group3.seng3150.entities.Country</class>
 
+
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
 
     </persistence-unit>
