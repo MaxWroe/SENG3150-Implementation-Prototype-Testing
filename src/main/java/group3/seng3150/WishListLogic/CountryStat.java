@@ -14,7 +14,6 @@ public class CountryStat implements Comparable{
         this.popularity = popularity;
     }
 
-
     public String getCountryCode3() {
         return CountryCode3;
     }

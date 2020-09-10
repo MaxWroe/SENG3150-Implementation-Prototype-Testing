@@ -32,8 +32,6 @@ public class WishListStatistics {
 
         Collections.sort(stats);
         return stats;
-
-
     }
 
     public void addCountry(WishListEntry wish){
@@ -45,8 +43,6 @@ public class WishListStatistics {
                 temp.setPopularity(temp.getPopularity()+1);
                 found = true;
             }
-
-
         }
 
         if(found ==false){
