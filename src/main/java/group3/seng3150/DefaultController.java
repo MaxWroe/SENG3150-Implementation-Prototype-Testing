@@ -93,7 +93,7 @@ public class DefaultController {
         return view;
     }
 
-
+/*
     //airline test
     @GetMapping("/manageAirline")
     public ModelAndView displayAirlines() {
@@ -120,7 +120,9 @@ public class DefaultController {
 
         return view;
     }
+    */
 
+/*
     //airport test
     @GetMapping("/manageAirport")
     public ModelAndView displayAirport() {
@@ -147,7 +149,7 @@ public class DefaultController {
 
         return view;
     }
-
+*/
     //wishlist test
     @GetMapping("/wishList")
     public ModelAndView displayWishList(Authentication auth) {
