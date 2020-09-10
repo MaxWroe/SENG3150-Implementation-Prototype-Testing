@@ -46,7 +46,7 @@ public class BookingsController {
                                                 Authentication auth,
                                                 @RequestParam("userID") String userID,
                                                 @RequestParam("bookingID") String bookingID) {
-        ModelAndView view = new ModelAndView("home");
+        ModelAndView view = new ModelAndView("/Users/manageBooking");
         String message = new String();
         String userEmail = "'" +auth.getName()+"'";
         try{
@@ -110,7 +110,7 @@ public class BookingsController {
                                    Authentication auth
     ){
 
-        ModelAndView view = new ModelAndView("/manageBooking");
+        ModelAndView view = new ModelAndView("/Users/manageBooking");
         createBooking bookingMaker = new createBooking(em);
         bookingMaker.makeBooking(session, request, auth, (String) session.getAttribute("adultsBooked"), (String) session.getAttribute("childrenBooked"), (String) session.getAttribute("trip"));
 
