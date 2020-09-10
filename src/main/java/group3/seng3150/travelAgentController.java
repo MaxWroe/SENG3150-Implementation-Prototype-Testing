@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
 import javax.persistence.EntityManager;
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -19,7 +18,7 @@ public class travelAgentController {
     @Autowired
     public travelAgentController(EntityManager em){this.em =em;}
 
-    @GetMapping("travelAgentPage")
+    @GetMapping("/travelAgentPage")
     public ModelAndView travelAgentPage() {
         ModelAndView view = new ModelAndView("TravelAgent/travelAgentPage");
         WishListStatistics createWishlist = new WishListStatistics(em);
@@ -28,7 +27,7 @@ public class travelAgentController {
         return view;
     }
 
-    @PostMapping("travelAgentPage/create")
+    @PostMapping("/travelAgentPage/create")
     public ModelAndView travelAgentCreation(@RequestParam (name="comment", defaultValue = "")String description,
                                             @RequestParam (name="destination", defaultValue = "")String destination,
                                             @RequestParam (name="userType", defaultValue = "")String userType,

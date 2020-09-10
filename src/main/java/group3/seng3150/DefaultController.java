@@ -150,7 +150,7 @@ public class DefaultController {
         return view;
     }
 */
-    //wishlist test
+    //wishlist Get
     @GetMapping("/wishList")
     public ModelAndView displayWishList(Authentication auth) {
         ModelAndView view = new ModelAndView("Users/wishList");
@@ -159,6 +159,30 @@ public class DefaultController {
         UserAccount user = (UserAccount) em.createQuery("SELECT u FROM UserAccount u WHERE u.email=" + emailSearch).getSingleResult();
         List<WishListEntry> wishList = (List<WishListEntry>) em.createQuery("SELECT w FROM WishListEntry w WHERE w.userID=" + user.getUserID()).getResultList();
         List<Country> countries = (List<Country>) em.createQuery("SELECT c FROM Country c").getResultList();
+        view.addObject("countries", countries);
+        view.addObject("wishList", wishList);
+        return view;
+    }
+
+    //wishlist Post
+    @PostMapping("/wishList")
+    public ModelAndView updateWishList(Authentication auth,
+                                       @RequestParam(name="countryCode", defaultValue = "AUS") String countryCode) {
+        ModelAndView view = new ModelAndView("Users/wishList");
+        String emailSearch = "'" + auth.getName() + "'";
+        //Retrieve the user's information
+        UserAccount user = (UserAccount) em.createQuery("SELECT u FROM UserAccount u WHERE u.email=" + emailSearch).getSingleResult();
+        List<WishListEntry> wishList = (List<WishListEntry>) em.createQuery("SELECT w FROM WishListEntry w WHERE w.userID=" + user.getUserID()).getResultList();
+        List<Country> countries = (List<Country>) em.createQuery("SELECT c FROM Country c").getResultList();
+        Country addedCountry = Country em.createQuery("SELECT c FROM Country c WHERE c.countryCode3=" + countryCode).getSingleResult();
+        WishListEntry newWishlist = new WishListEntry();
+        newWishlist.setCountryCode3(countryCode);
+        newWishlist.setCountryName(addedCountry.getCountryName());
+        newWishlist.setUserID(user.getUserID());
+        wishList.add(newWishlist);
+        em.getTransaction().begin();
+        em.merge(newWishlist);
+        em.getTransaction().commit();
         view.addObject("countries", countries);
         view.addObject("wishList", wishList);
         return view;
