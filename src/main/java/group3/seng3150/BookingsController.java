@@ -53,7 +53,7 @@ public class BookingsController {
             UserAccount user = (UserAccount) em.createQuery("SELECT u FROM UserAccount u WHERE u.email=" + userEmail).getSingleResult();
             List<Booking> booking = em.createQuery("SELECT b FROM Booking b WHERE b.userID=" + user.getUserID()).getResultList();
             for(int i=0;i<booking.size();i++) {
-                if(booking.get(i).getBookingID()==bookingID) {
+                if(booking.get(i).getBookingID().equalsIgnoreCase(bookingID)) {
                     em.getTransaction().begin();
                     em.remove(booking.get(i));
                     em.getTransaction().commit();
