@@ -44,13 +44,6 @@ public class DefaultController {
     }
 
 
-    @GetMapping("/accessDenied")
-    public ModelAndView displayAccessDenied() {
-        ModelAndView view = new ModelAndView("accessDenied");
-        return view;
-    }
-
-
     @GetMapping("/customerSupport")
     public ModelAndView displayCustomerSupport() {
         ModelAndView view = new ModelAndView("Users/customerSupport");
@@ -90,6 +83,12 @@ public class DefaultController {
     @GetMapping("/reviews")
     public ModelAndView displayReview() {
         ModelAndView view = new ModelAndView("General/reviews");
+        return view;
+    }
+
+    @GetMapping("/accessDenied")
+    public ModelAndView accessDenied() {
+        ModelAndView view = new ModelAndView("/accessDenied");
         return view;
     }
 

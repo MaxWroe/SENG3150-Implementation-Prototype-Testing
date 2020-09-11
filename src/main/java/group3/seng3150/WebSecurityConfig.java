@@ -68,6 +68,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/accountDetails", "/customerSupport", "/logout", "/manageBooking", "/submitReview", "/wishList", "/reviews", "/wishList", "/wishList").access("hasAnyRole('CUSTOMER','AGENT', 'ADMIN', 'FLIGHTPUB')")
                 .antMatchers("/manageAirline", "/manageAirport", "/manageUsers").access("hasAnyRole('FLIGHTPUB', 'ADMIN')")
                 .antMatchers("/travelAgentPage").access("hasAnyRole('AGENT', 'ADMIN')")
+                .and()
+                .exceptionHandling().accessDeniedPage("/accessDenied")
                 //.anyRequest().hasAnyRole("CUSTOMER", "AGENT")
                 .and()
                 .formLogin()
