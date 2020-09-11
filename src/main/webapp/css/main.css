@@ -1061,3 +1061,55 @@ button
     display: block;
     color: black;
 }
+
+/*manage airlines*/
+
+.wrap-airlines{
+    width: auto;
+    height: 100%;
+    background: #1e809b;
+    border-radius: 10px;
+    margin-left: 350px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    position: absolute;
+    white-space: nowrap;
+    justify-content: center;
+
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+}
+
+.wrap-airlines2{
+    width: auto;
+    height: 100%;
+    background: #1e809b;
+    border-radius: 10px;
+    margin-left: 800px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    position: absolute;
+    white-space: nowrap;
+    justify-content: center;
+
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+}
+
+.manage-airlines{
+    width: 300px;
+    position: relative;
+    margin-top: 10px;
+    background: #fff;
+    border-radius: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 10px 10px 10px 10px;
+    display: block;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+/* manage airports */
+.wrap-airports{
+
+}
