@@ -12,14 +12,24 @@ import java.util.List;
 import group3.seng3150.entities.HolidayPackages;
 import group3.seng3150.WishListLogic.WishListStatistics;
 
+@Controller
 public class travelAgentController {
 
     private EntityManager em;
     @Autowired
     public travelAgentController(EntityManager em){this.em =em;}
-
+/*
     @GetMapping("/travelAgentPage")
     public ModelAndView travelAgentPage() {
+        ModelAndView view = new ModelAndView("TravelAgent/travelAgentPage");
+        WishListStatistics createWishlist = new WishListStatistics(em);
+        List<CountryStat> wishlistStats = createWishlist.getStats();
+        view.addObject("countryStat", wishlistStats);
+        return view;
+    }
+*/
+    @GetMapping("/travelAgentPage")
+    public ModelAndView displayHolidayPackage() {
         ModelAndView view = new ModelAndView("TravelAgent/travelAgentPage");
         WishListStatistics createWishlist = new WishListStatistics(em);
         List<CountryStat> wishlistStats = createWishlist.getStats();

@@ -30,7 +30,7 @@
                     <h4>No Hot Locations</h4>
                 </c:if>
 
-                <c:out value= "${countryStat.countryCode}"></c:out>
+                <c:out value= "${countryStat.countryCode3}"></c:out>
                 <c:out value= "${countryStat.popularity}"></c:out></br>
 
             </c:forEach>

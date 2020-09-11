@@ -15,6 +15,7 @@ import java.util.List;
 import group3.seng3150.entities.Airline;
 import group3.seng3150.entities.Airport;
 
+@Controller
 public class FlightPubStaffController {
 
     private EntityManager em;
