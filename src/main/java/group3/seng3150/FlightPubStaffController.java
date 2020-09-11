@@ -39,7 +39,26 @@ public class FlightPubStaffController {
 
         for(int i=0;i<airlines.size();i++) {
             if(airlines.get(i).getAirlineName()==airlineName){
-                airlines.get(i).setSponsored(airlineSponsored);
+                airlines.get(i).setSponsored(0);
+            }
+            em.getTransaction().begin();
+            em.merge(airlines.get(i));
+            em.getTransaction().commit();
+        }
+
+        view.addObject("airlines", airlines);
+        return view;
+    }
+
+    @PostMapping("/manageAirline/sponsor")
+    public ModelAndView sponsorAirline(@RequestParam("airlineName") String airlineName,
+                                         @RequestParam("airlineSponsored") int airlineSponsored) {
+        ModelAndView view = new ModelAndView("FlightPub/manageAirline");
+        List<Airline> airlines = (List<Airline>) em.createQuery("SELECT a FROM Airline a").getResultList();
+
+        for(int i=0;i<airlines.size();i++) {
+            if(airlines.get(i).getAirlineName()==airlineName){
+                airlines.get(i).setSponsored(1);
             }
             em.getTransaction().begin();
             em.merge(airlines.get(i));

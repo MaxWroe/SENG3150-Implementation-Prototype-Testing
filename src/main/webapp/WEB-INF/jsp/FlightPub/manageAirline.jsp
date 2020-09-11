@@ -45,7 +45,7 @@
             <div class="manage-airlines">
             <c:forEach items="${airlines}" var ="airlines">
                 <p><c:out value= "${airlines.airlineName}"></c:out></p>
-                <p><c:out value= "${airlines.countryCode}"></c:out></p>
+                <p><c:out value= "${airlines.countryCode3}"></c:out></p>
                 <p><c:out value= "${airlines.sponsored}"></c:out></p>
 
                 <%-- if sponsored --%>
@@ -78,11 +78,6 @@
                 </c:choose>
             </c:forEach>
             </div>
-
-
-
-
-
 
 
         </div>

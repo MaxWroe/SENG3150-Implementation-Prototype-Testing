@@ -27,3 +27,9 @@ SET
     Sponsored = '1'
 WHERE
     AirlineCode = 'AA';
+
+        UPDATE Airlines
+SET
+    Sponsored = '0'
+WHERE
+    AirlineCode != 'AA';
