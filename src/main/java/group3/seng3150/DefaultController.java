@@ -176,7 +176,7 @@ public class DefaultController {
         List<Country> countries = (List<Country>) em.createQuery("SELECT c FROM Country c").getResultList();
         WishListEntry newWishlist = new WishListEntry();
         newWishlist.setCountryCode3(countryCode);
-        newWishlist.setUserID(Integer.getInteger(user.getUserID()));
+        newWishlist.setUserID(Integer.valueOf(user.getUserID()));
         for(int i=0;i<countries.size();i++) {
             if(countries.get(i).getCountryCode3()==countryCode) {
                 newWishlist.setCountryName(countries.get(i).getCountryName());
