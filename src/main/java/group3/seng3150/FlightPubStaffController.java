@@ -38,7 +38,7 @@ public class FlightPubStaffController {
         List<Airline> airlines = (List<Airline>) em.createQuery("SELECT a FROM Airline a").getResultList();
 
         for(int i=0;i<airlines.size();i++) {
-            if(airlines.get(i).getAirlineName()==airlineName){
+            if(airlines.get(i).getAirlineName().equalsIgnoreCase(airlineName)){
                 airlines.get(i).setSponsored(0);
             }
             em.getTransaction().begin();
@@ -57,7 +57,7 @@ public class FlightPubStaffController {
         List<Airline> airlines = (List<Airline>) em.createQuery("SELECT a FROM Airline a").getResultList();
 
         for(int i=0;i<airlines.size();i++) {
-            if(airlines.get(i).getAirlineName()==airlineName){
+            if(airlines.get(i).getAirlineName().equalsIgnoreCase(airlineName)){
                 airlines.get(i).setSponsored(1);
             }
             em.getTransaction().begin();

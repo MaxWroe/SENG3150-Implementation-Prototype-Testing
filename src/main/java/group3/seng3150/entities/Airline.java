@@ -29,7 +29,7 @@ public class Airline {
 
     //0 for not sponsored, 1 for sponsored
     @Column(name = "Sponsored", table = "Airlines")
-    private Integer sponsored;
+    private int sponsored;
 
     //Constructor
     public Airline() {
@@ -63,7 +63,7 @@ public class Airline {
         return sponsored;
     }
 
-    public void setSponsored(Integer sponsored) {
+    public void setSponsored(int sponsored) {
         this.sponsored = sponsored;
     }
 
