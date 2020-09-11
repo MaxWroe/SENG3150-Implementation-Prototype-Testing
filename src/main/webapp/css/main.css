@@ -727,7 +727,7 @@ button
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.my-enquiries, .my-bookings{
+.my-enquiries{
     background: #fff;
     padding: 10px;
     display: block;
@@ -735,11 +735,11 @@ button
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.my-enquiries h4, .my-bookings h4, .user-details h4{
+.my-enquiries h4, .user-details h4{
     display: inline;
 }
 
-.update-enquiry, .cancel-booking{
+.update-enquiry{
     grid-column: 4;
     display: flex;
     justify-content: center;
@@ -984,4 +984,80 @@ button
     padding: 0 25px;
 
     background: #fff;
+}
+
+/* manage bookings */
+.wrap-bookings{
+    width: 1400px;
+    background: #1e809b;
+    border-radius: 10px;
+    margin-left: 50px;
+
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.manage-bookings{
+    width: 300px;
+    position: relative;
+    margin-top: 10px;
+    background: #fff;
+    border-radius: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 10px 10px 10px 10px;
+    display: inline-block;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+}
+
+.booking-column{
+    float: left;
+    width: 25%;
+}
+
+.booking-input-left{
+    font-size: 15px;
+    line-height: 1.5;
+    color: #666666;
+
+    display: block;
+    background: #fff;
+    float: left;
+    margin-bottom: -10px;
+}
+
+.booking-input-right{
+    font-size: 15px;
+    line-height: 1.5;
+    color: #666666;
+
+    display: block;
+    background: #fff;
+    float: right;
+    margin-bottom: -10px;
+
+}
+
+.booking-info-left{
+    display: block;
+    color: black;
+    font-size: 15px;
+    float: left;
+}
+
+.booking-info-right{
+    display: block;
+    color: black;
+    font-size: 15px;
+    float: right;
+}
+
+.booking-input-center{
+    display: block;
+    color: black;
 }
