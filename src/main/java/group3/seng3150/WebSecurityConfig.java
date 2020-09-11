@@ -65,7 +65,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.authorizeRequests()
                 .antMatchers("/css/**", "/img/**", "/js/**", "/errorPage", "/faqs", "/reviews", "/login", "/search", "/register", "/home", "/accessDenied", "/", "RecTesting").permitAll()
-                .antMatchers("/accountDetails", "/customerSupport", "/logout", "/manageBooking", "/submitReview", "/wishList", "/reviews", "/wishList", "/wishList", "/travelRecommendations").access("hasAnyRole('CUSTOMER','AGENT', 'ADMIN', 'FLIGHTPUB')")
+                .antMatchers("/accountDetails", "/customerSupport", "/logout", "/manageBooking", "/submitReview", "/wishList", "/reviews", "/wishList", "/wishList", "/travelRecommendations", "/bookingPage").access("hasAnyRole('CUSTOMER','AGENT', 'ADMIN', 'FLIGHTPUB')")
                 .antMatchers("/manageAirline", "/manageAirport", "/manageUsers").access("hasAnyRole('FLIGHTPUB', 'ADMIN')")
                 .antMatchers("/travelAgentPage").access("hasAnyRole('AGENT', 'ADMIN')")
                 .and()
