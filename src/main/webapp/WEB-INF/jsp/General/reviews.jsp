@@ -25,13 +25,6 @@
     <div class="card-body">
         <h1>FlightPub Reviews</h1>
 
-        <!-- Review test -->
-        <h4>Review ID: </h4>
-        <h4>User ID: </h4>
-        <h4>Review Date: </h4>
-        <h4>Comment: </h4>
-        <h4>Rating: </h4>
-
         <!-- checks if no user reviews yet -->
         <c:if test="${empty review}">
             <h4>${message}</h4>
@@ -39,8 +32,7 @@
 
         <!-- gets all review information -->
         <c:forEach items="${review}" var ="review">
-            <h4>Review ID: </h4><c:out value= " ${review.reviewID}"></c:out>
-            <h4>User ID: </h4><c:out value= " ${review.userID}"></c:out>
+            <h4>Title: </h4><c:out value= " ${review.name}"></c:out>
             <h4>Review Date: </h4><c:out value= " ${review.reviewDate}"></c:out>
             <h4>Comment: </h4><c:out value= " ${review.comment}"></c:out>
             <h4>Rating: </h4><c:out value= " ${review.rating}"></c:out>

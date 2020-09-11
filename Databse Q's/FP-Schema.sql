@@ -264,6 +264,7 @@ CREATE TABLE `Review`(
                          `Comment` varchar(500),
                          `Rating` int NOT NULL,
                          `ReviewType` int NOT NULL,
+                         `name` varchar(80),
 
                          PRIMARY KEY (`ReviewID`),
                          FOREIGN KEY (`UserID`) REFERENCES `UserAccount` (`UserID`)

@@ -10,8 +10,11 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import javax.persistence.EntityManager;
 import javax.servlet.http.HttpSession;
+import java.util.Calendar;
+import java.util.LinkedList;
 import java.util.List;
 import group3.seng3150.entities.Country;
+import group3.seng3150.entities.Review;
 
 @Controller
 public class DefaultController {
@@ -60,8 +63,6 @@ public class DefaultController {
         return view;
     }
 
-
-
     @GetMapping("/logout")
     public ModelAndView executeLogout() {
         ModelAndView view = new ModelAndView("Users/logout");
@@ -74,6 +75,41 @@ public class DefaultController {
         return view;
     }
 
+    @PostMapping("/submitReview")
+    public ModelAndView storeReview(@RequestParam(name="rating", defaultValue = "3") int rating,
+                                    @RequestParam(name="reviewType", defaultValue = "") String reviewType,
+                                    @RequestParam(name="comment", defaultValue = "") String comment,
+                                    @RequestParam(name="name", defaultValue = "") String name,
+                                    Authentication auth
+                                    ) {
+        ModelAndView view = new ModelAndView("General/reviews");
+        Review newReview = new Review();
+
+        String emailSearch = "'" + auth.getName() + "'";
+        //Retrieve the user's information
+        UserAccount user = (UserAccount) em.createQuery("SELECT u FROM UserAccount u WHERE u.email=" + emailSearch).getSingleResult();
+        newReview.setUserID(user.getUserID());
+        newReview.setComment(comment);
+        newReview.setRating(rating);
+        newReview.setName(name);
+        int type = 2;
+        if(reviewType.equalsIgnoreCase("flight")){
+            type = 0;
+        }else if(reviewType.equalsIgnoreCase("airport")){
+            type = 1;
+        }else{
+            type = 3;
+        }
+        newReview.setReviewType(type);
+        java.sql.Date date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
+        newReview.setReviewDate(date);
+        em.getTransaction().begin();
+        em.merge(newReview);
+        em.getTransaction().commit();
+
+        return view;
+    }
+
     @GetMapping("/faqs")
     public ModelAndView displayFaqs() {
         ModelAndView view = new ModelAndView("General/faqs");
@@ -81,8 +117,13 @@ public class DefaultController {
     }
 
     @GetMapping("/reviews")
-    public ModelAndView displayReview() {
+    public ModelAndView displayReview(Authentication auth) {
         ModelAndView view = new ModelAndView("General/reviews");
+        List<Review> review = (List<Review>) em.createQuery("SELECT r FROM Review r").getResultList();
+
+        String emailSearch = "'" + auth.getName() + "'";
+        UserAccount user = (UserAccount) em.createQuery("SELECT u FROM UserAccount u WHERE u.email=" + emailSearch).getSingleResult();
+        view.addObject("review", review);
         return view;
     }
 

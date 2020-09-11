@@ -25,7 +25,6 @@
     <div class="card-body">
         <h1>Submit a Review</h1>
 
-
         <!-- review form -->
         <form id="submitReviewForm" method="post" action="/submitReview">
 
@@ -39,22 +38,19 @@
             <span id="ratingValue"></span>
             <br>
 
-
             <!-- review type -->
             <label for="reviewType">Review Type: </label>
-            <input id="reviewType" name ="reviewType" required/> <br>
+            <input id="reviewType" name ="reviewType" required/>Airport, website or airline?</input> <br>
 
             <!-- comment  -->
             <label for="comment">Comment: </label><br>
-            <textarea form ="comment" id="comment" name="comment" rows="4" cols="50" required>Type review here... </textarea> <br>
+            <input id="comment" name="comment" rows="4" cols="50" required>Type review here... </input> <br>
 
             <!-- userID -->
             <input type ="hidden" id="userID" name="userID" value="<%=session.getAttribute("userId")%>"/>
             <input type="submit" value="Submit Review"/>
 
-
         </form>
-
 
         <!-- displaying range value -->
         <script>
@@ -66,8 +62,6 @@
                 output.innerHTML = this.value;
             }
         </script>
-
-
     </div>
 </main>
 
