@@ -174,11 +174,14 @@ public class DefaultController {
         UserAccount user = (UserAccount) em.createQuery("SELECT u FROM UserAccount u WHERE u.email=" + emailSearch).getSingleResult();
         List<WishListEntry> wishList = (List<WishListEntry>) em.createQuery("SELECT w FROM WishListEntry w WHERE w.userID=" + user.getUserID()).getResultList();
         List<Country> countries = (List<Country>) em.createQuery("SELECT c FROM Country c").getResultList();
-        Country addedCountry = (Country) em.createQuery("SELECT c FROM Country c WHERE c.countryCode3=" + countryCode).getSingleResult();
         WishListEntry newWishlist = new WishListEntry();
         newWishlist.setCountryCode3(countryCode);
-        newWishlist.setCountryName(addedCountry.getCountryName());
-        newWishlist.setUserID(user.getUserID());
+        newWishlist.setUserID(Integer.getInteger(user.getUserID()));
+        for(int i=0;i<countries.size();i++) {
+            if(countries.get(i).getCountryCode3()==countryCode) {
+                newWishlist.setCountryName(countries.get(i).getCountryName());
+            }
+        }
         wishList.add(newWishlist);
         em.getTransaction().begin();
         em.merge(newWishlist);
