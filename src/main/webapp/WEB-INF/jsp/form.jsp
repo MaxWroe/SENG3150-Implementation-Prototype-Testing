@@ -50,6 +50,9 @@
                <div class="register-row1">
                    <div class="register-gender" >
                     <input type="radio" id="male" name="gender" value="Male" checked/>
+                       <span class="symbol-input">
+                                <i class=" fa fa-male" aria-hidden="true"> </i>
+                       </span>
                     <label for="male">Male</label>
                    </div>
                </div>
@@ -57,6 +60,9 @@
                <div class="register-row1">
                    <div class="register-gender">
                         <input type="radio" id="female" name="gender" value="Female"/>
+                           <span class="symbol-input">
+                                <i class=" fa fa-female" aria-hidden="true"> </i>
+                            </span>
                         <label  for="female">Female</label><br>
                    </div>
                </div>

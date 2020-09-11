@@ -719,13 +719,7 @@ button
     content: "✖";
 }
 
-.user-details{
-    display: block;
-    background: #fff;
-    padding: 10px;
-    /*border-radius: 25px;*/
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
+
 
 .enquiries-container
 {
@@ -879,6 +873,7 @@ button
     flex-wrap: wrap;
     justify-content: space-between;
 
+
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
@@ -886,6 +881,7 @@ button
     width: 500px;
     position: relative;
     margin-top: 10px;
+
 }
 
 
@@ -927,4 +923,65 @@ button
     padding-top: 30px;
     padding-bottom: 20px;
 
+}
+
+/* accountDetails */
+.account-wrap{
+    width: 600px;
+    background: #1e809b;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-left: 450px;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+}
+
+.user-details{
+    width: 590px;
+    position: relative;
+    margin-top: 10px;
+    background: #fff;
+    border-radius: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.edit-account-button{
+    font-size: 15px;
+}
+
+.account-form{
+    width: 590px;
+    position: relative;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 10px;
+
+}
+
+.input-submit-invert{
+    font-size: 15px;
+    line-height: 1.5;
+    color: rgb(30, 128, 155);
+    text-transform: uppercase;
+
+    width: 100%;
+    height: 50px;
+    border-radius: 25px;
+
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 25px;
+
+    background: #fff;
 }
