@@ -1148,3 +1148,18 @@ button
     display: inline-block;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
+
+/* wish list */
+.wish-list{
+    width: 300px;
+    position: center;
+    margin-top: 10px;
+    background: #fff;
+    border-radius: 10px;
+    margin-left: 600px;
+    margin-right: 10px;
+    padding: 10px 10px 10px 10px;
+    display: block;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+}
