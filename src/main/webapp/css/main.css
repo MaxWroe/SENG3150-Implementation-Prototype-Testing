@@ -1120,3 +1120,31 @@ button
 .wrap-airports{
 
 }
+
+/* travel agent */
+.wrap-stats{
+    width: auto;
+    background: #1e809b;
+    border-radius: 10px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    position: relative;
+    white-space: nowrap;
+    justify-content: center;
+    padding-bottom: 10px;
+
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.manage-stats{
+    width: 300px;
+    position: relative;
+    margin-top: 10px;
+    background: #fff;
+    border-radius: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 10px 10px 10px 10px;
+    display: inline-block;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
