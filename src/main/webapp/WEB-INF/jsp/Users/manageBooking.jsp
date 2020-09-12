@@ -32,7 +32,7 @@
 
         <!-- user's booking/s-->
         <div class="wrap-bookings">
-        <div class="my-bookings">
+
 
             <!--check if no booking -->
             <c:if test="${empty booking}">
@@ -42,7 +42,7 @@
 
             <!-- parse all booked flights -->
             <c:forEach items="${booking}" var ="booking">
-
+            <div class="my-bookings">
 
 
                 <!-- flight details -->
@@ -667,9 +667,9 @@
             </div>
 
                 <br>
-
+            </div>
           </c:forEach>
-        </div>
+
         </div>
 </main>
 
