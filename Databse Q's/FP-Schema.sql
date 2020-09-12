@@ -234,10 +234,14 @@ CREATE TABLE `Enquiry`(
                           `EnquiryDate` date NOT NULL,
                           `Description` varchar(500) NOT NULL,
                           `EnquiryResponse` varchar(500),
+                          `BookingID` int,
+                          `Title` varchar(50) NOT NULL,
 
                           PRIMARY KEY (`EnquiryID`),
-                          FOREIGN KEY (`UserID`) REFERENCES `UserAccount` (`UserID`)
+                          FOREIGN KEY (`UserID`) REFERENCES `UserAccount` (`UserID`),
+                          FOREIGN KEY (`BookingID`) REFERENCES `Booking` (`BookingID`)
 )ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 
 
 CREATE TABLE `Reccomendation`(

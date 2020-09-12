@@ -1,4 +1,4 @@
-<%--
+<%@ page import="org.springframework.security.core.Authentication" %><%--
   JSP for sending ticket enquiries and updating them
   SENG3150 Group 3
   Date: 26/05/2020
@@ -6,6 +6,7 @@
 --%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -32,20 +33,20 @@
             <!-- user's enquiries-->
             <div class="my-enquiries">
                 <c:forEach items="${enquiries}" var="enquiries">
-                    <h4>Ticket title: </h4> <p><c:out value= "${enquiries.ticketTitle}"></c:out></p> <br>
-                    <h4>Ticket enquiry: </h4><p><c:out value= " ${enquiries.ticketEnquiry}"></c:out></p> <br>
-                    <h4>Email address: </h4> <p><c:out value= " ${enquiries.emailAddress}"></c:out></p> <br>
-                    <h4>Booking Number: </h4> <p><c:out value= " ${enquiries.bookingNumber}"></c:out></p> <br>
-                    <h4>Submission Date: </h4><p><c:out value= " ${enquiries.submissionDate}"></c:out></p> <br>
-                    <h4>Agent Answer: </h4><p><c:out value= "${enquiries.agentAnswer}"></c:out></p> <br>
+                    <h4>Ticket title: </h4> <p><c:out value= "${enquiries.title}"></c:out></p> <br>
+                    <h4>Ticket enquiry: </h4><p><c:out value= " ${enquiries.description}"></c:out></p> <br>
+                    <h4>Booking Number: </h4> <p><c:out value= " ${enquiries.bookingID}"></c:out></p> <br>
+                    <h4>Submission Date: </h4><p><c:out value= " ${enquiries.enquiryDate}"></c:out></p> <br>
+                    <h4>Agent Answer: </h4><p><c:out value= "${enquiries.enquiryResponse}"></c:out></p> <br>
 
                     <!--update ticket -->
                     <div class="update-enquiry">
                         <form id="updateForm" method="post" action="/customerSupport/update" >
                             <!-- ticket update -->
-                            <label for="update">Ticket update: </label><br>
-                            <textarea id="update" name="ticketEnquiry" rows="4" cols="50" required>... </textarea> <br>
-
+                            <label for="updateForm">Ticket update: </label><br>
+                            <label for="ticketEnquiry">Ticket Enquiry Update: </label><br>
+                            <textarea form ="updateForm" id="ticketEnquiryNew" name="ticketEnquiryNew" rows="4" cols="50" required></textarea> <br>
+                            <input type ="hidden" id="ticketNumber" name="ticketID" value="${enquiries.enquiryID}" />
                             <button id="updateEnquiry" type="submit"> Update </button>
                         </form>
                     </div>
@@ -53,51 +54,8 @@
             </div>
 
 
-            <!-- temp enquiries -->
-            <div class="my-enquiries">
-                    <h4>Ticket title: </h4> <p>Help!</p> <br>
-                    <h4>Ticket enquiry: </h4> <p>Cannot cancel a booking</p> <br>
-                    <h4>Email address: </h4> <p> Test@test.test</p> <br>
-                    <h4>Booking Number: </h4> <p> 1</p> <br>
-                    <h4>Submission Date: </h4>  <p>22/05/2020</p> <br>
-                    <h4>Agent Answer: </h4> <p>No clue</p> <br>
-
-                <div class="update-enquiry">
-                    <form id="updateForm1" method="post" action="/customerSupport/update" >
-                        <!-- ticket update -->
-                        <label for="update">Ticket update: </label><br>
-                        <textarea id="update1" name="ticketEnquiry" rows="4" cols="50" required>... </textarea> <br>
-
-                        <button id="updateEnquiry1" type="submit"> Update </button>
-                    </form>
-                </div>
-
-            </div>
-
-            <div class="my-enquiries">
-                <h4>Ticket title: </h4> <p>Help!</p> <br>
-                <h4>Ticket enquiry: </h4> <p>Cannot cancel a booking</p> <br>
-                <h4>Email address: </h4> <p> Test@test.test</p> <br>
-                <h4>Booking Number: </h4> <p> 1</p> <br>
-                <h4>Submission Date: </h4>  <p>22/05/2020</p> <br>
-                <h4>Agent Answer: </h4> <p>No clue</p> <br>
-
-                <div class="update-enquiry">
-                    <form id="updateForm2" method="post" action="/customerSupport/update" >
-                        <!-- ticket update -->
-                        <label for="update">Ticket update: </label><br>
-                        <textarea id="update2" name="ticketEnquiry" rows="4" cols="50" required>... </textarea> <br>
-
-                        <button id="updateEnquiry2" type="submit"> Update </button>
-                    </form>
-                </div>
-
-            </div>
-
             <!-- submit an enquiry -->
-            <button id="submitEnquiry" type="submit" onclick="displayForm('enquiryForm')"> Submit an enquiry </button>
-
-            <form id="enquiryForm" method="post" action="/customerSupport/submit" style="display: none">
+            <form id="enquiryForm" method="post" action="/customerSupport/submit" >
 
                 <!--ticket title -->
                 <label for="ticketTitle">Ticket Title: </label>
@@ -107,16 +65,12 @@
                 <label for="ticketEnquiry">Ticket Enquiry: </label><br>
                 <textarea form ="enquiryForm" id="ticketEnquiry" name="ticketEnquiry" rows="4" cols="50" required>Type enquiry here... </textarea> <br>
 
-                <!-- email address -->
-                <label for="email">Email Address: </label>
-                <input type="email" id="email" name="email" required /> <br>
-
                 <!--booking number -->
                 <label for="bookingNumber">Booking Number: </label>
                 <input type="number" id="bookingNumber" name="bookingNumber" required /> <br>
 
                 <!-- userID -->
-                <input type ="hidden" id="userID" name="userID" value="<%=session.getAttribute("userId")%>"/>
+                <input type ="hidden" id="email" name="email" value="<security:authentication property="principal.username" />"/>
                 <input type="submit" value="Submit Enquiry"/>
 
             </form>

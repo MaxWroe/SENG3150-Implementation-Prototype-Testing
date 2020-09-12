@@ -15,6 +15,9 @@ import java.util.LinkedList;
 import java.util.List;
 import group3.seng3150.entities.Country;
 import group3.seng3150.entities.Review;
+import group3.seng3150.entities.Enquiry;
+import group3.seng3150.entities.Booking;
+
 
 @Controller
 public class DefaultController {
@@ -48,8 +51,69 @@ public class DefaultController {
 
 
     @GetMapping("/customerSupport")
-    public ModelAndView displayCustomerSupport() {
+    public ModelAndView displayCustomerSupport(Authentication auth) {
         ModelAndView view = new ModelAndView("Users/customerSupport");
+        String emailSearch = "'" + auth.getName() + "'";
+        //Retrieve the user's information
+        UserAccount user = (UserAccount) em.createQuery("SELECT u FROM UserAccount u WHERE u.email=" + emailSearch).getSingleResult();
+        List<Enquiry> enquiries = (List<Enquiry>) em.createQuery("SELECT e FROM Enquiry e").getResultList();
+
+        view.addObject("enquiries", enquiries);
+        return view;
+    }
+
+    @PostMapping("/customerSupport/submit")
+    public ModelAndView storeCustomerSupport(Authentication auth,
+                                             @RequestParam(name="ticketTitle", defaultValue = "")String ticketTitle,
+                                             @RequestParam(name="ticketEnquiry", defaultValue = "")String ticketEnquiry,
+                                             @RequestParam(name="bookingNumber", defaultValue = "") String bookingNumber,
+                                             @RequestParam(name="email", defaultValue = "")String email) {
+        ModelAndView view = new ModelAndView("Users/customerSupport");
+        String emailSearch = "'" + auth.getName() + "'";
+        //Retrieve the user's information
+        UserAccount user = (UserAccount) em.createQuery("SELECT u FROM UserAccount u WHERE u.email=" + emailSearch).getSingleResult();
+        List<Enquiry> enquiries = (List<Enquiry>) em.createQuery("SELECT e FROM Enquiry e").getResultList();
+        List<Booking> booking = (List<Booking>) em.createQuery("SELECT b FROM Booking b WHERE userID=" + user.getUserID()).getResultList();
+        Enquiry newEnquiry = new Enquiry();
+        newEnquiry.setDescription(ticketEnquiry);
+        java.sql.Date date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
+        newEnquiry.setEnquiryDate(date);
+        newEnquiry.setUserID(user.getUserID());
+        newEnquiry.setTitle(ticketTitle);
+        boolean bookingNumExists =false;
+        if(booking.size()>0){
+            for(int i=0;i<booking.size();i++){
+                if(booking.get(i).getBookingID().equalsIgnoreCase(bookingNumber)){
+                    bookingNumExists = true;
+                }
+            }
+            if(bookingNumExists) {
+                newEnquiry.setBookingID(String.valueOf(bookingNumber));
+            }
+        }
+        enquiries.add(newEnquiry);
+        em.getTransaction().begin();
+        em.merge(newEnquiry);
+        em.getTransaction().commit();
+        view.addObject("enquiries", enquiries);
+        return view;
+    }
+
+    @PostMapping("/customerSupport/update")
+    public ModelAndView updateCustomerSupport(Authentication auth,
+                                             @RequestParam(name="ticketEnquiryNew", defaultValue = "")String ticketEnquiryNew,
+                                             @RequestParam(name="ticketID", defaultValue = "")String ticketID) {
+        ModelAndView view = new ModelAndView("Users/customerSupport");
+        List<Enquiry> enquiries = (List<Enquiry>) em.createQuery("SELECT e FROM Enquiry e").getResultList();
+        for(int i=0;i<enquiries.size();i++) {
+            if (enquiries.get(i).getEnquiryID().equalsIgnoreCase(ticketID)) {
+                enquiries.get(i).setDescription(ticketEnquiryNew);
+                em.getTransaction().begin();
+                em.merge(enquiries.get(i));
+                em.getTransaction().commit();
+            }
+        }
+        view.addObject("enquiries", enquiries);
         return view;
     }
 
@@ -133,63 +197,6 @@ public class DefaultController {
         return view;
     }
 
-/*
-    //airline test
-    @GetMapping("/manageAirline")
-    public ModelAndView displayAirlines() {
-        ModelAndView view = new ModelAndView("Admin/manageAirline");
-       // String UserID = (String)session.getAttribute("userId");
-        String message = new String();
-        try{
-            List<Airline> airline = em.createQuery("SELECT airlineName FROM Airline").getResultList();
-            view.addObject("airline", airline);
-
-            //checks if booking is empty
-            if(airline.isEmpty()){
-                message = "No bookings found for this user.";
-                view.addObject("message", message);
-            }
-        }
-        catch(Exception e)
-        {
-            //doesn't seem to be going here
-            message = "No bookings found for this user.";
-            view.addObject("message", message);
-            e.printStackTrace();
-        }
-
-        return view;
-    }
-    */
-
-/*
-    //airport test
-    @GetMapping("/manageAirport")
-    public ModelAndView displayAirport() {
-        ModelAndView view = new ModelAndView("Admin/manageAirport");
-        // String UserID = (String)session.getAttribute("userId");
-        String message = new String();
-        try{
-            List<Airport> airport = em.createQuery("SELECT destinationCode FROM Airport").getResultList();
-            view.addObject("airport", airport);
-
-            //checks if booking is empty
-            if(airport.isEmpty()){
-                message = "No bookings found for this user.";
-                view.addObject("message", message);
-            }
-        }
-        catch(Exception e)
-        {
-            //doesn't seem to be going here
-            message = "No bookings found for this user.";
-            view.addObject("message", message);
-            e.printStackTrace();
-        }
-
-        return view;
-    }
-*/
     //wishlist Get
     @GetMapping("/wishList")
     public ModelAndView displayWishList(Authentication auth) {
