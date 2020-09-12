@@ -214,18 +214,28 @@ public class DefaultController {
         UserAccount user = (UserAccount) em.createQuery("SELECT u FROM UserAccount u WHERE u.email=" + emailSearch).getSingleResult();
         List<WishListEntry> wishList = (List<WishListEntry>) em.createQuery("SELECT w FROM WishListEntry w WHERE w.userID=" + user.getUserID()).getResultList();
         List<Country> countries = (List<Country>) em.createQuery("SELECT c FROM Country c").getResultList();
-        WishListEntry newWishlist = new WishListEntry();
-        newWishlist.setCountryCode3(countryCode);
-        newWishlist.setUserID(Integer.valueOf(user.getUserID()));
-        for(int i=0;i<countries.size();i++) {
-            if(countries.get(i).getCountryCode3()==countryCode) {
-                newWishlist.setCountryName(countries.get(i).getCountryName());
+
+        boolean alreadyExists = false;
+        for(int i=0;i<wishList.size();i++){
+            if(wishList.get(i).getCountryCode3().equalsIgnoreCase(countryCode)){
+                alreadyExists=true;
             }
         }
-        wishList.add(newWishlist);
-        em.getTransaction().begin();
-        em.merge(newWishlist);
-        em.getTransaction().commit();
+        if(!alreadyExists){
+            WishListEntry newWishlist = new WishListEntry();
+            newWishlist.setCountryCode3(countryCode);
+            newWishlist.setUserID(Integer.valueOf(user.getUserID()));
+            for(int i=0;i<countries.size();i++) {
+                if(countries.get(i).getCountryCode3().equalsIgnoreCase(countryCode)) {
+                    newWishlist.setCountryName(countries.get(i).getCountryName());
+                }
+            }
+            wishList.add(newWishlist);
+            em.getTransaction().begin();
+            em.merge(newWishlist);
+            em.getTransaction().commit();
+        }
+
         view.addObject("countries", countries);
         view.addObject("wishList", wishList);
         return view;
