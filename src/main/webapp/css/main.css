@@ -765,6 +765,7 @@ button
 .wrap-login{
 
     width: 400px;
+    position: center;
     background: #fff;
     border-radius: 10px;
     overflow: hidden;
@@ -778,7 +779,7 @@ button
     justify-content: space-between;
     padding: 10px 10px 10px 50px;
 
-    margin-left: 550px;
+    margin: auto;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
@@ -867,7 +868,7 @@ button
     background: #fff;
     border-radius: 10px;
     overflow: hidden;
-    margin-left: 450px;
+    margin: auto;
     padding: 10px 10px 10px 50px;
     display: flex;
     flex-wrap: wrap;
@@ -1155,11 +1156,9 @@ button
 .wish-list{
     width: 300px;
     position: center;
-    margin-top: 10px;
     background: #fff;
     border-radius: 10px;
-    margin-left: 600px;
-    margin-right: 10px;
+    margin: auto;
     padding: 10px 10px 10px 10px;
     display: block;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -1169,14 +1168,14 @@ button
 /*review*/
 
 .wrap-review{
-    width: auto;
+    width: 320px;
     height: 100%;
     background: #1e809b;
     border-radius: 10px;
-    margin-left: 575px;
+    margin: auto;
     overflow-y: auto;
     overflow-x: hidden;
-    position: absolute;
+    position: center;
     white-space: nowrap;
     justify-content: center;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);

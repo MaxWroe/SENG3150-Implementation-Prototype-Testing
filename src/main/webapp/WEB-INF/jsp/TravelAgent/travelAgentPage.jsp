@@ -22,7 +22,6 @@
 <main class="main-content">
     <div class="card-body">
     <h1>Travel Agent</h1>
-    <h4>Holiday Packages</h4>
 
         <div class="hot-locations">
         <h4>Hot Locations</h4>

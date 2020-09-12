@@ -25,26 +25,51 @@
     <div class="card-body">
         <h1>Submit a Review</h1>
 
+
         <!-- review form -->
         <form id="submitReviewForm" method="post" action="/submitReview">
 
             <!-- name -->
-            <label for="name">Name: </label>
-            <input id="name" name ="name" required/> <br>
+         <div class="register-row">
+            <input class="input" placeholder="Name" id="name" name ="name" required/> <br>
+         </div>
 
             <!-- rating -->
-            <label for="rating">Rating: </label>
-            <input class="slider" id="rating" name ="rating" type="range" min="1" max="5" value="3" required/>
-            <span id="ratingValue"></span>
-            <br>
+            <div class="register-row">
+                <label for="rating">Rating: </label>
+                <input class="slider" id="rating" name ="rating" type="range" min="1" max="5" value="3" required/>
+                <span id="ratingValue"></span>
+                <br>
+            </div>
 
             <!-- review type -->
-            <label for="reviewType">Review Type: </label>
-            <input id="reviewType" name ="reviewType" required/>Airport, website or airline?</input> <br>
+            <div class="register-group">
+            <div class="register-row1">
+                <div class="register-gender">
+                    <input type="radio" id="Website" name="reviewType" value="Website" style="margin-left: 20px; margin-top: 10px" checked/>
+                    <label for="Website">Website</label>
+                </div>
+            </div>
+            <div class="register-row1">
+                <div class="register-gender">
+                    <input type="radio" id="Flight" name="reviewType" value="Flight" style="margin-left: 20px; margin-top: 10px"/>
+                    <label for="Flight">Flight</label>
+                </div>
+            </div>
+            <div class="register-row1">
+                <div class="register-gender">
+                    <input type="radio" id="Airport" name="reviewType" value="Airport" style="margin-left: 20px; margin-top: 10px"/>
+                    <label for="Airport">Airport</label>
+                </div>
+            </div>
+            </div>
 
+            <br>
             <!-- comment  -->
-            <label for="comment">Comment: </label><br>
-            <input id="comment" name="comment" rows="4" cols="50" required>Type review here... </input> <br>
+            <div class="register-row">
+                 <textarea class="input" placeholder="Comment"id="comment" name="comment" rows="4" cols="50" required></textarea> <br>
+            </div>
+
 
             <!-- userID -->
             <input type ="hidden" id="userID" name="userID" value="<%=session.getAttribute("userId")%>"/>
