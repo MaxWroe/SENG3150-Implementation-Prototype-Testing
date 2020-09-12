@@ -29,7 +29,7 @@ public class Airline {
 
     //0 for not sponsored, 1 for sponsored
     @Column(name = "Sponsored", table = "Airlines")
-    private int sponsored;
+    private Integer sponsored;
 
     //Constructor
     public Airline() {
