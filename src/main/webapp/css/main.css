@@ -988,15 +988,22 @@ button
 
 /* manage bookings */
 .wrap-bookings{
-    width: 1400px;
+    width: 100%;
+    justify-content: center;
+    overflow-x: scroll;
+    white-space: nowrap;
+}
+
+.my-bookings{
+    height: 100%;
     background: #1e809b;
     border-radius: 10px;
-    margin-left: 50px;
-
-
-    display: flex;
-    flex-wrap: wrap;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    position: relative;
+    white-space: nowrap;
     justify-content: center;
+    display: inline-block;
 
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
@@ -1010,7 +1017,7 @@ button
     margin-left: 10px;
     margin-right: 10px;
     padding: 10px 10px 10px 10px;
-    display: inline-block;
+    display: block;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
 }
@@ -1060,4 +1067,99 @@ button
 .booking-input-center{
     display: block;
     color: black;
+}
+
+/*manage airlines*/
+
+.wrap-airlines{
+    width: auto;
+    height: 100%;
+    background: #1e809b;
+    border-radius: 10px;
+    margin-left: 350px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    position: absolute;
+    white-space: nowrap;
+    justify-content: center;
+
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+}
+
+.wrap-airlines2{
+    width: auto;
+    height: 100%;
+    background: #1e809b;
+    border-radius: 10px;
+    margin-left: 800px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    position: absolute;
+    white-space: nowrap;
+    justify-content: center;
+
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+}
+
+.manage-airlines{
+    width: 300px;
+    position: relative;
+    margin-top: 10px;
+    background: #fff;
+    border-radius: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 10px 10px 10px 10px;
+    display: block;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+/* manage airports */
+.wrap-airports{
+
+}
+
+/* travel agent */
+.wrap-stats{
+    width: auto;
+    background: #1e809b;
+    border-radius: 10px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    position: relative;
+    white-space: nowrap;
+    justify-content: center;
+    padding-bottom: 10px;
+
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.manage-stats{
+    width: 300px;
+    position: relative;
+    margin-top: 10px;
+    background: #fff;
+    border-radius: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 10px 10px 10px 10px;
+    display: inline-block;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+/* wish list */
+.wish-list{
+    width: 300px;
+    position: center;
+    margin-top: 10px;
+    background: #fff;
+    border-radius: 10px;
+    margin-left: 600px;
+    margin-right: 10px;
+    padding: 10px 10px 10px 10px;
+    display: block;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
 }

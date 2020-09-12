@@ -18,69 +18,89 @@
 <jsp:include page="../header.jsp"/>
 
     <main class="main-content">
-        <div class="card-body">
             <h1>Airline Management</h1>
             <h4>List of Airlines</h4>
 
-            <%-- test --%>
-            <div class="manage-airlines">
-            <c:forEach items="${airline}" var ="airline">
-                <p><c:out value= "${airline}"></c:out></p>
-
-
-                <div class="unsponsor-airline-test">
-                    <form id="unsponsorAirline2" method="post" action="${pageContext.request.contextPath}/manageAirline/unsponsor">
-                        <input type ="hidden" id="airlineName2" name="airlineName2" value="${airlines.airlineName}"/>
-                        <input type ="hidden" id="airlineSponsored2" name="airlineSponsored2" value="${airlines.sponsored}"/>
-                        <button type="submit" value="Unsponsor"> Unsponsor </button>
-
-                    </form>
-                </div>
-
-
-            </c:forEach>
-            </div>
-
             <%-- preferred parsing all airlines --%>
-            <div class="manage-airlines">
-            <c:forEach items="${airlines}" var ="airlines">
-                <p><c:out value= "${airlines.airlineName}"></c:out></p>
-                <p><c:out value= "${airlines.countryCode3}"></c:out></p>
-                <p><c:out value= "${airlines.sponsored}"></c:out></p>
+             <div class="wrap-airlines">
 
-                <%-- if sponsored --%>
-                <c:choose>
-                    <c:when test="${airlines.sponsored == 1}">
-                        <div class="unsponsor-airline">
-                            <form id="unsponsorAirline" method="post" action="${pageContext.request.contextPath}/manageAirline/unsponsor">
-                                <input type ="hidden" id="airlineName1" name="airlineName1" value="${airlines.airlineName}"/>
-                                <input type ="hidden" id="airlineSponsored1" name="airlineSponsored1" value="${airlines.sponsored}"/>
-                                <button id="unsponsor" type="submit" value="Unsponsor">Unsponsor</button>
+                <c:forEach items="${airlines}" var ="airlines">
 
-                            </form>
-                        </div>
-                        <br />
-                    </c:when>
 
-                    <%-- if not sponsored --%>
-                    <c:otherwise>
-                        <div class="sponsor-airline">
-                            <form id="sponsorAirline" method="post" action="${pageContext.request.contextPath}/manageAirline/sponsor">
-                                <input type ="hidden" id="airlineName" name="airlineName" value="${airlines.airlineName}"/>
-                                <input type ="hidden" id="airlineSponsored" name="airlineSponsored" value="${airlines.sponsored}"/>
-                                <button id="sponsor" type="submit" value="Sponsor">Sponsor</button>
 
-                            </form>
-                        </div>
 
-                        <br />
-                    </c:otherwise>
-                </c:choose>
-            </c:forEach>
+                    <%-- if sponsored --%>
+
+
+                        <c:if test="${airlines.sponsored == 1}">
+
+                            <div class="manage-airlines">
+                            <div class="register-row">
+                                <div class="booking-info-left" style="font-weight: bold"><c:out value= "${airlines.airlineName}"></c:out></div> <br>
+                                <div class="booking-input-left">Airline</div>
+                            </div>
+                            <div class="register-row">
+                                <div class="booking-info-right" style="font-weight: bold"><c:out value= "${airlines.countryCode3}"></c:out></div> <br>
+                                <div class="booking-input-right">Country</div>
+                            </div>
+
+                            <hr>
+                            <br>
+                            <div class="register-row">
+                                <div class="booking-input-center" style="font-style: italic"><c:out value= "Sponsored"></c:out></div>
+                            </div>
+                            <br>
+                            <div class="unsponsor-airline">
+                                <form id="unsponsorAirline" method="post" action="${pageContext.request.contextPath}/manageAirline/unsponsor">
+                                    <input type ="hidden" id="airlineName1" name="airlineName1" value="${airlines.airlineName}"/>
+                                    <input type ="hidden" id="airlineSponsored1" name="airlineSponsored1" value="${airlines.sponsored}"/>
+                                    <button id="unsponsor" type="submit" value="Unsponsor">Unsponsor</button>
+
+                                </form>
+                            </div>
+                            </div>
+
+                        </c:if>
+
+                </c:forEach>
+             </div>
+
+            <div class="wrap-airlines2">
+
+                    <c:forEach items="${airlines}" var ="airlines">
+                        <c:if test="${airlines.sponsored == 0}">
+                            <%-- if not sponsored --%>
+
+                                <div class="sponsor-airline">
+                                    <div class="manage-airlines">
+                                        <div class="register-row">
+                                            <div class="booking-info-left" style="font-weight: bold"><c:out value= "${airlines.airlineName}"></c:out></div> <br>
+                                            <div class="booking-input-left">Airline</div>
+                                        </div>
+                                        <div class="register-row">
+                                            <div class="booking-info-right" style="font-weight: bold"><c:out value= "${airlines.countryCode3}"></c:out></div> <br>
+                                            <div class="booking-input-right">Country</div>
+                                        </div>
+                                        <hr>
+                                        <br>
+                                        <div class="register-row">
+                                            <div class="booking-input-center" style="font-style: italic"> <c:out value= "Unsponsored"></c:out></div>
+                                        </div>
+                                        <br>
+                                        <form id="sponsorAirline" method="post" action="${pageContext.request.contextPath}/manageAirline/sponsor">
+                                            <input type ="hidden" id="airlineName" name="airlineName" value="${airlines.airlineName}"/>
+                                            <input type ="hidden" id="airlineSponsored" name="airlineSponsored" value="${airlines.sponsored}"/>
+                                            <button id="sponsor" type="submit" value="Sponsor">Sponsor</button>
+
+                                        </form>
+                                    </div>
+                                </div>
+
+                        </c:if>
+                    </c:forEach>
             </div>
 
 
-        </div>
     </main>
 </body>
 </html>

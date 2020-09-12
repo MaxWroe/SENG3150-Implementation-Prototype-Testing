@@ -26,48 +26,63 @@
         <h4>List of Airports</h4>
 
 
-        <%-- test --%>
-        <div class="manage-airports-test">
-            <c:forEach items="${airport}" var ="airport">
 
-                <p><c:out value= "${airport}"></c:out></p>
-                <button type="submit" onclick="displayForm('restrictAirlineTest')"> Restrict </button>
+
+    <%-- preferred parsing --%>
+
+        <div class="manage-airports">
+
+            <c:forEach items="${airports}" var ="airports">
+                <c:if test="${not empty airports.shutdownStartDate}">
+                    <p><c:out value="${airports.destinationCode}"> </c:out></p>
+                    <p><c:out value="${airports.country}"> </c:out></p>
+                    <p><c:out value="${airports.shutdownStartDate}"> </c:out></p>
+                    <p><c:out value="${airports.shutdownEndDate}"> </c:out></p>
+                </c:if>
+
 
             </c:forEach>
 
-            <%-- preferred parsing --%>
-                <div class="manage-airports">
-                    <c:forEach items="${airports}" var ="airports">
 
 
-                        <p><c:out value= "${airports.destinationCode}"></c:out></p>
-                        <p><c:out value= "${airports.country}"></c:out></p>
-                        <p><c:out value= "${airports.shutdownStartDate}"></c:out></p>
-                        <p><c:out value= "${airports.shutdownEndDate}"></c:out></p>
 
 
-                        <div class="submit-airport">
-                            <button type="submit" onclick="displayForm('restrictAirlineTest')"> Restrict </button>
-                        </div>
 
 
-                    </c:forEach>
+                <div class="submit-airport">
+                    <button type="submit" onclick="displayForm('restrictAirline')"> Restrict </button>
                 </div>
 
-            <div class="restrict-airline-test">
-                <form id="restrictAirlineTest" method="post" action="${pageContext.request.contextPath}/manageAirport/restrict" style="display:none;">
-                    <input type ="hidden" id="airportCode" name="airlineName2" value="${airports.destinationCode}"/>
+                <div class="restrict-airline">
+                    <form id="restrictAirline" method="post" action="/manageAirport/restrict" style="display:none;">
+                        <label for="airportCode">City to Restrict</label>
+                        <input list="listOfAirports" id="airportCode" name="airlineName2" required>
 
-                    <label for="departureDate">Restrict Start Date</label>
-                    <jsp:useBean id="now" class="java.util.Date"/>
-                    <input type="date" id="departureDate" name="shutdownStartDate" min="<fmt:formatDate pattern="yyyy-MM-dd" value="${now}" />" onchange="restrictDepart()" required>
+                        <label for="departureDate">Restrict Start Date</label>
+                        <jsp:useBean id="now" class="java.util.Date"/>
+                        <input type="date" id="departureDate" name="shutdownStartDate" min="<fmt:formatDate pattern="yyyy-MM-dd" value="${now}" />"  required>
 
-                    <label for="returnDate">Restrict End Date</label>
-                    <input type="date" id="returnDate" name="shutdownEndDate" min="<fmt:formatDate pattern="yyyy-MM-dd" value="${now}" />" disabled>
+                        <label for="returnDate">Restrict End Date</label>
+                        <input type="date" id="returnDate" name="shutdownEndDate" min="<fmt:formatDate pattern="yyyy-MM-dd" value="${now}" />" required>
 
-                    <button type="submit">Submit </button>
-                </form>
-            </div>
+                        <button type="submit">Submit </button>
+                    </form>
+
+                    <datalist id ="listOfAirports">
+                        <c:forEach items="${airports}" var ="airports">
+                            <c:if test="${empty airports.shutdownStartDate}">
+                                <option value="${airports.destinationCode}" > ${airports.country}</option>
+                            </c:if>
+
+                        </c:forEach>
+                    </datalist>
+                </div>
+
+
+        </div>
+
+
+
 
     </div>
 </main>
