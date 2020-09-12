@@ -13,8 +13,10 @@
     <title>Customer Support</title>
 
     <link rel="stylesheet" type="text/css" href="/css/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <%--<script src="/js/dynamicLink.js"></script> --%>
+
+<%--<script src="/js/dynamicLink.js"></script> --%>
 </head>
 <body>
 
@@ -25,20 +27,43 @@
 <jsp:include page="../header.jsp"/>
 
 <main class="main-content">
-    <div class="card-body">
+
         <h1>Customer Support</h1>
         <h4>My Enquiries</h4>
 
-        <div class="enquiries-container">
+        <div class="wrap-stats">
             <!-- user's enquiries-->
-            <div class="my-enquiries">
-                <c:forEach items="${enquiries}" var="enquiries">
-                    <h4>Ticket title: </h4> <p><c:out value= "${enquiries.title}"></c:out></p> <br>
-                    <h4>Ticket enquiry: </h4><p><c:out value= " ${enquiries.description}"></c:out></p> <br>
-                    <h4>Booking Number: </h4> <p><c:out value= " ${enquiries.bookingID}"></c:out></p> <br>
-                    <h4>Submission Date: </h4><p><c:out value= " ${enquiries.enquiryDate}"></c:out></p> <br>
-                    <h4>Agent Answer: </h4><p><c:out value= "${enquiries.enquiryResponse}"></c:out></p> <br>
 
+                <c:forEach items="${enquiries}" var="enquiries">
+                    <div class="manage-stats">
+                        <div class="register-row">
+                            <div class="booking-info-left" style="font-weight: bold"><c:out value= "${enquiries.title}"></c:out></div><br>
+                            <div class="booking-input-left">Title</div>
+
+                        </div>
+
+                        <div class="register-row">
+                            <div class="booking-input-right">Submitted Date</div><br>
+                            <div class="booking-info-right"><c:out value= " ${enquiries.enquiryDate}"></c:out></div>
+                        </div>
+
+                        <br>
+                        <hr>
+                        <div class="register-row">
+                            <div class="booking-input-center">Enquiry</div><br>
+                            <div class="booking-input-center"><c:out value= " ${enquiries.description}"></c:out></div>
+                        </div>
+
+                        <br>
+                        <hr>
+                        <div class="register-row">
+                            <div class="booking-input-center">Response</div><br>
+                            <div class="booking-input-center"><c:out value= "${enquiries.enquiryResponse}"></c:out></div>
+                        </div>
+
+
+                     </div>
+                    <%--
                     <!--update ticket -->
                     <div class="update-enquiry">
                         <form id="updateForm" method="post" action="/customerSupport/update" >
@@ -49,34 +74,55 @@
                             <input type ="hidden" id="ticketNumber" name="ticketID" value="${enquiries.enquiryID}" />
                             <button id="updateEnquiry" type="submit"> Update </button>
                         </form>
-                    </div>
+                    </div> --%>
                 </c:forEach>
-            </div>
 
+        </div>
+
+    <div class="wrap-enquiry">
 
             <!-- submit an enquiry -->
             <form id="enquiryForm" method="post" action="/customerSupport/submit" >
 
-                <!--ticket title -->
-                <label for="ticketTitle">Ticket Title: </label>
-                <input id="ticketTitle" name="ticketTitle" required /> <br>
+
+                    <!--ticket title -->
+                <div class="register-row">
+                    <input class="input" placeholder="Subject" id="ticketTitle" name="ticketTitle" required /> <br>
+                    <span class="symbol-input">
+                        <i class="fa fa-ticket" aria-hidden="true"> </i>
+                    </span>
+                </div>
 
                 <!-- ticket enquiry -->
-                <label for="ticketEnquiry">Ticket Enquiry: </label><br>
-                <textarea form ="enquiryForm" id="ticketEnquiry" name="ticketEnquiry" rows="4" cols="50" required>Type enquiry here... </textarea> <br>
 
+                <div class="register-row">
+                    <textarea class="input" placeholder="Enquiry" form ="enquiryForm" id="ticketEnquiry" name="ticketEnquiry" rows="4" cols="50" required></textarea> <br>
+                    <span class="symbol-input">
+                        <i class="fa fa-comments-o" aria-hidden="true"> </i>
+                    </span>
+                </div>
                 <!--booking number -->
-                <label for="bookingNumber">Booking Number: </label>
-                <input type="number" id="bookingNumber" name="bookingNumber" required /> <br>
+
+                <input type="hidden" id="bookingNumber" name="bookingNumber" value="1" />
 
                 <!-- userID -->
                 <input type ="hidden" id="email" name="email" value="<security:authentication property="principal.username" />"/>
-                <input type="submit" value="Submit Enquiry"/>
+
+                <div class="register-group">
+                    <div class="register-row1">
+                        <input class="input-submit" type="submit" value="Enquire"/>
+                    </div>
+                    <div class="register-row1">
+                        <input class="input-submit" type="reset" value="Clear"/>
+                    </div>
+                </div>
+
 
             </form>
-
-        </div>
     </div>
+
+
+
 
 </main>
 

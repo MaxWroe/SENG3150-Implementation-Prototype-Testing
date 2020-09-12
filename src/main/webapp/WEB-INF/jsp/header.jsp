@@ -98,6 +98,7 @@
 
                     <div class="dropdown-content">
                         <a href="/manageUsers">User Management</a>
+                        <a href="/addUsers">Add Users</a>
                         <a href="/logout">Logout</a>
                     </div>
 
