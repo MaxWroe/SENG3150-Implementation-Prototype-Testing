@@ -241,13 +241,11 @@ public class FlightPlan implements Comparable<FlightPlan>, Cloneable{
     }
 
     public boolean containsSponsored(){
-        System.out.println("hr");
         for(int i=0; i<flightSponsored.size(); i++){
             if(flightSponsored.get(i).booleanValue()){
                 return true;
             }
         }
-        System.out.println("end");
         return false;
     }
 

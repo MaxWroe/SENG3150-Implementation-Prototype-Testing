@@ -26,15 +26,28 @@
 
         <div class="hot-locations">
         <h4>Hot Locations</h4>
+            <div class="wrap-stats">
             <c:forEach items="${countryStat}" var ="countryStat">
                 <c:if test="${empty countryStat}">
                     <h4>No Hot Locations</h4>
                 </c:if>
 
-                <c:out value= "${countryStat.countryCode3}"></c:out>
-                <c:out value= "${countryStat.popularity}"></c:out></br>
+
+                <div class="manage-stats">
+                <div class="register-row">
+                    <div class="booking-info-right" style="font-weight: bold"><c:out value= "${countryStat.countryCode3}"></c:out></div><br>
+                    <div class="booking-input-right">Country</div>
+                    <hr>
+
+                </div>
+                    <div class="register-row">
+                        <div class="booking-info-left" style="font-weight: bold"><c:out value= "${countryStat.popularity}"></c:out></div><br>
+                        <div class="booking-input-left">Popularity</div>
+                    </div>
+                </div>
 
             </c:forEach>
+            </div>
         </div>
 
         <h4>Create Holiday Packages </h4>
