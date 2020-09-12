@@ -86,7 +86,7 @@ public class FlightPubStaffController {
         List<Airport> airports = (List<Airport>) em.createQuery("SELECT a FROM Airport a").getResultList();
 
         for(int i=0;i<airports.size();i++) {
-            if(airports.get(i).getDestinationCode()==airlineName2){
+            if(airports.get(i).getDestinationCode().equalsIgnoreCase(airlineName2)){
                 airports.get(i).setShutdownStartDate(shutdownStartDate);
                 airports.get(i).setShutdownEndDate(shutdownEndDate);
             }
