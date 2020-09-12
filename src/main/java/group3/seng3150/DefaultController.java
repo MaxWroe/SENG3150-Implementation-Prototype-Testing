@@ -259,25 +259,13 @@ public class DefaultController {
         List<WishListEntry> wishList = (List<WishListEntry>) em.createQuery("SELECT w FROM WishListEntry w WHERE w.userID=" + user.getUserID()).getResultList();
         List<Country> countries = (List<Country>) em.createQuery("SELECT c FROM Country c").getResultList();
 
-        boolean alreadyExists = false;
         for(int i=0;i<wishList.size();i++){
             if(wishList.get(i).getCountryCode3().equalsIgnoreCase(countryCode)){
-                alreadyExists=true;
+                em.getTransaction().begin();
+                em.remove(wishList.get(i));
+                em.getTransaction().commit();
+                wishList.remove(i);
             }
-        }
-        if(!alreadyExists){
-            WishListEntry newWishlist = new WishListEntry();
-            newWishlist.setCountryCode3(countryCode);
-            newWishlist.setUserID(Integer.valueOf(user.getUserID()));
-            for(int i=0;i<countries.size();i++) {
-                if(countries.get(i).getCountryCode3().equalsIgnoreCase(countryCode)) {
-                    newWishlist.setCountryName(countries.get(i).getCountryName());
-                }
-            }
-            wishList.add(newWishlist);
-            em.getTransaction().begin();
-            em.merge(newWishlist);
-            em.getTransaction().commit();
         }
 
         view.addObject("countries", countries);
