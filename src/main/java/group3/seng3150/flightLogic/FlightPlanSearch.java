@@ -13,19 +13,9 @@ import java.util.*;
 
 /*
 Author: Chris Mather
-Description: this class processes a list of flights and returns information about it
- */
-
-//current methods
-/*
-public List<FlightPlan> createFlightPlans(List<Flight> flights, String departureLocation, String destination, String startingTimeString, String endingTimeString, List<Availability> parsedAvailabilities)
-private List<FlightPlan> SetFlightPlansAvailabilities(List<FlightPlan> flightPlans, List<Availability> availabilities)
-
-private List<Flight> filterByAvailabilities(List<Flight> flights, List<Availability> availabilities)
-private DijkstraGraph buildGraph(List<Flight> flights)
-private List<FlightPlan> removeDuplicateFlightPlans(List<FlightPlan> parsedFlightPlans)
-private void setAirports(List<String> parsedAirports)
- */
+Description: this class takes in criteria for a flight search and returns a list of flight plans that match the sent in criteria
+this class uses DijkstraAlgorithmFPS, YensAlgorithmFPS, FlightPlanSearchFunctions and FlightPlanSearchSQL to retrieve and process flight plans
+*/
 
 public class FlightPlanSearch {
     private ArrayList<Airport> airports;
@@ -33,14 +23,6 @@ public class FlightPlanSearch {
     private DijkstraAlgorithmFPS dijkstraSearch;
     private YensAlgorithmFPS yensSearch;
     private FlightPlanSearchSQL sqlSearch;
-
-//    public FlightPlanSearch(){
-//        airports = new ArrayList<>();
-//        searchFunctions = new FlightPlanSearchFunctions();
-//        dijkstraSearch = new DijkstraAlgorithmFPS();
-//        yensSearch = new YensAlgorithmFPS();
-//        sqlSearch = new FlightPlanSearchSQL();
-//    }
 
     public FlightPlanSearch(EntityManager em){
         searchFunctions = new FlightPlanSearchFunctions();

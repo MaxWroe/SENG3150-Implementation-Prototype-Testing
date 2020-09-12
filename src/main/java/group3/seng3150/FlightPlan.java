@@ -10,10 +10,9 @@ import java.util.List;
 
 /*
 Author: Chris Mather
-Description: this class stores a list of flights and corresponding lists of availabilities and prices for those flights
+Description: this class stores a list of flights and corresponding lists of availabilities, prices and flights sponsorship for those flights
 and contains methods to get information on the flight plan
- */
-
+*/
 
 public class FlightPlan implements Comparable<FlightPlan>, Cloneable{
     private List<Flight> flights;
@@ -46,9 +45,7 @@ public class FlightPlan implements Comparable<FlightPlan>, Cloneable{
     //returns airline names of the flights
     public List<String> getAirlines(){
         List<String> airlines = new LinkedList<String>();
-        //String airlines = "";
         for (Flight flight : flights) {
-            //airlines += flight.getAirlineCode();
             airlines.add(flight.getAirlineCode());
         }
         return airlines;
@@ -63,7 +60,6 @@ public class FlightPlan implements Comparable<FlightPlan>, Cloneable{
                 }
             }
         }
-//        System.out.println(availabilities.size());
     }
 
     //returns a price based on a specific availability
@@ -78,7 +74,6 @@ public class FlightPlan implements Comparable<FlightPlan>, Cloneable{
 
     //returns sum of prices from all flights in the flight plans
     public int getPrice(){
-//        System.out.println("get price method has started");
         int out = 0;
         if(availabilities.size()==0){
             return 0;
@@ -95,7 +90,6 @@ public class FlightPlan implements Comparable<FlightPlan>, Cloneable{
             out += getPriceFromAvailability(availabilities.get(tempInt));
 
         }
-//        System.out.println("get price method has completed");
         return  out;
     }
 
@@ -211,7 +205,6 @@ public class FlightPlan implements Comparable<FlightPlan>, Cloneable{
         }
 
         for(int j=0; j<i; j++){
-//            tempFlights.add(flights.get(j).clone());
             tempFlights.add(flights.get(j));
         }
         return  new FlightPlan(tempFlights);

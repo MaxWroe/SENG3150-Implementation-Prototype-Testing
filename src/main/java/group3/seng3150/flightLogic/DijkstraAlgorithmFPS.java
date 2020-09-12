@@ -6,6 +6,11 @@ import group3.seng3150.entities.Flight;
 import java.sql.Timestamp;
 import java.util.*;
 
+/*
+Author: Chris Mather
+Description: this class runs Dijkstra's algorithm on sent in graphs to return a flight plan that holds the flights that form the path with the smallest time between a parsed in time and arrival time of final flight
+*/
+
 public class DijkstraAlgorithmFPS {
 
     public DijkstraAlgorithmFPS(){}

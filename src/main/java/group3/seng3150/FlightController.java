@@ -17,6 +17,11 @@ import javax.servlet.http.HttpSession;
 import java.util.LinkedList;
 import java.util.List;
 
+/*
+Author: Chris Mather
+Description: this class takes the search call from the JSPs and uses the Flight Plan Search to find flights and stores retrieved lists into the flight holder bean
+*/
+
 @Controller
 public class FlightController{
     private FlightHolder flightPlans;
