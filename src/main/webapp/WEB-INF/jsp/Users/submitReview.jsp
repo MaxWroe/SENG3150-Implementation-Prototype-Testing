@@ -10,8 +10,10 @@
 <head>
     <title>Submit Review</title>
     <link rel="stylesheet" type="text/css" href="/css/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <%--<script src="/js/dynamicLink.js"></script>--%>
+
+<%--<script src="/js/dynamicLink.js"></script>--%>
 </head>
 <body>
 <!-- session handler -->
@@ -22,23 +24,29 @@
 
 
 <main class="main-content">
-    <div class="card-body">
+
         <h1>Submit a Review</h1>
 
 
+    <div class="wrap-submit-review">
         <!-- review form -->
         <form id="submitReviewForm" method="post" action="/submitReview">
 
             <!-- name -->
          <div class="register-row">
-            <input class="input" placeholder="Name" id="name" name ="name" required/> <br>
+            <input class="input" placeholder="Name" id="name" name ="name" required/>
+             <span class="symbol-input">
+                <i class="fa fa-user-circle-o" aria-hidden="true"> </i>
+            </span>
          </div>
 
             <!-- rating -->
             <div class="register-row">
-                <label for="rating">Rating: </label>
-                <input class="slider" id="rating" name ="rating" type="range" min="1" max="5" value="3" required/>
-                <span id="ratingValue"></span>
+                <div class="register-gender">
+                    <label for="rating">Rating: </label>
+                    <input class="slider" id="rating" name ="rating" type="range" min="1" max="5" value="3" required/>
+                    <span id="ratingValue"></span>
+                </div>
                 <br>
             </div>
 
@@ -68,12 +76,23 @@
             <!-- comment  -->
             <div class="register-row">
                  <textarea class="input" placeholder="Comment"id="comment" name="comment" rows="4" cols="50" required></textarea> <br>
+                <span class="symbol-input">
+                    <i class="fa fa-comments" aria-hidden="true"> </i>
+                </span>
             </div>
 
 
             <!-- userID -->
             <input type ="hidden" id="userID" name="userID" value="<%=session.getAttribute("userId")%>"/>
-            <input type="submit" value="Submit Review"/>
+
+            <div class="register-group">
+                <div class="register-row1">
+                    <input class="input-submit" type="submit" value="Submit"/>
+                </div>
+                <div class="register-row1">
+                    <input class="input-submit" type="reset" Value="Clear"/>
+                </div>
+            </div>
 
         </form>
 
