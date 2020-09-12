@@ -10,6 +10,11 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+/*
+Author: Chris Mather
+Description: this class provides functions for manipulating list of flight plans and lists of flights in both filtering the lists and modifying the data contained within
+*/
+
 public class FlightPlanSearchFunctions {
 
     public FlightPlanSearchFunctions(){}

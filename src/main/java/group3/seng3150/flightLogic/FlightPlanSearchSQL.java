@@ -9,6 +9,11 @@ import java.sql.Timestamp;
 import java.util.LinkedList;
 import java.util.List;
 
+/*
+Author: Chris Mather
+Description: this class provides methods for retrieving information from the database using hibernates entity manager and parameterised queries to provide security
+*/
+
 public class FlightPlanSearchSQL {
     public FlightPlanSearchSQL(){}
 

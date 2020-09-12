@@ -8,8 +8,8 @@ import java.util.*;
 /*
 Author: Chris Mather
 Description: class that stores a node and information about its directed edges as flights to other nodes
-and has actions to return and set information for htose edges
- */
+and has actions to return and set information for those edges
+*/
 
 public class DijkstraNode {
     private String name;

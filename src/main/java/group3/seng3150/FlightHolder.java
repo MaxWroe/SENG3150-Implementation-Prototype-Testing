@@ -9,8 +9,8 @@ import java.util.List;
 
 /*
 Author: Chris Mather
-Description: This class is a bean that stores lists of flightsPlans and availabilites and can call methods to manipulate them
- */
+Description: This class is a bean that stores lists of flightsPlans so they can be passed between pages and can call methods to manipulate the flight plans
+*/
 
 
 public class FlightHolder {
@@ -41,7 +41,6 @@ public class FlightHolder {
 
     public void setFlightPlansDeparting(List<FlightPlan> flightPlansDeparting) {
         this.flightPlansDeparting = flightPlansDeparting;
-//        setFlightPlanPositions();
     }
 
     public List<FlightPlan> getFlightPlansReturning() {

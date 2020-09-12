@@ -5,8 +5,8 @@ import java.util.*;
 
 /*
 Author: Chris Mather
-Description: class that stores nodes for running Dijkstras on
- */
+Description: class that holds a graph where a node is a representation of an airport and an edge a collection of flights between two airports, with methods to construct and deconstruct the graph
+*/
 
 public class DijkstraGraph {
 
