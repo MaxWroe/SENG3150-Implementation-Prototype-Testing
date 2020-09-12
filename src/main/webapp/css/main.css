@@ -1130,6 +1130,42 @@ button
 
 /* manage airports */
 .wrap-airports{
+    width: 1000px;
+    margin: auto;
+    position:center;
+    background: #1e809b;
+    border-radius: 10px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    justify-content: center;
+    padding-bottom: 10px;
+
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.manage-airports{
+    width: 300px;
+    position: relative;
+    margin-top: 10px;
+    background: #fff;
+    border-radius: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 10px 10px 10px 10px;
+    display: inline-block;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.restrict-airline{
+    width: 500px;
+    position: relative;
+    background: #1e809b;
+    border-radius: 10px;
+    margin:auto;
+    padding: 10px 10px 10px 10px;
+    display: inline-block;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
 }
 
