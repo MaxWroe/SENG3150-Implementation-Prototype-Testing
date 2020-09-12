@@ -47,8 +47,6 @@
                     <form id="removeWishList" method="post" action="${pageContext.request.contextPath}/wishList/remove">
                         <br>
                         <hr>
-                        <!-- userID -->
-                        <input type ="hidden" id="userID" name="userID" value="<%=session.getAttribute("userId")%>"/>
                         <!-- country code -->
                         <input type ="hidden" id="country" name="country" value="<c:out value= "${wishList.countryCode3}"></c:out>" />
                         <button type="submit">Remove</button>

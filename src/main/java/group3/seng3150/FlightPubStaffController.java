@@ -80,8 +80,8 @@ public class FlightPubStaffController {
 
     @PostMapping("/manageAirport/restrict")
     public ModelAndView restrictAirports(@RequestParam("airlineName2") String airlineName2,
-                                         @RequestParam("shutdownStartDate") Timestamp shutdownStartDate,
-                                         @RequestParam("shutdownEndDate") Timestamp shutdownEndDate) {
+                                         @RequestParam("shutdownStartDate") Date shutdownStartDate,
+                                         @RequestParam("shutdownEndDate") Date shutdownEndDate) {
         ModelAndView view = new ModelAndView("FlightPub/manageAirport");
         List<Airport> airports = (List<Airport>) em.createQuery("SELECT a FROM Airport a").getResultList();
 
