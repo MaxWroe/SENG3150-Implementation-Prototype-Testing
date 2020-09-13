@@ -60,7 +60,7 @@
                     <div class="register-group">
                         <div class="register-row1">
                             <form method="post" action="${pageContext.request.contextPath}/manageUsers/update">
-                                <input type ="hidden" name="update" value="<c:out value= "${users.userID}"></c:out>" />
+                                <input type ="hidden" name="update" value="<c:out value= "${users.email}"></c:out>" />
                                 <button type="submit">Update</button>
                             </form>
                         </div>
