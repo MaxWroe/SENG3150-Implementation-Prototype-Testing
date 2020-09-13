@@ -933,7 +933,7 @@ button
     background: #1e809b;
     border-radius: 10px;
     overflow: hidden;
-    margin-left: 450px;
+    margin: auto;
 
     display: flex;
     flex-wrap: wrap;
