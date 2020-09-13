@@ -18,8 +18,9 @@
     <link rel="stylesheet" type="text/css" href="/css/main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-   <script src="/js/dynamicLink.js"></script>
     <script src="/js/formValidations.js"></script>
+    <script src="/js/dynamicLink.js"></script>
+
 
 </head>
 <body>
@@ -41,13 +42,13 @@
                 <!-- First and last name -->
                 <div class="register-group">
                     <div class="register-row1">
-                        <input class="input" id="firstName" name ="firstName" placeholder="<%= request.getAttribute("firstName")%>" disabled/>
+                        <input class="input" name ="firstName" placeholder="<%= request.getAttribute("firstName")%>" disabled/>
                         <span class="symbol-input">
                             <i class="fa fa-user-circle-o" aria-hidden="true"> </i>
                         </span>
                     </div>
                     <div class="register-row1">
-                        <input class="input" id="lastName" name ="lastName" placeholder="<%= request.getAttribute("lastName")%>" disabled/>
+                        <input class="input" name ="lastName" placeholder="<%= request.getAttribute("lastName")%>" disabled/>
                         <span class="symbol-input">
                             <i class="fa fa-user-circle-o" aria-hidden="true"> </i>
                         </span>
@@ -99,13 +100,13 @@
                 <!-- EMAIL and DOB -->
                 <div class="register-group">
                     <div class="register-row1">
-                         <input class="input" placeholder="<%= request.getAttribute("email")%> " type ="email" id="email" name ="email" disabled/>
+                         <input class="input" placeholder="<%= request.getAttribute("email")%> " type ="email" name ="email" disabled/>
                             <span class="symbol-input">
                                 <i class="fa fa-envelope" aria-hidden="true"> </i>
                             </span>
                     </div>
                     <div class="register-row1">
-                        <input class="input" placeholder="<%= request.getAttribute("dateOfBirth")%>" id="dateOfBirth" name ="dateOfBirth" disabled/>
+                        <input class="input" placeholder="<%= request.getAttribute("dateOfBirth")%>"  name ="dateOfBirth" disabled/>
                         <span class="symbol-input">
                             <i class="fa fa-calendar-o" aria-hidden="true"> </i>
                         </span>
@@ -115,7 +116,7 @@
                 <!-- phone and user type -->
                 <div class="register-group">
                     <div class="register-row1">
-                        <input class="input" placeholder="<%= request.getAttribute("phone")%>" type ="tel" id="phone" name ="phone" pattern="[0-9].{8,}" disabled/>
+                        <input class="input" placeholder="<%= request.getAttribute("phone")%>" type ="tel" name ="phone" pattern="[0-9].{8,}" disabled/>
                         <span class="symbol-input">
                             <i class="fa fa-phone" aria-hidden="true"> </i>
                         </span>
