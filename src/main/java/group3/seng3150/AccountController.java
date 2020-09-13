@@ -356,7 +356,7 @@ public class AccountController {
     //wishlist Post
     @PostMapping("/wishList/remove")
     public ModelAndView removeFromWishList(Authentication auth,
-                                           @RequestParam(name="countryCode", defaultValue = "AUS") String countryCode) {
+                                           @RequestParam(name="country", defaultValue = "AUS") String countryCode) {
         ModelAndView view = new ModelAndView("Users/wishList");
         String emailSearch = "'" + auth.getName() + "'";
         //Retrieve the user's information
