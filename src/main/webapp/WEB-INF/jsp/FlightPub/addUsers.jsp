@@ -35,6 +35,7 @@
 
                 <jsp:include page="../form.jsp"/>
 
+                <br>
                 <div class="register-group">
                     <div class="register-row1">
                         <div class="register-gender">
