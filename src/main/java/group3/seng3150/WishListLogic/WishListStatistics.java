@@ -1,3 +1,7 @@
+//Class: ReccomendationPackage
+//Author: Angus Simmons
+// Description: this class returns a list of the countries that is ordered by popularity
+
 package group3.seng3150.WishListLogic;
 
 import group3.seng3150.entities.Booking;

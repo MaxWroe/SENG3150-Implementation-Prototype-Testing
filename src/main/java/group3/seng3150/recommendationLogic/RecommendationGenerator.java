@@ -1,3 +1,7 @@
+//Class: Recommendation generator
+//Author: Angus Simmons
+// Description: this class creates a list of recommendation packages based ona user
+
 package group3.seng3150.recommendationLogic;
 
 
@@ -22,6 +26,7 @@ public class RecommendationGenerator {
         this.em =em;
     }
 
+    //main class
     public List<RecommendationPackage> getRecommendations(UserAccount user){
         FlightPlanSearch fps = new FlightPlanSearch(em);
         List<RecommendationPackage> rp = new LinkedList<>();

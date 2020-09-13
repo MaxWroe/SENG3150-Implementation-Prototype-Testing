@@ -18,6 +18,12 @@ public class DefaultController {
     @Autowired
     public DefaultController(EntityManager em){this.em =em;}
 
+    @GetMapping("/")
+    public ModelAndView basic() {
+        ModelAndView view = new ModelAndView("/home");
+        return view;
+    }
+
     @GetMapping("/home")
     public ModelAndView Index() {
         ModelAndView view = new ModelAndView("/home");

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="CompilerConfiguration">
-    <bytecodeTargetLevel target="1.8">
-      <module name="group3.seng3150.SENG3150-Implementation-Prototype.main" target="1.8" />
-      <module name="group3.seng3150.SENG3150-Implementation-Prototype.test" target="1.8" />
+    <bytecodeTargetLevel>
+      <module name="SENG3150-Implementation-Prototype.main" target="1.8" />
+      <module name="SENG3150-Implementation-Prototype.test" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

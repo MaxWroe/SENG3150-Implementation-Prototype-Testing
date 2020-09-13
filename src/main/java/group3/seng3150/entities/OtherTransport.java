@@ -1,3 +1,7 @@
+//Class: OtherTransport
+//Author: Angus Simmons
+// Description: This is an entity that uses the hibernate framework to extract data from a database
+// in this instance it is representing other forms of transport from an airport
 
 package group3.seng3150.entities;
 

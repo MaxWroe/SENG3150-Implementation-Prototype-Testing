@@ -1,3 +1,7 @@
+//Class: PriceID
+//Author: Angus Simmons
+// Description: This is an id class for the hibernate framework it attaches to PriceID
+
 package group3.seng3150.entities;
 
 import javax.persistence.Basic;
@@ -19,7 +23,8 @@ public class PriceID implements Serializable {
     public PriceID() {
     }
 
-    public PriceID(String airlineCode, String flightNumber, Timestamp departureDate, String classCode, String ticketCode) {
+    public PriceID(String airlineCode, String flightNumber, Timestamp
+            departureDate, String classCode, String ticketCode) {
         this.airlineCode = airlineCode;
         this.flightNumber = flightNumber;
         this.startDate = departureDate;

@@ -1,3 +1,7 @@
+
+//Class: FlightID
+//Author: Angus Simmons
+// Description: This is an id class for the hibernate framework it attaches to flight
 package group3.seng3150.entities;
 
 import java.io.Serializable;

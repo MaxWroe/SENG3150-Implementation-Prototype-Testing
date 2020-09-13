@@ -1,3 +1,8 @@
+//Class: ReccomendationPackage
+//Author: Angus Simmons
+// Description: This is a simple storage class to hold a country and popularity int to give to the front end jsp
+
+
 package group3.seng3150.WishListLogic;
 
 import group3.seng3150.entities.WishListEntry;

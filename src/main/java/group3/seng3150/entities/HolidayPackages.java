@@ -1,7 +1,8 @@
-//Class: Airport
+
+//Class: Holiday packages
 //Author: Angus Simmons
 // Description: This is an entity that uses the hibernate framework to extract data from a database
-// in this instance it is representing user enquiries for customer support
+// in this instance it is representing holiday destination packages
 
 
 package group3.seng3150.entities;

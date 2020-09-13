@@ -1,3 +1,7 @@
+//Class: ReccomendationPackage
+//Author: Angus Simmons
+// Description: This is a simple storage class to hold a holiday package and flight to give to the front end jsp
+
 package group3.seng3150.recommendationLogic;
 
 import group3.seng3150.FlightPlan;

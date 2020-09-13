@@ -1,4 +1,4 @@
-//Class: Airport
+//Class: UserAccount
 //Author: Angus Simmons
 // Description: This is an entity that uses the hibernate framework to extract data from a database
 // in this instance it is representing user accounts and all the data attached to a user
@@ -6,6 +6,8 @@
 package group3.seng3150.entities;
 import javax.persistence.*;
 import java.sql.Date;
+
+
 import java.util.Collection;
 
 import org.springframework.security.core.GrantedAuthority;
