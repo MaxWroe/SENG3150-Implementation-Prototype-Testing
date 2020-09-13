@@ -1,5 +1,5 @@
 <%--
-  JSP for user register
+  JSP for user register for admin
   SENG3150 Group 3
   Date: 19/05/2020
   Time: 5:52 am

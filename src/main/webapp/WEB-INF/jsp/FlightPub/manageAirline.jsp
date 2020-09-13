@@ -1,12 +1,14 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <%--
-  Created by IntelliJ IDEA.
-  User: acero
+  JSP for airline management, sponsor and unsponsor
+  SENG3150 Group 3
   Date: 5/09/2020
   Time: 7:49 am
   To change this template use File | Settings | File Templates.
 --%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>Airline Management</title>

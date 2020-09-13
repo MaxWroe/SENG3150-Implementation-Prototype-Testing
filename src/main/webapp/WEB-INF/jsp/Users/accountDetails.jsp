@@ -1,10 +1,13 @@
-<%@ page import="org.springframework.web.servlet.ModelAndView" %><%--
+
+
+<%--
   JSP for viewing account details and editing.
   SENG3150 Group 3
   Date: 26/05/2020
   Time: 11:12 am
 --%>
 
+<%@ page import="org.springframework.web.servlet.ModelAndView" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>

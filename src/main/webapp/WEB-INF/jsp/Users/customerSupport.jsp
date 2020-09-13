@@ -1,10 +1,11 @@
-<%@ page import="org.springframework.security.core.Authentication" %><%--
+<%--
   JSP for sending ticket enquiries and updating them
   SENG3150 Group 3
   Date: 26/05/2020
   Time: 11:12 am
 --%>
 
+<%@ page import="org.springframework.security.core.Authentication" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
