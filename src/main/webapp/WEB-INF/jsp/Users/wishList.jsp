@@ -24,7 +24,7 @@
 
         <div class="wish-list">
             <div id="wishlist-add">
-                <h4>Add a country to travel wishlist.</h4>
+                <h4>Add a country to travel wishlist</h4>
                 <form action="${pageContext.request.contextPath}/wishList" method="post">
                     <label for="countryCode">Country:</label>
                     <input list="countries" id="countryCode" name="countryCode" required>

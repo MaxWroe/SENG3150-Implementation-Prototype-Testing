@@ -143,6 +143,7 @@ button
     text-decoration: none;
     padding: 15px 20px;
     position: relative;
+    color: black;
 }
 
 .nav-link a:visited
