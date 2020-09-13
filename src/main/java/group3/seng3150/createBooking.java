@@ -4,8 +4,6 @@ import group3.seng3150.entities.UserAccount;
 import org.springframework.beans.factory.annotation.Autowired;
 import javax.servlet.http.HttpSession;
 import org.springframework.security.core.Authentication;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 import javax.persistence.EntityManager;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -45,9 +43,6 @@ public class createBooking {
         int positionDeparture = Integer.parseInt(position);
         List<FlightPlan> searchResults = (List<FlightPlan>) session.getAttribute("departureFlights");
         FlightPlan departure = searchResults.get(positionDeparture - 1);
-        LinkedList<Booking> departureBooking = new LinkedList<Booking>();
-        int currentPosition = 1;
-
 
         for (int i = 0; i < adultsBooking + childrenBookingS; i++) {
             Booking newBooking = new Booking();
@@ -108,10 +103,7 @@ public class createBooking {
         }
 
     if(returnTrip){
-
-        List<FlightPlan> searchReturn = (List<FlightPlan>) session.getAttribute("returnFlights");
         FlightPlan returns = searchResults.get(positionReturn-1);
-
         for (int i = 0; i < adultsBooking + childrenBookingS; i++) {
             Booking newBooking = new Booking();
             newBooking.setGroupSize(adultsBooking + childrenBookingS);
@@ -179,10 +171,6 @@ public class createBooking {
                                 String adultsBookingS,
                                 String childrenBooking,
                                 String trip){
-
-        //***********************************************************************************************************
-        //int positionDeparture = Integer.parseInt(positionDepartureS);
-        //int positionReturn = Integer.parseInt(positionReturnS);
         LinkedList<Booking> bookingsDeparture = (LinkedList<Booking>) session.getAttribute("departureBookings");
         LinkedList<Booking> bookingsReturn = (LinkedList<Booking>) session.getAttribute("returnBookings");
 
@@ -190,14 +178,11 @@ public class createBooking {
         if(trip.equals("return")){
             returnTrip=true;
         }
-        List<FlightPlan> searchResults = (List<FlightPlan>) session.getAttribute("departureFlights");
         int adultsBooking = Integer.parseInt(adultsBookingS);
         int childrenBookingS = Integer.parseInt(childrenBooking);
         String tempName = new String();
         String tempEmail = "'" + auth.getName() +"'";
         UserAccount user = (UserAccount) em.createQuery("SELECT u FROM UserAccount u WHERE u.email=" + tempEmail).getSingleResult();
-        int currentPosition = 1;
-
 
         for(int j =0; j<2; j++) {
             if(j==0) {
@@ -215,11 +200,9 @@ public class createBooking {
                             tempName = "adultLastName" + Integer.toString(i);
                             bookingsDeparture.get(i-1).setLastName(request.getParameter(tempName));
                             tempName = "adultDOB" + Integer.toString(i);
-                            //NEED JARRAD TO CHANGE THIS TO SESSION RATHER THAN REQUEST*********************************************
                             String temp = request.getParameter(tempName);
                             Date tempDate1 = Date.valueOf(temp);
                             bookingsDeparture.get(i-1).setDateOfBirth(tempDate1);
-                            currentPosition = i;
                         }
                     } else {
                         tempName = "childFirstName" + Integer.toString(i - adultsBooking);
@@ -230,8 +213,6 @@ public class createBooking {
                         String temp = request.getParameter(tempName);
                         Date tempDate1 = Date.valueOf(temp);
                         bookingsDeparture.get(i-1).setDateOfBirth(tempDate1);
-                        currentPosition = i;
-                        //departureBooking.add(newBooking);
                     }
                 }
             }else if(returnTrip && j==1){
@@ -249,11 +230,9 @@ public class createBooking {
                             tempName = "adultLastName" + Integer.toString(i);
                             bookingsReturn.get(i-1).setLastName(request.getParameter(tempName));
                             tempName = "adultDOB" + Integer.toString(i);
-                            //NEED JARRAD TO CHANGE THIS TO SESSION RATHER THAN REQUEST*********************************************
                             String temp = request.getParameter(tempName);
                             Date tempDate1 = Date.valueOf(temp);
                             bookingsReturn.get(i-1).setDateOfBirth(tempDate1);
-                            currentPosition = i;
                         }
                     } else {
                         tempName = "childFirstName" + Integer.toString(i - adultsBooking);
@@ -264,8 +243,6 @@ public class createBooking {
                         String temp = request.getParameter(tempName);
                         Date tempDate1 = Date.valueOf(temp);
                         bookingsReturn.get(i-1).setDateOfBirth(tempDate1);
-                        currentPosition = i;
-                        //departureBooking.add(newBooking);
                     }
 
                 }
