@@ -38,21 +38,21 @@
                 <div class="register-group">
                     <div class="register-row1">
                         <div class="register-gender">
-                            <input type="radio" id="agent" name="userRole" value="Agent" checked/>
+                            <input type="radio" id="agent" name="userRole" value="AGENT" checked/>
                             <label for="agent">Agent</label>
                         </div>
                     </div>
 
                     <div class="register-row1">
                         <div class="register-gender">
-                            <input type="radio" id="flightpub" name="userRole" value="Flightpub"/>
+                            <input type="radio" id="flightpub" name="userRole" value="FLIGHTPUB"/>
                             <label for="flightpub">Flightpub</label>
                         </div>
                     </div>
 
                     <div class="register-row1">
                         <div class="register-gender">
-                            <input type="radio" id="admin" name="userRole" value="Admin"/>
+                            <input type="radio" id="admin" name="userRole" value="ADMIN"/>
                             <label for="admin">Admin</label> <br>
                         </div>
                     </div>
