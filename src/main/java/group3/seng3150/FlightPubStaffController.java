@@ -52,7 +52,7 @@ public class FlightPubStaffController {
 
     @PostMapping("/manageAirline/sponsor")
     public ModelAndView sponsorAirline(@RequestParam("airlineName") String airlineName,
-                                         @RequestParam("airlineSponsored") int airlineSponsored) {
+                                       @RequestParam("airlineSponsored") int airlineSponsored) {
         ModelAndView view = new ModelAndView("FlightPub/manageAirline");
         List<Airline> airlines = (List<Airline>) em.createQuery("SELECT a FROM Airline a").getResultList();
 
@@ -107,6 +107,21 @@ public class FlightPubStaffController {
         return view;
     }
 
+    @PostMapping("/manageUsers/remove")
+    public ModelAndView removeUsers(@RequestParam(name="remove", defaultValue = "") String userID) {
+        ModelAndView view = new ModelAndView("FlightPub/manageUsers");
+        List<UserAccount> users = (List<UserAccount>) em.createQuery("SELECT u FROM UserAccount u").getResultList();
+        for(int i=0;i<users.size();i++) {
+            if(users.get(i).getUserID().equalsIgnoreCase(userID)) {
+                em.getTransaction().begin();
+                em.remove(users.get(i));
+                em.getTransaction().commit();
+                users.remove(i);
+            }
+        }
+        view.addObject("users", users);
+        return view;
+    }
 
 
     @GetMapping("/addUsers")
@@ -160,6 +175,7 @@ public class FlightPubStaffController {
                 em.merge(newUser);
                 em.getTransaction().commit();
                 view = new ModelAndView("/FlightPub/manageUsers");
+                users.add(newUser);
                 message += firstName;
 
             } else {
@@ -176,5 +192,6 @@ public class FlightPubStaffController {
         view.addObject("users", users);
         return view;
     }
+
 
 }
