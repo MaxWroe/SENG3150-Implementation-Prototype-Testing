@@ -27,7 +27,7 @@
   <component name="ChangeListManager">
     <list default="true" id="2fa4c939-f298-44e8-ba1d-7353dd1d77f5" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/Users/wishList.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/Users/wishList.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/bookingPage.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/bookingPage.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -407,7 +407,7 @@
       <workItem from="1599360412528" duration="10979000" />
       <workItem from="1599639713490" duration="3836000" />
       <workItem from="1599827254256" duration="772000" />
-      <workItem from="1599958997808" duration="765000" />
+      <workItem from="1599958997808" duration="1894000" />
     </task>
     <task id="LOCAL-00022" summary="Changes to price finder">
       <created>1591223228608</created>
@@ -1098,11 +1098,6 @@
           <url>file://$PROJECT_DIR$/src/main/java/group3/seng3150/DBTesting.java</url>
           <line>37</line>
           <option name="timeStamp" value="13" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/group3/seng3150/ChrisFlightTesting.java</url>
-          <line>80</line>
-          <option name="timeStamp" value="23" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/group3/seng3150/RecommendationTesting.java</url>

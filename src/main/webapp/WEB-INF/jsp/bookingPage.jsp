@@ -164,7 +164,7 @@
 
         <div class="booking-details">
             <%--
-            <!-- Did not have time to complete
+            <!--
             <h4>Extra Details</h4>
             <h4>Departure Flight</h4>
             <p>Ticket Transferrable: ${departureFlight.transferrable}</p>

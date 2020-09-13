@@ -16,8 +16,6 @@
     <script src="${pageContext.request.contextPath}/js/dynamicLink.js"></script>
 </head>
 <body>
-<!-- Session checker -->
-<jsp:include page="sessionHandlerGuest.jsp"/>
 
 <!-- Site header -->
 <jsp:include page="header.jsp"/>
