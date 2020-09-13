@@ -45,7 +45,7 @@ public class AuthenticationController {
 
     //post method register
     @PostMapping("/register")
-    public ModelAndView executeRegister(@RequestParam(value = "firstName", defaultValue = "") String firstName,
+    public ModelAndView executeRegister(@RequestParam(name = "firstName", defaultValue = "") String firstName,
                                         @RequestParam(name="lastName", defaultValue="") String lastName,
                                         @RequestParam(name="gender", defaultValue="") String gender,
                                         @RequestParam(name="password", defaultValue="") String password,
@@ -95,7 +95,6 @@ public class AuthenticationController {
             } else {
                 message = "Registration unsuccessful. An Account using " + email + " already exists, please use a unique email address or login to the existing account.";
                 view = new ModelAndView("General/register");
-
             }
         }
         catch(Exception e)

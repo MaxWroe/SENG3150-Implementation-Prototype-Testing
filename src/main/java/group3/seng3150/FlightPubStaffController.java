@@ -107,4 +107,74 @@ public class FlightPubStaffController {
         return view;
     }
 
+
+
+    @GetMapping("/addUsers")
+    public ModelAndView addUsers() {
+        ModelAndView view = new ModelAndView("FlightPub/addUsers");
+        List<UserAccount> users = (List<UserAccount>) em.createQuery("SELECT u FROM UserAccount u").getResultList();
+        view.addObject("users", users);
+        return view;
+    }
+
+    @PostMapping("/addUsers/add")
+    public ModelAndView storeAddUsers(@RequestParam(name = "firstName", defaultValue = "") String firstName,
+                                      @RequestParam(name="lastName", defaultValue="") String lastName,
+                                      @RequestParam(name="gender", defaultValue="") String gender,
+                                      @RequestParam(name="password", defaultValue="") String password,
+                                      @RequestParam(name="email", defaultValue="") String email,
+                                      @RequestParam(name="phone", defaultValue="0") int phone,
+                                      @RequestParam(name="dateOfBirth") Date dateOfBirth,
+                                      @RequestParam(name="userType", defaultValue = "") String userType,
+                                      @RequestParam(name ="userRole", defaultValue ="") String userRole ){
+        ModelAndView view = new ModelAndView("FlightPub/addUsers");
+        List<UserAccount> users = (List<UserAccount>) em.createQuery("SELECT u FROM UserAccount u").getResultList();
+        String message = "Registration successful! ";
+        String citizenship = "'Default'";
+        String tempEmail = "'" + email + "'";
+        //currently the usertype is throwing an error, stored in SQL as int, in model as String, need to change one or the other
+        //This if statement is for if it is changed to an int.
+        int userNum = 0;
+        if(userType.equals("Personal")){
+            userNum = 0;
+        }else if(userType.equals("Business")){
+            userNum = 1;
+        }else{
+            userNum = 2;
+        }
+        //int phoneNum = Integer.getInteger(phone);
+        try{
+            List<UserAccount> user = em.createQuery("SELECT u FROM UserAccount u WHERE u.email=" + tempEmail).getResultList();
+            if(user.isEmpty()){
+                em.getTransaction().begin();
+                UserAccount newUser = new UserAccount();
+                newUser.setFirstName(firstName);
+                newUser.setLastName(lastName);
+                newUser.setEmail(email);
+                newUser.setPhone(phone);
+                newUser.setDateOfBirth(dateOfBirth);
+                newUser.setPassword(password);
+                newUser.setCitizenship(citizenship);
+                newUser.setUserType(userNum);
+                newUser.setROLEDID(userRole);
+                em.merge(newUser);
+                em.getTransaction().commit();
+                view = new ModelAndView("/FlightPub/manageUsers");
+                message += firstName;
+
+            } else {
+                message = "Registration unsuccessful. An Account using " + email + " already exists, please use a unique email address or login to the existing account.";
+                view = new ModelAndView("/FlightPub/manageUsers");
+            }
+        }
+        catch(Exception e)
+        {
+            message = "Registration unsuccessful. Error Thrown";
+            e.printStackTrace();
+        }
+        view.addObject("message", message);
+        view.addObject("users", users);
+        return view;
+    }
+
 }
