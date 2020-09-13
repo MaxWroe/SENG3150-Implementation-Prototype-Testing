@@ -26,11 +26,12 @@
 
         <h1>FlightPub Reviews</h1>
 
+    <!-- checks if no user reviews yet -->
+    <c:if test="${empty review}">
+        <h4>No Reviews</h4>
+    </c:if>
+
     <div class="wrap-review">
-        <!-- checks if no user reviews yet -->
-        <c:if test="${empty review}">
-            <h4>No Reviews</h4>
-        </c:if>
 
         <!-- gets all review information -->
 
