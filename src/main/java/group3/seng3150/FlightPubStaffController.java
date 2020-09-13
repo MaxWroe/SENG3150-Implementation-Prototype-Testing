@@ -108,11 +108,11 @@ public class FlightPubStaffController {
     }
 
     @PostMapping("/manageUsers/remove")
-    public ModelAndView removeUsers(@RequestParam(name="remove", defaultValue = "") String email) {
+    public ModelAndView removeUsers(@RequestParam(name="remove", defaultValue = "") String userID) {
         ModelAndView view = new ModelAndView("FlightPub/manageUsers");
         List<UserAccount> users = (List<UserAccount>) em.createQuery("SELECT u FROM UserAccount u").getResultList();
         for(int i=0;i<users.size();i++) {
-            if(users.get(i).getEmail().equalsIgnoreCase(email)) {
+            if(users.get(i).getUserID().equalsIgnoreCase(userID)) {
                 em.getTransaction().begin();
                 em.remove(users.get(i));
                 em.getTransaction().commit();

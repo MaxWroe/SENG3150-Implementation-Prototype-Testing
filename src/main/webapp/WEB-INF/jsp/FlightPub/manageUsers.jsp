@@ -68,7 +68,7 @@
                         </div>
                         <div class="register-row1">
                             <form method="post" action="${pageContext.request.contextPath}/manageUsers/remove">
-                                <input type ="hidden" name="remove" value="<c:out value= "${users.email}"></c:out>" />
+                                <input type ="hidden" name="remove" value="<c:out value= "${users.userID}"></c:out>" />
                                 <button type="submit">Remove</button>
                             </form>
                         </div>
