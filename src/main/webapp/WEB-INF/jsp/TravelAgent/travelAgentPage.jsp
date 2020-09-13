@@ -12,6 +12,7 @@
     <title>Travel Agent</title>
 
     <link rel="stylesheet" type="text/css" href="/css/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="/js/dynamicLink.js"></script>
 </head>
 <body>
@@ -21,53 +22,106 @@
 <main class="main-content">
     <div class="card-body">
     <h1>Travel Agent</h1>
-    <h4>Holiday Packages</h4>
 
         <div class="hot-locations">
         <h4>Hot Locations</h4>
+            <div class="wrap-stats">
             <c:forEach items="${countryStat}" var ="countryStat">
                 <c:if test="${empty countryStat}">
                     <h4>No Hot Locations</h4>
                 </c:if>
 
-                <c:out value= "${countryStat.countryCode3}"></c:out>
-                <c:out value= "${countryStat.popularity}"></c:out></br>
+
+                <div class="manage-stats">
+                <div class="register-row">
+                    <div class="booking-info-right" style="font-weight: bold"><c:out value= "${countryStat.countryCode3}"></c:out></div><br>
+                    <div class="booking-input-right">Country</div>
+                    <hr>
+
+                </div>
+                    <div class="register-row">
+                        <div class="booking-info-left" style="font-weight: bold"><c:out value= "${countryStat.popularity}"></c:out></div><br>
+                        <div class="booking-input-left">Popularity</div>
+                    </div>
+                </div>
 
             </c:forEach>
+            </div>
         </div>
 
         <h4>Create Holiday Packages </h4>
         <div class="manage-holiday-packages">
             <form id="holidayPackages" method="post" action="${pageContext.request.contextPath}/travelAgentPage/create">
 
-                <!-- Description -->
-                <label for="comment">Description: </label><br>
-                <textarea form ="comment" id="comment" name="comment" rows="4" cols="50" required> </textarea> <br>
-
                 <!-- Destination -->
-                <label for="destination">Destination: </label>
-                <input list="airports" id="destination" name ="destination" onchange="setHolidayPackage()" required/> <br>
+                <div class="register-group">
+                    <div class="register-row1">
+                        <input class="input" placeholder="Destination" list="airports" id="destination" name ="destination" onchange="setHolidayPackage()" required/>
+                        <span class="symbol-input">
+                            <i class="fa fa-plane" aria-hidden="true"> </i>
+                        </span>
+                    </div>
 
                 <!-- Country code -->
-                <label for="countryCode">Country Code: </label>
-                <input list="countryCode3" id="countryCode" name ="countryCode" value="" required/> <br>
+                    <div class="register-row1">
+                        <input class="input" placeholder="Country Code" list="countryCode3" id="countryCode" name ="countryCode" value="" required/>
+                        <span class="symbol-input">
+                            <i class="fa fa-flag" aria-hidden="true"> </i>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Description -->
+                <div class="register-row">
+                    <textarea class="input" placeholder="Package Description" form ="comment" id="comment" name="comment" rows="4" cols="50" required></textarea>
+                    <span class="symbol-input">
+                            <i class="fa fa-info" aria-hidden="true"> </i>
+                    </span>
+                </div>
+
+                <br>
+
+
+
+
+            <div class="register-group">
 
                 <!-- User type -->
-                <label>Package Type: </label>
 
-                <input type="radio" id="sponsored" name="userType" value="Sponsored" checked/>
-                <label for="sponsored">Sponsored</label>
+                <div class="register-row1">
+                    <div class="register-gender">
+                    <input type="radio" id="sponsored" name="userType" value="Sponsored" style="margin-left: 20px; margin-top: 10px" checked/>
+                    <label for="sponsored">Sponsored</label>
+                    </div>
+                </div>
+                <div class="register-row1">
+                    <div class="register-gender">
+                    <input type="radio" id="Hot location" name="userType" value="Hot location" style="margin-left: 20px; margin-top: 10px"/>
+                    <label for="Hot location">Hot location</label>
+                    </div>
+                </div>
+                <div class="register-row1">
+                    <div class="register-gender">
+                    <input type="radio" id="business" name="userType" value="Business" style="margin-left: 20px; margin-top: 10px"/>
+                    <label for="business">Business</label>
+                    </div>
+                </div>
+                <div class="register-row1">
+                    <div class="register-gender">
+                    <input type="radio" id="Other" name="userType" value="Other" style="margin-left: 20px; margin-top: 10px"/>
+                    <label for="Other">Other</label> <br>
+                    </div>
+                </div>
+            </div>
 
-                <input type="radio" id="Hot location" name="userType" value="Hot location" checked/>
-                <label for="Hot location">Hot location</label>
-
-                <input type="radio" id="business" name="userType" value="Business"/>
-                <label for="business">Business</label>
-
-                <input type="radio" id="Other" name="userType" value="Other"/>
-                <label for="Other">Other</label> <br>
-
-                <button type="submit">Create</button>
+                <div class="register-group">
+                    <div class="register-row1">
+                        <input class="input-submit" type="submit" value="Create"/>
+                    </div>
+                    <div class="register-row1">
+                        <input class="input-submit" type="reset" value="Clear"/>
+                    </div>
+                </div>
 
                 <!-- Airport destinations -->
                 <datalist id="airports">

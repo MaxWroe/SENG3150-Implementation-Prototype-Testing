@@ -13,6 +13,7 @@
     <title>Airport Management</title>
 
     <link rel="stylesheet" type="text/css" href="/css/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="/js/dynamicLink.js"></script>
     <script src="${pageContext.request.contextPath}/js/searchFormAssistor.js"></script>
 </head>
@@ -21,55 +22,115 @@
 <jsp:include page="../header.jsp"/>
 
 <main class="main-content">
-    <div class="card-body">
+
         <h1>Airport Management</h1>
-        <h4>List of Airports</h4>
+        <h4>Restricted Airports</h4>
 
 
-        <%-- test --%>
-        <div class="manage-airports-test">
-            <c:forEach items="${airport}" var ="airport">
-
-                <p><c:out value= "${airport}"></c:out></p>
-                <button type="submit" onclick="displayForm('restrictAirlineTest')"> Restrict </button>
-
-            </c:forEach>
-
-            <%-- preferred parsing --%>
-                <div class="manage-airports">
-                    <c:forEach items="${airports}" var ="airports">
 
 
-                        <p><c:out value= "${airports.destinationCode}"></c:out></p>
-                        <p><c:out value= "${airports.country}"></c:out></p>
-                        <p><c:out value= "${airports.shutdownStartDate}"></c:out></p>
-                        <p><c:out value= "${airports.shutdownEndDate}"></c:out></p>
+    <%-- preferred parsing --%>
+        <div class="wrap-airports">
 
 
-                        <div class="submit-airport">
-                            <button type="submit" onclick="displayForm('restrictAirlineTest')"> Restrict </button>
-                        </div>
+            <c:forEach items="${airports}" var ="airports">
+                <c:if test="${airports.shutdownStartDate != null}">
+
+             <div class="manage-airports">
+                <div class="register-group">
+                    <div class="register-row1">
+                        <div class="booking-info-left" style="font-weight: bold"><c:out value="${airports.destinationCode}"> </c:out></div><br>
+                        <div class="booking-input-left">City</div>
+                    </div>
+                    <div class="register-row1">
+                         <div class="booking-info-right" style="font-weight: bold"><c:out value="${airports.country}"> </c:out></div><br>
+                        <div class="booking-input-right">Country</div>
+                    </div>
 
 
-                    </c:forEach>
+
+
                 </div>
 
-            <div class="restrict-airline-test">
-                <form id="restrictAirlineTest" method="post" action="${pageContext.request.contextPath}/manageAirport/restrict" style="display:none;">
-                    <input type ="hidden" id="airportCode" name="airlineName2" value="${airports.destinationCode}"/>
+                 <br>
+                 <hr>
+                    <div class="register-group">
+                        <div class="register-row1">
+                            <div class="booking-input-left">Start Date</div><br>
+                           <div class="booking-info-left"> <c:out value="${airports.shutdownStartDate}"> </c:out></div>
+                        </div>
+                        <div class="register-row1">
+                            <div class="booking-input-right">End Date</div><br>
+                           <div class="booking-info-right"> <c:out value="${airports.shutdownEndDate}"> </c:out></div>
+                        </div>
+                    </div>
+             </div>
+                </c:if>
 
-                    <label for="departureDate">Restrict Start Date</label>
-                    <jsp:useBean id="now" class="java.util.Date"/>
-                    <input type="date" id="departureDate" name="shutdownStartDate" min="<fmt:formatDate pattern="yyyy-MM-dd" value="${now}" />" onchange="restrictDepart()" required>
 
-                    <label for="returnDate">Restrict End Date</label>
-                    <input type="date" id="returnDate" name="shutdownEndDate" min="<fmt:formatDate pattern="yyyy-MM-dd" value="${now}" />" disabled>
 
-                    <button type="submit">Submit </button>
-                </form>
-            </div>
+            </c:forEach>
+        </div>
 
-    </div>
+
+
+
+
+                <div class="restrict-airline">
+                    <div class="submit-airport">
+                        <button type="submit" onclick="displayForm('restrictAirline')"> Restrict </button>
+                    </div>
+
+
+                    <form id="restrictAirline" method="post" action="/manageAirport/restrict" style="display:none;">
+
+                        <div class="register-row">
+                             <input class="input" placeholder="City to restrict" list="listOfAirports" id="airportCode" name="airlineName2" required>
+                            <span class="symbol-input">
+                                <i class="fa fa-flag" aria-hidden="true"> </i>
+                             </span>
+                        </div>
+
+                        <div class="register-group">
+                            <div class="register-row1">
+                                <label for="departureDate" style="color: white">Restrict Start Date</label>
+                                <jsp:useBean id="now" class="java.util.Date"/>
+                                <input class="input" type="date" id="departureDate" name="shutdownStartDate" min="<fmt:formatDate pattern="yyyy-MM-dd" value="${now}" />"  required>
+                            </div>
+
+                            <div class="register-row1">
+                                <label for="returnDate" style="color: white">Restrict End Date</label>
+                                <input class="input" type="date" id="returnDate" name="shutdownEndDate" min="<fmt:formatDate pattern="yyyy-MM-dd" value="${now}" />" required>
+                            </div>
+                        </div>
+
+                        <div class="register-group">
+                            <div class="register-row1">
+                                <input class="input-submit-invert" type="submit" value="Submit"/>
+                            </div>
+                            <div class="register-row1">
+                                <input class="input-submit-invert" type="reset" value="Clear"/>
+                            </div>
+                        </div>
+                    </form>
+
+                    <datalist id ="listOfAirports">
+                        <c:forEach items="${airports}" var ="airports">
+                            <c:if test="${airports.shutdownStartDate == null}">
+                                <option value="${airports.destinationCode}"> ${airports.country}</option>
+                            </c:if>
+
+                        </c:forEach>
+                    </datalist>
+                </div>
+
+
+
+
+
+
+
+
 </main>
 
 </body>

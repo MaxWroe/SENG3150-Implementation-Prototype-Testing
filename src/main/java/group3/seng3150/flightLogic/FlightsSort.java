@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /*
-Author: Chris Mather and Angus Simmons
-Description: this class takes a list of flight plans and a sorting method and rerturns that list in a sorted manner
+Author: Chris Mather
+Description: this class takes a list of flight plans and a sorting method and returns that list in a sorted manner
 uses merge sort to sort flight plans
  */
 

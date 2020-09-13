@@ -8,8 +8,8 @@ import java.util.*;
 /*
 Author: Chris Mather
 Description: class that stores a node and information about its directed edges as flights to other nodes
-and has actions to return and set information for htose edges
- */
+and has actions to return and set information for those edges
+*/
 
 public class DijkstraNode {
     private String name;
@@ -27,6 +27,7 @@ public class DijkstraNode {
         shortestPath = new LinkedList<>();
     }
 
+    //resets paths stored by this node
     public void resetShortestVariables(){
         shortestPathFlights = new LinkedList<>();
         shortestPath = new LinkedList<>();
@@ -46,6 +47,7 @@ public class DijkstraNode {
         }
     }
 
+    //removes and returns the edge going from this node to the sent in destination if it exists
     public List<Flight> removeEdge(String destination){
         List<Flight> removedEdge = new LinkedList<Flight>();
         if(adjacentNodesFlights.containsKey(destination)){
@@ -54,6 +56,7 @@ public class DijkstraNode {
         return removedEdge;
     }
 
+    //returns the flight that leaves the earliest and is after the sent in time from this node to the sent in node
     public Flight getEarliestFlightToNode(DijkstraNode destination, Timestamp parsedTime){
         Flight currentFlight = adjacentNodesFlights.get(destination).get(adjacentNodesFlights.get(destination).size()-1);
 
@@ -66,17 +69,16 @@ public class DijkstraNode {
 
     }
 
-    public long getFlightDuration(Flight parsedFlight){
-
-        long duration = parsedFlight.getDuration();
-
-        if(parsedFlight.getDurationSecondLeg() != null){
-            duration += parsedFlight.getDurationSecondLeg();
+    //returns all the flights that depart from this node
+    public List<Flight> getAllFlightsFromNode(){
+        List<Flight> flights = new LinkedList<>();
+        for(List<Flight> adjacentFlightsList : adjacentNodesFlights.values()){
+            for (Flight currentFlight : adjacentFlightsList){
+                flights.add(currentFlight);
+            }
         }
-
-        return duration;
+        return flights;
     }
-
 
     public String getName() {
         return name;
@@ -121,16 +123,6 @@ public class DijkstraNode {
 
     public void setDistance(long distance) {
         this.distance = distance;
-    }
-
-    public List<Flight> getAllFlightsFromNode(){
-        List<Flight> flights = new LinkedList<>();
-        for(List<Flight> adjacentFlightsList : adjacentNodesFlights.values()){
-            for (Flight currentFlight : adjacentFlightsList){
-                flights.add(currentFlight);
-            }
-        }
-        return flights;
     }
 
 }

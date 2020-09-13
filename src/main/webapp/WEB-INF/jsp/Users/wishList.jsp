@@ -12,22 +12,63 @@
     <title>Wish List</title>
 
     <link rel="stylesheet" type="text/css" href="/css/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
 <!-- Site header -->
 <jsp:include page="../header.jsp"/>
 
 <main class="main-content">
-    <div class="card-body">
+
         <h1>My Wish List</h1>
         <h4></h4>
+
+        <%-- if wish list is empty --%>
+        <div class="wrap-stats">
+        <c:if test="${empty wishList}">
+            <h4>Add a country to your wish list</h4>
+        </c:if>
+
+        <%-- parse all wish list --%>
+        <c:forEach items="${wishList}" var ="wishList">
+            <div class="manage-stats">
+                <div class="register-group">
+                    <div class="register-row1">
+                        <div class="booking-info-left" style="font-weight: bold"><c:out value= "${wishList.countryCode3}"></c:out></div>
+                        <div class="booking-input-left">Country code</div>
+                    </div>
+                    <div class="register-row1">
+                     <div class="booking-info-right"><c:out value= "${wishList.countryName}"></c:out></div>
+                        <div class="booking-input-right">Country name</div>
+                    </div>
+                </div>
+
+                <div class="register-row">
+                    <form id="removeWishList" method="post" action="${pageContext.request.contextPath}/wishList/remove">
+                        <br>
+                        <hr>
+                        <!-- country code -->
+                        <input type ="hidden" id="country" name="country" value="<c:out value= "${wishList.countryCode3}"></c:out>" />
+                        <button type="submit">Remove</button>
+
+                    </form>
+                </div>
+            </div>
+
+        </c:forEach>
+        </div>
+
 
         <div class="wish-list">
             <div id="wishlist-add">
                 <h4>Add a country to travel wishlist</h4>
                 <form action="${pageContext.request.contextPath}/wishList" method="post">
-                    <label for="countryCode">Country:</label>
-                    <input list="countries" id="countryCode" name="countryCode" required>
+                    <div class="register-row">
+                        <input class= "input" placeholder="Country" list="countries" id="countryCode" name="countryCode" required>
+                        <span class="symbol-input">
+                            <i class="fa fa-flag" aria-hidden="true"> </i>
+                        </span>
+                    </div>
                     <button type="submit">Add</button>
 
                     <!-- Airport destinations -->
@@ -283,20 +324,10 @@
                     </datalist>
                 </form>
             </div>
-            <%-- if wish list is empty --%>
-            <c:if test="${empty wishList}">
-                <h4>Empty</h4>
-            </c:if>
 
-            <%-- parse all wish list --%>
-            <c:forEach items="${wishList}" var ="wishList">
-                <p><c:out value= "${wishList.countryCode3}"></c:out></p>
-                <p><c:out value= "${wishList.countryName}"></c:out></p>
-
-            </c:forEach>
         </div>
 
-    </div>
+
 </main>
 
 </body>

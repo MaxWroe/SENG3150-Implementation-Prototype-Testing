@@ -766,6 +766,7 @@ button
 .wrap-login{
 
     width: 400px;
+    position: center;
     background: #fff;
     border-radius: 10px;
     overflow: hidden;
@@ -779,7 +780,7 @@ button
     justify-content: space-between;
     padding: 10px 10px 10px 50px;
 
-    margin-left: 550px;
+    margin: auto;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
@@ -868,7 +869,7 @@ button
     background: #fff;
     border-radius: 10px;
     overflow: hidden;
-    margin-left: 450px;
+    margin: auto;
     padding: 10px 10px 10px 50px;
     display: flex;
     flex-wrap: wrap;
@@ -989,15 +990,23 @@ button
 
 /* manage bookings */
 .wrap-bookings{
-    width: 1400px;
+    width: 100%;
+    justify-content: center;
+    overflow-x: auto;
+    white-space: nowrap;
+
+}
+
+.my-bookings{
+    height: 100%;
     background: #1e809b;
     border-radius: 10px;
-    margin-left: 50px;
-
-
-    display: flex;
-    flex-wrap: wrap;
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: relative;
+    white-space: nowrap;
     justify-content: center;
+    display: inline-block;
 
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
@@ -1011,7 +1020,7 @@ button
     margin-left: 10px;
     margin-right: 10px;
     padding: 10px 10px 10px 10px;
-    display: inline-block;
+    display: block;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
 }
@@ -1061,4 +1070,207 @@ button
 .booking-input-center{
     display: block;
     color: black;
+}
+
+/*manage airlines*/
+
+.my-airlines{
+    width: 100%;
+    justify-content: center;
+    overflow-x: auto;
+    white-space: nowrap;
+
+}
+
+.wrap-airlines{
+    width: 320px;
+    height: 100%;
+    background: #1e809b;
+    border-radius: 10px;
+    margin: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: relative;
+    white-space: nowrap;
+    justify-content: center;
+    display: inline-block;
+
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+}
+
+.wrap-airlines2{
+    width: 320px;
+    height: 100%;
+    background: #1e809b;
+    border-radius: 10px;
+    margin: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: relative;
+    white-space: nowrap;
+    justify-content: center;
+    display: inline-block;
+
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+}
+
+.manage-airlines{
+    width: 300px;
+    position: relative;
+    margin-top: 10px;
+    background: #fff;
+    border-radius: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 10px 10px 10px 10px;
+    display: block;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+/* manage airports */
+.wrap-airports{
+    width: 1000px;
+    margin: auto;
+    position:center;
+    background: #1e809b;
+    border-radius: 10px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    justify-content: center;
+    padding-bottom: 10px;
+
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.manage-airports{
+    width: 300px;
+    position: relative;
+    margin-top: 10px;
+    background: #fff;
+    border-radius: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 10px 10px 10px 10px;
+    display: inline-block;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.restrict-airline{
+    width: 500px;
+    position: relative;
+    background: #1e809b;
+    border-radius: 10px;
+    margin:auto;
+    padding: 10px 10px 10px 10px;
+    display: inline-block;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+}
+
+/* travel agent */
+.wrap-stats{
+    width: auto;
+    background: #1e809b;
+    border-radius: 10px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    position: relative;
+    white-space: nowrap;
+    justify-content: center;
+    padding-bottom: 10px;
+
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.manage-stats{
+    width: 300px;
+    position: relative;
+    margin-top: 10px;
+    background: #fff;
+    border-radius: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 10px 10px 10px 10px;
+    display: inline-block;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+/* wish list */
+.wish-list{
+    width: 300px;
+    position: center;
+    background: #fff;
+    border-radius: 10px;
+    margin: auto;
+    padding: 10px 10px 10px 10px;
+    display: block;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+}
+
+/*review*/
+
+.wrap-review{
+    width: 320px;
+    height: 100%;
+    background: #1e809b;
+    border-radius: 10px;
+    margin: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: center;
+    white-space: nowrap;
+    justify-content: center;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+}
+
+.manage-review{
+    width: 300px;
+    position: relative;
+    margin-top: 10px;
+    background: #fff;
+    border-radius: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 10px 10px 10px 10px;
+    display: block;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+}
+
+/*submit review*/
+.wrap-submit-review{
+    width: 450px;
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: auto;
+    padding: 10px 10px 10px 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+/* customer support */
+.wrap-enquiry{
+    width: 400px;
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: auto;
+    padding: 10px 10px 10px 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
 }

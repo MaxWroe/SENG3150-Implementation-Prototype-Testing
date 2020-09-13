@@ -13,19 +13,9 @@ import java.util.*;
 
 /*
 Author: Chris Mather
-Description: this class processes a list of flights and returns information about it
- */
-
-//current methods
-/*
-public List<FlightPlan> createFlightPlans(List<Flight> flights, String departureLocation, String destination, String startingTimeString, String endingTimeString, List<Availability> parsedAvailabilities)
-private List<FlightPlan> SetFlightPlansAvailabilities(List<FlightPlan> flightPlans, List<Availability> availabilities)
-
-private List<Flight> filterByAvailabilities(List<Flight> flights, List<Availability> availabilities)
-private DijkstraGraph buildGraph(List<Flight> flights)
-private List<FlightPlan> removeDuplicateFlightPlans(List<FlightPlan> parsedFlightPlans)
-private void setAirports(List<String> parsedAirports)
- */
+Description: this class takes in criteria for a flight search and returns a list of flight plans that match the sent in criteria
+this class uses DijkstraAlgorithmFPS, YensAlgorithmFPS, FlightPlanSearchFunctions and FlightPlanSearchSQL to retrieve and process flight plans
+*/
 
 public class FlightPlanSearch {
     private ArrayList<Airport> airports;
@@ -33,14 +23,6 @@ public class FlightPlanSearch {
     private DijkstraAlgorithmFPS dijkstraSearch;
     private YensAlgorithmFPS yensSearch;
     private FlightPlanSearchSQL sqlSearch;
-
-//    public FlightPlanSearch(){
-//        airports = new ArrayList<>();
-//        searchFunctions = new FlightPlanSearchFunctions();
-//        dijkstraSearch = new DijkstraAlgorithmFPS();
-//        yensSearch = new YensAlgorithmFPS();
-//        sqlSearch = new FlightPlanSearchSQL();
-//    }
 
     public FlightPlanSearch(EntityManager em){
         searchFunctions = new FlightPlanSearchFunctions();
@@ -55,7 +37,6 @@ public class FlightPlanSearch {
     public List<FlightPlan> searchFlightPlans(String departureLocation, String destination, String departureDate, String classCode, int departureDateRange, int numberOfPeople, EntityManager em){
         List<FlightPlan> flightPlans = new LinkedList<>();
         List<FlightPlan> totalFlightPlans = new LinkedList<>();
-        System.out.println("starting flight plan search with date: " + departureDate);
 
         String timeStartString = departureDate + " 00:00:01";
         String timeEndString = departureDate + " 23:59:59";
@@ -84,11 +65,10 @@ public class FlightPlanSearch {
         }
         flightPlans = searchFunctions.removeDuplicateFlightPlans(flightPlans);
         flightPlans = searchFunctions.filterFlightsDepartureDate(flightPlans, timeRange);
-        System.out.println("returning flight plans");
         return flightPlans;
     }
 
-
+    //returns a single flight plan that matches the sent in criteria and is the smallest flight plan in terms of duration
     public FlightPlan getSingleFlightPlan(String departureLocation, String destination, String departureDate, String classCode, int departureDateRange,  int numberOfPeople, EntityManager em){
         FlightPlan flightPlan = null;
 
@@ -125,10 +105,10 @@ public class FlightPlanSearch {
         return flightPlan;
     }
 
+    //runs yens a number of times equal to numberOFCycles on the sent in flights using the criteria sent in
     private List<FlightPlan> buildFlightPlansYens(List<Flight> flights, String departureLocation, String destination, Timestamp startingTime, Timestamp endingTime, int numberOfCycles) {
         List<FlightPlan> flightPlans = new LinkedList<>();
         Timestamp inputTime = startingTime;
-
 
         if(flights.size()>0){
             for(int i=0; i<numberOfCycles; i++) {

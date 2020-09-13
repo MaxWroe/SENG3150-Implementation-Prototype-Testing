@@ -26,6 +26,9 @@ public class Review {
     @Column(name = "Comment")
     private String comment;
 
+    @Column(name = "Name")
+    private String name;
+
     //1 to 5
     @Column(name = "Rating")
     @Basic(optional = false)
@@ -54,6 +57,14 @@ public class Review {
 
     public void setUserID(String userID) {
         this.userID = userID;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Date getReviewDate() {

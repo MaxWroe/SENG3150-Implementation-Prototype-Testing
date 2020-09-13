@@ -23,10 +23,10 @@ public class Airport {
     private String country;
 
     @Column(name = "ShutdownStartDate", table = "Destinations")
-    private Timestamp shutdownStartDate;
+    private Date shutdownStartDate;
 
     @Column(name = "ShutdownEndDate", table = "Destinations")
-    private Timestamp shutdownEndDate;
+    private Date shutdownEndDate;
 
     //Constructor
     public Airport() {
@@ -49,19 +49,19 @@ public class Airport {
         this.country = country;
     }
 
-    public Timestamp getShutdownStartDate() {
+    public Date getShutdownStartDate() {
         return shutdownStartDate;
     }
 
-    public void setShutdownStartDate(Timestamp shutdownStartDate) {
+    public void setShutdownStartDate(Date shutdownStartDate) {
         this.shutdownStartDate = shutdownStartDate;
     }
 
-    public Timestamp getShutdownEndDate() {
+    public Date getShutdownEndDate() {
         return shutdownEndDate;
     }
 
-    public void setShutdownEndDate(Timestamp shutdownEndDate) {
+    public void setShutdownEndDate(Date shutdownEndDate) {
         this.shutdownEndDate = shutdownEndDate;
     }
 

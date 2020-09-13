@@ -10,10 +10,9 @@ import java.util.List;
 
 /*
 Author: Chris Mather
-Description: this class stores a list of flights and corresponding lists of availabilities and prices for those flights
+Description: this class stores a list of flights and corresponding lists of availabilities, prices and flights sponsorship for those flights
 and contains methods to get information on the flight plan
- */
-
+*/
 
 public class FlightPlan implements Comparable<FlightPlan>, Cloneable{
     private List<Flight> flights;
@@ -46,9 +45,7 @@ public class FlightPlan implements Comparable<FlightPlan>, Cloneable{
     //returns airline names of the flights
     public List<String> getAirlines(){
         List<String> airlines = new LinkedList<String>();
-        //String airlines = "";
         for (Flight flight : flights) {
-            //airlines += flight.getAirlineCode();
             airlines.add(flight.getAirlineCode());
         }
         return airlines;
@@ -63,7 +60,6 @@ public class FlightPlan implements Comparable<FlightPlan>, Cloneable{
                 }
             }
         }
-//        System.out.println(availabilities.size());
     }
 
     //returns a price based on a specific availability
@@ -78,7 +74,6 @@ public class FlightPlan implements Comparable<FlightPlan>, Cloneable{
 
     //returns sum of prices from all flights in the flight plans
     public int getPrice(){
-//        System.out.println("get price method has started");
         int out = 0;
         if(availabilities.size()==0){
             return 0;
@@ -95,7 +90,6 @@ public class FlightPlan implements Comparable<FlightPlan>, Cloneable{
             out += getPriceFromAvailability(availabilities.get(tempInt));
 
         }
-//        System.out.println("get price method has completed");
         return  out;
     }
 
@@ -155,9 +149,9 @@ public class FlightPlan implements Comparable<FlightPlan>, Cloneable{
         return out;
     }
 
-    public void addToStart(Flight newFlight){
-        flights.add(0,newFlight);
-    }
+//    public void addToStart(Flight newFlight){
+//        flights.add(0,newFlight);
+//    }
 
     public List<Flight> getFlights() {
         return flights;
@@ -211,7 +205,6 @@ public class FlightPlan implements Comparable<FlightPlan>, Cloneable{
         }
 
         for(int j=0; j<i; j++){
-//            tempFlights.add(flights.get(j).clone());
             tempFlights.add(flights.get(j));
         }
         return  new FlightPlan(tempFlights);
@@ -221,6 +214,7 @@ public class FlightPlan implements Comparable<FlightPlan>, Cloneable{
         flights.addAll(parsedFlightPlan.getFlights());
     }
 
+    //returns string of the flight plan giving information of the lists
     public String toString(){
         String out = "";
         for(Flight currentFlight : flights){
@@ -236,6 +230,7 @@ public class FlightPlan implements Comparable<FlightPlan>, Cloneable{
         return out;
     }
 
+    //runs compare to comparing the duration of this flight plan to the parsed in flight plan
     public int compareTo(FlightPlan flightPlan){
         if(getDurationTotal() > flightPlan.getDurationTotal())
         {
@@ -247,17 +242,17 @@ public class FlightPlan implements Comparable<FlightPlan>, Cloneable{
         return 0;
     }
 
+    //returns true if any of the flights in the flight plan are from a sponsored airline
     public boolean containsSponsored(){
-        System.out.println("hr");
         for(int i=0; i<flightSponsored.size(); i++){
             if(flightSponsored.get(i).booleanValue()){
                 return true;
             }
         }
-        System.out.println("end");
         return false;
     }
 
+    //returns the price of the flight that is in the ith position of the flights list
     public double getFlightIPrice(int i){
         if(i<flights.size()){
             for(int j=0; j<prices.size(); j++){
@@ -269,6 +264,7 @@ public class FlightPlan implements Comparable<FlightPlan>, Cloneable{
         return 0;
     }
 
+    //returns the ticket code of hte flight that is in the ith position of the flights list
     public char getFlightITicketCode(int i){
         if(i<flights.size()){
             for(int j=0; j<availabilities.size(); j++){

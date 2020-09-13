@@ -81,7 +81,7 @@ public class createBooking {
                     newBooking.setArrivalTime2(departure.getFlights().get(j).getArrivalDate());
                     newBooking.setTicketCode2(String.valueOf(departure.getFlightITicketCode(j)));
                     newBooking.setClassCode2(returnClassBooking);
-                    newBooking.setPrice(departure.getFlightIPrice(j));
+                    newBooking.setPrice2(departure.getFlightIPrice(j));
                 } else if (j == 2) {
                     newBooking.setAirlineCode3(departure.getFlights().get(j).getAirlineCode());
                     newBooking.setDepartureTime3(departure.getFlights().get(j).getDepartureDate());
@@ -91,7 +91,7 @@ public class createBooking {
                     newBooking.setArrivalTime3(departure.getFlights().get(j).getArrivalDate());
                     newBooking.setTicketCode3(String.valueOf(departure.getFlightITicketCode(j)));
                     newBooking.setClassCode3(returnClassBooking);
-                    newBooking.setPrice(departure.getFlightIPrice(j));
+                    newBooking.setPrice3(departure.getFlightIPrice(j));
                 } else if (j == 3) {
                     newBooking.setAirlineCode4(departure.getFlights().get(j).getAirlineCode());
                     newBooking.setDepartureTime4(departure.getFlights().get(j).getDepartureDate());
@@ -101,7 +101,7 @@ public class createBooking {
                     newBooking.setArrivalTime4(departure.getFlights().get(j).getArrivalDate());
                     newBooking.setTicketCode4(String.valueOf(departure.getFlightITicketCode(j)));
                     newBooking.setClassCode4(returnClassBooking);
-                    newBooking.setPrice(departure.getFlightIPrice(j));
+                    newBooking.setPrice4(departure.getFlightIPrice(j));
                 }
             }
             bookingsDeparture.add(newBooking);
@@ -139,7 +139,7 @@ public class createBooking {
                     newBooking.setArrivalTime2(returns.getFlights().get(j).getArrivalDate());
                     newBooking.setTicketCode2(String.valueOf(returns.getFlightITicketCode(j)));
                     newBooking.setClassCode2(returnClassBooking);
-                    newBooking.setPrice(returns.getFlightIPrice(j));
+                    newBooking.setPrice2(returns.getFlightIPrice(j));
                 } else if (j == 2) {
                     newBooking.setAirlineCode3(returns.getFlights().get(j).getAirlineCode());
                     newBooking.setDepartureTime3(returns.getFlights().get(j).getDepartureDate());
@@ -149,7 +149,7 @@ public class createBooking {
                     newBooking.setArrivalTime3(returns.getFlights().get(j).getArrivalDate());
                     newBooking.setTicketCode3(String.valueOf(returns.getFlightITicketCode(j)));
                     newBooking.setClassCode3(returnClassBooking);
-                    newBooking.setPrice(returns.getFlightIPrice(j));
+                    newBooking.setPrice3(returns.getFlightIPrice(j));
                 } else if (j == 3) {
                     newBooking.setAirlineCode4(returns.getFlights().get(j).getAirlineCode());
                     newBooking.setDepartureTime4(returns.getFlights().get(j).getDepartureDate());
@@ -159,7 +159,7 @@ public class createBooking {
                     newBooking.setArrivalTime4(returns.getFlights().get(j).getArrivalDate());
                     newBooking.setTicketCode4(String.valueOf(returns.getFlightITicketCode(j)));
                     newBooking.setClassCode4(returnClassBooking);
-                    newBooking.setPrice(returns.getFlightIPrice(j));
+                    newBooking.setPrice4(returns.getFlightIPrice(j));
                 }
             }
             bookingsReturn.add(newBooking);
@@ -201,67 +201,69 @@ public class createBooking {
 
         for(int j =0; j<2; j++) {
             if(j==0) {
-                for (int i = 0; i < adultsBooking + childrenBookingS; i++) {
-                    if (i < adultsBooking) {
-                        bookingsDeparture.get(i).setUserID(user.getUserID());
-                        if (i == 0) {
-                            bookingsDeparture.get(i).setFirstName(user.getFirstName());
-                            bookingsDeparture.get(i).setLastName(user.getLastName());
-                            bookingsDeparture.get(i).setDateOfBirth(user.getDateOfBirth());
+                for (int i = 1; i < adultsBooking + childrenBookingS+1; i++) {
+                    bookingsDeparture.get(i-1).setUserID(user.getUserID());
+                    if (i <= adultsBooking) {
+
+                        if (i == 1) {
+                            bookingsDeparture.get(i-1).setFirstName(user.getFirstName());
+                            bookingsDeparture.get(i-1).setLastName(user.getLastName());
+                            bookingsDeparture.get(i-1).setDateOfBirth(user.getDateOfBirth());
                         } else {
                             tempName = "adultFirstName" + Integer.toString(i);
-                            bookingsDeparture.get(i).setFirstName(request.getParameter(tempName));
+                            bookingsDeparture.get(i-1).setFirstName(request.getParameter(tempName));
                             tempName = "adultLastName" + Integer.toString(i);
-                            bookingsDeparture.get(i).setLastName(request.getParameter(tempName));
+                            bookingsDeparture.get(i-1).setLastName(request.getParameter(tempName));
                             tempName = "adultDOB" + Integer.toString(i);
                             //NEED JARRAD TO CHANGE THIS TO SESSION RATHER THAN REQUEST*********************************************
                             String temp = request.getParameter(tempName);
                             Date tempDate1 = Date.valueOf(temp);
-                            bookingsDeparture.get(i).setDateOfBirth(tempDate1);
+                            bookingsDeparture.get(i-1).setDateOfBirth(tempDate1);
                             currentPosition = i;
                         }
                     } else {
                         tempName = "childFirstName" + Integer.toString(i - adultsBooking);
-                        bookingsDeparture.get(i).setFirstName(request.getParameter(tempName));
+                        bookingsDeparture.get(i-1).setFirstName(request.getParameter(tempName));
                         tempName = "childLastName" + Integer.toString(i - adultsBooking);
-                        bookingsDeparture.get(i).setLastName(request.getParameter(tempName));
+                        bookingsDeparture.get(i-1).setLastName(request.getParameter(tempName));
                         tempName = "childDOB" + Integer.toString(i - adultsBooking);
                         String temp = request.getParameter(tempName);
                         Date tempDate1 = Date.valueOf(temp);
-                        bookingsDeparture.get(i).setDateOfBirth(tempDate1);
+                        bookingsDeparture.get(i-1).setDateOfBirth(tempDate1);
                         currentPosition = i;
                         //departureBooking.add(newBooking);
                     }
                 }
             }else if(returnTrip && j==1){
-                for (int i = 0; i < adultsBooking + childrenBookingS; i++) {
-                    if (i < adultsBooking) {
-                        bookingsReturn.get(i).setUserID(user.getUserID());
-                        if (i == 0) {
-                            bookingsReturn.get(i).setFirstName(user.getFirstName());
-                            bookingsReturn.get(i).setLastName(user.getLastName());
-                            bookingsReturn.get(i).setDateOfBirth(user.getDateOfBirth());
+                for (int i = 1; i < adultsBooking + childrenBookingS+1; i++) {
+                    bookingsReturn.get(i-1).setUserID(user.getUserID());
+                    if (i <= adultsBooking) {
+
+                        if (i == 1) {
+                            bookingsReturn.get(i-1).setFirstName(user.getFirstName());
+                            bookingsReturn.get(i-1).setLastName(user.getLastName());
+                            bookingsReturn.get(i-1).setDateOfBirth(user.getDateOfBirth());
                         } else {
                             tempName = "adultFirstName" + Integer.toString(i);
-                            bookingsReturn.get(i).setFirstName(request.getParameter(tempName));
+                            bookingsReturn.get(i-1).setFirstName(request.getParameter(tempName));
                             tempName = "adultLastName" + Integer.toString(i);
-                            bookingsReturn.get(i).setLastName(request.getParameter(tempName));
+                            bookingsReturn.get(i-1).setLastName(request.getParameter(tempName));
                             tempName = "adultDOB" + Integer.toString(i);
                             //NEED JARRAD TO CHANGE THIS TO SESSION RATHER THAN REQUEST*********************************************
                             String temp = request.getParameter(tempName);
                             Date tempDate1 = Date.valueOf(temp);
-                            bookingsReturn.get(i).setDateOfBirth(tempDate1);
+                            bookingsReturn.get(i-1).setDateOfBirth(tempDate1);
                             currentPosition = i;
                         }
                     } else {
                         tempName = "childFirstName" + Integer.toString(i - adultsBooking);
-                        bookingsReturn.get(i).setFirstName(request.getParameter(tempName));
+                        bookingsReturn.get(i-1).setFirstName(request.getParameter(tempName));
                         tempName = "childLastName" + Integer.toString(i - adultsBooking);
-                        bookingsReturn.get(i).setLastName(request.getParameter(tempName));
+                        bookingsReturn.get(i-1).setLastName(request.getParameter(tempName));
                         tempName = "childDOB" + Integer.toString(i - adultsBooking);
                         String temp = request.getParameter(tempName);
                         Date tempDate1 = Date.valueOf(temp);
-                        bookingsReturn.get(i).setDateOfBirth(tempDate1);
+                        bookingsReturn.get(i-1).setDateOfBirth(tempDate1);
                         currentPosition = i;
                         //departureBooking.add(newBooking);
                     }

@@ -37,8 +37,8 @@ CREATE TABLE `Destinations` (
                                 `DestinationCode` char(3) NOT NULL,
                                 `Airport` varchar(30) NOT NULL,
                                 `CountryCode3` char(3) NOT NULL,
-                                `ShutdownStartDate` datetime,
-                                `ShutdownEndDate` datetime,
+                                `ShutdownStartDate` date,
+                                `ShutdownEndDate` date,
                                 PRIMARY KEY (`DestinationCode`),
                                 KEY `DestinationCountryCode_FK` (`CountryCode3`),
                                 CONSTRAINT `DestinationCountryCode_FK` FOREIGN KEY (`CountryCode3`) REFERENCES `Country` (`countryCode3`)
@@ -234,10 +234,14 @@ CREATE TABLE `Enquiry`(
                           `EnquiryDate` date NOT NULL,
                           `Description` varchar(500) NOT NULL,
                           `EnquiryResponse` varchar(500),
+                          `BookingID` int,
+                          `Title` varchar(50) NOT NULL,
 
                           PRIMARY KEY (`EnquiryID`),
-                          FOREIGN KEY (`UserID`) REFERENCES `UserAccount` (`UserID`)
+                          FOREIGN KEY (`UserID`) REFERENCES `UserAccount` (`UserID`),
+                          FOREIGN KEY (`BookingID`) REFERENCES `Booking` (`BookingID`)
 )ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 
 
 CREATE TABLE `Reccomendation`(
@@ -264,6 +268,7 @@ CREATE TABLE `Review`(
                          `Comment` varchar(500),
                          `Rating` int NOT NULL,
                          `ReviewType` int NOT NULL,
+                         `name` varchar(80),
 
                          PRIMARY KEY (`ReviewID`),
                          FOREIGN KEY (`UserID`) REFERENCES `UserAccount` (`UserID`)

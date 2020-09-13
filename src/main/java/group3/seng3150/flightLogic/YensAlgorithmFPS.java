@@ -6,6 +6,12 @@ import group3.seng3150.entities.Flight;
 import java.sql.Timestamp;
 import java.util.*;
 
+/*
+Author: Chris Mather
+Description: this class runs Yen's algorithm on a sent in graph to find k shortest paths from one location to another
+this class runs Dijkstra on a graph then manipulates teh graph and reruns Dijkstra on it and this process is repeated using loops
+*/
+
 public class YensAlgorithmFPS {
     private DijkstraAlgorithmFPS dijkstraSearch;
 
@@ -13,6 +19,7 @@ public class YensAlgorithmFPS {
         dijkstraSearch = new DijkstraAlgorithmFPS();
     }
 
+    //runs Dijkstra on the parsed in graph and then mutates the graph by removing nodes and reruns Dijkstra using sent in criteria, k limits the maximum amount of Flight Plans it will try and find to k Flight Plans
     public List<FlightPlan> getKShortestPaths(DijkstraGraph graph, String departureLocation, String arrivalLocation, Timestamp startingTime , int k){
         ArrayList<FlightPlan> kShortestPaths = new ArrayList<FlightPlan>();
         PriorityQueue<FlightPlan> candidates = new PriorityQueue<>();

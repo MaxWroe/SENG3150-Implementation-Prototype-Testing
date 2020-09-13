@@ -113,7 +113,11 @@ public class BookingsController {
         ModelAndView view = new ModelAndView("/Users/manageBooking");
         createBooking bookingMaker = new createBooking(em);
         bookingMaker.makeBooking(session, request, auth, (String) session.getAttribute("adultsBooked"), (String) session.getAttribute("childrenBooked"), (String) session.getAttribute("trip"));
-
+        String userEmail = "'" +auth.getName()+"'";
+        String message = new String();
+        UserAccount user = (UserAccount) em.createQuery("SELECT u FROM UserAccount u WHERE u.email=" + userEmail).getSingleResult();
+        List<Booking> booking = em.createQuery("SELECT b FROM Booking b WHERE b.userID=" + user.getUserID()).getResultList();
+        view.addObject("booking", booking);
         return view;
     }
 
