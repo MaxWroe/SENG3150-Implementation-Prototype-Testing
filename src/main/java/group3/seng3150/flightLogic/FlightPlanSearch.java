@@ -37,7 +37,6 @@ public class FlightPlanSearch {
     public List<FlightPlan> searchFlightPlans(String departureLocation, String destination, String departureDate, String classCode, int departureDateRange, int numberOfPeople, EntityManager em){
         List<FlightPlan> flightPlans = new LinkedList<>();
         List<FlightPlan> totalFlightPlans = new LinkedList<>();
-        System.out.println("starting flight plan search with date: " + departureDate);
 
         String timeStartString = departureDate + " 00:00:01";
         String timeEndString = departureDate + " 23:59:59";
@@ -66,11 +65,10 @@ public class FlightPlanSearch {
         }
         flightPlans = searchFunctions.removeDuplicateFlightPlans(flightPlans);
         flightPlans = searchFunctions.filterFlightsDepartureDate(flightPlans, timeRange);
-        System.out.println("returning flight plans");
         return flightPlans;
     }
 
-
+    //returns a single flight plan that matches the sent in criteria and is the smallest flight plan in terms of duration
     public FlightPlan getSingleFlightPlan(String departureLocation, String destination, String departureDate, String classCode, int departureDateRange,  int numberOfPeople, EntityManager em){
         FlightPlan flightPlan = null;
 
@@ -107,10 +105,10 @@ public class FlightPlanSearch {
         return flightPlan;
     }
 
+    //runs yens a number of times equal to numberOFCycles on the sent in flights using the criteria sent in
     private List<FlightPlan> buildFlightPlansYens(List<Flight> flights, String departureLocation, String destination, Timestamp startingTime, Timestamp endingTime, int numberOfCycles) {
         List<FlightPlan> flightPlans = new LinkedList<>();
         Timestamp inputTime = startingTime;
-
 
         if(flights.size()>0){
             for(int i=0; i<numberOfCycles; i++) {

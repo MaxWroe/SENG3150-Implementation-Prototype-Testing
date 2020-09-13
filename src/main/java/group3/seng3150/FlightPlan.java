@@ -149,9 +149,9 @@ public class FlightPlan implements Comparable<FlightPlan>, Cloneable{
         return out;
     }
 
-    public void addToStart(Flight newFlight){
-        flights.add(0,newFlight);
-    }
+//    public void addToStart(Flight newFlight){
+//        flights.add(0,newFlight);
+//    }
 
     public List<Flight> getFlights() {
         return flights;
@@ -214,6 +214,7 @@ public class FlightPlan implements Comparable<FlightPlan>, Cloneable{
         flights.addAll(parsedFlightPlan.getFlights());
     }
 
+    //returns string of the flight plan giving information of the lists
     public String toString(){
         String out = "";
         for(Flight currentFlight : flights){
@@ -229,6 +230,7 @@ public class FlightPlan implements Comparable<FlightPlan>, Cloneable{
         return out;
     }
 
+    //runs compare to comparing the duration of this flight plan to the parsed in flight plan
     public int compareTo(FlightPlan flightPlan){
         if(getDurationTotal() > flightPlan.getDurationTotal())
         {
@@ -240,6 +242,7 @@ public class FlightPlan implements Comparable<FlightPlan>, Cloneable{
         return 0;
     }
 
+    //returns true if any of the flights in the flight plan are from a sponsored airline
     public boolean containsSponsored(){
         for(int i=0; i<flightSponsored.size(); i++){
             if(flightSponsored.get(i).booleanValue()){
@@ -249,6 +252,7 @@ public class FlightPlan implements Comparable<FlightPlan>, Cloneable{
         return false;
     }
 
+    //returns the price of the flight that is in the ith position of the flights list
     public double getFlightIPrice(int i){
         if(i<flights.size()){
             for(int j=0; j<prices.size(); j++){
@@ -260,6 +264,7 @@ public class FlightPlan implements Comparable<FlightPlan>, Cloneable{
         return 0;
     }
 
+    //returns the ticket code of hte flight that is in the ith position of the flights list
     public char getFlightITicketCode(int i){
         if(i<flights.size()){
             for(int j=0; j<availabilities.size(); j++){

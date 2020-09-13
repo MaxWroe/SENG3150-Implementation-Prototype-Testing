@@ -17,6 +17,7 @@ Description: this class provides methods for retrieving information from the dat
 public class FlightPlanSearchSQL {
     public FlightPlanSearchSQL(){}
 
+    //returns flights from the database that depart after the starting time and depart before the end time
     public List<Flight> retrieveFlights(Timestamp startTime, Timestamp endTime, EntityManager em){
         List<Flight> flights = new LinkedList<>();
         Query queryFlights = em.createQuery("SELECT f FROM Flight f WHERE f.departureDate >= :startTime " +
@@ -28,6 +29,7 @@ public class FlightPlanSearchSQL {
         return flights;
     }
 
+    //returns list of availabilities from the data base that match sent in criteria
     public List<Availability> retrieveAvailabilities(Timestamp startTime, Timestamp endTime, int numberOfPeople, String classCode, EntityManager em){
         List<Availability> availabilities = new LinkedList<>();
         Query queryAvailabilities = em.createQuery("SELECT a FROM Availability a WHERE a.departureDate >= :startTime" +
@@ -44,6 +46,7 @@ public class FlightPlanSearchSQL {
         return availabilities;
     }
 
+    //returns a price from the database that is associated with the sent in availability
     public Price retrievePrice(Availability av, EntityManager em) {
         String airlineCode = av.getAirlineCode();
         String flightNumber = av.getFlightNumber();
@@ -70,10 +73,12 @@ public class FlightPlanSearchSQL {
         return null;
     }
 
+    //retrieves all of the airports from the database
     public List<Airport> retrieveAirports(EntityManager em){
         return em.createQuery("SELECT a FROM Airport a", Airport.class).getResultList();
     }
 
+    //returns the airline that the sent in flight is run by
     public Airline retrieveAirline(Flight flight, EntityManager em){
         String airlineCode = flight.getAirlineCode();
         Query queryAirlines = em.createQuery("SELECT a FROM Airline a WHERE a.airlineCode = :airlineCode ");

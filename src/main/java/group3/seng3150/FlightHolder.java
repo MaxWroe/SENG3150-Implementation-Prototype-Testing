@@ -24,12 +24,13 @@ public class FlightHolder {
         flightPlansReturning = new ArrayList<>();
     }
 
-    //sorts the list of flights by the sorting method
+    //sorts the departing list of flights by the sorting method
     public List<FlightPlan> sortFlightPlansDeparting(String sortMethod){
         flightPlansDeparting = sorter.sortFlightPlan(flightPlansDeparting, sortMethod);
         return flightPlansDeparting;
     }
 
+    //sorts the returning list of flights by the sorting method
     public List<FlightPlan> sortFlightPlansReturning(String sortMethod){
         flightPlansReturning = sorter.sortFlightPlan(flightPlansReturning, sortMethod);
         return flightPlansReturning;

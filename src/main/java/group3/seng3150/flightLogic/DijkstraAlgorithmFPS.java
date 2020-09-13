@@ -15,6 +15,7 @@ public class DijkstraAlgorithmFPS {
 
     public DijkstraAlgorithmFPS(){}
 
+    //returns the FlightPlan from the graph that goes from the departure location to the arrival location that has the smallest distance which means that it has the smakkest time from the starting time to its final flights arrival time
     public FlightPlan getShortestPathDuration(DijkstraGraph parsedGraph, String departureLocation, String arrivalLocation, Timestamp startingTime){
         FlightPlan flightPlan = new FlightPlan();
         calculateShortestPathFromSource(parsedGraph, parsedGraph.getNodes().get(departureLocation), startingTime);
@@ -30,7 +31,7 @@ public class DijkstraAlgorithmFPS {
         }
     }
 
-    //runs Dijkstra's algorithm in a sent in graph from the source node sent in
+    //runs Dijkstra's algorithm on a sent in graph from the source node sent in where distances are measured after the starting time
     private static DijkstraGraph calculateShortestPathFromSource(DijkstraGraph graph, DijkstraNode source, Timestamp startingTime) {
         source.setDistance(startingTime.getTime());
 
@@ -72,6 +73,7 @@ public class DijkstraAlgorithmFPS {
         return graph;
     }
 
+    //returns the node with the lowest distance of the sent in set of nodes
     private static DijkstraNode getLowestDistanceNode(Set<DijkstraNode> unsettledNodes) {
         DijkstraNode lowestDistanceNode = null;
         long lowestDistance = Long.MAX_VALUE;
@@ -85,6 +87,7 @@ public class DijkstraAlgorithmFPS {
         return lowestDistanceNode;
     }
 
+    //if the sent in evaluation nodes distance is larger than the source nodes path and edge then the evaluation path and distance are changed
     private static void calculateMinimumDistance(DijkstraNode evaluationNode, Long edgeWeight, Flight currentEdge,  DijkstraNode sourceNode) {
         Long sourceDistance = sourceNode.getDistance();
         if (sourceDistance + edgeWeight < evaluationNode.getDistance()) {

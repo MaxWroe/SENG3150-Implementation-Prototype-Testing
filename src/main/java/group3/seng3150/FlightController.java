@@ -67,15 +67,17 @@ public class FlightController{
             flightPlans.sortFlightPlansReturning("timeascending");
         }
 
-        System.out.println("number of flight plans Departing: " + flightPlans.getFlightPlansDepartingSize());
-        for(int i=0; i<flightPlans.getFlightPlansDepartingSize(); i++){
-            System.out.println(flightPlans.getFlightPlansDeparting().get(i).toString());
-        }
+        //prints returned departing flight plans
+//        System.out.println("number of flight plans Departing: " + flightPlans.getFlightPlansDepartingSize());
+//        for(int i=0; i<flightPlans.getFlightPlansDepartingSize(); i++){
+//            System.out.println(flightPlans.getFlightPlansDeparting().get(i).toString());
+//        }
 
-        System.out.println("number of flight plans Returning: " + flightPlans.getFlightPlansReturningSize());
-        for(int i=0; i<flightPlans.getFlightPlansReturningSize(); i++){
-            System.out.println(flightPlans.getFlightPlansReturning().get(i).toString());
-        }
+        //prints returned returning flight plans
+//        System.out.println("number of flight plans Returning: " + flightPlans.getFlightPlansReturningSize());
+//        for(int i=0; i<flightPlans.getFlightPlansReturningSize(); i++){
+//            System.out.println(flightPlans.getFlightPlansReturning().get(i).toString());
+//        }
 
         //sets the flightholder beans as objects of view
         view.addObject("flights", flightPlans);

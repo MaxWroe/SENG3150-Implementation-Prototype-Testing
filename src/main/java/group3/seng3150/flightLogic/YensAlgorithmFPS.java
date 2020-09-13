@@ -19,6 +19,7 @@ public class YensAlgorithmFPS {
         dijkstraSearch = new DijkstraAlgorithmFPS();
     }
 
+    //runs Dijkstra on the parsed in graph and then mutates the graph by removing nodes and reruns Dijkstra using sent in criteria, k limits the maximum amount of Flight Plans it will try and find to k Flight Plans
     public List<FlightPlan> getKShortestPaths(DijkstraGraph graph, String departureLocation, String arrivalLocation, Timestamp startingTime , int k){
         ArrayList<FlightPlan> kShortestPaths = new ArrayList<FlightPlan>();
         PriorityQueue<FlightPlan> candidates = new PriorityQueue<>();

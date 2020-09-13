@@ -19,6 +19,7 @@ public class FlightPlanSearchFunctions {
 
     public FlightPlanSearchFunctions(){}
 
+    //removes flights that do not have a corresponding availability in the sent in list
     public List<Flight> filterByAvailabilities(List<Flight> flights, List<Availability> availabilities){
         List<Flight> filteredFlights = new LinkedList<>();
         boolean contains = false;
@@ -39,6 +40,7 @@ public class FlightPlanSearchFunctions {
         return filteredFlights;
     }
 
+    //build a Dijkstra graph where the edges are list of flights that go from one airport to another as a directed edges and the nodes are airports
     public DijkstraGraph buildGraph(List<Flight> flights, List<Airport> airports){
         ArrayList<DijkstraNode> airportFlightNodes = new ArrayList<>();
         ArrayList<String> airportsString = new ArrayList<>();
@@ -57,6 +59,7 @@ public class FlightPlanSearchFunctions {
         return flightsGraph;
     }
 
+    //removes duplicates of flight plans from the sent in list which is any two flight plans that have the same flights
     public List<FlightPlan> removeDuplicateFlightPlans(List<FlightPlan> parsedFlightPlans){
         List<FlightPlan> uniqueFlightPlans = new LinkedList<FlightPlan>();
         boolean existsIn;
@@ -75,6 +78,7 @@ public class FlightPlanSearchFunctions {
         return  uniqueFlightPlans;
     }
 
+    //sets the availabilities variables of sent in flight plans to availabilities corresponding to Flights in the flight plans
     public List<FlightPlan> setFlightPlansAvailabilities(List<FlightPlan> flightPlans, List<Availability> availabilities){
         List<FlightPlan> flightPlanList = flightPlans;
         if(availabilities.size()>0) {
@@ -85,6 +89,7 @@ public class FlightPlanSearchFunctions {
         return flightPlanList;
     }
 
+    //sets the prices variables of sent in FlightPlans to prices corresponding to their flights from the database
     public List<FlightPlan> setPrices(List<FlightPlan> flightPlans, EntityManager em){
         List<Price> currentPrices;
         Price currentPrice = new Price();
@@ -102,6 +107,7 @@ public class FlightPlanSearchFunctions {
         return flightPlans;
     }
 
+    //removes and flights from the list that departs or arrives at an airport during a COVID Restriction period
     public List<Flight> filterFlightsCOVID(List<Flight> parsedFlights, List<Airport> parsedAirports) {
         for (int i = 0; i < parsedAirports.size(); i++) {
             if (parsedAirports.get(i).getShutdownStartDate() != null && parsedAirports.get(i).getShutdownEndDate()!=null) {
@@ -138,6 +144,7 @@ public class FlightPlanSearchFunctions {
         return parsedFlights;
     }
 
+    //sets the flight Sponsored variables of sent in flight plans to sponsored status corresponding to their flights airlines from the database
     public List<FlightPlan> setSponsoredAirlines(List<FlightPlan> parsedFlightPlans, EntityManager em){
         List<Boolean> flightsSponsored;
         Airline currentAirline;
@@ -156,6 +163,7 @@ public class FlightPlanSearchFunctions {
         return parsedFlightPlans;
     }
 
+    //removes any flight plans that have a list of flight larger than the sent in n
     public List<FlightPlan> filterNumberFlightsMaxSize(List<FlightPlan> parsedFlightPlans, int n){
         for (int i=0; i<parsedFlightPlans.size(); i++){
             if(parsedFlightPlans.get(i).getFlights().size()>n){
@@ -166,6 +174,7 @@ public class FlightPlanSearchFunctions {
         return parsedFlightPlans;
     }
 
+    //removes and flight plans that have a departure date after the end time
     public List<FlightPlan> filterFlightsDepartureDate(List<FlightPlan> parsedFlightPlans, Timestamp endTime){
         for(int i=0; i<parsedFlightPlans.size(); i++) {
             if(parsedFlightPlans.get(i).getDepartureDate().after(endTime)){
