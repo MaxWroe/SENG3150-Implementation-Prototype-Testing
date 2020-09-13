@@ -90,6 +90,20 @@
 
                 </div>
                 </security:authorize>
+
+                <%-- for ADMIN --%>
+                <security:authorize access="hasRole('ADMIN')">
+                <div class="dropdown" id="dropdown3">
+                    <a><security:authentication property="name"/></a>
+
+                    <div class="dropdown-content">
+                        <a href="/manageUsers">User Management</a>
+                        <a href="/addUsers">Add Users</a>
+                        <a href="/logout">Logout</a>
+                    </div>
+
+                </div>
+                </security:authorize>
             </li>
 
             <%--

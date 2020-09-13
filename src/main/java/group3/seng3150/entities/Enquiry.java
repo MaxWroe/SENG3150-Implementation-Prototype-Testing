@@ -32,9 +32,16 @@ public class Enquiry {
     @Basic(optional = false)
     private String description;
 
+    @Column(name = "Title")
+    @Basic(optional = false)
+    private String title;
+
     @Column(name = "EnquiryResponse")
     private String enquiryResponse;
 
+    @Column(name = "BookingID")
+    @Basic(optional = true)
+    private String bookingID;
 
     public Enquiry() {
     }
@@ -45,6 +52,22 @@ public class Enquiry {
 
     public void setEnquiryID(String enquiryID) {
         this.enquiryID = enquiryID;
+    }
+
+    public String getBookingID() {
+        return bookingID;
+    }
+
+    public void setBookingID(String bookingID) {
+        this.bookingID = bookingID;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getDescription() {

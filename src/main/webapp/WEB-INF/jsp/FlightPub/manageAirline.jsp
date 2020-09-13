@@ -21,6 +21,7 @@
             <h1>Airline Management</h1>
             <h4>List of Airlines</h4>
 
+        <div class="my-airlines">
             <%-- preferred parsing all airlines --%>
              <div class="wrap-airlines">
 
@@ -100,7 +101,7 @@
                     </c:forEach>
             </div>
 
-
+        </div>
     </main>
 </body>
 </html>
