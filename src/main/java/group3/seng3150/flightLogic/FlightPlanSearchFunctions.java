@@ -1,6 +1,5 @@
 package group3.seng3150.flightLogic;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import group3.seng3150.FlightPlan;
 import group3.seng3150.entities.*;
 

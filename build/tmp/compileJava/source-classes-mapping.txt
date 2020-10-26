@@ -50,8 +50,6 @@ group3/seng3150/entities/Enquiry.java
  group3.seng3150.entities.Enquiry
 group3/seng3150/travelAgentController.java
  group3.seng3150.travelAgentController
-group3/seng3150/RecommendationTesting.java
- group3.seng3150.RecommendationTesting
 group3/seng3150/entities/WishListEntry.java
  group3.seng3150.entities.WishListEntry
 group3/seng3150/recommendationLogic/RecommendationPackage.java

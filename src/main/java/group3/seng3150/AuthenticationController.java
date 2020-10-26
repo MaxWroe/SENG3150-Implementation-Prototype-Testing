@@ -22,7 +22,7 @@ public class AuthenticationController {
     @Autowired
     public AuthenticationController(EntityManager em){this.em =em;}
 
-    //get method login
+    //Get method login
     @GetMapping("/login")
     public ModelAndView displayLogin() {
         ModelAndView view = new ModelAndView("General/login");
