@@ -1,0 +1,38 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd"
+>
+    <!-- You need to change this for your root package,
+    e.g. seng3150.groupX -->
+    <context:component-scan base-package = "me.haydencheers" />
+
+    <!-- This tells Spring that it will find controllers through annotations -->
+    <mvc:annotation-driven />
+
+    <!-- This tells Spring where to find views (i.e. JSP files) -->
+    <mvc:view-resolvers>
+        <mvc:jsp prefix="/WEB-INF/views/"
+                 suffix=".jsp"
+             view-class="org.springframework.web.servlet.view.JstlView" />
+    </mvc:view-resolvers>
+    <!-- This tells Spring that all files in the js and css directories are static resources and do not need to be processed by a controller -->
+    <mvc:resources mapping="/js/**" location="/js/" />
+    <mvc:resources mapping="/css/**" location="/css/" />
+
+    <bean id="entityManagerProducer"
+          scope="singleton"
+          class="me.haydencheers.EntityManagerProducer" />
+
+    <bean class="javax.persistence.EntityManager"
+          scope="request"
+          factory-bean="entityManagerProducer"
+          factory-method="produceEntityManager">
+        <aop:scoped-proxy />
+    </bean>
+
+    <bean id="dao" class="org.mockito.Mockito" factory-method="mock">
+        <constructor-arg value="me.haydencheers.IPersonDAO" />
+    </bean>
+</beans>
