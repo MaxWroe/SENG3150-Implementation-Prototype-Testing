@@ -36,5 +36,9 @@
     <bean class="group3.seng3150.FlightHolder" scope="singleton"/>
     <bean class="group3.seng3150.createBooking" scope="singleton"/>
 
+    <!--Refactored beans for testing -->
+    <bean class="group3.seng3150.dao.UserAccountDAO"/>
+    <bean class="group3.seng3150.AccountController"/>
+
     <mvc:resources mapping="/img/**" location="/img/"/>
 </beans>

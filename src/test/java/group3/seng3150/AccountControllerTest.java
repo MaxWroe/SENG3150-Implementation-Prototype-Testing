@@ -1,5 +1,6 @@
 package group3.seng3150;
 
+import group3.seng3150.dao.UserAccountDAO;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -26,6 +27,7 @@ public class AccountControllerTest {
 
     @Autowired AccountController cont;
     @Autowired WebApplicationContext ctx;
+    @Autowired UserAccountDAO dao;
     MockMvc mockMvc;
 
     @Before

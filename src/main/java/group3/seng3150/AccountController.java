@@ -1,5 +1,6 @@
 package group3.seng3150;
 
+import group3.seng3150.dao.UserAccountDAO;
 import group3.seng3150.entities.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
@@ -21,9 +22,13 @@ import java.util.List;
 public class AccountController {
 
     private EntityManager em;
-    @Autowired
-    public AccountController(EntityManager em){this.em =em;}
+    private UserAccountDAO userAccountDAO;
 
+    @Autowired
+    public AccountController(EntityManager em, UserAccountDAO userAccountDAO) {
+        this.userAccountDAO = userAccountDAO;
+        this.em =em;
+    }
 
     //get method AccountDetails
     @GetMapping("/accountDetails")
@@ -34,7 +39,8 @@ public class AccountController {
         String emailSearch = "'" + auth.getName() + "'";
 
         //Retrieve the user's information
-        UserAccount user = (UserAccount) em.createQuery("SELECT u FROM UserAccount u WHERE u.email=" + emailSearch).getSingleResult();
+
+        UserAccount user = userAccountDAO.getAccountFromEmail(emailSearch);
 
 
         String gender = "";
