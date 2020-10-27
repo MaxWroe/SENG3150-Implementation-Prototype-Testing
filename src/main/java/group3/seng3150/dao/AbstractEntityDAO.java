@@ -94,7 +94,7 @@ public abstract class AbstractEntityDAO<EntityType, KeyType> implements IEntityD
         entity = em.merge(entity);
         em.getTransaction().commit();
         return entity;
-    }
+}
 
     //Handles the deletion of a record in the database matching the properties of the specified Entity
     @Override

@@ -1,12 +1,9 @@
 package group3.seng3150;
 
-import group3.seng3150.dao.IUserAccountDAO;
-import group3.seng3150.dao.UserAccountDAO;
 import group3.seng3150.entities.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,13 +21,9 @@ import java.util.List;
 public class AccountController {
 
     private EntityManager em;
-    private IUserAccountDAO dao;
-
     @Autowired
-    public AccountController(EntityManager em, IUserAccountDAO dao) {
-        this.dao = dao;
-        this.em =em;
-    }
+    public AccountController(EntityManager em){this.em =em;}
+
 
     //get method AccountDetails
     @GetMapping("/accountDetails")
@@ -38,10 +31,10 @@ public class AccountController {
                                               Authentication auth,
                                               HttpServletRequest request) {
         ModelAndView view = new ModelAndView("Users/accountDetails");
-        String emailSearch = SecurityContextHolder.getContext().getAuthentication().getName();
+        String emailSearch = "'" + auth.getName() + "'";
 
         //Retrieve the user's information
-        UserAccount user = dao.getAccountFromEmail(emailSearch);
+        UserAccount user = (UserAccount) em.createQuery("SELECT u FROM UserAccount u WHERE u.email=" + emailSearch).getSingleResult();
 
 
         String gender = "";
@@ -247,7 +240,7 @@ public class AccountController {
         ModelAndView view = new ModelAndView("Users/customerSupport");
         String emailSearch = "'" + auth.getName() + "'";
         //Retrieve the user's information
-        UserAccount user = dao.getAccountFromEmail(emailSearch);
+        UserAccount user = (UserAccount) em.createQuery("SELECT u FROM UserAccount u WHERE u.email=" + emailSearch).getSingleResult();
         List<Enquiry> enquiries = (List<Enquiry>) em.createQuery("SELECT e FROM Enquiry e").getResultList();
 
         view.addObject("enquiries", enquiries);
@@ -263,7 +256,7 @@ public class AccountController {
         ModelAndView view = new ModelAndView("Users/customerSupport");
         String emailSearch = "'" + auth.getName() + "'";
         //Retrieve the user's information
-        UserAccount user = dao.getAccountFromEmail(emailSearch);
+        UserAccount user = (UserAccount) em.createQuery("SELECT u FROM UserAccount u WHERE u.email=" + emailSearch).getSingleResult();
         List<Enquiry> enquiries = (List<Enquiry>) em.createQuery("SELECT e FROM Enquiry e").getResultList();
         List<Booking> booking = (List<Booking>) em.createQuery("SELECT b FROM Booking b WHERE userID=" + user.getUserID()).getResultList();
         Enquiry newEnquiry = new Enquiry();
