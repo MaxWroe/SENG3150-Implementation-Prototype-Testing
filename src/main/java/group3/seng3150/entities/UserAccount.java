@@ -9,6 +9,7 @@ import java.sql.Date;
 
 
 import java.util.Collection;
+import java.util.Objects;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -86,7 +87,21 @@ public class UserAccount {
 
     //Constructors
 
+
     public UserAccount() {
+    }
+
+    public UserAccount(String firstName, String lastName, String email, int userType, String citizenship, int gender, String address, String emergencyContact, String familyMembers, int phone) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.UserType = userType;
+        this.Citizenship = citizenship;
+        this.gender = gender;
+        this.address = address;
+        this.emergencyContact = emergencyContact;
+        this.familyMembers = familyMembers;
+        this.phone = phone;
     }
 
     //Getters and Setters
@@ -214,15 +229,28 @@ public class UserAccount {
         this.ROLEDID = ROLEDID;
     }
 
-    //Override Methods
     @Override
-    public int hashCode() {
-        return super.hashCode();
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        UserAccount that = (UserAccount) o;
+        return phone == that.phone &&
+                gender == that.gender &&
+                UserType == that.UserType &&
+                Objects.equals(UserID, that.UserID) &&
+                Objects.equals(firstName, that.firstName) &&
+                Objects.equals(middleNames, that.middleNames) &&
+                Objects.equals(lastName, that.lastName) &&
+                Objects.equals(email, that.email) &&
+                Objects.equals(Citizenship, that.Citizenship) &&
+                Objects.equals(familyMembers, that.familyMembers) &&
+                Objects.equals(emergencyContact, that.emergencyContact) &&
+                Objects.equals(address, that.address);
     }
 
     @Override
-    public boolean equals(Object obj) {
-        return super.equals(obj);
+    public int hashCode() {
+        return Objects.hash(UserID, firstName, middleNames, lastName, email, phone, dateOfBirth, gender, Citizenship, UserType, familyMembers, emergencyContact, address);
     }
 
     @Override

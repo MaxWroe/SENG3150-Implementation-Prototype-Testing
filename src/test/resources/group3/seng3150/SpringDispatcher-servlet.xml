@@ -30,11 +30,12 @@
         <aop:scoped-proxy />
     </bean>
 
+    <bean id="dao" class="org.mockito.Mockito" factory-method="mock">
+        <constructor-arg value="group3.seng3150.dao.IUserAccountDAO" />
+    </bean>
+
+
     <bean class="group3.seng3150.FlightHolder" scope="singleton"/>
     <bean class="group3.seng3150.createBooking" scope="singleton"/>
-
-    <!--Refactored beans for testing -->
-    <bean class="group3.seng3150.dao.UserAccountDAO"/>
-    <bean class="group3.seng3150.AccountController"/>
 
 </beans>

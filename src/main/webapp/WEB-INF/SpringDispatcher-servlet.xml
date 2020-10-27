@@ -22,9 +22,9 @@
 
     <mvc:resources mapping="/js/**" location="/js/" />
     <mvc:resources mapping="/css/**" location="/css/" />
+    <mvc:resources mapping="/img/**" location="/img/"/>
 
     <bean id="EntityManagerCreator" class = "group3.seng3150.entities.EntityManagerCreator" />
-
     <bean class = "javax.persistence.EntityManager"
           scope="request"
           factory-bean="EntityManagerCreator"
@@ -37,8 +37,6 @@
     <bean class="group3.seng3150.createBooking" scope="singleton"/>
 
     <!--Refactored beans for testing -->
-    <bean class="group3.seng3150.dao.UserAccountDAO"/>
-    <bean class="group3.seng3150.AccountController"/>
+    <bean id="dao" class="group3.seng3150.dao.UserAccountDAO"/>
 
-    <mvc:resources mapping="/img/**" location="/img/"/>
 </beans>
