@@ -2,36 +2,153 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3f5992f6-b25c-49b7-943f-566ff997cbb0" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/source-classes-mapping.txt" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/source-classes-mapping.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/compileTestJava/source-classes-mapping.txt" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileTestJava/source-classes-mapping.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/group3/seng3150/AccountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/group3/seng3150/AccountController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/group3/seng3150/dao/AbstractEntityDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/group3/seng3150/dao/AbstractEntityDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/SpringDispatcher-servlet.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/SpringDispatcher-servlet.xml" afterDir="false" />
-    </list>
-    <list id="ce1817d1-4b53-45bc-84e6-2d3df48786a5" name="Revert &quot;AccountControllerTest, have a test case running&quot;" comment="Revert &quot;AccountControllerTest, have a test case running&quot;&#10;&#10;This reverts commit af14f76d">
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/SENG3150_Implementation_Prototype.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/gradle_wrapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/lib.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SENG3150-Implementation-Prototype.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/group3/seng3150/AccountControllerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/test.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.6/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.6/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.6/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.6/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.6/fileContent/fileContent.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.6/fileContent/fileContent.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.6/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.6/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.6/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.6/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.6/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.6/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.6/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.6/javaCompile/classAnalysis.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.6/javaCompile/jarAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.6/javaCompile/jarAnalysis.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.6/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.6/javaCompile/javaCompile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.6/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.6/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/cache.properties" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/cache.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/checksums/md5-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/md5-checksums.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/SENG3150-Implementaion-Prototype.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/Gradle___group3_seng3150___SENG3150_Implementation_Prototype_1_0_SNAPSHOT_war.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/Gradle___group3_seng3150___SENG3150_Implementation_Prototype_1_0_SNAPSHOT_war__exploded_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__antlr_antlr_2_7_7.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_fasterxml_classmate_1_5_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_sun_istack_istack_commons_runtime_3_0_7.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_sun_xml_fastinfoset_FastInfoset_1_2_15.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__jakarta_validation_jakarta_validation_api_2_0_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__javax_activation_javax_activation_api_1_2_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__javax_persistence_javax_persistence_api_2_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__javax_servlet_javax_servlet_api_4_0_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__javax_servlet_jsp_javax_servlet_jsp_api_2_3_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__javax_validation_validation_api_2_0_1_Final.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__javax_xml_bind_jaxb_api_2_3_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__jstl_jstl_1_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__junit_junit_4_12.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__net_bytebuddy_byte_buddy_1_10_7.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_dom4j_dom4j_2_1_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_glassfish_jaxb_jaxb_runtime_2_3_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_glassfish_jaxb_txw2_2_3_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_hamcrest_hamcrest_core_1_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_hibernate_common_hibernate_commons_annotations_5_1_0_Final.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_hibernate_hibernate_core_5_4_12_Final.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_hibernate_hibernate_entitymanager_5_3_7_Final.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_hibernate_validator_hibernate_validator_6_1_5_Final.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_javassist_javassist_3_24_0_GA.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jboss_jandex_2_1_1_Final.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jboss_logging_jboss_logging_3_3_2_Final.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jboss_spec_javax_transaction_jboss_transaction_api_1_2_spec_1_1_1_Final.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jvnet_staxex_stax_ex_1_8.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_mariadb_jdbc_mariadb_java_client_2_6_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_springframework_security_spring_security_acl_5_3_4_RELEASE.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_springframework_security_spring_security_config_5_3_4_RELEASE.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_springframework_security_spring_security_core_5_3_4_RELEASE.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_springframework_security_spring_security_taglibs_5_3_4_RELEASE.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_springframework_security_spring_security_web_5_3_4_RELEASE.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_springframework_spring_aop_5_2_8_RELEASE.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_springframework_spring_beans_5_2_8_RELEASE.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_springframework_spring_context_5_2_6_RELEASE.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_springframework_spring_core_5_2_6_RELEASE.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_springframework_spring_expression_5_2_8_RELEASE.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_springframework_spring_jcl_5_2_6_RELEASE.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_springframework_spring_jdbc_5_2_8_RELEASE.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_springframework_spring_tx_5_2_8_RELEASE.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_springframework_spring_web_5_2_6_RELEASE.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_springframework_spring_webmvc_5_2_6_RELEASE.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Java_EE_6_Java_EE_6.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/SENG3150-Implementation-Prototype.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/SENG3150-Implementation-Prototype.main.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/SENG3150-Implementation-Prototype.test.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/group3.seng3150.SENG3150-Implementation-Prototype.main.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/group3.seng3150.SENG3150-Implementation-Prototype.test.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_27_08_2020_11_00_pm_[Default_Changelist]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_27_08_2020_11_00_pm_[Default_Changelist]1/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_27_08_2020_11_00_pm__Default_Changelist_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_27_08_2020_11_00_pm__Default_Changelist_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/webContexts.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Database Q's/FP-UpdateDates.sql" beforeDir="false" afterPath="$PROJECT_DIR$/Database Q's/FP-UpdateDates.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.txt" beforeDir="false" afterPath="$PROJECT_DIR$/README.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/AccountController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/AccountController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/AuthenticationController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/AuthenticationController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/BookingsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/BookingsController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/DefaultController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/DefaultController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/FlightController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/FlightController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/FlightHolder.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/FlightHolder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/FlightPlan.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/FlightPlan.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/FlightPubStaffController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/FlightPubStaffController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/RecommendationTesting.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/UserServices.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/UserServices.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/WebSecurityConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/WebSecurityConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/WishListLogic/CountryStat.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/WishListLogic/CountryStat.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/WishListLogic/WishListStatistics.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/WishListLogic/WishListStatistics.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/createBooking.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/createBooking.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/entities/Airline.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/entities/Airline.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/entities/Airport.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/entities/Airport.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/entities/Availability.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/entities/Availability.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/entities/AvailabilityID.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/entities/AvailabilityID.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/entities/Booking.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/entities/Booking.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/entities/Country.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/entities/Country.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/entities/Enquiry.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/entities/Enquiry.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/entities/EntityManagerCreator.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/entities/EntityManagerCreator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/entities/Flight.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/entities/Flight.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/entities/FlightID.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/entities/FlightID.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/entities/HolidayPackages.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/entities/HolidayPackages.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/entities/OtherTransport.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/entities/OtherTransport.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/entities/Plane.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/entities/Plane.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/entities/Price.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/entities/Price.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/entities/PriceID.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/entities/PriceID.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/entities/Review.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/entities/Review.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/entities/Roles.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/entities/Roles.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/entities/UserAccount.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/entities/UserAccount.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/entities/WishListEntry.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/entities/WishListEntry.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/flightLogic/DijkstraAlgorithmFPS.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/flightLogic/DijkstraAlgorithmFPS.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/flightLogic/DijkstraGraph.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/flightLogic/DijkstraGraph.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/flightLogic/DijkstraNode.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/flightLogic/DijkstraNode.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/flightLogic/FlightPlanSearch.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/flightLogic/FlightPlanSearch.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/flightLogic/FlightPlanSearchFunctions.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/flightLogic/FlightPlanSearchFunctions.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/flightLogic/FlightPlanSearchSQL.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/flightLogic/FlightPlanSearchSQL.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/flightLogic/FlightsSort.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/flightLogic/FlightsSort.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/flightLogic/YensAlgorithmFPS.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/flightLogic/YensAlgorithmFPS.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/recommendationLogic/RecommendationGenerator.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/recommendationLogic/RecommendationGenerator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/recommendationLogic/RecommendationPackage.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/recommendationLogic/RecommendationPackage.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/travelAgentController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/travelAgentController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/libs/SENG3150-Implementation-Prototype-1.0-SNAPSHOT.war" beforeDir="false" afterPath="$PROJECT_DIR$/build/libs/SENG3150-Implementation-Prototype-1.0-SNAPSHOT.war" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/group3/seng3150/dao/IUserAccountDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/group3/seng3150/dao/IUserAccountDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/group3/seng3150/entities/UserAccount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/group3/seng3150/entities/UserAccount.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/source-classes-mapping.txt" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/source-classes-mapping.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradlew" beforeDir="false" afterPath="$PROJECT_DIR$/gradlew" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradlew.bat" beforeDir="false" afterPath="$PROJECT_DIR$/gradlew.bat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/group3/seng3150/AuthenticationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/group3/seng3150/AuthenticationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/group3/seng3150/flightLogic/FlightPlanSearchFunctions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/group3/seng3150/flightLogic/FlightPlanSearchFunctions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/META-INF/persistence.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -114,24 +231,12 @@
       <list>
         <option value="JUnit5 Test Class" />
         <option value="JUnit4 Test Class" />
-        <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="UPDATE_TYPE" value="MERGE" />
-  </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/Users/manageBooking.jsp" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
-  </component>
-  <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/build.gradle">
-      <ranges>
-        <range start1="64" end1="65" start2="64" end2="65" changelist="3f5992f6-b25c-49b7-943f-566ff997cbb0" />
-        <range start1="70" end1="71" start2="70" end2="70" changelist="ce1817d1-4b53-45bc-84e6-2d3df48786a5" />
-      </ranges>
-    </file>
   </component>
   <component name="LogFilters">
     <option name="FILTER_ERRORS" value="false" />
@@ -141,9 +246,7 @@
     <option name="CUSTOM_FILTER" />
   </component>
   <component name="ProjectId" id="1j7X3oRYtxzJEhws6NqQUaRwLkw" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
-    <ConfirmationsSetting value="1" id="Add" />
-  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -173,9 +276,6 @@
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
     </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="group3.seng3150.dao" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Max Wroe\OneDrive - The University Of Newcastle\Year 4 Semester 2\SENG3160 Software Project 2\Testing\SENG3150-Implementation-Prototype\src" />
     </key>
@@ -186,27 +286,7 @@
       <command value="gradle --warning-mode all" />
     </option>
   </component>
-  <component name="RunManager" selected="Gradle.AccountControllerTest">
-    <configuration name="AccountControllerTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="--tests &quot;group3.seng3150.AccountControllerTest&quot;" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":cleanTest" />
-            <option value=":test" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <GradleScriptDebugEnabled>false</GradleScriptDebugEnabled>
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Tomcat Server.Tomcat 9.0.31">
     <configuration name="SENG3150-Implementation-Prototype [assemble]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -283,52 +363,24 @@
       <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
       <method v="2" />
     </configuration>
-    <configuration default="true" type="JetRunConfigurationType" factoryName="Kotlin">
-      <module name="SENG3150-Implementation-Prototype" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="WORKING_DIRECTORY" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType" factoryName="Kotlin script">
-      <module name="SENG3150-Implementation-Prototype" />
-      <option name="filePath" />
-      <option name="vmParameters" />
-      <option name="alternativeJrePath" />
-      <option name="programParameters" />
-      <option name="passParentEnvs" value="true" />
-      <option name="workingDirectory" />
-      <option name="isAlternativeJrePathEnabled" value="false" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="WORKING_DIRECTORY" />
-      <option name="filePath" />
-      <option name="vmParameters" />
-      <option name="alternativeJrePath" />
-      <option name="programParameters" />
-      <option name="passParentEnvs" value="true" />
-      <option name="workingDirectory" />
-      <option name="isAlternativeJrePathEnabled" value="false" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="WORKING_DIRECTORY" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
+    <configuration name="SENG3150-Implementation-Prototype [wrapper]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="wrapper" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
+      <method v="2" />
     </configuration>
     <configuration name="Tomcat 9.0.31" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.31" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
       <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/" />
@@ -405,19 +457,19 @@
     </configuration>
     <list>
       <item itemvalue="Gradle.SENG3150-Implementation-Prototype [check]" />
+      <item itemvalue="Gradle.SENG3150-Implementation-Prototype [wrapper]" />
       <item itemvalue="Gradle.SENG3150-Implementation-Prototype [assemble]" />
       <item itemvalue="Gradle.SENG3150-Implementation-Prototype [buildDependents]" />
       <item itemvalue="Gradle.SENG3150-Implementation-Prototype [build]" />
       <item itemvalue="Tomcat Server.Tomcat 9.0.31" />
-      <item itemvalue="Gradle.AccountControllerTest" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.AccountControllerTest" />
         <item itemvalue="Gradle.SENG3150-Implementation-Prototype [build]" />
         <item itemvalue="Gradle.SENG3150-Implementation-Prototype [buildDependents]" />
         <item itemvalue="Gradle.SENG3150-Implementation-Prototype [assemble]" />
         <item itemvalue="Gradle.SENG3150-Implementation-Prototype [check]" />
+        <item itemvalue="Gradle.SENG3150-Implementation-Prototype [wrapper]" />
       </list>
     </recent_temporary>
   </component>
@@ -426,7 +478,17 @@
       <list>
         <serviceView>
           <treeState>
-            <expand />
+            <expand>
+              <path>
+                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+                <item name="Tomcat Server" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              </path>
+              <path>
+                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+                <item name="Tomcat Server" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+                <item name="Finished" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              </path>
+            </expand>
             <select />
           </treeState>
         </serviceView>
@@ -449,50 +511,12 @@
       <workItem from="1603170150410" duration="1182000" />
       <workItem from="1603318392588" duration="6189000" />
       <workItem from="1603325416811" duration="5045000" />
-      <workItem from="1603689381846" duration="5581000" />
+      <workItem from="1603689381846" duration="3788000" />
     </task>
-    <task id="LOCAL-00001" summary="Commit">
-      <created>1603708937202</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1603708937202</updated>
-    </task>
-    <task id="LOCAL-00002" summary="Commit">
-      <created>1603709682482</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1603709682482</updated>
-    </task>
-    <task id="LOCAL-00003" summary="Commit">
-      <created>1603709700469</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1603709700469</updated>
-    </task>
-    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="Commit" />
-    <MESSAGE value="Broken after merge" />
-    <option name="LAST_COMMIT_MESSAGE" value="Broken after merge" />
   </component>
   <component name="WindowStateProjectService">
     <state x="2472" y="182" key="#Project_Structure" timestamp="1603707639546">
@@ -515,11 +539,6 @@
       <screen x="1920" y="4" width="1920" height="1040" />
     </state>
     <state x="2648" y="395" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages/0.0.1920.1040/1920.4.1920.1040@1920.4.1920.1040" timestamp="1603325490865" />
-    <state x="186" y="0" key="CommitChangelistDialog2" timestamp="1603765854220">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="186" y="0" key="CommitChangelistDialog2/0.0.1920.1040/1920.4.1920.1040@0.0.1920.1040" timestamp="1603765854220" />
-    <state x="2106" y="118" key="CommitChangelistDialog2/0.0.1920.1040/1920.4.1920.1040@1920.4.1920.1040" timestamp="1603709699625" />
     <state x="740" y="221" key="FileChooserDialogImpl" timestamp="1603708720513">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -529,25 +548,25 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="764" y="413" key="Github.ShareDialog/0.0.1920.1040/1920.4.1920.1040@0.0.1920.1040" timestamp="1603708756159" />
-    <state width="1877" height="294" key="GridCell.Tab.0.bottom" timestamp="1603765738413">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="936" height="298" key="GridCell.Tab.0.bottom" timestamp="1603707553565">
+      <screen x="1920" y="4" width="1920" height="1040" />
     </state>
-    <state width="1877" height="294" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.4.1920.1040@0.0.1920.1040" timestamp="1603765738413" />
+    <state width="936" height="298" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.4.1920.1040@0.0.1920.1040" timestamp="1603689441703" />
     <state width="936" height="298" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.4.1920.1040@1920.4.1920.1040" timestamp="1603707553565" />
-    <state width="1877" height="294" key="GridCell.Tab.0.center" timestamp="1603765738413">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="936" height="298" key="GridCell.Tab.0.center" timestamp="1603707553565">
+      <screen x="1920" y="4" width="1920" height="1040" />
     </state>
-    <state width="1877" height="294" key="GridCell.Tab.0.center/0.0.1920.1040/1920.4.1920.1040@0.0.1920.1040" timestamp="1603765738413" />
+    <state width="936" height="298" key="GridCell.Tab.0.center/0.0.1920.1040/1920.4.1920.1040@0.0.1920.1040" timestamp="1603689441702" />
     <state width="936" height="298" key="GridCell.Tab.0.center/0.0.1920.1040/1920.4.1920.1040@1920.4.1920.1040" timestamp="1603707553565" />
-    <state width="1877" height="294" key="GridCell.Tab.0.left" timestamp="1603765738413">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="936" height="298" key="GridCell.Tab.0.left" timestamp="1603707553565">
+      <screen x="1920" y="4" width="1920" height="1040" />
     </state>
-    <state width="1877" height="294" key="GridCell.Tab.0.left/0.0.1920.1040/1920.4.1920.1040@0.0.1920.1040" timestamp="1603765738413" />
+    <state width="936" height="298" key="GridCell.Tab.0.left/0.0.1920.1040/1920.4.1920.1040@0.0.1920.1040" timestamp="1603689441701" />
     <state width="936" height="298" key="GridCell.Tab.0.left/0.0.1920.1040/1920.4.1920.1040@1920.4.1920.1040" timestamp="1603707553565" />
-    <state width="1877" height="294" key="GridCell.Tab.0.right" timestamp="1603765738413">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="936" height="298" key="GridCell.Tab.0.right" timestamp="1603707553565">
+      <screen x="1920" y="4" width="1920" height="1040" />
     </state>
-    <state width="1877" height="294" key="GridCell.Tab.0.right/0.0.1920.1040/1920.4.1920.1040@0.0.1920.1040" timestamp="1603765738413" />
+    <state width="936" height="298" key="GridCell.Tab.0.right/0.0.1920.1040/1920.4.1920.1040@0.0.1920.1040" timestamp="1603689441702" />
     <state width="936" height="298" key="GridCell.Tab.0.right/0.0.1920.1040/1920.4.1920.1040@1920.4.1920.1040" timestamp="1603707553565" />
     <state width="933" height="279" key="GridCell.Tab.1.bottom" timestamp="1603707544235">
       <screen x="1920" y="4" width="1920" height="1040" />
@@ -601,11 +620,6 @@
       <screen x="1920" y="4" width="1920" height="1040" />
     </state>
     <state x="2207" y="136" key="SettingsEditor/0.0.1920.1040/1920.4.1920.1040@1920.4.1920.1040" timestamp="1603156378709" />
-    <state x="2472" y="257" key="Vcs.Push.Dialog.v2" timestamp="1603709703268">
-      <screen x="1920" y="4" width="1920" height="1040" />
-    </state>
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.4.1920.1040@0.0.1920.1040" timestamp="1603708933112" />
-    <state x="2472" y="257" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.4.1920.1040@1920.4.1920.1040" timestamp="1603709703268" />
     <state x="2576" y="348" key="com.intellij.ide.util.TipDialog" timestamp="1603170156515">
       <screen x="1920" y="4" width="1920" height="1040" />
     </state>
@@ -622,13 +636,9 @@
       <screen x="1920" y="4" width="1920" height="1040" />
     </state>
     <state x="2262" y="144" key="new project wizard/0.0.1920.1040/1920.4.1920.1040@1920.4.1920.1040" timestamp="1603320686128" />
-    <state x="2536" y="242" width="672" height="677" key="run.anything.popup" timestamp="1603709962364">
+    <state x="2536" y="242" key="run.anything.popup" timestamp="1603156699060">
       <screen x="1920" y="4" width="1920" height="1040" />
     </state>
-    <state x="2536" y="242" width="672" height="677" key="run.anything.popup/0.0.1920.1040/1920.4.1920.1040@1920.4.1920.1040" timestamp="1603709962364" />
-    <state x="2543" y="229" width="672" height="678" key="search.everywhere.popup" timestamp="1603710267890">
-      <screen x="1920" y="4" width="1920" height="1040" />
-    </state>
-    <state x="2543" y="229" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/1920.4.1920.1040@1920.4.1920.1040" timestamp="1603710267890" />
+    <state x="2536" y="242" key="run.anything.popup/0.0.1920.1040/1920.4.1920.1040@1920.4.1920.1040" timestamp="1603156699060" />
   </component>
 </project>

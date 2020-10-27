@@ -45,7 +45,6 @@ public class AccountController {
         }else {
             gender = "Other";
         }
-
         //Send the new information back to the view
         view.addObject("firstName", user.getFirstName());
         view.addObject("lastName", user.getLastName());
