@@ -34,8 +34,6 @@ group3/seng3150/flightLogic/FlightPlanSearchFunctions.java
  group3.seng3150.flightLogic.FlightPlanSearchFunctions
 group3/seng3150/UserServices.java
  group3.seng3150.UserServices
-group3/seng3150/dao/UserAccountDAO.java
- group3.seng3150.dao.UserAccountDAO
 group3/seng3150/FlightHolder.java
  group3.seng3150.FlightHolder
 group3/seng3150/entities/Review.java
@@ -64,12 +62,8 @@ group3/seng3150/entities/EntityManagerCreator.java
  group3.seng3150.entities.EntityManagerCreator
 group3/seng3150/WishListLogic/CountryStat.java
  group3.seng3150.WishListLogic.CountryStat
-group3/seng3150/dao/IEntityDAO.java
- group3.seng3150.dao.IEntityDAO
 group3/seng3150/entities/UserAccount.java
  group3.seng3150.entities.UserAccount
-group3/seng3150/dao/IUserAccountDAO.java
- group3.seng3150.dao.IUserAccountDAO
 group3/seng3150/entities/Roles.java
  group3.seng3150.entities.Roles
 group3/seng3150/flightLogic/FlightPlanSearch.java
@@ -90,5 +84,3 @@ group3/seng3150/AuthenticationController.java
  group3.seng3150.AuthenticationController
 group3/seng3150/entities/PriceID.java
  group3.seng3150.entities.PriceID
-group3/seng3150/dao/AbstractEntityDAO.java
- group3.seng3150.dao.AbstractEntityDAO
