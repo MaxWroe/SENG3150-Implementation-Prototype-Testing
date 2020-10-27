@@ -1,4 +1,2 @@
 group3/seng3150/AccountControllerTest.java
  group3.seng3150.AccountControllerTest
-group3/seng3150/DefaultControllerTest.java
- group3.seng3150.DefaultControllerTest

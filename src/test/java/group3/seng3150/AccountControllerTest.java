@@ -1,6 +1,7 @@
 package group3.seng3150;
 
-import com.sun.org.apache.xpath.internal.operations.Mod;
+import group3.seng3150.dao.IUserAccountDAO;
+import group3.seng3150.entities.UserAccount;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,20 +14,14 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter;
-import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 
-import javax.persistence.EntityManager;
 import java.util.Map;
-import java.util.Random;
 
 import static org.junit.Assert.assertEquals;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.junit.Assert.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
@@ -35,54 +30,31 @@ public class AccountControllerTest {
 
     @Autowired AccountController cont;
     @Autowired WebApplicationContext ctx;
-    @Autowired EntityManager em;
-
+    @Autowired IUserAccountDAO dao;
     MockMvc mockMvc;
 
     @Before
     public void setup() {
         mockMvc = MockMvcBuilders.webAppContextSetup(ctx).build();
-    }
-
-//    @Test
-//    public void testGetAccountDetails() {
-//        Random rand = new Random();
-//        assertTrue(rand.nextBoolean());
-//    }
-
-    @Test
-    public void testWAC(){
-        assertNotNull(ctx);
-        System.err.println(ctx.toString());
+        BDDMockito.reset(dao);
     }
 
     @Test
-    public void testCont(){
-        assertNotNull(cont);
-        System.err.println(cont);
+    @WithMockUser(username = "max.wroe@outlook.com")
+    //This test checks that get account details returns the correct details of a given user to the view, first test case
+    public void testDisplayAccountDetails() throws Exception {
+
+        UserAccount testAccount = new UserAccount("Max","Wroe","max.wroe@outlook.com",0,"Aus",0,"98 Everton St Hamilton","Dijana Jokovic","Dijana Jokovic",431176489);
+
+        Mockito.when(dao.getAccountFromEmail("max.wroe@outlook.com")).thenReturn(testAccount);
+
+        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.get("/accountDetails")).andReturn();
+        ModelAndView result = mvcResult.getModelAndView();
+        Map<String, Object> model = result.getModel();
+
+        assertEquals("The first name is not the expected first name",model.get("firstName"),testAccount.getFirstName());
+        assertEquals(model.get("lastName"),testAccount.getLastName());
+        assertEquals(model.get("email"),testAccount.getEmail());
     }
 
-    @Test
-    public void testEM(){
-        assertEquals(em, cont.getEm());
-    }
-
-    @Test
-    @WithMockUser(username = "bobrox@gmail.com")
-    public void testGetMappings() throws Exception {
-        mockMvc = MockMvcBuilders.webAppContextSetup(ctx).build();
-        MvcResult httpResult;
-        ModelAndView result;
-
-        mockMvc.perform(post("/appLogin").param("email", "bobrox@gmail.com").param("password", "bobrox"))
-                .andReturn();
-
-        //display customer support
-        httpResult = mockMvc.perform(get("/customerSupport"))
-                .andReturn();
-        result = httpResult.getModelAndView();
-
-        assertNotNull(result.getView());
-        assertEquals(result.getView(), new ModelAndView("Users/customerSupport").getView());
-    }
 }
