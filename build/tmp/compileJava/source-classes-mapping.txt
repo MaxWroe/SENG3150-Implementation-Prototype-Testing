@@ -18,12 +18,14 @@ group3/seng3150/createBooking.java
  group3.seng3150.createBooking
 group3/seng3150/WebSecurityConfig.java
  group3.seng3150.WebSecurityConfig
-group3/seng3150/DefaultController.java
- group3.seng3150.DefaultController
-group3/seng3150/WishListLogic/WishListStatistics.java
- group3.seng3150.WishListLogic.WishListStatistics
+group3/seng3150/dao/IAccountDAO.java
+ group3.seng3150.dao.IAccountDAO
 group3/seng3150/AccountController.java
  group3.seng3150.AccountController
+group3/seng3150/WishListLogic/WishListStatistics.java
+ group3.seng3150.WishListLogic.WishListStatistics
+group3/seng3150/entities/PriceID.java
+ group3.seng3150.entities.PriceID
 group3/seng3150/entities/Booking.java
  group3.seng3150.entities.Booking
 group3/seng3150/entities/Plane.java
@@ -74,6 +76,8 @@ group3/seng3150/FlightPlan.java
  group3.seng3150.FlightPlan
 group3/seng3150/entities/HolidayPackages.java
  group3.seng3150.entities.HolidayPackages
+group3/seng3150/dao/AccountDAO.java
+ group3.seng3150.dao.AccountDAO
 group3/seng3150/entities/Country.java
  group3.seng3150.entities.Country
 group3/seng3150/flightLogic/YensAlgorithmFPS.java
@@ -82,5 +86,5 @@ group3/seng3150/recommendationLogic/RecommendationGenerator.java
  group3.seng3150.recommendationLogic.RecommendationGenerator
 group3/seng3150/AuthenticationController.java
  group3.seng3150.AuthenticationController
-group3/seng3150/entities/PriceID.java
- group3.seng3150.entities.PriceID
+group3/seng3150/DefaultController.java
+ group3.seng3150.DefaultController

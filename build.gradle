@@ -68,6 +68,11 @@ dependencies {
     testCompile group: 'org.mockito', name: 'mockito-all', version: '1.9.5'
     testCompile group: 'org.springframework', name: 'spring-test', version: '5.2.6.RELEASE'
     testCompile group: 'javax.servlet', name: 'javax.servlet-api', version: '4.0.1'
+
+
+    // https://mvnrepository.com/artifact/org.springframework.security/spring-security-test
+    testCompile group: 'org.springframework.security', name: 'spring-security-test', version: '5.4.1'
+
 }
 
 test {
