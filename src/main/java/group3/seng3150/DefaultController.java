@@ -3,6 +3,7 @@ import group3.seng3150.entities.*;
 import group3.seng3150.recommendationLogic.RecommendationGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -17,6 +18,10 @@ public class DefaultController {
     private EntityManager em;
     @Autowired
     public DefaultController(EntityManager em){this.em =em;}
+
+    public EntityManager getEm() {
+        return em;
+    }
 
     @GetMapping("/")
     public ModelAndView basic() {
@@ -67,7 +72,7 @@ public class DefaultController {
         ModelAndView view = new ModelAndView("General/reviews");
         List<Review> review = (List<Review>) em.createQuery("SELECT r FROM Review r").getResultList();
 
-        String emailSearch = "'" + auth.getName() + "'";
+        String emailSearch = "'" + SecurityContextHolder.getContext().getAuthentication().getName() + "'";
         UserAccount user = (UserAccount) em.createQuery("SELECT u FROM UserAccount u WHERE u.email=" + emailSearch).getSingleResult();
         view.addObject("review", review);
         return view;

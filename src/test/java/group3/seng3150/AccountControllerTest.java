@@ -7,6 +7,7 @@ import org.junit.runner.RunWith;
 import org.mockito.BDDMockito;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -25,6 +26,7 @@ import java.util.Random;
 import static org.junit.Assert.assertEquals;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.junit.Assert.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
@@ -66,10 +68,14 @@ public class AccountControllerTest {
     }
 
     @Test
+    @WithMockUser(username = "bobrox@gmail.com")
     public void testGetMappings() throws Exception {
         mockMvc = MockMvcBuilders.webAppContextSetup(ctx).build();
         MvcResult httpResult;
         ModelAndView result;
+
+        mockMvc.perform(post("/appLogin").param("email", "bobrox@gmail.com").param("password", "bobrox"))
+                .andReturn();
 
         //display customer support
         httpResult = mockMvc.perform(get("/customerSupport"))

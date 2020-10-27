@@ -15,50 +15,16 @@
       <change beforePath="$PROJECT_DIR$/.gradle/6.6/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.6/javaCompile/javaCompile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.6/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.6/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/checksums/md5-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/md5-checksums.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/AccountController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/AccountController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/AuthenticationController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/AuthenticationController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/BookingsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/BookingsController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/FlightController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/FlightController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/FlightPlan.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/FlightPlan.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/FlightPubStaffController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/FlightPubStaffController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/UserServices.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/UserServices.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/WishListLogic/WishListStatistics.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/WishListLogic/WishListStatistics.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/createBooking.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/createBooking.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/entities/Airline.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/entities/Airline.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/entities/AvailabilityID.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/entities/AvailabilityID.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/entities/Country.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/entities/Country.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/entities/EntityManagerCreator.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/entities/EntityManagerCreator.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/entities/FlightID.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/entities/FlightID.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/entities/HolidayPackages.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/entities/HolidayPackages.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/entities/PriceID.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/entities/PriceID.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/entities/Roles.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/entities/Roles.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/entities/WishListEntry.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/entities/WishListEntry.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/flightLogic/DijkstraAlgorithmFPS.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/flightLogic/DijkstraAlgorithmFPS.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/flightLogic/DijkstraGraph.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/flightLogic/DijkstraGraph.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/flightLogic/DijkstraNode.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/flightLogic/DijkstraNode.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/flightLogic/FlightPlanSearch.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/flightLogic/FlightPlanSearch.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/flightLogic/FlightPlanSearchFunctions.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/flightLogic/FlightPlanSearchFunctions.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/flightLogic/FlightPlanSearchSQL.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/flightLogic/FlightPlanSearchSQL.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/flightLogic/FlightsSort.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/flightLogic/FlightsSort.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/flightLogic/YensAlgorithmFPS.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/flightLogic/YensAlgorithmFPS.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/recommendationLogic/RecommendationGenerator.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/recommendationLogic/RecommendationGenerator.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/travelAgentController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/travelAgentController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/DefaultController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/group3/seng3150/DefaultController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/source-classes-mapping.txt" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/source-classes-mapping.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/tmp/compileTestJava/source-classes-mapping.txt" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileTestJava/source-classes-mapping.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/group3/seng3150/AccountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/group3/seng3150/AccountController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/group3/seng3150/DefaultController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/group3/seng3150/DefaultController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/group3/seng3150/AccountControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/group3/seng3150/AccountControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/META-INF/persistence.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/group3/seng3150/SpringDispatcher-servlet.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/group3/seng3150/SpringDispatcher-servlet.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -135,8 +101,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JUnit5 Test Class" />
-        <option value="JUnit4 Test Class" />
         <option value="Class" />
+        <option value="JUnit4 Test Class" />
       </list>
     </option>
   </component>
@@ -200,7 +166,7 @@
       <command value="gradle --warning-mode all" />
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.AccountControllerTest">
+  <component name="RunManager" selected="JUnit.DefaultControllerTest.testGetMappings">
     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -211,44 +177,6 @@
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
-    </configuration>
-    <configuration name="AccountControllerTest.testGetAccountDetails" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value=" --tests &quot;group3.seng3150.AccountControllerTest.testGetAccountDetails&quot; " />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-          </list>
-        </option>
-        <option name="vmOptions" value="" />
-      </ExternalSystemSettings>
-      <GradleScriptDebugEnabled>false</GradleScriptDebugEnabled>
-      <method v="2" />
-    </configuration>
-    <configuration name="SENG3150-Implementation-Prototype-Testing [test]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value="test" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
-      <method v="2" />
     </configuration>
     <configuration name="AccountControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="SENG3150-Implementation-Prototype.test" />
@@ -265,22 +193,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="AccountControllerTest.testGetAccountDetails" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="SENG3150-Implementation-Prototype.test" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="group3.seng3150.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="group3.seng3150" />
-      <option name="MAIN_CLASS_NAME" value="group3.seng3150.AccountControllerTest" />
-      <option name="METHOD_NAME" value="testGetAccountDetails" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="AccountControllerTest.testGetMappings" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="SENG3150-Implementation-Prototype.test" />
       <extension name="coverage">
@@ -291,6 +203,54 @@
       </extension>
       <option name="PACKAGE_NAME" value="group3.seng3150" />
       <option name="MAIN_CLASS_NAME" value="group3.seng3150.AccountControllerTest" />
+      <option name="METHOD_NAME" value="testGetMappings" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DefaultControllerTest.login" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="SENG3150-Implementation-Prototype.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="group3.seng3150.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="group3.seng3150" />
+      <option name="MAIN_CLASS_NAME" value="group3.seng3150.DefaultControllerTest" />
+      <option name="METHOD_NAME" value="login" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DefaultControllerTest.testEM" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="SENG3150-Implementation-Prototype.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="group3.seng3150.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="group3.seng3150" />
+      <option name="MAIN_CLASS_NAME" value="group3.seng3150.DefaultControllerTest" />
+      <option name="METHOD_NAME" value="testEM" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DefaultControllerTest.testGetMappings" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="SENG3150-Implementation-Prototype.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="group3.seng3150.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="group3.seng3150" />
+      <option name="MAIN_CLASS_NAME" value="group3.seng3150.DefaultControllerTest" />
       <option name="METHOD_NAME" value="testGetMappings" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
@@ -368,20 +328,20 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Gradle.AccountControllerTest.testGetAccountDetails" />
       <item itemvalue="Tomcat Server.Tomcat 9.0.31" />
-      <item itemvalue="Gradle.SENG3150-Implementation-Prototype-Testing [test]" />
-      <item itemvalue="JUnit.AccountControllerTest.testGetAccountDetails" />
       <item itemvalue="JUnit.AccountControllerTest" />
       <item itemvalue="JUnit.AccountControllerTest.testGetMappings" />
+      <item itemvalue="JUnit.DefaultControllerTest.login" />
+      <item itemvalue="JUnit.DefaultControllerTest.testEM" />
+      <item itemvalue="JUnit.DefaultControllerTest.testGetMappings" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.AccountControllerTest" />
+        <item itemvalue="JUnit.DefaultControllerTest.testGetMappings" />
+        <item itemvalue="JUnit.DefaultControllerTest.testEM" />
         <item itemvalue="JUnit.AccountControllerTest.testGetMappings" />
-        <item itemvalue="JUnit.AccountControllerTest.testGetAccountDetails" />
-        <item itemvalue="Gradle.AccountControllerTest.testGetAccountDetails" />
-        <item itemvalue="Gradle.SENG3150-Implementation-Prototype-Testing [test]" />
+        <item itemvalue="JUnit.DefaultControllerTest.login" />
+        <item itemvalue="JUnit.AccountControllerTest" />
       </list>
     </recent_temporary>
   </component>
@@ -404,7 +364,7 @@
       <workItem from="1603325416811" duration="5045000" />
       <workItem from="1603689381846" duration="4335000" />
       <workItem from="1603748132358" duration="3818000" />
-      <workItem from="1603751968684" duration="4514000" />
+      <workItem from="1603751968684" duration="13388000" />
     </task>
     <task id="LOCAL-00001" summary="Commit">
       <created>1603708937202</created>
@@ -413,7 +373,14 @@
       <option name="project" value="LOCAL" />
       <updated>1603708937202</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="tests that actually run">
+      <created>1603757402190</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1603757402190</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -424,7 +391,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="Commit" />
+    <MESSAGE value="tests that actually run" />
+    <option name="LAST_COMMIT_MESSAGE" value="tests that actually run" />
   </component>
   <component name="WindowStateProjectService">
     <state x="2472" y="182" key="#Project_Structure" timestamp="1603707639546">
@@ -439,10 +407,10 @@
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="2658" y="398" key="#Tomcat_Server/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1603749949580" />
-    <state x="2407" y="159" width="1433" height="690" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1603753989377">
-      <screen x="1920" y="0" width="1920" height="1040" />
+    <state x="828" y="159" width="1433" height="690" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1603759536440">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="828" y="159" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1603746251272" />
+    <state x="828" y="159" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1603759536440" />
     <state x="2407" y="159" width="1433" height="690" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1603753989377" />
     <state x="925" y="159" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040/1920.4.1920.1040@1920.4.1920.1040" timestamp="1603160709490" />
     <state x="1108" y="257" key="#com.intellij.ide.util.PackageChooserDialog" timestamp="1603708039688">
@@ -453,9 +421,10 @@
       <screen x="1920" y="4" width="1920" height="1040" />
     </state>
     <state x="2648" y="395" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages/0.0.1920.1040/1920.4.1920.1040@1920.4.1920.1040" timestamp="1603325490865" />
-    <state x="2106" y="118" key="CommitChangelistDialog2" timestamp="1603709681335">
-      <screen x="1920" y="4" width="1920" height="1040" />
+    <state x="186" y="114" key="CommitChangelistDialog2" timestamp="1603757398522">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state x="186" y="114" key="CommitChangelistDialog2/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1603757398522" />
     <state x="186" y="114" key="CommitChangelistDialog2/0.0.1920.1040/1920.4.1920.1040@0.0.1920.1040" timestamp="1603708928604" />
     <state x="2106" y="118" key="CommitChangelistDialog2/0.0.1920.1040/1920.4.1920.1040@1920.4.1920.1040" timestamp="1603709681335" />
     <state x="2660" y="221" key="FileChooserDialogImpl" timestamp="1603749948173">
@@ -468,79 +437,87 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="764" y="413" key="Github.ShareDialog/0.0.1920.1040/1920.4.1920.1040@0.0.1920.1040" timestamp="1603708756159" />
-    <state width="1877" height="306" key="GridCell.Tab.0.bottom" timestamp="1603757139676">
+    <state width="1596" height="286" key="GridCell.Tab.0.bottom" timestamp="1603766950936">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="306" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1603757139676" />
+    <state width="1596" height="286" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1603766950936" />
     <state width="1877" height="104" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1603754264691" />
     <state width="936" height="298" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.4.1920.1040@0.0.1920.1040" timestamp="1603689441703" />
     <state width="936" height="298" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.4.1920.1040@1920.4.1920.1040" timestamp="1603707553565" />
-    <state width="1877" height="306" key="GridCell.Tab.0.center" timestamp="1603757139676">
+    <state width="1596" height="286" key="GridCell.Tab.0.center" timestamp="1603766950935">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="306" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1603757139676" />
+    <state width="1596" height="286" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1603766950935" />
     <state width="1877" height="104" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1603754264691" />
     <state width="936" height="298" key="GridCell.Tab.0.center/0.0.1920.1040/1920.4.1920.1040@0.0.1920.1040" timestamp="1603689441702" />
     <state width="936" height="298" key="GridCell.Tab.0.center/0.0.1920.1040/1920.4.1920.1040@1920.4.1920.1040" timestamp="1603707553565" />
-    <state width="1877" height="306" key="GridCell.Tab.0.left" timestamp="1603757139676">
+    <state width="1596" height="286" key="GridCell.Tab.0.left" timestamp="1603766950935">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="306" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1603757139676" />
+    <state width="1596" height="286" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1603766950935" />
     <state width="1877" height="104" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1603754264691" />
     <state width="936" height="298" key="GridCell.Tab.0.left/0.0.1920.1040/1920.4.1920.1040@0.0.1920.1040" timestamp="1603689441701" />
     <state width="936" height="298" key="GridCell.Tab.0.left/0.0.1920.1040/1920.4.1920.1040@1920.4.1920.1040" timestamp="1603707553565" />
-    <state width="1877" height="306" key="GridCell.Tab.0.right" timestamp="1603757139676">
+    <state width="1596" height="286" key="GridCell.Tab.0.right" timestamp="1603766950935">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="306" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1603757139676" />
+    <state width="1596" height="286" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1603766950935" />
     <state width="1877" height="104" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1603754264691" />
     <state width="936" height="298" key="GridCell.Tab.0.right/0.0.1920.1040/1920.4.1920.1040@0.0.1920.1040" timestamp="1603689441702" />
     <state width="936" height="298" key="GridCell.Tab.0.right/0.0.1920.1040/1920.4.1920.1040@1920.4.1920.1040" timestamp="1603707553565" />
-    <state width="1596" height="452" key="GridCell.Tab.1.bottom" timestamp="1603751953235">
-      <screen x="1920" y="0" width="1920" height="1040" />
+    <state width="1596" height="286" key="GridCell.Tab.1.bottom" timestamp="1603766950936">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state width="1596" height="286" key="GridCell.Tab.1.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1603766950936" />
     <state width="1596" height="452" key="GridCell.Tab.1.bottom/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1603751953235" />
     <state width="934" height="279" key="GridCell.Tab.1.bottom/0.0.1920.1040/1920.4.1920.1040@0.0.1920.1040" timestamp="1603238106026" />
     <state width="933" height="279" key="GridCell.Tab.1.bottom/0.0.1920.1040/1920.4.1920.1040@1920.4.1920.1040" timestamp="1603707544235" />
-    <state width="1596" height="452" key="GridCell.Tab.1.center" timestamp="1603751953234">
-      <screen x="1920" y="0" width="1920" height="1040" />
+    <state width="1596" height="286" key="GridCell.Tab.1.center" timestamp="1603766950936">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state width="1596" height="286" key="GridCell.Tab.1.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1603766950936" />
     <state width="1596" height="452" key="GridCell.Tab.1.center/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1603751953234" />
     <state width="934" height="279" key="GridCell.Tab.1.center/0.0.1920.1040/1920.4.1920.1040@0.0.1920.1040" timestamp="1603238106026" />
     <state width="933" height="279" key="GridCell.Tab.1.center/0.0.1920.1040/1920.4.1920.1040@1920.4.1920.1040" timestamp="1603707544235" />
-    <state width="1596" height="452" key="GridCell.Tab.1.left" timestamp="1603751953234">
-      <screen x="1920" y="0" width="1920" height="1040" />
+    <state width="1596" height="286" key="GridCell.Tab.1.left" timestamp="1603766950936">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state width="1596" height="286" key="GridCell.Tab.1.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1603766950936" />
     <state width="1596" height="452" key="GridCell.Tab.1.left/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1603751953234" />
     <state width="934" height="279" key="GridCell.Tab.1.left/0.0.1920.1040/1920.4.1920.1040@0.0.1920.1040" timestamp="1603238106026" />
     <state width="933" height="279" key="GridCell.Tab.1.left/0.0.1920.1040/1920.4.1920.1040@1920.4.1920.1040" timestamp="1603707544234" />
-    <state width="1596" height="452" key="GridCell.Tab.1.right" timestamp="1603751953235">
-      <screen x="1920" y="0" width="1920" height="1040" />
+    <state width="1596" height="286" key="GridCell.Tab.1.right" timestamp="1603766950936">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state width="1596" height="286" key="GridCell.Tab.1.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1603766950936" />
     <state width="1596" height="452" key="GridCell.Tab.1.right/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1603751953235" />
     <state width="934" height="279" key="GridCell.Tab.1.right/0.0.1920.1040/1920.4.1920.1040@0.0.1920.1040" timestamp="1603238106026" />
     <state width="933" height="279" key="GridCell.Tab.1.right/0.0.1920.1040/1920.4.1920.1040@1920.4.1920.1040" timestamp="1603707544235" />
-    <state width="1596" height="452" key="GridCell.Tab.2.bottom" timestamp="1603751953235">
-      <screen x="1920" y="0" width="1920" height="1040" />
+    <state width="1596" height="286" key="GridCell.Tab.2.bottom" timestamp="1603766950937">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state width="1596" height="286" key="GridCell.Tab.2.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1603766950937" />
     <state width="1596" height="452" key="GridCell.Tab.2.bottom/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1603751953235" />
     <state width="934" height="279" key="GridCell.Tab.2.bottom/0.0.1920.1040/1920.4.1920.1040@0.0.1920.1040" timestamp="1603238106027" />
     <state width="933" height="279" key="GridCell.Tab.2.bottom/0.0.1920.1040/1920.4.1920.1040@1920.4.1920.1040" timestamp="1603707544235" />
-    <state width="1596" height="452" key="GridCell.Tab.2.center" timestamp="1603751953235">
-      <screen x="1920" y="0" width="1920" height="1040" />
+    <state width="1596" height="286" key="GridCell.Tab.2.center" timestamp="1603766950936">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state width="1596" height="286" key="GridCell.Tab.2.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1603766950936" />
     <state width="1596" height="452" key="GridCell.Tab.2.center/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1603751953235" />
     <state width="934" height="279" key="GridCell.Tab.2.center/0.0.1920.1040/1920.4.1920.1040@0.0.1920.1040" timestamp="1603238106026" />
     <state width="933" height="279" key="GridCell.Tab.2.center/0.0.1920.1040/1920.4.1920.1040@1920.4.1920.1040" timestamp="1603707544235" />
-    <state width="1596" height="452" key="GridCell.Tab.2.left" timestamp="1603751953235">
-      <screen x="1920" y="0" width="1920" height="1040" />
+    <state width="1596" height="286" key="GridCell.Tab.2.left" timestamp="1603766950936">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state width="1596" height="286" key="GridCell.Tab.2.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1603766950936" />
     <state width="1596" height="452" key="GridCell.Tab.2.left/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1603751953235" />
     <state width="934" height="279" key="GridCell.Tab.2.left/0.0.1920.1040/1920.4.1920.1040@0.0.1920.1040" timestamp="1603238106026" />
     <state width="933" height="279" key="GridCell.Tab.2.left/0.0.1920.1040/1920.4.1920.1040@1920.4.1920.1040" timestamp="1603707544235" />
-    <state width="1596" height="452" key="GridCell.Tab.2.right" timestamp="1603751953235">
-      <screen x="1920" y="0" width="1920" height="1040" />
+    <state width="1596" height="286" key="GridCell.Tab.2.right" timestamp="1603766950936">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state width="1596" height="286" key="GridCell.Tab.2.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1603766950936" />
     <state width="1596" height="452" key="GridCell.Tab.2.right/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1603751953235" />
     <state width="934" height="279" key="GridCell.Tab.2.right/0.0.1920.1040/1920.4.1920.1040@0.0.1920.1040" timestamp="1603238106026" />
     <state width="933" height="279" key="GridCell.Tab.2.right/0.0.1920.1040/1920.4.1920.1040@1920.4.1920.1040" timestamp="1603707544235" />
@@ -557,28 +534,38 @@
     </state>
     <state x="2207" y="132" key="SettingsEditor/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1603753877058" />
     <state x="2207" y="136" key="SettingsEditor/0.0.1920.1040/1920.4.1920.1040@1920.4.1920.1040" timestamp="1603156378709" />
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1603708933112">
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1603757409898">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1603757409898" />
     <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.4.1920.1040@0.0.1920.1040" timestamp="1603708933112" />
     <state x="2576" y="348" key="com.intellij.ide.util.TipDialog" timestamp="1603170156515">
       <screen x="1920" y="4" width="1920" height="1040" />
     </state>
     <state x="2576" y="348" key="com.intellij.ide.util.TipDialog/0.0.1920.1040/1920.4.1920.1040@1920.4.1920.1040" timestamp="1603170156515" />
-    <state x="769" y="437" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1603757358177">
+    <state x="769" y="437" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1603757371518">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="769" y="437" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1603757358177" />
+    <state x="769" y="437" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1603757371518" />
     <state x="2689" y="437" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1603748156531" />
     <state x="2689" y="441" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040/1920.4.1920.1040@1920.4.1920.1040" timestamp="1603155975216" />
-    <state x="1149" y="183" width="458" height="596" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1603708042885">
+    <state x="1149" y="183" width="458" height="596" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1603759283695">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state x="1149" y="183" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1603759283695" />
     <state x="1149" y="183" width="458" height="596" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.0.1920.1040/1920.4.1920.1040@1920.4.1920.1040" timestamp="1603708042885" />
     <state x="2415" y="256" width="930" height="629" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1603750287963">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="2415" y="256" width="930" height="629" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1603750287963" />
+    <state x="2233" y="-17" width="1414" height="648" maximized="true" key="dock-window-1" timestamp="1603763995124">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="2233" y="-17" width="1414" height="648" maximized="true" key="dock-window-1/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1603763995124" />
+    <state x="437" y="253" width="1128" height="534" key="find.popup" timestamp="1603761281468">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="437" y="253" width="1128" height="534" key="find.popup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1603761281468" />
     <state x="2262" y="144" key="new project wizard" timestamp="1603320686128">
       <screen x="1920" y="4" width="1920" height="1040" />
     </state>
