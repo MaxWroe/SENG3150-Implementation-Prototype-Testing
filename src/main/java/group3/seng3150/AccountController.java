@@ -24,6 +24,9 @@ public class AccountController {
     @Autowired
     public AccountController(EntityManager em){this.em =em;}
 
+    public EntityManager getEm() {
+        return em;
+    }
 
     //get method AccountDetails
     @GetMapping("/accountDetails")

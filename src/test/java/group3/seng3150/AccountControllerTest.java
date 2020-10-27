@@ -1,5 +1,6 @@
 package group3.seng3150;
 
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,7 +15,13 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter;
+import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
+
+import javax.persistence.EntityManager;
 import java.util.Map;
+import java.util.Random;
+
 import static org.junit.Assert.assertEquals;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.junit.Assert.*;
@@ -26,16 +33,50 @@ public class AccountControllerTest {
 
     @Autowired AccountController cont;
     @Autowired WebApplicationContext ctx;
+    @Autowired EntityManager em;
+
     MockMvc mockMvc;
 
     @Before
     public void setup() {
         mockMvc = MockMvcBuilders.webAppContextSetup(ctx).build();
-        BDDMockito.reset(dao);
+    }
+
+//    @Test
+//    public void testGetAccountDetails() {
+//        Random rand = new Random();
+//        assertTrue(rand.nextBoolean());
+//    }
+
+    @Test
+    public void testWAC(){
+        assertNotNull(ctx);
+        System.err.println(ctx.toString());
     }
 
     @Test
-    public void testGetAccountDetails() {
+    public void testCont(){
+        assertNotNull(cont);
+        System.err.println(cont);
+    }
 
+    @Test
+    public void testEM(){
+        assertEquals(em, cont.getEm());
+    }
+
+    @Test
+    public void testGetMappings() throws Exception {
+        mockMvc = MockMvcBuilders.webAppContextSetup(ctx).build();
+        MvcResult httpResult;
+        ModelAndView result;
+
+        //display customer support
+        httpResult = mockMvc.perform(get("/customerSupport"))
+                .andReturn();
+        result = httpResult.getModelAndView();
+
+        assertNotNull(result.getView());
+        assertEquals(result.getView(), new ModelAndView("Users/customerSupport").getView());
     }
 }

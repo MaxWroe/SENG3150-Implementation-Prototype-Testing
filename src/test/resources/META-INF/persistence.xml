@@ -1,24 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
-    <persistence-unit name="PeopleList" transaction-type="RESOURCE_LOCAL">
+    <persistence-unit name="group3-app" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <!--<non-jta-data-source>java:comp/env/jdbc/datasource</non-jta-data-source>-->
 
-        <class>me.haydencheers.PersonEntity</class>
+        <class>group3.seng3150.entities.Airport</class>
+        <class>group3.seng3150.entities.Flight</class>
+        <class>group3.seng3150.entities.Plane</class>
+        <class>group3.seng3150.entities.UserAccount</class>
+        <class>group3.seng3150.entities.Booking</class>
+        <class>group3.seng3150.entities.Availability</class>
+        <class>group3.seng3150.entities.Price</class>
+        <class>group3.seng3150.entities.OtherTransport</class>
+        <class>group3.seng3150.entities.Review</class>
+        <class>group3.seng3150.entities.Enquiry</class>
+        <class>group3.seng3150.entities.FlightID</class>
+        <class>group3.seng3150.entities.HolidayPackages</class>
+        <class>group3.seng3150.entities.PriceID</class>
+        <class>group3.seng3150.entities.AvailabilityID</class>
+        <class>group3.seng3150.entities.Airline</class>
+        <class>group3.seng3150.entities.WishListEntry</class>
+        <class>group3.seng3150.entities.Country</class>
 
         <properties>
-            <!--<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>-->
-            <!--<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/mydb"/>-->
-            <!--<property name="javax.persistence.jdbc.user" value="root"/>-->
-            <!--<property name="javax.persistence.jdbc.password" value="root"/>-->
-
+            <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/FlightPub1"/>
+            <property name="javax.persistence.jdbc.user" value="root"/>
+            <property name="javax.persistence.jdbc.password" value="root"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MariaDBDialect"/>
             <!--<property name="javax.persistence.jdbc.driver" value="org.h2.Driver"/>-->
             <!--<property name="javax.persistence.jdbc.url" value="jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1"/>-->
 
-            <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
+<!--            <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>-->
 
-            <property name="hibernate.show_sql" value="true"/>
-            <property name="hibernate.format_sql" value="true"/>
+<!--            <property name="hibernate.show_sql" value="true"/>-->
+<!--            <property name="hibernate.format_sql" value="true"/>-->
         </properties>
     </persistence-unit>
 </persistence>
+
