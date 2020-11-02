@@ -38,7 +38,6 @@
 
     <!--Refactored beans for testing -->
     <bean class="group3.seng3150.dao.UserAccountDAO"/>
-    <bean class="group3.seng3150.AccountController"/>
 
     <mvc:resources mapping="/img/**" location="/img/"/>
 </beans>
