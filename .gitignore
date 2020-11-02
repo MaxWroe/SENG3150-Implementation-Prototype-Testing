@@ -2,3 +2,11 @@
 /.gradle/
 /build/
 /build/classes/java/main/
+
+# IDEA artifacts and output dirs
+*.iml
+*.ipr
+*.iws
+.idea
+out
+test-output
