@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.test.context.support.WithAnonymousUser;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -24,7 +25,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
 @ContextConfiguration({"classpath:/group3/seng3150/SpringDispatcher-servlet.xml"})
-public class DefaultControllerTest {
+public class DefaultControllerTest implements MethodSecurityTests{
     @Autowired DefaultController cont;
     @Autowired WebApplicationContext ctx;
 
@@ -38,16 +39,8 @@ public class DefaultControllerTest {
     }
 
     @Test
-    public void login() throws Exception {
-        MvcResult httpResult = mockMvc.perform(post("/appLogin").param("username", "bobrox@gmail.com").param("password", "bobrox"))
-                .andReturn();
-
-        assertEquals(Objects.requireNonNull(httpResult.getModelAndView()).getViewName(), "/home");
-    }
-
-    @Test
-    @WithMockUser(username = "bobrox@gmail.com")
-    public void testGetMappings() throws Exception {
+    @WithAnonymousUser
+    public void testMappings() throws Exception {
         MvcResult httpResult;
         int status;
 
@@ -62,6 +55,20 @@ public class DefaultControllerTest {
         httpResult = mockMvc.perform(get("/home"))
                 .andReturn();
         assertEquals("Home was unsuccessfully loaded " , Objects.requireNonNull(httpResult.getModelAndView()).getViewName(), "/home");
+        status = httpResult.getResponse().getStatus();
+        assertTrue("Status code is not 2**", status >= 200 && status < 300);
+
+        // GET /login
+        httpResult = mockMvc.perform(get("/login"))
+                .andReturn();
+        assertEquals("Login was unsuccessfully loaded " , Objects.requireNonNull(httpResult.getModelAndView()).getViewName(), "General/login");
+        status = httpResult.getResponse().getStatus();
+        assertTrue("Status code is not 2**", status >= 200 && status < 300);
+
+        // POST /login
+        httpResult = mockMvc.perform(post("/login").param("email", "bobrox@gmail.com"))
+                .andReturn();
+        assertEquals("Login was unsuccessfully loaded " , Objects.requireNonNull(httpResult.getModelAndView()).getViewName(), "home");
         status = httpResult.getResponse().getStatus();
         assertTrue("Status code is not 2**", status >= 200 && status < 300);
 
@@ -86,11 +93,264 @@ public class DefaultControllerTest {
         status = httpResult.getResponse().getStatus();
         assertTrue("Status code is not 2**", status >= 200 && status < 300);
 
-        // GET /reviews
-        httpResult = mockMvc.perform(get("/reviews"))
+        // GET /travelRecommendations
+        httpResult = mockMvc.perform(get("/travelRecommendations"))
                 .andReturn();
-        assertEquals("Reviews was unsuccessfully loaded " , Objects.requireNonNull(httpResult.getModelAndView()).getViewName(), "General/reviews");
+        assertEquals("Access denied was unsuccessfully loaded " , Objects.requireNonNull(httpResult.getModelAndView()).getViewName(), "travelRecommendations");
         status = httpResult.getResponse().getStatus();
         assertTrue("Status code is not 2**", status >= 200 && status < 300);
     }
+
+    @Test
+    @WithMockUser("bobrox@gmail.com")
+    public void testMappings_Customer() throws Exception {
+        MvcResult httpResult;
+        int status;
+
+        // GET /
+        httpResult = mockMvc.perform(get("/"))
+                .andReturn();
+        assertEquals("Home was unsuccessfully loaded " , Objects.requireNonNull(httpResult.getModelAndView()).getViewName(), "/home");
+        status = httpResult.getResponse().getStatus();
+        assertTrue("Status code is not 2**", status >= 200 && status < 300);
+
+        // GET /HOME
+        httpResult = mockMvc.perform(get("/home"))
+                .andReturn();
+        assertEquals("Home was unsuccessfully loaded " , Objects.requireNonNull(httpResult.getModelAndView()).getViewName(), "/home");
+        status = httpResult.getResponse().getStatus();
+        assertTrue("Status code is not 2**", status >= 200 && status < 300);
+
+        // GET /login
+        httpResult = mockMvc.perform(get("/login"))
+                .andReturn();
+        assertEquals("Login was unsuccessfully loaded " , Objects.requireNonNull(httpResult.getModelAndView()).getViewName(), "General/login");
+        status = httpResult.getResponse().getStatus();
+        assertTrue("Status code is not 2**", status >= 200 && status < 300);
+
+        // POST /login
+        httpResult = mockMvc.perform(post("/login").param("email", "bobrox@gmail.com"))
+                .andReturn();
+        assertEquals("Login was unsuccessfully loaded " , Objects.requireNonNull(httpResult.getModelAndView()).getViewName(), "home");
+        status = httpResult.getResponse().getStatus();
+        assertTrue("Status code is not 2**", status >= 200 && status < 300);
+
+        // GET /logout
+        httpResult = mockMvc.perform(get("/logout"))
+                .andReturn();
+        assertEquals("Logout was unsuccessfully loaded " , Objects.requireNonNull(httpResult.getModelAndView()).getViewName(), "Users/logout");
+        status = httpResult.getResponse().getStatus();
+        assertTrue("Status code is not 2**", status >= 200 && status < 300);
+
+        // GET /faqs
+        httpResult = mockMvc.perform(get("/faqs"))
+                .andReturn();
+        assertEquals("FAQ was unsuccessfully loaded " , Objects.requireNonNull(httpResult.getModelAndView()).getViewName(), "General/faqs");
+        status = httpResult.getResponse().getStatus();
+        assertTrue("Status code is not 2**", status >= 200 && status < 300);
+
+        // GET /accessDenied
+        httpResult = mockMvc.perform(get("/accessDenied"))
+                .andReturn();
+        assertEquals("Access denied was unsuccessfully loaded " , Objects.requireNonNull(httpResult.getModelAndView()).getViewName(), "/accessDenied");
+        status = httpResult.getResponse().getStatus();
+        assertTrue("Status code is not 2**", status >= 200 && status < 300);
+
+        // GET /travelRecommendations
+        httpResult = mockMvc.perform(get("/travelRecommendations"))
+                .andReturn();
+        assertEquals("Access denied was unsuccessfully loaded " , Objects.requireNonNull(httpResult.getModelAndView()).getViewName(), "travelRecommendations");
+        status = httpResult.getResponse().getStatus();
+        assertTrue("Status code is not 2**", status >= 200 && status < 300);
+    }
+
+    @Test
+    @WithMockUser("julieiscool@hotmail.com")
+    public void testMappings_Agent() throws Exception{
+        MvcResult httpResult;
+        int status;
+
+        // GET /
+        httpResult = mockMvc.perform(get("/"))
+                .andReturn();
+        assertEquals("Home was unsuccessfully loaded " , Objects.requireNonNull(httpResult.getModelAndView()).getViewName(), "/home");
+        status = httpResult.getResponse().getStatus();
+        assertTrue("Status code is not 2**", status >= 200 && status < 300);
+
+        // GET /HOME
+        httpResult = mockMvc.perform(get("/home"))
+                .andReturn();
+        assertEquals("Home was unsuccessfully loaded " , Objects.requireNonNull(httpResult.getModelAndView()).getViewName(), "/home");
+        status = httpResult.getResponse().getStatus();
+        assertTrue("Status code is not 2**", status >= 200 && status < 300);
+
+        // GET /login
+        httpResult = mockMvc.perform(get("/login"))
+                .andReturn();
+        assertEquals("Login was unsuccessfully loaded " , Objects.requireNonNull(httpResult.getModelAndView()).getViewName(), "General/login");
+        status = httpResult.getResponse().getStatus();
+        assertTrue("Status code is not 2**", status >= 200 && status < 300);
+
+        // POST /login
+        httpResult = mockMvc.perform(post("/login").param("email", "bobrox@gmail.com"))
+                .andReturn();
+        assertEquals("Login was unsuccessfully loaded " , Objects.requireNonNull(httpResult.getModelAndView()).getViewName(), "home");
+        status = httpResult.getResponse().getStatus();
+        assertTrue("Status code is not 2**", status >= 200 && status < 300);
+
+        // GET /logout
+        httpResult = mockMvc.perform(get("/logout"))
+                .andReturn();
+        assertEquals("Logout was unsuccessfully loaded " , Objects.requireNonNull(httpResult.getModelAndView()).getViewName(), "Users/logout");
+        status = httpResult.getResponse().getStatus();
+        assertTrue("Status code is not 2**", status >= 200 && status < 300);
+
+        // GET /faqs
+        httpResult = mockMvc.perform(get("/faqs"))
+                .andReturn();
+        assertEquals("FAQ was unsuccessfully loaded " , Objects.requireNonNull(httpResult.getModelAndView()).getViewName(), "General/faqs");
+        status = httpResult.getResponse().getStatus();
+        assertTrue("Status code is not 2**", status >= 200 && status < 300);
+
+        // GET /accessDenied
+        httpResult = mockMvc.perform(get("/accessDenied"))
+                .andReturn();
+        assertEquals("Access denied was unsuccessfully loaded " , Objects.requireNonNull(httpResult.getModelAndView()).getViewName(), "/accessDenied");
+        status = httpResult.getResponse().getStatus();
+        assertTrue("Status code is not 2**", status >= 200 && status < 300);
+
+        // GET /travelRecommendations
+        httpResult = mockMvc.perform(get("/travelRecommendations"))
+                .andReturn();
+        assertEquals("Access denied was unsuccessfully loaded " , Objects.requireNonNull(httpResult.getModelAndView()).getViewName(), "travelRecommendations");
+        status = httpResult.getResponse().getStatus();
+        assertTrue("Status code is not 2**", status >= 200 && status < 300);
+    }
+
+    @Test
+    @WithMockUser("Kaylasweet@gmail.com")
+    public void testMappings_FlightPub() throws Exception{
+        MvcResult httpResult;
+        int status;
+
+        // GET /
+        httpResult = mockMvc.perform(get("/"))
+                .andReturn();
+        assertEquals("Home was unsuccessfully loaded " , Objects.requireNonNull(httpResult.getModelAndView()).getViewName(), "/home");
+        status = httpResult.getResponse().getStatus();
+        assertTrue("Status code is not 2**", status >= 200 && status < 300);
+
+        // GET /HOME
+        httpResult = mockMvc.perform(get("/home"))
+                .andReturn();
+        assertEquals("Home was unsuccessfully loaded " , Objects.requireNonNull(httpResult.getModelAndView()).getViewName(), "/home");
+        status = httpResult.getResponse().getStatus();
+        assertTrue("Status code is not 2**", status >= 200 && status < 300);
+
+        // GET /login
+        httpResult = mockMvc.perform(get("/login"))
+                .andReturn();
+        assertEquals("Login was unsuccessfully loaded " , Objects.requireNonNull(httpResult.getModelAndView()).getViewName(), "General/login");
+        status = httpResult.getResponse().getStatus();
+        assertTrue("Status code is not 2**", status >= 200 && status < 300);
+
+        // POST /login
+        httpResult = mockMvc.perform(post("/login").param("email", "bobrox@gmail.com"))
+                .andReturn();
+        assertEquals("Login was unsuccessfully loaded " , Objects.requireNonNull(httpResult.getModelAndView()).getViewName(), "home");
+        status = httpResult.getResponse().getStatus();
+        assertTrue("Status code is not 2**", status >= 200 && status < 300);
+
+        // GET /logout
+        httpResult = mockMvc.perform(get("/logout"))
+                .andReturn();
+        assertEquals("Logout was unsuccessfully loaded " , Objects.requireNonNull(httpResult.getModelAndView()).getViewName(), "Users/logout");
+        status = httpResult.getResponse().getStatus();
+        assertTrue("Status code is not 2**", status >= 200 && status < 300);
+
+        // GET /faqs
+        httpResult = mockMvc.perform(get("/faqs"))
+                .andReturn();
+        assertEquals("FAQ was unsuccessfully loaded " , Objects.requireNonNull(httpResult.getModelAndView()).getViewName(), "General/faqs");
+        status = httpResult.getResponse().getStatus();
+        assertTrue("Status code is not 2**", status >= 200 && status < 300);
+
+        // GET /accessDenied
+        httpResult = mockMvc.perform(get("/accessDenied"))
+                .andReturn();
+        assertEquals("Access denied was unsuccessfully loaded " , Objects.requireNonNull(httpResult.getModelAndView()).getViewName(), "/accessDenied");
+        status = httpResult.getResponse().getStatus();
+        assertTrue("Status code is not 2**", status >= 200 && status < 300);
+
+        // GET /travelRecommendations
+        httpResult = mockMvc.perform(get("/travelRecommendations"))
+                .andReturn();
+        assertEquals("Access denied was unsuccessfully loaded " , Objects.requireNonNull(httpResult.getModelAndView()).getViewName(), "travelRecommendations");
+        status = httpResult.getResponse().getStatus();
+        assertTrue("Status code is not 2**", status >= 200 && status < 300);
+    }
+
+    @Test
+    @WithMockUser("jacthebat@gmail.com")
+    public void testMappings_Admin() throws Exception{
+        MvcResult httpResult;
+        int status;
+
+        // GET /
+        httpResult = mockMvc.perform(get("/"))
+                .andReturn();
+        assertEquals("Home was unsuccessfully loaded " , Objects.requireNonNull(httpResult.getModelAndView()).getViewName(), "/home");
+        status = httpResult.getResponse().getStatus();
+        assertTrue("Status code is not 2**", status >= 200 && status < 300);
+
+        // GET /HOME
+        httpResult = mockMvc.perform(get("/home"))
+                .andReturn();
+        assertEquals("Home was unsuccessfully loaded " , Objects.requireNonNull(httpResult.getModelAndView()).getViewName(), "/home");
+        status = httpResult.getResponse().getStatus();
+        assertTrue("Status code is not 2**", status >= 200 && status < 300);
+
+        // GET /login
+        httpResult = mockMvc.perform(get("/login"))
+                .andReturn();
+        assertEquals("Login was unsuccessfully loaded " , Objects.requireNonNull(httpResult.getModelAndView()).getViewName(), "General/login");
+        status = httpResult.getResponse().getStatus();
+        assertTrue("Status code is not 2**", status >= 200 && status < 300);
+
+        // POST /login
+        httpResult = mockMvc.perform(post("/login").param("email", "bobrox@gmail.com"))
+                .andReturn();
+        assertEquals("Login was unsuccessfully loaded " , Objects.requireNonNull(httpResult.getModelAndView()).getViewName(), "home");
+        status = httpResult.getResponse().getStatus();
+        assertTrue("Status code is not 2**", status >= 200 && status < 300);
+
+        // GET /logout
+        httpResult = mockMvc.perform(get("/logout"))
+                .andReturn();
+        assertEquals("Logout was unsuccessfully loaded " , Objects.requireNonNull(httpResult.getModelAndView()).getViewName(), "Users/logout");
+        status = httpResult.getResponse().getStatus();
+        assertTrue("Status code is not 2**", status >= 200 && status < 300);
+
+        // GET /faqs
+        httpResult = mockMvc.perform(get("/faqs"))
+                .andReturn();
+        assertEquals("FAQ was unsuccessfully loaded " , Objects.requireNonNull(httpResult.getModelAndView()).getViewName(), "General/faqs");
+        status = httpResult.getResponse().getStatus();
+        assertTrue("Status code is not 2**", status >= 200 && status < 300);
+
+        // GET /accessDenied
+        httpResult = mockMvc.perform(get("/accessDenied"))
+                .andReturn();
+        assertEquals("Access denied was unsuccessfully loaded " , Objects.requireNonNull(httpResult.getModelAndView()).getViewName(), "/accessDenied");
+        status = httpResult.getResponse().getStatus();
+        assertTrue("Status code is not 2**", status >= 200 && status < 300);
+
+        // GET /travelRecommendations
+        httpResult = mockMvc.perform(get("/travelRecommendations"))
+                .andReturn();
+        assertEquals("Access denied was unsuccessfully loaded " , Objects.requireNonNull(httpResult.getModelAndView()).getViewName(), "travelRecommendations");
+        status = httpResult.getResponse().getStatus();
+        assertTrue("Status code is not 2**", status >= 200 && status < 300);
+    }
+
 }

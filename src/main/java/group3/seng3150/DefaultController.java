@@ -39,7 +39,11 @@ public class DefaultController {
     public ModelAndView displayRecomendations(Authentication auth) {
         ModelAndView view = new ModelAndView("travelRecommendations");
         RecommendationGenerator genPackages = new RecommendationGenerator(em);
-        String emailSearch = "'" + auth.getName() + "'";
+
+        //replaced to work the mock
+        //String emailSearch = "'" + auth.getName() + "'";
+        String emailSearch = "'" +  SecurityContextHolder.getContext().getAuthentication().getName() + "'";
+
         //Retrieve the user's information
         UserAccount user = (UserAccount) em.createQuery("SELECT u FROM UserAccount u WHERE u.email=" + emailSearch).getSingleResult();
         view.addObject("recommendationPackages",genPackages.getRecommendations(user));
