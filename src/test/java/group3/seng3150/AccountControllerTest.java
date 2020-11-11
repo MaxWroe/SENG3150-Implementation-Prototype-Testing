@@ -69,6 +69,11 @@ public class AccountControllerTest {
         assertNotNull("dateOfBirth", model.get("dateOfBirth"));
         assertNotNull("citizenship", model.get("citizenship"));
         assertNotNull("gender", model.get("gender"));
+        assertNotNull("emergencyContact", model.get("emergencyContact"));
+        assertNotNull("familyMembers", model.get("familyMembers"));
+        assertNotNull("address", model.get("address"));
+        assertNotNull("emergencyContact", model.get("emergencyContact"));
+        assertNotNull("familyMembers", model.get("familyMembers"));
         assertNotNull("phone", model.get("phone"));
     }
 
