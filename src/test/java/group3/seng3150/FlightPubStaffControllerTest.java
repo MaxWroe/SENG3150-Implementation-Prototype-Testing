@@ -1,7 +1,9 @@
 package group3.seng3150;
 
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ErrorCollector;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.test.context.support.WithMockUser;
@@ -15,6 +17,7 @@ import org.springframework.web.context.WebApplicationContext;
 
 import javax.servlet.Filter;
 
+import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.*;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -29,6 +32,10 @@ public class FlightPubStaffControllerTest implements MethodSecurityTests{
     @Autowired WebApplicationContext ctx;
 
     @Autowired Filter springSecurityFilterChain;
+
+    @Rule
+    public ErrorCollector collector = new ErrorCollector();
+
 
     MockMvc mockMvc;
 
@@ -48,7 +55,7 @@ public class FlightPubStaffControllerTest implements MethodSecurityTests{
         httpResult = mockMvc.perform(get("/manageAirline"))
                 .andReturn();
         status = httpResult.getResponse().getStatus();
-        assertEquals("Status code is not 403", 403, status);
+        collector.checkThat("Status code is not 403 for unregistered access of /manageAirline", status, equalTo(403));
 
         // POST /manageAirline/unsponsor
         httpResult = mockMvc.perform(post("/manageAirline/unsponsor")
@@ -56,7 +63,7 @@ public class FlightPubStaffControllerTest implements MethodSecurityTests{
                 .param("airlineSponsored1", "0"))
                 .andReturn();
         status = httpResult.getResponse().getStatus();
-        assertEquals("Status code is not 403", 403, status);
+        collector.checkThat("Status code is not 403 for unregistered access of /manageAirline/unsponsor", status, equalTo(403));
 
         // POST /manageAirline/sponsor
         httpResult = mockMvc.perform(post("/manageAirline/sponsor")
@@ -64,13 +71,13 @@ public class FlightPubStaffControllerTest implements MethodSecurityTests{
                 .param("airlineSponsored", "0"))
                 .andReturn();
         status = httpResult.getResponse().getStatus();
-        assertEquals("Status code is not 403", 403, status);
+        collector.checkThat("Status code is not 403 for unregistered access of /manageAirline/sponsor", status, equalTo(403));
 
         // GET /manageAirport
         httpResult = mockMvc.perform(get("/manageAirport"))
                 .andReturn();
         status = httpResult.getResponse().getStatus();
-        assertEquals("Status code is not 403", 403, status);
+        collector.checkThat("Status code is not 403 for unregistered access of /manageAirport", status, equalTo(403));
 
         // POST /manageAirport/restrict
         httpResult = mockMvc.perform(post("/manageAirport/restrict")
@@ -79,25 +86,25 @@ public class FlightPubStaffControllerTest implements MethodSecurityTests{
                 .param("shutdownEndDate", "2020-12-12"))
                 .andReturn();
         status = httpResult.getResponse().getStatus();
-        assertEquals("Status code is not 403", 403, status);
+        collector.checkThat("Status code is not 403 for unregistered access of /manageAirline/restrict", status, equalTo(403));
 
         // GET /manageUsers
         httpResult = mockMvc.perform(get("/manageUsers"))
                 .andReturn();
         status = httpResult.getResponse().getStatus();
-        assertEquals("Status code is not 403", 403, status);
+        collector.checkThat("Status code is not 403 for unregistered access of /manageUsers", status, equalTo(403));
 
         // POST /manageUsers/remove
         httpResult = mockMvc.perform(post("/manageUsers/remove"))
                 .andReturn();
         status = httpResult.getResponse().getStatus();
-        assertEquals("Status code is not 403", 403, status);
+        collector.checkThat("Status code is not 403 for unregistered access of /manageUsers/remove", status, equalTo(403));
 
         // GET /addUsers
         httpResult = mockMvc.perform(get("/addUsers"))
                 .andReturn();
         status = httpResult.getResponse().getStatus();
-        assertEquals("Status code is not 403", 403, status);
+        collector.checkThat("Status code is not 403 for unregistered access of /addUsers", status, equalTo(403));
 
         // POST /addUsers/add
         httpResult = mockMvc.perform(post("/addUsers/add")
@@ -111,7 +118,7 @@ public class FlightPubStaffControllerTest implements MethodSecurityTests{
                 .param("userRole", "ADMIN"))
                 .andReturn();
         status = httpResult.getResponse().getStatus();
-        assertEquals("Status code is not 403", 403, status);
+        collector.checkThat("Status code is not 403 for unregistered access of /addUsers/add", status, equalTo(403));
     }
 
     @Test
@@ -125,7 +132,7 @@ public class FlightPubStaffControllerTest implements MethodSecurityTests{
                 .with(user("user").roles("CUSTOMER")))
                 .andReturn();
         status = httpResult.getResponse().getStatus();
-        assertEquals("Status code is not 403", 403, status);
+        collector.checkThat("Status code is not 403", status, equalTo(403));
 
         // POST /manageAirline/unsponsor
         httpResult = mockMvc.perform(post("/manageAirline/unsponsor")
@@ -134,7 +141,7 @@ public class FlightPubStaffControllerTest implements MethodSecurityTests{
                 .with(user("user").roles("CUSTOMER")))
                 .andReturn();
         status = httpResult.getResponse().getStatus();
-        assertEquals("Status code is not 403", 403, status);
+        collector.checkThat("Status code is not 403", status, equalTo(403));
 
         // POST /manageAirline/sponsor
         httpResult = mockMvc.perform(post("/manageAirline/sponsor")
@@ -143,14 +150,14 @@ public class FlightPubStaffControllerTest implements MethodSecurityTests{
                 .with(user("user").roles("CUSTOMER")))
                 .andReturn();
         status = httpResult.getResponse().getStatus();
-        assertEquals("Status code is not 403", 403, status);
+        collector.checkThat("Status code is not 403", status, equalTo(403));
 
         // GET /manageAirport
         httpResult = mockMvc.perform(get("/manageAirport")
                 .with(user("user").roles("CUSTOMER")))
                 .andReturn();
         status = httpResult.getResponse().getStatus();
-        assertEquals("Status code is not 403", 403, status);
+        collector.checkThat("Status code is not 403", status, equalTo(403));
 
         // POST /manageAirport/restrict
         httpResult = mockMvc.perform(post("/manageAirport/restrict")
@@ -160,28 +167,28 @@ public class FlightPubStaffControllerTest implements MethodSecurityTests{
                 .with(user("user").roles("CUSTOMER")))
                 .andReturn();
         status = httpResult.getResponse().getStatus();
-        assertEquals("Status code is not 403", 403, status);
+        collector.checkThat("Status code is not 403", status, equalTo(403));
 
         // GET /manageUsers
         httpResult = mockMvc.perform(get("/manageUsers")
                 .with(user("user").roles("CUSTOMER")))
                 .andReturn();
         status = httpResult.getResponse().getStatus();
-        assertEquals("Status code is not 403", 403, status);
+        collector.checkThat("Status code is not 403", status, equalTo(403));
 
         // POST /manageUsers/remove
         httpResult = mockMvc.perform(post("/manageUsers/remove")
                 .with(user("user").roles("CUSTOMER")))
                 .andReturn();
         status = httpResult.getResponse().getStatus();
-        assertEquals("Status code is not 403", 403, status);
+        collector.checkThat("Status code is not 403", status, equalTo(403));
 
         // GET /addUsers
         httpResult = mockMvc.perform(get("/addUsers")
                 .with(user("user").roles("CUSTOMER")))
                 .andReturn();
         status = httpResult.getResponse().getStatus();
-        assertEquals("Status code is not 403", 403, status);
+        collector.checkThat("Status code is not 403", status, equalTo(403));
 
         // POST /addUsers/add
         httpResult = mockMvc.perform(post("/addUsers/add")
@@ -196,7 +203,7 @@ public class FlightPubStaffControllerTest implements MethodSecurityTests{
                 .with(user("user").roles("CUSTOMER")))
                 .andReturn();
         status = httpResult.getResponse().getStatus();
-        assertEquals("Status code is not 403", 403, status);
+        collector.checkThat("Status code is not 403", status, equalTo(403));
     }
 
     @Test
@@ -210,7 +217,7 @@ public class FlightPubStaffControllerTest implements MethodSecurityTests{
                 .with(user("user").roles("AGENT")))
                 .andReturn();
         status = httpResult.getResponse().getStatus();
-        assertEquals("Status code is not 403", 403, status);
+        collector.checkThat("Status code is not 403", status, equalTo(403));
 
         // POST /manageAirline/unsponsor
         httpResult = mockMvc.perform(post("/manageAirline/unsponsor")
@@ -219,7 +226,7 @@ public class FlightPubStaffControllerTest implements MethodSecurityTests{
                 .with(user("user").roles("AGENT")))
                 .andReturn();
         status = httpResult.getResponse().getStatus();
-        assertEquals("Status code is not 403", 403, status);
+        collector.checkThat("Status code is not 403", status, equalTo(403));
 
         // POST /manageAirline/sponsor
         httpResult = mockMvc.perform(post("/manageAirline/sponsor")
@@ -228,14 +235,14 @@ public class FlightPubStaffControllerTest implements MethodSecurityTests{
                 .with(user("user").roles("AGENT")))
                 .andReturn();
         status = httpResult.getResponse().getStatus();
-        assertEquals("Status code is not 403", 403, status);
+        collector.checkThat("Status code is not 403", status, equalTo(403));
 
         // GET /manageAirport
         httpResult = mockMvc.perform(get("/manageAirport")
                 .with(user("user").roles("AGENT")))
                 .andReturn();
         status = httpResult.getResponse().getStatus();
-        assertEquals("Status code is not 403", 403, status);
+        collector.checkThat("Status code is not 403", status, equalTo(403));
 
         // POST /manageAirport/restrict
         httpResult = mockMvc.perform(post("/manageAirport/restrict")
@@ -245,28 +252,28 @@ public class FlightPubStaffControllerTest implements MethodSecurityTests{
                 .with(user("user").roles("AGENT")))
                 .andReturn();
         status = httpResult.getResponse().getStatus();
-        assertEquals("Status code is not 403", 403, status);
+        collector.checkThat("Status code is not 403", status, equalTo(403));
 
         // GET /manageUsers
         httpResult = mockMvc.perform(get("/manageUsers")
                 .with(user("user").roles("AGENT")))
                 .andReturn();
         status = httpResult.getResponse().getStatus();
-        assertEquals("Status code is not 403", 403, status);
+        collector.checkThat("Status code is not 403", status, equalTo(403));
 
         // POST /manageUsers/remove
         httpResult = mockMvc.perform(post("/manageUsers/remove")
                 .with(user("user").roles("AGENT")))
                 .andReturn();
         status = httpResult.getResponse().getStatus();
-        assertEquals("Status code is not 403", 403, status);
+        collector.checkThat("Status code is not 403", status, equalTo(403));
 
         // GET /addUsers
         httpResult = mockMvc.perform(get("/addUsers")
                 .with(user("user").roles("AGENT")))
                 .andReturn();
         status = httpResult.getResponse().getStatus();
-        assertEquals("Status code is not 403", 403, status);
+        collector.checkThat("Status code is not 403", status, equalTo(403));
 
         // POST /addUsers/add
         httpResult = mockMvc.perform(post("/addUsers/add")
@@ -281,7 +288,7 @@ public class FlightPubStaffControllerTest implements MethodSecurityTests{
                 .with(user("user").roles("CUSTOMER")))
                 .andReturn();
         status = httpResult.getResponse().getStatus();
-        assertEquals("Status code is not 403", 403, status);
+        collector.checkThat("Status code is not 403", status, equalTo(403));
     }
 
     @Test
@@ -295,7 +302,7 @@ public class FlightPubStaffControllerTest implements MethodSecurityTests{
                 .with(user("user").roles("FLIGHTPUB")))
                 .andReturn();
         status = httpResult.getResponse().getStatus();
-        assertEquals("Status code is not 403", 403, status);
+        collector.checkThat("Status code is not 403", status, equalTo(403));
 
         // POST /manageAirline/unsponsor
         httpResult = mockMvc.perform(post("/manageAirline/unsponsor")
@@ -304,7 +311,7 @@ public class FlightPubStaffControllerTest implements MethodSecurityTests{
                 .with(user("user").roles("FLIGHTPUB")))
                 .andReturn();
         status = httpResult.getResponse().getStatus();
-        assertEquals("Status code is not 403", 403, status);
+        collector.checkThat("Status code is not 403", status, equalTo(403));
 
         // POST /manageAirline/sponsor
         httpResult = mockMvc.perform(post("/manageAirline/sponsor")
@@ -313,14 +320,14 @@ public class FlightPubStaffControllerTest implements MethodSecurityTests{
                 .with(user("user").roles("FLIGHTPUB")))
                 .andReturn();
         status = httpResult.getResponse().getStatus();
-        assertEquals("Status code is not 403", 403, status);
+        collector.checkThat("Status code is not 403", status, equalTo(403));
 
         // GET /manageAirport
         httpResult = mockMvc.perform(get("/manageAirport")
                 .with(user("user").roles("FLIGHTPUB")))
                 .andReturn();
         status = httpResult.getResponse().getStatus();
-        assertEquals("Status code is not 403", 403, status);
+        collector.checkThat("Status code is not 403", status, equalTo(403));
 
         // POST /manageAirport/restrict
         httpResult = mockMvc.perform(post("/manageAirport/restrict")
@@ -330,28 +337,28 @@ public class FlightPubStaffControllerTest implements MethodSecurityTests{
                 .with(user("user").roles("FLIGHTPUB")))
                 .andReturn();
         status = httpResult.getResponse().getStatus();
-        assertEquals("Status code is not 403", 403, status);
+        collector.checkThat("Status code is not 403", status, equalTo(403));
 
         // GET /manageUsers
         httpResult = mockMvc.perform(get("/manageUsers")
                 .with(user("user").roles("FLIGHTPUB")))
                 .andReturn();
         status = httpResult.getResponse().getStatus();
-        assertEquals("Status code is not 403", 403, status);
+        collector.checkThat("Status code is not 403", status, equalTo(403));
 
         // POST /manageUsers/remove
         httpResult = mockMvc.perform(post("/manageUsers/remove")
                 .with(user("user").roles("FLIGHTPUB")))
                 .andReturn();
         status = httpResult.getResponse().getStatus();
-        assertEquals("Status code is not 403", 403, status);
+        collector.checkThat("Status code is not 403", status, equalTo(403));
 
         // GET /addUsers
         httpResult = mockMvc.perform(get("/addUsers")
                 .with(user("user").roles("FLIGHTPUB")))
                 .andReturn();
         status = httpResult.getResponse().getStatus();
-        assertEquals("Status code is not 403", 403, status);
+        collector.checkThat("Status code is not 403", status, equalTo(403));
 
         // POST /addUsers/add
         httpResult = mockMvc.perform(post("/addUsers/add")
@@ -366,7 +373,7 @@ public class FlightPubStaffControllerTest implements MethodSecurityTests{
                 .with(user("user").roles("FLIGHTPUB")))
                 .andReturn();
         status = httpResult.getResponse().getStatus();
-        assertEquals("Status code is not 403", 403, status);
+        collector.checkThat("Status code is not 403", status, equalTo(403));
     }
 
     @Test

@@ -104,8 +104,4 @@ public class AuthenticationController {
         view.addObject("message", message);
         return view;
     }
-
-
-
-
 }
