@@ -1,4 +1,5 @@
 package group3.seng3150;
+import group3.seng3150.dao.IUserAccountDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -14,8 +15,12 @@ import java.util.Collection;
 public class UserServices implements UserDetailsService {
 
     private EntityManager em;
+    private IUserAccountDAO dao;
     @Autowired
-    public UserServices(EntityManager em){this.em =em;}
+    public UserServices(EntityManager em, IUserAccountDAO dao){
+        this.em =em;
+        this.dao = dao;
+    }
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {

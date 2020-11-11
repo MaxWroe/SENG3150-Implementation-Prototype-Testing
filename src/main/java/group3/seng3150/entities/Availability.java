@@ -49,6 +49,15 @@ public class Availability {
     public Availability() {
     }
 
+    public Availability(String flightNumber, String airlineCode, Timestamp departureDate, String ticketCode, String classCode, Integer numberAvailableSeatsLeg1, Integer numberAvailableSeatsLeg2) {
+        this.flightNumber = flightNumber;
+        this.airlineCode = airlineCode;
+        this.departureDate = departureDate;
+        this.ticketCode = ticketCode;
+        this.classCode = classCode;
+        this.numberAvailableSeatsLeg1 = numberAvailableSeatsLeg1;
+        this.numberAvailableSeatsLeg2 = numberAvailableSeatsLeg2;
+    }
 
     //Getters and Setters
     public String getAirlineCode() {

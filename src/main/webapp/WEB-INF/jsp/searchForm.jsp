@@ -146,3 +146,8 @@
     <!-- jQuery for search form -->
     <script src="${pageContext.request.contextPath}/js/searchFormAssistor.js"></script>
 </form>
+<form name="Testing" method="post" id="testing" action="${pageContext.request.contextPath}/JavascriptTesting">
+    <div class="Testing-button">
+        <button class="btn btn-lg btn-outline-success text-uppercase" type="submit">Test</button>
+    </div>
+</form>

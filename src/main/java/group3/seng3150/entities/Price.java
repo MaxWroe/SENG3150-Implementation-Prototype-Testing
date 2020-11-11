@@ -59,6 +59,17 @@ public class Price {
     public Price() {
     }
 
+    public Price(String airlineCode, String flightNumber, String classCode, String ticketCode, Timestamp startDate, Timestamp endDate, Double price, Double priceLeg1, Double priceLeg2) {
+        this.airlineCode = airlineCode;
+        this.flightNumber = flightNumber;
+        this.classCode = classCode;
+        this.ticketCode = ticketCode;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.price = price;
+        this.priceLeg1 = priceLeg1;
+        this.priceLeg2 = priceLeg2;
+    }
 
     public Double getPrice() {
         return price;
