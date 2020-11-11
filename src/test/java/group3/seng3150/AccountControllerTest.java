@@ -30,13 +30,13 @@ public class AccountControllerTest {
 
     @Autowired AccountController cont;
     @Autowired WebApplicationContext ctx;
-    @Autowired IUserAccountDAO dao;
+    @Autowired IUserAccountDAO userAccountDAO;
     MockMvc mockMvc;
 
     @Before
     public void setup() {
         mockMvc = MockMvcBuilders.webAppContextSetup(ctx).build();
-        BDDMockito.reset(dao);
+        BDDMockito.reset(userAccountDAO);
     }
 
     @Test
@@ -46,7 +46,7 @@ public class AccountControllerTest {
 
         UserAccount testAccount = new UserAccount("Max","Wroe","max.wroe@outlook.com",0,"Aus",0,"98 Everton St Hamilton","Dijana Jokovic","Dijana Jokovic",431176489);
 
-        Mockito.when(dao.getAccountFromEmail("max.wroe@outlook.com")).thenReturn(testAccount);
+        Mockito.when(userAccountDAO.getAccountFromEmail("max.wroe@outlook.com")).thenReturn(testAccount);
 
         MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.get("/accountDetails")).andReturn();
         ModelAndView result = mvcResult.getModelAndView();
@@ -55,6 +55,14 @@ public class AccountControllerTest {
         assertEquals("The first name is not the expected first name",model.get("firstName"),testAccount.getFirstName());
         assertEquals(model.get("lastName"),testAccount.getLastName());
         assertEquals(model.get("email"),testAccount.getEmail());
+        assertEquals(model.get("userType"),testAccount.getUserType());
+        assertEquals(model.get("dateOfBirth"),testAccount.getDateOfBirth());
+        assertEquals(model.get("email"),testAccount.getEmail());
+        assertEquals(model.get("citizenship"),testAccount.getCitizenship());
+        assertEquals(model.get("address"),testAccount.getAddress());
+        assertEquals(model.get("emergencyContact"),testAccount.getEmergencyContact());
+        assertEquals(model.get("familyMembers"),testAccount.getFamilyMembers());
+        assertEquals(model.get("phone"),testAccount.getPhone());
     }
 
 }

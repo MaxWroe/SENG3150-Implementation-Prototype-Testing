@@ -1,5 +1,6 @@
 package group3.seng3150;
 
+import group3.seng3150.dao.IUserAccountDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,12 +22,16 @@ import group3.seng3150.UserServices;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private EntityManager em;
+    private IUserAccountDAO userAccountDAO;
     @Autowired
-    public WebSecurityConfig(EntityManager em){this.em =em;}
+    public WebSecurityConfig(EntityManager em, IUserAccountDAO userAccountDAO){
+        this.em = em;
+        this.userAccountDAO = userAccountDAO;
+    }
 
     @Bean
     public UserDetailsService userDetailsService() {
-        return new UserServices(em);
+        return new UserServices(em, userAccountDAO);
     };
 
     @Bean

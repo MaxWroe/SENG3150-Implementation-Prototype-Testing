@@ -60,7 +60,19 @@ public class Flight implements Cloneable{
     private Integer durationSecondLeg;
 
 
-
+    public Flight(String flightNumber, String airlineCode, Timestamp departureDate, String departureCode, String stopOverCode, Timestamp arrivalStopOverTime, Timestamp departureTimeStopOver, String destination, Timestamp arrivalDate, Integer duration, Integer durationSecondLeg) {
+        this.flightNumber = flightNumber;
+        this.airlineCode = airlineCode;
+        this.departureDate = departureDate;
+        this.departureCode = departureCode;
+        this.stopOverCode = stopOverCode;
+        this.arrivalStopOverTime = arrivalStopOverTime;
+        this.departureTimeStopOver = departureTimeStopOver;
+        this.destination = destination;
+        this.arrivalDate = arrivalDate;
+        this.duration = duration;
+        this.durationSecondLeg = durationSecondLeg;
+    }
 
     //Constructor
     public Flight() {
