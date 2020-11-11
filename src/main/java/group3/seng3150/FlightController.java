@@ -33,6 +33,12 @@ public class FlightController{
         this.em =em;
     }
 
+    @PostMapping("/JavascriptTesting")
+    public ModelAndView YoWhatUp(){
+        ModelAndView view = new ModelAndView("JavascriptTesting");
+        return view;
+    }
+
     @PostMapping("/search")
     public ModelAndView search(
             @RequestParam(name="departureLocation", defaultValue="") String departureLocation,
