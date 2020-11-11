@@ -53,7 +53,6 @@ public class AuthenticationController {
                                         @RequestParam(name="phone", defaultValue="0") int phone,
                                         @RequestParam(name="dateOfBirth") Date dateOfBirth,
                                         @RequestParam(name="userType", defaultValue = "") String userType
-
     ){
     ModelAndView view = new ModelAndView("General/register");
     String message = "Registration successful! ";

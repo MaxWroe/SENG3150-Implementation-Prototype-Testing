@@ -4,7 +4,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.test.context.support.WithAnonymousUser;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -15,10 +14,10 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import javax.persistence.EntityManager;
+import javax.servlet.Filter;
 import java.util.Objects;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 
@@ -31,15 +30,18 @@ public class DefaultControllerTest implements MethodSecurityTests{
 
     @Autowired EntityManager em;
 
+    @Autowired Filter springSecurityFilterChain;
+
     MockMvc mockMvc;
 
     @Before
     public void setup(){
         mockMvc = MockMvcBuilders.webAppContextSetup(ctx).build();
+        mockMvc = MockMvcBuilders.webAppContextSetup(ctx)
+                .addFilters(springSecurityFilterChain).build();
     }
 
     @Test
-    @WithAnonymousUser
     public void testMappings() throws Exception {
         MvcResult httpResult;
         int status;
@@ -58,13 +60,6 @@ public class DefaultControllerTest implements MethodSecurityTests{
         status = httpResult.getResponse().getStatus();
         assertTrue("Status code is not 2**", status >= 200 && status < 300);
 
-        // GET /login
-        httpResult = mockMvc.perform(get("/login"))
-                .andReturn();
-        assertEquals("Login was unsuccessfully loaded " , Objects.requireNonNull(httpResult.getModelAndView()).getViewName(), "General/login");
-        status = httpResult.getResponse().getStatus();
-        assertTrue("Status code is not 2**", status >= 200 && status < 300);
-
         // POST /login
         httpResult = mockMvc.perform(post("/login").param("email", "bobrox@gmail.com"))
                 .andReturn();
@@ -75,9 +70,8 @@ public class DefaultControllerTest implements MethodSecurityTests{
         // GET /logout
         httpResult = mockMvc.perform(get("/logout"))
                 .andReturn();
-        assertEquals("Logout was unsuccessfully loaded " , Objects.requireNonNull(httpResult.getModelAndView()).getViewName(), "Users/logout");
         status = httpResult.getResponse().getStatus();
-        assertTrue("Status code is not 2**", status >= 200 && status < 300);
+        assertEquals("Status code is not 302", 302, status);
 
         // GET /faqs
         httpResult = mockMvc.perform(get("/faqs"))
@@ -96,9 +90,8 @@ public class DefaultControllerTest implements MethodSecurityTests{
         // GET /travelRecommendations
         httpResult = mockMvc.perform(get("/travelRecommendations"))
                 .andReturn();
-        assertEquals("Access denied was unsuccessfully loaded " , Objects.requireNonNull(httpResult.getModelAndView()).getViewName(), "travelRecommendations");
         status = httpResult.getResponse().getStatus();
-        assertTrue("Status code is not 2**", status >= 200 && status < 300);
+        assertEquals("Status code is not 302", 302, status);
     }
 
     @Test
@@ -138,9 +131,8 @@ public class DefaultControllerTest implements MethodSecurityTests{
         // GET /logout
         httpResult = mockMvc.perform(get("/logout"))
                 .andReturn();
-        assertEquals("Logout was unsuccessfully loaded " , Objects.requireNonNull(httpResult.getModelAndView()).getViewName(), "Users/logout");
         status = httpResult.getResponse().getStatus();
-        assertTrue("Status code is not 2**", status >= 200 && status < 300);
+        assertEquals("Status code is not 302", 302, status);
 
         // GET /faqs
         httpResult = mockMvc.perform(get("/faqs"))
@@ -159,9 +151,8 @@ public class DefaultControllerTest implements MethodSecurityTests{
         // GET /travelRecommendations
         httpResult = mockMvc.perform(get("/travelRecommendations"))
                 .andReturn();
-        assertEquals("Access denied was unsuccessfully loaded " , Objects.requireNonNull(httpResult.getModelAndView()).getViewName(), "travelRecommendations");
         status = httpResult.getResponse().getStatus();
-        assertTrue("Status code is not 2**", status >= 200 && status < 300);
+        assertEquals("Status code is not 302", 302, status);
     }
 
     @Test
@@ -201,9 +192,8 @@ public class DefaultControllerTest implements MethodSecurityTests{
         // GET /logout
         httpResult = mockMvc.perform(get("/logout"))
                 .andReturn();
-        assertEquals("Logout was unsuccessfully loaded " , Objects.requireNonNull(httpResult.getModelAndView()).getViewName(), "Users/logout");
         status = httpResult.getResponse().getStatus();
-        assertTrue("Status code is not 2**", status >= 200 && status < 300);
+        assertEquals("Status code is not 302", 302, status);
 
         // GET /faqs
         httpResult = mockMvc.perform(get("/faqs"))
@@ -222,9 +212,8 @@ public class DefaultControllerTest implements MethodSecurityTests{
         // GET /travelRecommendations
         httpResult = mockMvc.perform(get("/travelRecommendations"))
                 .andReturn();
-        assertEquals("Access denied was unsuccessfully loaded " , Objects.requireNonNull(httpResult.getModelAndView()).getViewName(), "travelRecommendations");
         status = httpResult.getResponse().getStatus();
-        assertTrue("Status code is not 2**", status >= 200 && status < 300);
+        assertEquals("Status code is not 302", 302, status);
     }
 
     @Test
@@ -264,9 +253,8 @@ public class DefaultControllerTest implements MethodSecurityTests{
         // GET /logout
         httpResult = mockMvc.perform(get("/logout"))
                 .andReturn();
-        assertEquals("Logout was unsuccessfully loaded " , Objects.requireNonNull(httpResult.getModelAndView()).getViewName(), "Users/logout");
         status = httpResult.getResponse().getStatus();
-        assertTrue("Status code is not 2**", status >= 200 && status < 300);
+        assertEquals("Status code is not 302", 302, status);
 
         // GET /faqs
         httpResult = mockMvc.perform(get("/faqs"))
@@ -285,9 +273,8 @@ public class DefaultControllerTest implements MethodSecurityTests{
         // GET /travelRecommendations
         httpResult = mockMvc.perform(get("/travelRecommendations"))
                 .andReturn();
-        assertEquals("Access denied was unsuccessfully loaded " , Objects.requireNonNull(httpResult.getModelAndView()).getViewName(), "travelRecommendations");
         status = httpResult.getResponse().getStatus();
-        assertTrue("Status code is not 2**", status >= 200 && status < 300);
+        assertEquals("Status code is not 302", 302, status);
     }
 
     @Test
@@ -327,9 +314,8 @@ public class DefaultControllerTest implements MethodSecurityTests{
         // GET /logout
         httpResult = mockMvc.perform(get("/logout"))
                 .andReturn();
-        assertEquals("Logout was unsuccessfully loaded " , Objects.requireNonNull(httpResult.getModelAndView()).getViewName(), "Users/logout");
         status = httpResult.getResponse().getStatus();
-        assertTrue("Status code is not 2**", status >= 200 && status < 300);
+        assertEquals("Status code is not 302", 302, status);
 
         // GET /faqs
         httpResult = mockMvc.perform(get("/faqs"))
@@ -348,9 +334,8 @@ public class DefaultControllerTest implements MethodSecurityTests{
         // GET /travelRecommendations
         httpResult = mockMvc.perform(get("/travelRecommendations"))
                 .andReturn();
-        assertEquals("Access denied was unsuccessfully loaded " , Objects.requireNonNull(httpResult.getModelAndView()).getViewName(), "travelRecommendations");
         status = httpResult.getResponse().getStatus();
-        assertTrue("Status code is not 2**", status >= 200 && status < 300);
+        assertEquals("Status code is not 302", 302, status);
     }
 
 }
