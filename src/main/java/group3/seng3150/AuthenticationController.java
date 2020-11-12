@@ -29,12 +29,12 @@ public class AuthenticationController {
         return view;
     }
 
-    //get after successful register
-    public ModelAndView displayLogin(@RequestParam("message") String message) {
-        ModelAndView view = new ModelAndView("General/login");
-        view.addObject("message", message);
-        return view;
-    }
+//    //get after successful register
+//    public ModelAndView displayLogin(@RequestParam("message") String message) {
+//        ModelAndView view = new ModelAndView("General/login");
+//        view.addObject("message", message);
+//        return view;
+//    }
 
     //get method register
     @GetMapping("/register")

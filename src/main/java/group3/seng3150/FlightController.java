@@ -1,5 +1,5 @@
 /*
-Author: Chris Mather
+author: Chris Mather
 Description: this class takes the search call from the JSPs and uses the Flight Plan Search to find flights and stores retrieved lists into the flight holder bean
 */
 
