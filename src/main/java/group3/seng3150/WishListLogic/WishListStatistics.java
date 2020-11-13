@@ -15,7 +15,7 @@ import java.util.*;
 public class WishListStatistics {
 
 
-    private EntityManager em;
+    @Autowired EntityManager em;
     private List<CountryStat> stats;
 
     @Autowired
