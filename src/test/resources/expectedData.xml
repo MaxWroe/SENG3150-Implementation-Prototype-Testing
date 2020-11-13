@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    <UserAccount firstName="first" lastName="last" gender="male" password="password" email="test@test.com" phone="4444" dateOfBirth="null" userType="CUSTOMER"/>
+</dataset>
