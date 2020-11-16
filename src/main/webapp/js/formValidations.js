@@ -18,12 +18,12 @@ function validateRegister(){
     }
 
     //checks if valid phone number
-    if(phone.value.match(phoneNo)){
-
-    }else{
-        message += "-Phone number entered is invalid. \n";
-        boolean = false;
-    }
+    // if(phone.value.match(phoneNo)){
+    //
+    // }else{
+    //     message += "-Phone number entered is invalid. \n";
+    //     boolean = false;
+    // }
 
     //checks age
     if (getAge(dateOfBirth.value) < 18){

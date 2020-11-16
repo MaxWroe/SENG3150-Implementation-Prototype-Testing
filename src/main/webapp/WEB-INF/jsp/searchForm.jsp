@@ -32,6 +32,7 @@
             </div>
 
             <div class="form-group">
+            <div class="form-group">
                 <!-- Adult passengers -->
                 <label for="adults">Adults:</label>
                 <input type="number" id="adults" name="adults" min="1" max="9" required>
