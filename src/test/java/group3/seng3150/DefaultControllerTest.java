@@ -18,6 +18,7 @@ import javax.servlet.Filter;
 import java.util.Objects;
 
 import static org.junit.Assert.*;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 
@@ -149,10 +150,11 @@ public class DefaultControllerTest implements MethodSecurityTests{
         assertTrue("Status code is not 2**", status >= 200 && status < 300);
 
         // GET /travelRecommendations
-        httpResult = mockMvc.perform(get("/travelRecommendations"))
+        httpResult = mockMvc.perform(get("/travelRecommendations")
+                .with(user("bobrox@gmail.com").roles("CUSTOMER")))
                 .andReturn();
         status = httpResult.getResponse().getStatus();
-        assertEquals("Status code is not 302", 302, status);
+        assertTrue("Status code is not 2**", status >= 200 && status < 300);
     }
 
     @Test
@@ -210,10 +212,11 @@ public class DefaultControllerTest implements MethodSecurityTests{
         assertTrue("Status code is not 2**", status >= 200 && status < 300);
 
         // GET /travelRecommendations
-        httpResult = mockMvc.perform(get("/travelRecommendations"))
+        httpResult = mockMvc.perform(get("/travelRecommendations")
+                .with(user("julieiscool@hotmail.com").roles("AGENT")))
                 .andReturn();
         status = httpResult.getResponse().getStatus();
-        assertEquals("Status code is not 302", 302, status);
+        assertTrue("Status code is not 2**", status >= 200 && status < 300);
     }
 
     @Test
@@ -271,10 +274,11 @@ public class DefaultControllerTest implements MethodSecurityTests{
         assertTrue("Status code is not 2**", status >= 200 && status < 300);
 
         // GET /travelRecommendations
-        httpResult = mockMvc.perform(get("/travelRecommendations"))
+        httpResult = mockMvc.perform(get("/travelRecommendations")
+                .with(user("Kaylasweet@gmail.com").roles("FLIGHTPUB")))
                 .andReturn();
         status = httpResult.getResponse().getStatus();
-        assertEquals("Status code is not 302", 302, status);
+        assertTrue("Status code is not 2**", status >= 200 && status < 300);
     }
 
     @Test
@@ -332,10 +336,11 @@ public class DefaultControllerTest implements MethodSecurityTests{
         assertTrue("Status code is not 2**", status >= 200 && status < 300);
 
         // GET /travelRecommendations
-        httpResult = mockMvc.perform(get("/travelRecommendations"))
+        httpResult = mockMvc.perform(get("/travelRecommendations")
+                .with(user("jacthebat@gmail.com").roles("ADMIN")))
                 .andReturn();
         status = httpResult.getResponse().getStatus();
-        assertEquals("Status code is not 302", 302, status);
+        assertTrue("Status code is not 2**", status >= 200 && status < 300);
     }
 
 }
